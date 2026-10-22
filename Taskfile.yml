@@ -1,8 +1,8 @@
 version: '3'
 
-# Spin's colors, type, layout and mark: palette.toml and assets/avatar.png are the sources, and
+# Spinbox's colors, type, layout and mark: palette.toml and assets/avatar.png are the sources, and
 # dist/ and logos/ are what they make, committed, for the website, the dashboard and anything else
-# that draws Spin to copy. `task check` holds them to the sources.
+# that draws Spinbox to copy. `task check` holds them to the sources.
 
 tasks:
   default:

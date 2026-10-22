@@ -1,7 +1,7 @@
 # spin-stack / brand
 
-The colors, type, layout and mark of Spin, written once, checked, and made into the files each
-place that draws Spin reads: the website (Starlight), the dashboard (Tailwind, shadcn's
+The colors, type, layout and mark of Spinbox, written once, checked, and made into the files each
+place that draws Spinbox reads: the website (Starlight), the dashboard (Tailwind, shadcn's
 variables) and anything else (`dist/tokens.json`).
 
 **[See it](https://spin-stack.github.io/brand/)**: `index.html` is the laboratory.

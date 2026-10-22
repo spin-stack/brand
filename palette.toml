@@ -1,7 +1,7 @@
-# The colors, type and layout of Spin: the one place they are written. `task palette` checks
+# The colors, type and layout of Spinbox: the one place they are written. `task palette` checks
 # every pair that carries meaning (contrast, perceptual distance as drawn and under colour-vision
 # deficiencies, on a lit IPS panel and a dimmed one) and writes them out in dist/ for each place
-# that draws Spin: the website (Starlight), the dashboard (Tailwind, shadcn's variables), the
+# that draws Spinbox: the website (Starlight), the dashboard (Tailwind, shadcn's variables), the
 # terminal page, and anything else that reads dist/tokens.json. THEMING.md says where each goes.
 #
 # The colors come from the spin-stack mark: a stack of disks - the layers a workspace's disk is
@@ -64,7 +64,7 @@ hover = 0.10
 selected = 0.22
 
 # Type. IBM Plex, served by the site that uses it: a sans for reading and a mono for what a
-# machine says - commands, output, ids - and for headings, which set Spin in its console's face.
+# machine says - commands, output, ids - and for headings, which set Spinbox in its console's face.
 [type]
 sans = "IBM Plex Sans"
 mono = "IBM Plex Mono"
