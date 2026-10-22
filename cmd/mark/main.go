@@ -76,9 +76,15 @@ func run() error {
 		return fmt.Errorf("%s: %w", *src, err)
 	}
 
+	onNavy := shadowOn(drawing, stack, navy)
+
 	var stale []string
 	for name, l := range sizes {
-		img, err := cut(drawing, stack, l.size, l.clear, navy)
+		src := onNavy
+		if l.clear {
+			src = drawing
+		}
+		img, err := cut(src, stack, l.size, l.clear, navy)
 		if err != nil {
 			return fmt.Errorf("%s: %w", name, err)
 		}
@@ -140,6 +146,29 @@ func stackOf(drawing image.Image) (image.Rectangle, error) {
 		return box, fmt.Errorf("it draws nothing: no pixel is more than faintly opaque")
 	}
 	return box, nil
+}
+
+// shadowOn is the drawing for the tile: its shadow is a light grey ring, drawn for a light ground,
+// which on the navy reads as a halo; a shadow is never lighter than what it falls on. The ring is
+// the grey in the stack's bottom quarter - the white top disk is grey too, but at the top - and
+// becomes the navy with a sixteenth of the ring's light in it, a rim as the avatar's was.
+func shadowOn(drawing image.Image, stack image.Rectangle, navy color.RGBA) image.Image {
+	const light = 0.06
+	out := image.NewNRGBA(drawing.Bounds())
+	draw.Draw(out, out.Bounds(), drawing, drawing.Bounds().Min, draw.Src)
+	band := stack.Min.Y + stack.Dy()*3/4
+	for y := band; y < stack.Max.Y; y++ {
+		for x := stack.Min.X; x < stack.Max.X; x++ {
+			c := out.NRGBAAt(x, y)
+			hi, lo := max(c.R, c.G, c.B), min(c.R, c.G, c.B)
+			if c.A == 0 || hi-lo > 24 || hi < 96 {
+				continue
+			}
+			mix := func(n, g uint8) uint8 { return uint8(float64(n) + light*(float64(g)-float64(n)) + 0.5) }
+			out.SetNRGBA(x, y, color.NRGBA{mix(navy.R, c.R), mix(navy.G, c.G), mix(navy.B, c.B), c.A})
+		}
+	}
+	return out
 }
 
 // cut is the stack centered on a square of size pixels, a fifth of its size around it, on the
