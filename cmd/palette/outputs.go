@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-// outputs are dist/'s files: one per place that draws Spin, each in the shape that place reads.
+// outputs are dist/'s files: one per place that draws Spinbox, each in the shape that place reads.
 func outputs(p palette, results []result) (map[string][]byte, error) {
 	dark, err := colors(p.Dark)
 	if err != nil {

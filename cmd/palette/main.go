@@ -1,6 +1,6 @@
 // Command palette checks palette.toml - every pair of colors that carries meaning, for contrast
 // and for perceptual distance as drawn, on real panels and through each deficiency of colour
-// vision - and writes it out in dist/ for each place that draws Spin. With -check it writes
+// vision - and writes it out in dist/ for each place that draws Spinbox. With -check it writes
 // nothing and fails when dist/ is not what palette.toml makes, or when a pair is below its floor.
 package main
 
