@@ -25,15 +25,23 @@ tasks:
     cmds:
       - go run ./cmd/mark
 
+  screenshots:
+    desc: Take the app's screenshots from SHOTS=, where `SITE_SHOTS=<dir> task e2e:dashboard -- site.spec.ts` in a spin checkout (SPIN=, by default ../spin) wrote them, with that checkout's release.
+    vars:
+      SPIN: '{{.SPIN | default "../spin"}}'
+    cmds:
+      - go run ./cmd/shots -spin {{.SPIN}} -from {{.SHOTS}}
+
   preview:
     desc: Serve preview.html - the site, the dashboard and a phone's width in the palette, in either mode and through each deficiency - at http://127.0.0.1:4330/preview.html
     cmds:
       - python3 -m http.server 4330 --bind 127.0.0.1
 
   check:
-    desc: Fail if a pair is below its floor, or dist/ or logos/ is not what the sources make.
+    desc: Fail if a pair is below its floor, dist/ or logos/ is not what the sources make, or shots/ lacks a screenshot it lists.
     cmds:
       - go vet ./...
       - go test ./...
       - go run ./cmd/palette -check
       - go run ./cmd/mark -check
+      - go run ./cmd/shots -check
