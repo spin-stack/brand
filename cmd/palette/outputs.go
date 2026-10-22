@@ -180,7 +180,9 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 			fmt.Fprintf(&b, "\t--%s: %s;\n", v[0], v[1])
 		}
 		if !isDark {
-			fmt.Fprintf(&b, "\t--radius: %grem;\n", float64(p.Layout.Radius)/16)
+			// The dashboard is dense - tables of runners and workspaces - and square enough that
+			// a table reads as one: its radius is the small one, and a chip's is 2px under it.
+			fmt.Fprintf(&b, "\t--radius: %grem;\n", float64(p.Layout.RadiusSm)/16)
 		}
 		b.WriteString("}\n")
 	}

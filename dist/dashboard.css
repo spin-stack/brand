@@ -21,7 +21,7 @@
 	--success-foreground: 220.9 39.3% 11.0%;
 	--warning: 39.1 100.0% 27.1%;
 	--warning-foreground: 220.9 39.3% 11.0%;
-	--radius: 0.5rem;
+	--radius: 0.25rem;
 }
 .dark {
 	--background: 220.9 39.3% 11.0%;
