@@ -1,0 +1,91 @@
+# The colors, type and layout of Spin: the one place they are written. `task palette` checks
+# every pair that carries meaning (contrast, perceptual distance as drawn and under colour-vision
+# deficiencies, on a lit IPS panel and a dimmed one) and writes them out in dist/ for each place
+# that draws Spin: the website (Starlight), the dashboard (Tailwind, shadcn's variables), the
+# terminal page, and anything else that reads dist/tokens.json. THEMING.md says where each goes.
+#
+# The colors come from the spin-stack mark: a stack of disks - the layers a workspace's disk is
+# made of - in cyan and blue on navy, with a mint ring. Dark is the default: the mark's own ground.
+# Light keeps the hues and darkens them until text in them reads on white.
+
+[brand]
+navy = "#111827"   # the mark's ground, as the avatar has it; the dark page
+cyan = "#27BFE8"   # the mark's middle disk; the accent in dark mode
+blue = "#2F6BE3"   # the mark's lower disk; drawings only, never text on navy
+deep = "#0C3C84"   # the mark's base; drawings, and light mode's strongest accent
+mint = "#5FE3D6"   # the ring; labels that name a thing in dark mode (an eyebrow, a command
+                   # in a drawing), never a surface
+frost = "#EAF0F6"  # the mark's top disk; text on navy
+
+# Surfaces, darkest to lightest in dark mode and lightest to darkest in light: page (behind
+# everything), surface (navigation and sidebars, a step off the page), raised (cards, code,
+# inputs), overlay (menus, dialogs). Grays carry the navy's hue (~222), so a surface and the mark
+# are one material, not cyan on a stock grey.
+[dark]
+page = "#111827"
+surface = "#172035"
+raised = "#202C47"
+overlay = "#273552"
+border = "#33435F"      # a line between two surfaces, and an input's edge: 3:1 is held on page
+border_strong = "#6A7EA0" # an input's edge where it must read as a control (WCAG 1.4.11)
+text = "#E6EDF6"
+muted = "#9AA9C2"       # secondary text: held to 4.5:1 on every surface up to overlay
+accent = "#27BFE8"      # the one primary action per view, solid; indicators; the focus ring
+accent_text = "#27BFE8" # links and labels in the accent
+on_accent = "#111827"   # text on the solid accent
+label = "#5FE3D6"       # the mint: a small label that names a section or a command
+success = "#3DDC97"
+warning = "#FFC857"
+error = "#F57AB4"       # leans pink to magenta: a deutan tells it from success by its blue
+destructive = "#C2304F" # the fill of a destructive action, its label white
+
+[light]
+page = "#FFFFFF"
+surface = "#F0F4F9"
+raised = "#DEE6F1"
+overlay = "#FFFFFF"
+border = "#B9C6D8"
+border_strong = "#6E7D96"
+text = "#111827"
+muted = "#4A5871"
+accent = "#0A6FA3"      # the cyan darkened until white text on it, and it on white, read
+accent_text = "#085E8C"
+on_accent = "#FFFFFF"
+label = "#0C3C84"       # the mark's deep blue: mint does not read on white
+success = "#1E7046"
+warning = "#8A5A00"
+error = "#9B1B73"       # magenta-leaning, as dark's: a deutan tells it from success by its blue
+destructive = "#B4234A"
+
+# The accent over a surface, for what is selected or hovered: an alpha, so one value serves every
+# surface. The label on a tint is accent_text.
+[tint]
+hover = 0.10
+selected = 0.22
+
+# Type. IBM Plex, served by the site that uses it: a sans for reading and a mono for what a
+# machine says - commands, output, ids - and for headings, which set Spin in its console's face.
+[type]
+sans = "IBM Plex Sans"
+mono = "IBM Plex Mono"
+fallback_sans = "system-ui, -apple-system, 'Segoe UI', sans-serif"
+fallback_mono = "ui-monospace, 'SF Mono', Menlo, monospace"
+reading_size = 16       # px: the docs' body. Below 16 iOS zooms into a focused input
+dense_size = 14         # px: the dashboard's body, where a table of runners is the content
+line_height = 1.6       # reading; dense text takes 1.45
+heading_weight = 600
+heading_tracking = -0.02 # em: mono headings are wide; this tightens them to read as one word
+
+# Layout. A measure readers keep their place in, targets fingers hit, and corners that read as
+# one product from the site to the dashboard.
+[layout]
+measure = 72            # ch: a line of reading text; 45-75 is the range people read without losing it
+sidebar = 17            # rem
+radius_sm = 4           # px: inputs, chips, code
+radius = 8              # px: cards, buttons, panels
+radius_lg = 12          # px: dialogs, hero figures
+target = 24             # px: the least a pointer target is (WCAG 2.2, 2.5.8)
+target_touch = 44       # px: a target on a coarse pointer (WCAG 2.5.5, Apple's HIG)
+phone = 390             # px: the narrow width every page is drawn at in preview.html
+tablet = 768
+desktop = 1280

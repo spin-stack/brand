@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spin brand</title>
+<link rel="icon" href="logos/favicon-64.png">
+<link rel="stylesheet" href="dist/tokens.css">
+<style>
+@font-face { font-family: 'IBM Plex Sans'; src: url(fonts/ibm-plex-sans-latin-400-normal.woff2) format('woff2'); font-weight: 400; }
+@font-face { font-family: 'IBM Plex Sans'; src: url(fonts/ibm-plex-sans-latin-500-normal.woff2) format('woff2'); font-weight: 500; }
+@font-face { font-family: 'IBM Plex Sans'; src: url(fonts/ibm-plex-sans-latin-600-normal.woff2) format('woff2'); font-weight: 600; }
+@font-face { font-family: 'IBM Plex Mono'; src: url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2'); font-weight: 400; }
+@font-face { font-family: 'IBM Plex Mono'; src: url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2'); font-weight: 600; }
+
+/* Everything below is drawn from dist/tokens.css: a color here that is not a token is a bug. */
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--spin-page); color: var(--spin-text); font: var(--spin-text-reading)/var(--spin-line-height) var(--spin-font-sans); }
+.see-protan { filter: url(#protan); } .see-deutan { filter: url(#deutan); } .see-tritan { filter: url(#tritan); }
+.bar { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; align-items: center; padding: .75rem 1.25rem; background: var(--spin-surface); border-bottom: 1px solid var(--spin-border); font: 500 13px var(--spin-font-mono); }
+.bar label { display: inline-flex; gap: .4rem; align-items: center; color: var(--spin-muted); }
+.bar select, .bar button { font: inherit; color: var(--spin-text); background: var(--spin-raised); border: 1px solid var(--spin-border-strong); border-radius: var(--spin-radius-sm); min-height: var(--spin-target); padding: 0 .5rem; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
+h1, h2, h3 { font-family: var(--spin-font-mono); font-weight: var(--spin-heading-weight); letter-spacing: var(--spin-heading-tracking); color: var(--spin-text); }
+.label { font: 600 12px var(--spin-font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--spin-label); }
+section { margin-top: 3rem; }
+section > .label { display: block; border-top: 1px solid var(--spin-border); padding-top: 1.5rem; margin-bottom: 1rem; }
+.muted { color: var(--spin-muted); }
+a { color: var(--spin-accent-text); text-underline-offset: .2em; }
+:focus-visible { outline: 2px solid var(--spin-accent); outline-offset: 2px; }
+
+/* Swatches */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .5rem; }
+.sw { border: 1px solid var(--spin-border); border-radius: var(--spin-radius); overflow: hidden; background: var(--spin-raised); }
+.sw i { display: block; height: 56px; }
+.sw b, .sw code { display: block; padding: .3rem .6rem; font: 12px var(--spin-font-mono); }
+.sw code { color: var(--spin-muted); padding-top: 0; }
+
+/* The site */
+.site { display: grid; grid-template-columns: 1fr; border: 1px solid var(--spin-border); border-radius: var(--spin-radius-lg); overflow: hidden; }
+.site header { display: flex; align-items: center; gap: .75rem; padding: .75rem 1rem; background: var(--spin-surface); border-bottom: 1px solid var(--spin-border); }
+.site header img { width: 32px; height: 32px; border-radius: 22%; }
+.site header b { font: 600 18px var(--spin-font-mono); }
+.site header .search { margin-left: auto; min-width: 12rem; min-height: var(--spin-target); border: 1px solid var(--spin-border); border-radius: var(--spin-radius); padding: .25rem .75rem; color: var(--spin-muted); background: var(--spin-page); }
+.banner { padding: .5rem 1rem; text-align: center; font-size: 14px; background: var(--spin-accent-selected); border-bottom: 1px solid var(--spin-border); }
+.hero { display: grid; gap: 2rem; padding: 3rem 2rem; grid-template-columns: 7fr 5fr; align-items: center; }
+.hero h1 { font-size: clamp(2rem, 1rem + 3vw, 3.2rem); line-height: 1.08; margin: .5rem 0 1rem; }
+.hero img { width: 100%; max-width: 20rem; justify-self: center; border-radius: 22%; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 1.1rem; border-radius: 999px; font: 500 15px var(--spin-font-sans); border: 1px solid transparent; cursor: pointer; text-decoration: none; }
+.btn.primary { background: var(--spin-accent); color: var(--spin-on-accent); }
+.btn.ghost { color: var(--spin-text); border-color: var(--spin-border-strong); background: transparent; }
+.btn.danger { background: var(--spin-destructive); color: #fff; border-radius: var(--spin-radius); }
+.doc { display: grid; grid-template-columns: var(--spin-sidebar) 1fr 15rem; border-top: 1px solid var(--spin-border); }
+.doc nav { background: var(--spin-surface); padding: 1rem; font-size: 14px; border-right: 1px solid var(--spin-border); }
+.doc nav a { display: block; color: var(--spin-text); text-decoration: none; padding: .3rem .6rem; border-radius: var(--spin-radius-sm); min-height: var(--spin-target); }
+.doc nav a:hover { background: var(--spin-accent-hover); }
+.doc nav a.current { background: var(--spin-accent-selected); color: var(--spin-accent-text); font-weight: 600; }
+.doc article { padding: 2rem; max-width: calc(var(--spin-measure) + 4rem); }
+.doc aside { padding: 1rem; font-size: 13px; border-left: 1px solid var(--spin-border); color: var(--spin-muted); }
+pre { background: var(--spin-raised); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-sm); padding: .9rem 1rem; overflow-x: auto; font: 14px/1.55 var(--spin-font-mono); color: var(--spin-text); }
+code { font-family: var(--spin-font-mono); }
+p code, td code { background: var(--spin-raised); border: 1px solid var(--spin-border); border-radius: 4px; padding: 0 .3em; font-size: .9em; }
+.aside { border-left: 3px solid var(--spin-warning); background: var(--spin-raised); padding: .75rem 1rem; border-radius: var(--spin-radius-sm); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: .55rem .6rem; border-bottom: 1px solid var(--spin-border); }
+th { color: var(--spin-muted); font-weight: 500; }
+
+/* The dashboard */
+.dash { display: grid; grid-template-columns: 14rem 1fr; border: 1px solid var(--spin-border); border-radius: var(--spin-radius-lg); overflow: hidden; font-size: var(--spin-text-dense); line-height: 1.45; }
+.dash nav { background: var(--spin-surface); padding: 1rem .75rem; border-right: 1px solid var(--spin-border); }
+.dash nav .cap { font: 600 11px var(--spin-font-mono); color: var(--spin-muted); letter-spacing: .08em; text-transform: uppercase; margin: 1rem .5rem .4rem; }
+.dash nav a { display: block; padding: .35rem .5rem; border-radius: var(--spin-radius-sm); color: var(--spin-text); text-decoration: none; }
+.dash nav a.current { background: var(--spin-accent-selected); color: var(--spin-accent-text); }
+.dash main { padding: 1.25rem 1.5rem; }
+.dash .tools { display: flex; gap: .5rem; align-items: center; margin: .75rem 0 1rem; flex-wrap: wrap; }
+.dash input { font: inherit; color: var(--spin-text); background: var(--spin-raised); border: 1px solid var(--spin-border-strong); border-radius: var(--spin-radius-sm); min-height: 34px; padding: 0 .6rem; min-width: 14rem; }
+.dash input::placeholder { color: var(--spin-muted); }
+.dash .btn { min-height: 34px; border-radius: var(--spin-radius); font-size: 14px; }
+.state { display: inline-flex; align-items: center; gap: .4rem; font: 500 12px var(--spin-font-mono); }
+.state::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.state.ok { color: var(--spin-success); } .state.warn { color: var(--spin-warning); } .state.err { color: var(--spin-error); } .state.idle { color: var(--spin-muted); }
+.state.warn::before { border-radius: 1px; transform: rotate(45deg); } .state.err::before { border-radius: 0; }
+.panel { background: var(--spin-raised); border: 1px solid var(--spin-border); border-radius: var(--spin-radius); padding: 1rem; }
+.dialog { background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-lg); padding: 1.25rem; max-width: 26rem; box-shadow: 0 16px 40px rgb(0 0 0 / .35); }
+.toast { display: inline-flex; gap: .6rem; align-items: center; background: var(--spin-overlay); border: 1px solid var(--spin-border); border-left: 3px solid var(--spin-success); border-radius: var(--spin-radius); padding: .6rem .9rem; }
+.row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-start; margin-top: 1rem; }
+
+/* Widths */
+.frames { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: flex-start; }
+.frame { border: 1px solid var(--spin-border-strong); border-radius: 28px; padding: 10px; background: var(--spin-surface); }
+.frame iframe { display: block; border: 0; border-radius: 18px; background: var(--spin-page); }
+.frame figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); text-align: center; padding-top: .4rem; }
+
+/* Perception */
+.perc td.fail { color: var(--spin-error); font-weight: 600; }
+.perc { font: 12px var(--spin-font-mono); }
+
+/* A grid's column shrinks below what is in it, so a long command scrolls in its block rather
+   than pushing the page wider than the phone. */
+.hero > *, .doc > *, .dash > *, .doc article, .dash main { min-width: 0; }
+
+/* Narrow: the same pieces, stacked, as a phone shows them. */
+@media (max-width: 760px) {
+	.hero, .doc, .dash { grid-template-columns: 1fr; }
+	.doc nav, .doc aside, .dash nav { display: none; }
+	.hero { padding: 2rem 1rem; } .doc article { padding: 1.25rem 1rem; }
+	.hero h1 { font-size: 1.75rem; } .hero img { max-width: 10rem; }
+	.wrap { padding-inline: 1rem; } table { font-size: 13px; }
+	.site header .search { display: none; }
+	.btn, .dash input, .dash .btn { min-height: var(--spin-target-touch); }
+}
+body.embed .bar, body.embed .only-full { display: none; }
+body.embed .wrap { padding-top: 0; }
+</style>
+</head>
+<body>
+<div id="filters"></div>
+<div class="bar only-full">
+	<b>spin-stack / brand</b>
+	<label>Mode <select id="mode"><option>dark</option><option>light</option></select></label>
+	<label>See as <select id="see"><option value="">as drawn</option><option value="protan">protanopia</option><option value="deutan">deuteranopia</option><option value="tritan">tritanopia</option></select></label>
+	<span class="muted">Every color comes from <code>dist/tokens.css</code>, written by <code>task palette</code> from <code>palette.toml</code>.</span>
+</div>
+<div class="wrap" id="page">
+
+<section class="only-full">
+	<span class="label">The mark</span>
+	<div class="row"><img src="logos/mark-512.png" alt="The spin-stack mark" width="160" style="border-radius:22%"><img src="logos/favicon-64.png" alt="" width="32" style="border-radius:22%;align-self:flex-end"></div>
+</section>
+
+<section class="only-full">
+	<span class="label">Palette</span>
+	<div class="swatches" id="swatches"></div>
+</section>
+
+<section>
+	<span class="label">The site</span>
+	<div class="site">
+		<header><img src="logos/mark-512.png" alt=""><b>Spin</b><span class="search">Search</span></header>
+		<div class="banner"><strong>Spin is experimental: APIs change and data may be lost.</strong> <a href="#">Status</a> lists what is built and what proves it.</div>
+		<div class="hero">
+			<div>
+				<span class="label">spin-stack · self-hosted sandboxes</span>
+				<h1>A virtual machine per workspace. A snapshot before, a diff after.</h1>
+				<p class="muted">Sandboxes for people and agents that run in your own AWS account.</p>
+				<p><a class="btn primary" href="#">Evaluate →</a> <a class="btn ghost" href="#">Install on AWS</a></p>
+			</div>
+			<img src="logos/mark-512.png" alt="">
+		</div>
+		<div class="doc">
+			<nav><a href="#">What is Spin</a><a href="#">Status</a><a class="current" href="#">Snapshots and rollback</a><a href="#">Network and egress</a><a href="#">Ports and sharing</a></nav>
+			<article>
+				<h2>Snapshots and rollback</h2>
+				<p>A snapshot is a point in a workspace's life that you can come back to. It lives in the installation's bucket, so it does not depend on any runner. <a href="#">Restore</a> puts the disk back; <code>--with-memory</code> keeps the processes.</p>
+				<pre>spin snapshot create demo --description clean --with-memory --wait
+spin snapshot diff demo &lt;after-id&gt; --from &lt;clean-id&gt; --under /etc</pre>
+				<pre>A  /etc/greeting
+M  /etc/hosts
+D  /etc/issue</pre>
+				<div class="aside"><strong>Caution.</strong> A memory snapshot resumes only on a runner that carries the same machine.</div>
+				<table><tr><th>You want to</th><th>Spin gives you</th></tr><tr><td>See what changed</td><td>A file-by-file diff between two snapshots</td></tr><tr><td>Undo</td><td>Restore the disk, or resume with the processes</td></tr></table>
+			</article>
+			<aside><div class="label">On this page</div><p>Taking one<br>Going back<br>Seeing what changed</p></aside>
+		</div>
+	</div>
+</section>
+
+<section>
+	<span class="label">The dashboard</span>
+	<div class="dash">
+		<nav><div class="cap">Work</div><a class="current" href="#">Workspaces</a><a href="#">Snapshots</a><a href="#">Teams</a><div class="cap">Administer</div><a href="#">Hosts</a><a href="#">Settings</a></nav>
+		<main>
+			<h3 style="margin:0">Workspaces</h3>
+			<div class="tools"><input placeholder="Search workspaces"><button class="btn primary">New workspace</button><button class="btn ghost">Refresh</button></div>
+			<table>
+				<tr><th>Name</th><th>State</th><th>Host</th><th>Last snapshot</th></tr>
+				<tr><td><a href="#">api</a></td><td><span class="state ok">running</span></td><td><code>runner-a1</code></td><td>2 min ago</td></tr>
+				<tr><td><a href="#">agent-1</a></td><td><span class="state warn">waiting for a host</span></td><td>—</td><td>—</td></tr>
+				<tr><td><a href="#">ci-job</a></td><td><span class="state err">failed</span></td><td><code>runner-b2</code></td><td>1 h ago</td></tr>
+				<tr><td><a href="#">notes</a></td><td><span class="state idle">stopped</span></td><td>—</td><td>yesterday</td></tr>
+			</table>
+			<div class="row">
+				<div class="dialog"><h3 style="margin-top:0">Delete agent-1?</h3><p class="muted">It goes to the trash with its disk; you can undelete it until its days are up.</p><button class="btn danger">Delete</button> <button class="btn ghost">Cancel</button></div>
+				<div class="toast"><span class="state ok">done</span> Snapshot <code>clean</code> published</div>
+			</div>
+		</main>
+	</div>
+</section>
+
+<section class="only-full">
+	<span class="label">Widths</span>
+	<p class="muted">This page at a phone's and a tablet's width (<code>layout.phone</code>, <code>layout.tablet</code>), in the mode and the view chosen above.</p>
+	<div class="frames">
+		<figure class="frame"><iframe id="phone" width="390" height="760" title="Phone"></iframe><figcaption>390 px</figcaption></figure>
+		<figure class="frame"><iframe id="tablet" width="768" height="760" title="Tablet"></iframe><figcaption>768 px</figcaption></figure>
+	</div>
+</section>
+
+<section class="only-full">
+	<span class="label">Perception</span>
+	<p class="muted">Every pair <code>task palette</code> holds, as drawn and in each view (<code>dist/perception.js</code>). Contrast is WCAG 2.2's; distance is CIEDE2000.</p>
+	<table class="perc" id="perc"></table>
+</section>
+</div>
+
+<script type="module">
+import { perception } from './dist/perception.js';
+const q = new URLSearchParams(location.search);
+const mode = document.getElementById('mode'), see = document.getElementById('see');
+if (q.has('embed')) document.body.classList.add('embed');
+function apply() {
+	document.documentElement.dataset.theme = mode.value;
+	document.getElementById('page').className = 'wrap' + (see.value ? ' see-' + see.value : '');
+	for (const id of ['phone', 'tablet']) document.getElementById(id).src = `preview.html?embed=1&mode=${mode.value}&see=${see.value}`;
+	const s = new URLSearchParams(location.search); s.set('mode', mode.value); s.set('see', see.value);
+	if (!q.has('embed')) history.replaceState(null, '', '?' + s);
+	swatches();
+}
+mode.value = q.get('mode') || 'dark'; see.value = q.get('see') || '';
+mode.onchange = see.onchange = apply;
+fetch('dist/simulate.svg').then((r) => r.text()).then((t) => (document.getElementById('filters').innerHTML = t));
+function swatches() {
+	const cs = getComputedStyle(document.documentElement);
+	const roles = ['page','surface','raised','overlay','border','border-strong','text','muted','accent','accent-text','on-accent','label','success','warning','error','destructive','accent-hover','accent-selected'];
+	document.getElementById('swatches').innerHTML = roles.map((r) => {
+		const v = cs.getPropertyValue('--spin-' + r).trim();
+		return `<div class="sw"><i style="background:${v}"></i><b>${r}</b><code>${v}</code></div>`;
+	}).join('');
+}
+const views = ['drawn','ips','dim','protan','deutan','tritan','protan+ips','deutan+ips'];
+document.getElementById('perc').innerHTML = '<tr><th>mode</th><th>kind</th><th>pair</th><th>floor</th>' + views.map((v) => `<th>${v}</th>`).join('') + '</tr>' +
+	perception.map((r) => `<tr><td>${r.Mode}</td><td>${r.Kind}</td><td>${r.What}</td><td>${r.Distance ? r.Floor + '/' + r.Worst : r.Floor + ':1'}</td>` +
+		(r.Distance ? views.map((v) => `<td class="${r.Distance[v] < (v === 'drawn' ? r.Floor : r.Worst) ? 'fail' : ''}">${r.Distance[v]}</td>`).join('')
+			: `<td class="${r.OK ? '' : 'fail'}" colspan="8">${r.Contrast}:1</td>`) + '</tr>').join('');
+apply();
+</script>
+</body>
+</html>

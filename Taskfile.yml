@@ -1,0 +1,39 @@
+version: '3'
+
+# Spin's colors, type, layout and mark: palette.toml and assets/avatar.png are the sources, and
+# dist/ and logos/ are what they make, committed, for the website, the dashboard and anything else
+# that draws Spin to copy. `task check` holds them to the sources.
+
+tasks:
+  default:
+    cmds:
+      - task: palette
+      - task: mark
+
+  palette:
+    desc: Check every pair palette.toml carries (contrast; CIEDE2000 as drawn, on panels and through each colour-vision deficiency) and write dist/.
+    cmds:
+      - go run ./cmd/palette
+
+  report:
+    desc: Print every pair with its contrast or its distance in each view.
+    cmds:
+      - go run ./cmd/palette -report
+
+  mark:
+    desc: Cut the stack of disks out of the organization's avatar, without its wordmark, into logos/ at each size.
+    cmds:
+      - go run ./cmd/mark
+
+  preview:
+    desc: Serve preview.html - the site, the dashboard and a phone's width in the palette, in either mode and through each deficiency - at http://127.0.0.1:4330/preview.html
+    cmds:
+      - python3 -m http.server 4330 --bind 127.0.0.1
+
+  check:
+    desc: Fail if a pair is below its floor, or dist/ or logos/ is not what the sources make.
+    cmds:
+      - go vet ./...
+      - go test ./...
+      - go run ./cmd/palette -check
+      - go run ./cmd/mark -check
