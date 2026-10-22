@@ -89,3 +89,14 @@ target_touch = 44       # px: a target on a coarse pointer (WCAG 2.5.5, Apple's 
 phone = 390             # px: the narrow width every page is drawn at in preview.html
 tablet = 768
 desktop = 1280
+
+# Motion. A movement says what something does - a layer sealed on the one under it, a diff drawn
+# between two - or that it answered a hand; one that only decorates is left out. Each runs once:
+# nothing moves on its own for longer than 5 s (WCAG 2.2.2), and reduced motion asked for is
+# every one at its end state.
+[motion]
+fast = 120              # ms: a hover, a press, a focus ring
+base = 200              # ms: a card, a tab, a menu opening
+slow = 400              # ms: a section coming into view
+draw = 700              # ms: a line of a drawing being drawn
+ease = "cubic-bezier(0.2, 0.7, 0.2, 1)" # out, quick then settling: it arrives rather than bounces

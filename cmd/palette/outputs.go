@@ -22,7 +22,7 @@ func outputs(p palette, results []result) (map[string][]byte, error) {
 
 	j, err := json.MarshalIndent(map[string]any{
 		"brand": p.Brand, "dark": hexes(dark), "light": hexes(light),
-		"tint": p.Tint, "type": p.Type, "layout": p.Layout,
+		"tint": p.Tint, "type": p.Type, "layout": p.Layout, "motion": p.Motion,
 	}, "", "  ")
 	if err != nil {
 		return nil, err
@@ -88,6 +88,9 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--spin-measure: %dch;\n\t--spin-sidebar: %drem;\n", p.Layout.Measure, p.Layout.Sidebar)
 	fmt.Fprintf(&b, "\t--spin-radius-sm: %dpx;\n\t--spin-radius: %dpx;\n\t--spin-radius-lg: %dpx;\n", p.Layout.RadiusSm, p.Layout.Radius, p.Layout.RadiusLg)
 	fmt.Fprintf(&b, "\t--spin-target: %dpx;\n\t--spin-target-touch: %dpx;\n", p.Layout.Target, p.Layout.TargetTouch)
+	fmt.Fprintf(&b, "\t--spin-duration-fast: %dms;\n\t--spin-duration: %dms;\n", p.Motion.Fast, p.Motion.Base)
+	fmt.Fprintf(&b, "\t--spin-duration-slow: %dms;\n\t--spin-duration-draw: %dms;\n", p.Motion.Slow, p.Motion.Draw)
+	fmt.Fprintf(&b, "\t--spin-ease: %s;\n", p.Motion.Ease)
 	b.WriteString("}\n")
 	return b.String()
 }
