@@ -11,18 +11,27 @@ import (
 	"image"
 	"image/color"
 	"image/png"
+	"math"
 	"os"
 	"path/filepath"
 
 	"golang.org/x/image/draw"
 )
 
-// sizes are the files logos/ holds: the tile at each size something shows it at.
-var sizes = map[string]int{
-	"mark-512.png":   512, // the hero, the link preview, the preview page
-	"mark-256.png":   256, // a site's header
-	"favicon-64.png": 64,
-	"favicon-32.png": 32,
+// logo is one file logos/ holds: the mark at a size something shows it at, on its own ground (a
+// tile) or with the ground taken out (clear).
+type logo struct {
+	size  int
+	clear bool
+}
+
+var sizes = map[string]logo{
+	"mark-512.png":       {512, false}, // the link preview, a dark hero
+	"mark-256.png":       {256, false}, // a dark header
+	"mark-clear-512.png": {512, true},  // on any ground: a light page, a light hero
+	"mark-clear-256.png": {256, true},  // a light header
+	"favicon-64.png":     {64, false},  // a browser's tab, whose ground is the browser's
+	"favicon-32.png":     {32, false},
 }
 
 func main() {
@@ -51,10 +60,15 @@ func run() error {
 	if err != nil {
 		return err
 	}
+	clear := unground(tile, avatar.At(avatar.Bounds().Min.X+4, avatar.Bounds().Min.Y+4))
 	var stale []string
-	for name, size := range sizes {
-		dst := image.NewRGBA(image.Rect(0, 0, size, size))
-		draw.CatmullRom.Scale(dst, dst.Bounds(), tile, tile.Bounds(), draw.Src, nil)
+	for name, l := range sizes {
+		src := tile
+		if l.clear {
+			src = clear
+		}
+		dst := image.NewRGBA(image.Rect(0, 0, l.size, l.size))
+		draw.CatmullRom.Scale(dst, dst.Bounds(), src, src.Bounds(), draw.Src, nil)
 		var b bytes.Buffer
 		if err := (&png.Encoder{CompressionLevel: png.BestCompression}).Encode(&b, dst); err != nil {
 			return err
@@ -139,4 +153,64 @@ func cut(avatar image.Image) (image.Image, error) {
 	at := image.Pt((side-stack.Dx())/2, (side-stack.Dy())/2)
 	draw.Draw(tile, stack.Sub(stack.Min).Add(at), avatar, stack.Min, draw.Src)
 	return tile, nil
+}
+
+// unground takes the avatar's ground out of the tile: the ground is what a fill from the
+// tile's edges reaches through pixels within a few levels of it, and everything else - the
+// disks, the ring, the dark seams between the disks, which are darker than the ground - stays
+// opaque in its own color. The ground is textured, so a pixel near its edge fades by how far it
+// is from the ground rather than being cut, which keeps the silhouette's antialiasing.
+func unground(tile image.Image, ground color.Color) image.Image {
+	const near, far = 5.0, 11.0 // distance to the ground, in 8-bit levels: ground under near, opaque past far
+	gr, gg, gb, _ := ground.RGBA()
+	dist := func(c color.Color) float64 {
+		r, g, b, _ := c.RGBA()
+		dr, dg, db := float64(r>>8)-float64(gr>>8), float64(g>>8)-float64(gg>>8), float64(b>>8)-float64(gb>>8)
+		return math.Sqrt(dr*dr + dg*dg + db*db)
+	}
+	b := tile.Bounds()
+	w, h := b.Dx(), b.Dy()
+	isGround := make([]bool, w*h)
+	var queue []image.Point
+	push := func(x, y int) {
+		if x < 0 || y < 0 || x >= w || y >= h || isGround[y*w+x] {
+			return
+		}
+		if dist(tile.At(b.Min.X+x, b.Min.Y+y)) >= far {
+			return
+		}
+		isGround[y*w+x] = true
+		queue = append(queue, image.Pt(x, y))
+	}
+	for x := range w {
+		push(x, 0)
+		push(x, h-1)
+	}
+	for y := range h {
+		push(0, y)
+		push(w-1, y)
+	}
+	for len(queue) > 0 {
+		p := queue[len(queue)-1]
+		queue = queue[:len(queue)-1]
+		push(p.X+1, p.Y)
+		push(p.X-1, p.Y)
+		push(p.X, p.Y+1)
+		push(p.X, p.Y-1)
+	}
+	out := image.NewNRGBA(b)
+	for y := range h {
+		for x := range w {
+			c := color.NRGBAModel.Convert(tile.At(b.Min.X+x, b.Min.Y+y)).(color.NRGBA)
+			if isGround[y*w+x] {
+				d := dist(c)
+				if d <= near {
+					continue
+				}
+				c.A = uint8(255 * (d - near) / (far - near))
+			}
+			out.SetNRGBA(b.Min.X+x, b.Min.Y+y, c)
+		}
+	}
+	return out
 }

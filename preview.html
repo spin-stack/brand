@@ -29,12 +29,55 @@ section > .label { display: block; border-top: 1px solid var(--spin-border); pad
 a { color: var(--spin-accent-text); text-underline-offset: .2em; }
 :focus-visible { outline: 2px solid var(--spin-accent); outline-offset: 2px; }
 
+/* The masthead: what this page is, and the view's controls. */
+.masthead { background: var(--spin-surface); border-bottom: 1px solid var(--spin-border); }
+.masthead .wrap { padding-block: 1.5rem 1.25rem; }
+.masthead h1 { font-size: clamp(1.6rem, 1rem + 2vw, 2.4rem); margin: .75rem 0 .25rem; }
+.masthead p { margin: 0 0 1rem; max-width: 60rem; }
+.controls { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; }
+.controls label { display: inline-flex; gap: .5rem; align-items: center; font: 500 13px var(--spin-font-mono); color: var(--spin-muted); }
+.controls select { appearance: none; font: 500 13px var(--spin-font-mono); color: var(--spin-text); background: var(--spin-raised) linear-gradient(45deg, transparent 50%, var(--spin-muted) 50%) right 12px center / 5px 5px no-repeat; border: 1px solid var(--spin-border-strong); border-radius: var(--spin-radius-sm); min-height: 32px; padding: 0 28px 0 .6rem; cursor: pointer; }
+.lockup { display: inline-flex; align-items: center; gap: .5rem; font: 600 20px var(--spin-font-mono); color: var(--spin-text); }
+.lockup img { width: 32px; height: 32px; border-radius: 22%; }
+.lockup.big { font-size: 40px; gap: 1rem; } .lockup.big img { width: 64px; height: 64px; }
+:root[data-theme='light'] .on-dark, :root:not([data-theme='light']) .on-light { display: none !important; }
+
+/* The mark's guide */
+.guide { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2rem; align-items: start; }
+.tiles { display: grid; gap: 1rem; }
+.tiles figure, .donts figure { margin: 0; }
+.ground { display: grid; place-items: center; height: 200px; border-radius: var(--spin-radius-lg); border: 1px solid var(--spin-border); }
+.ground.dark { background: var(--spin-brand-navy); } .ground.light { background: #fff; }
+.ground.dark img { border-radius: 22%; }
+figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); padding-top: .4rem; }
+.rules h3 { font-size: 14px; margin: 1.25rem 0 .5rem; } .rules h3:first-child { margin-top: 0; }
+.sizes { display: flex; gap: 1.25rem; align-items: flex-end; flex-wrap: wrap; }
+.space { display: inline-block; padding: 18px; outline: 1px dashed var(--spin-border-strong); }
+.space img { display: block; }
+.donts { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.donts figure { text-align: center; } .donts figcaption::before { content: '✕ '; color: var(--spin-error); }
+
+/* The palette, by what each color is for */
+.group { display: grid; grid-template-columns: minmax(10rem, 14rem) 1fr; gap: 1rem 1.5rem; padding: 1rem 0; border-top: 1px solid var(--spin-border); }
+.group h3 { font-size: 14px; margin: 0 0 .25rem; } .group p { margin: 0; font-size: 13px; }
+.group .example { margin-top: .75rem; display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; font-size: 14px; }
+
+/* The app's screenshots */
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr)); gap: 1rem; }
+.shots figure { margin: 0; } .shots img { width: 100%; border-radius: var(--spin-radius); border: 1px solid var(--spin-border); display: block; }
+
+/* The docs' contents on a narrow screen: a disclosure where the side column was. */
+.otp { display: none; margin-bottom: 1rem; border: 1px solid var(--spin-border); border-radius: var(--spin-radius-sm); background: var(--spin-raised); }
+.otp summary { cursor: pointer; padding: .6rem .8rem; min-height: var(--spin-target-touch); display: flex; align-items: center; font: 500 13px var(--spin-font-mono); }
+.otp a { display: block; padding: .5rem .8rem; border-top: 1px solid var(--spin-border); text-decoration: none; }
+
 /* Swatches */
 .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .5rem; }
 .sw { border: 1px solid var(--spin-border); border-radius: var(--spin-radius); overflow: hidden; background: var(--spin-raised); }
 .sw i { display: block; height: 56px; }
 .sw b, .sw code { display: block; padding: .3rem .6rem; font: 12px var(--spin-font-mono); }
 .sw code { color: var(--spin-muted); padding-top: 0; }
+.sw-inline { display: inline-flex; align-items: center; padding: .35rem .7rem; border: 1px solid var(--spin-border); border-radius: var(--spin-radius-sm); font: 12px var(--spin-font-mono); }
 
 /* The site */
 .site { display: grid; grid-template-columns: 1fr; border: 1px solid var(--spin-border); border-radius: var(--spin-radius-lg); overflow: hidden; }
@@ -108,6 +151,9 @@ th { color: var(--spin-muted); font-weight: 500; }
 	.wrap { padding-inline: 1rem; } table { font-size: 13px; }
 	.site header .search { display: none; }
 	.btn, .dash input, .dash .btn { min-height: var(--spin-target-touch); }
+	.otp { display: block; }
+	.guide, .group { grid-template-columns: 1fr; }
+	.controls select { min-height: var(--spin-target-touch); }
 }
 body.embed .bar, body.embed .only-full { display: none; }
 body.embed .wrap { padding-top: 0; }
@@ -115,28 +161,23 @@ body.embed .wrap { padding-top: 0; }
 </head>
 <body>
 <div id="filters"></div>
-<div class="bar only-full">
-	<b>spin-stack / brand</b>
-	<label>Mode <select id="mode"><option>dark</option><option>light</option></select></label>
-	<label>See as <select id="see"><option value="">as drawn</option><option value="protan">protanopia</option><option value="deutan">deuteranopia</option><option value="tritan">tritanopia</option></select></label>
-	<span class="muted">Every color comes from <code>dist/tokens.css</code>, written by <code>task palette</code> from <code>palette.toml</code>.</span>
-</div>
+<header class="masthead only-full">
+	<div class="wrap">
+		<div class="lockup"><img class="on-dark" src="logos/mark-256.png" alt=""><img class="on-light" src="logos/mark-clear-256.png" alt=""><span>spin</span></div>
+		<h1>Spin brand system</h1>
+		<p class="muted">One palette, one mark and one type for the site, the dashboard and everything else that draws Spin - each color checked here, and copied from here by each of them. This page is the laboratory; the product is at <a href="https://spin-stack.github.io/website/">the website</a>.</p>
+		<div class="controls" role="group" aria-label="View">
+			<label>Mode <select id="mode"><option>dark</option><option>light</option></select></label>
+			<label>See as <select id="see"><option value="">as drawn</option><option value="protan">protanopia</option><option value="deutan">deuteranopia</option><option value="tritan">tritanopia</option></select></label>
+		</div>
+	</div>
+</header>
 <div class="wrap" id="page">
-
-<section class="only-full">
-	<span class="label">The mark</span>
-	<div class="row"><img src="logos/mark-512.png" alt="The spin-stack mark" width="160" style="border-radius:22%"><img src="logos/favicon-64.png" alt="" width="32" style="border-radius:22%;align-self:flex-end"></div>
-</section>
-
-<section class="only-full">
-	<span class="label">Palette</span>
-	<div class="swatches" id="swatches"></div>
-</section>
 
 <section>
 	<span class="label">The site</span>
 	<div class="site">
-		<header><img src="logos/mark-512.png" alt=""><b>Spin</b><span class="search">Search</span></header>
+		<header><img class="on-dark" src="logos/mark-256.png" alt=""><img class="on-light" src="logos/mark-clear-256.png" alt=""><b>Spin</b><span class="search">Search</span></header>
 		<div class="banner"><strong>Spin is experimental: APIs change and data may be lost.</strong> <a href="#">Status</a> lists what is built and what proves it.</div>
 		<div class="hero">
 			<div>
@@ -145,11 +186,12 @@ body.embed .wrap { padding-top: 0; }
 				<p class="muted">Sandboxes for people and agents that run in your own AWS account.</p>
 				<p><a class="btn primary" href="#">Evaluate →</a> <a class="btn ghost" href="#">Install on AWS</a></p>
 			</div>
-			<img src="logos/mark-512.png" alt="">
+			<img class="on-dark" src="logos/mark-512.png" alt=""><img class="on-light" src="logos/mark-clear-512.png" alt="">
 		</div>
 		<div class="doc">
 			<nav><a href="#">What is Spin</a><a href="#">Status</a><a class="current" href="#">Snapshots and rollback</a><a href="#">Network and egress</a><a href="#">Ports and sharing</a></nav>
 			<article>
+				<details class="otp"><summary>On this page: Snapshots and rollback</summary><a href="#">Taking one</a><a href="#">Going back</a><a href="#">Seeing what changed</a></details>
 				<h2>Snapshots and rollback</h2>
 				<p>A snapshot is a point in a workspace's life that you can come back to. It lives in the installation's bucket, so it does not depend on any runner. <a href="#">Restore</a> puts the disk back; <code>--with-memory</code> keeps the processes.</p>
 				<pre>spin snapshot create demo --description clean --with-memory --wait
@@ -187,6 +229,44 @@ D  /etc/issue</pre>
 	</div>
 </section>
 
+<section class="only-full" id="app">
+	<span class="label">The app, as it is</span>
+	<p class="muted" id="shots-note">Screenshots spin's own dashboard suite takes of a real installation (<code>shots/</code>, by <code>task screenshots</code>).</p>
+	<div class="shots" id="shots"></div>
+</section>
+
+<section class="only-full">
+	<span class="label">The mark</span>
+	<div class="guide">
+		<div class="tiles">
+			<figure><div class="ground dark"><img src="logos/mark-512.png" alt="The mark on its own ground" width="128"></div><figcaption>The tile, on its own ground: a dark page, the favicon, a link preview.</figcaption></figure>
+			<figure><div class="ground light"><img src="logos/mark-clear-512.png" alt="The mark without its ground" width="128"></div><figcaption>Clear: on a light page, a light header.</figcaption></figure>
+		</div>
+		<div class="rules">
+			<h3>Sizes</h3>
+			<div class="sizes"><img src="logos/mark-clear-256.png" width="64" alt=""><img src="logos/mark-clear-256.png" width="32" alt=""><img src="logos/favicon-32.png" width="16" alt=""><span class="muted">64 · 32 · 16 px. Below 24 px the favicon's tile, never the clear mark: its seams close up.</span></div>
+			<h3>Clear space</h3>
+			<div class="space"><img src="logos/mark-clear-256.png" width="72" alt=""></div>
+			<p class="muted">A quarter of the mark's height on every side, dashed above: no text or edge inside it.</p>
+			<h3>Lockup</h3>
+			<div class="lockup big"><img class="on-dark" src="logos/mark-256.png" alt=""><img class="on-light" src="logos/mark-clear-256.png" alt=""><span>spin</span></div>
+			<p class="muted">The mark, then <code>spin</code> in IBM Plex Mono 600, its cap height the mark's middle disk.</p>
+			<h3>Not</h3>
+			<div class="donts">
+				<figure><img src="logos/mark-clear-256.png" width="56" alt="" style="transform:scaleX(1.5)"><figcaption>stretched</figcaption></figure>
+				<figure><img src="logos/mark-clear-256.png" width="56" alt="" style="filter:hue-rotate(140deg)"><figcaption>recolored</figcaption></figure>
+				<figure><div style="background:var(--spin-accent);padding:6px;border-radius:8px"><img src="logos/mark-clear-256.png" width="44" alt=""></div><figcaption>on the accent</figcaption></figure>
+				<figure><div style="background:#fff;padding:6px;border-radius:8px"><img src="logos/mark-256.png" width="44" alt="" style="border-radius:22%"></div><figcaption>the tile on white</figcaption></figure>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="only-full">
+	<span class="label">Palette</span>
+	<div id="palette"></div>
+</section>
+
 <section class="only-full">
 	<span class="label">Widths</span>
 	<p class="muted">This page at a phone's and a tablet's width (<code>layout.phone</code>, <code>layout.tablet</code>), in the mode and the view chosen above.</p>
@@ -219,14 +299,30 @@ function apply() {
 mode.value = q.get('mode') || 'dark'; see.value = q.get('see') || '';
 mode.onchange = see.onchange = apply;
 fetch('dist/simulate.svg').then((r) => r.text()).then((t) => (document.getElementById('filters').innerHTML = t));
+const groups = [
+	['Surfaces', 'Behind everything, a step off it, cards and code, menus and dialogs, and the lines between.', ['page', 'surface', 'raised', 'overlay', 'border', 'border-strong'],
+		'<span class="sw-inline" style="background:var(--spin-surface)">surface</span><span class="sw-inline" style="background:var(--spin-raised)">raised</span><span class="sw-inline" style="background:var(--spin-overlay)">overlay</span>'],
+	['Content', 'Text, secondary text, and a label that names a section or a command.', ['text', 'muted', 'label'],
+		'<span>Text</span> <span class="muted">secondary</span> <span class="label">a label</span>'],
+	['Actions', 'The one primary action per view, a link, and what destroys.', ['accent', 'accent-text', 'on-accent', 'destructive'],
+		'<a class="btn primary" href="#">Primary</a> <a href="#">a link</a> <a class="btn danger" href="#">Delete</a>'],
+	['States', 'Ran or succeeded, waits, failed: each with a shape too, never by hue alone.', ['success', 'warning', 'error'],
+		'<span class="state ok">running</span> <span class="state warn">waiting</span> <span class="state err">failed</span>'],
+	['Interaction', 'The accent over a surface: a row under the pointer, and a selected one.', ['accent-hover', 'accent-selected'],
+		'<span class="sw-inline" style="background:var(--spin-accent-hover)">hovered</span><span class="sw-inline" style="background:var(--spin-accent-selected);color:var(--spin-accent-text)">selected</span>'],
+];
 function swatches() {
 	const cs = getComputedStyle(document.documentElement);
-	const roles = ['page','surface','raised','overlay','border','border-strong','text','muted','accent','accent-text','on-accent','label','success','warning','error','destructive','accent-hover','accent-selected'];
-	document.getElementById('swatches').innerHTML = roles.map((r) => {
-		const v = cs.getPropertyValue('--spin-' + r).trim();
-		return `<div class="sw"><i style="background:${v}"></i><b>${r}</b><code>${v}</code></div>`;
-	}).join('');
+	document.getElementById('palette').innerHTML = groups.map(([name, what, roles, example]) =>
+		`<div class="group"><div><h3>${name}</h3><p class="muted">${what}</p><div class="example">${example}</div></div><div class="swatches">` +
+		roles.map((r) => { const v = cs.getPropertyValue('--spin-' + r).trim(); return `<div class="sw"><i style="background:${v}"></i><b>${r}</b><code>${v}</code></div>`; }).join('') +
+		'</div></div>').join('');
 }
+fetch('shots/shots.json').then((r) => r.ok ? r.json() : null).then((s) => {
+	if (!s) { document.getElementById('shots-note').textContent = 'No screenshots yet: task screenshots takes them from spin.'; return; }
+	document.getElementById('shots-note').innerHTML = `Screenshots of spin <code>${s.release}</code>, taken by its dashboard suite on a real installation - each by a test that first checks the screen shows what its title says.`;
+	document.getElementById('shots').innerHTML = s.shots.map((x) => `<figure><img src="shots/${x.name}.png" alt="${x.test}" loading="lazy"><figcaption>${x.test}</figcaption></figure>`).join('');
+});
 const views = ['drawn','ips','dim','protan','deutan','tritan','protan+ips','deutan+ips'];
 document.getElementById('perc').innerHTML = '<tr><th>mode</th><th>kind</th><th>pair</th><th>floor</th>' + views.map((v) => `<th>${v}</th>`).join('') + '</tr>' +
 	perception.map((r) => `<tr><td>${r.Mode}</td><td>${r.Kind}</td><td>${r.What}</td><td>${r.Distance ? r.Floor + '/' + r.Worst : r.Floor + ':1'}</td>` +
