@@ -43,6 +43,9 @@ task check      # what CI runs: fails on a pair below its floor, or a stale dist
 Type and layout are tokens too: IBM Plex Sans and Mono (`fonts/`, OFL), a 16 px reading size
 (below it iOS zooms into a focused input) and 14 px for the dashboard's tables, a 72ch measure,
 24 px for any pointer target and 44 px on a coarse pointer (WCAG 2.2, 2.5.8 and 2.5.5).
+Motion is four durations and one easing (`--spin-duration-*`, `--spin-ease`): a movement says
+what something does or that it answered a hand, runs once, and is its end state under reduced
+motion.
 
 ## Where it goes
 

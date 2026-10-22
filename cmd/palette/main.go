@@ -53,6 +53,10 @@ type palette struct {
 		TargetTouch            int `toml:"target_touch"`
 		Phone, Tablet, Desktop int
 	}
+	Motion struct {
+		Fast, Base, Slow, Draw int
+		Ease                   string
+	}
 }
 
 func main() {
