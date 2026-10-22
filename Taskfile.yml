@@ -32,6 +32,13 @@ tasks:
     cmds:
       - go run ./cmd/shots -spin {{.SPIN}} -from {{.SHOTS}}
 
+  screens:
+    desc: Keep every screen of the app from SCREENS=, where `CATALOG_SHOTS=<dir> task e2e:dashboard -- catalog.spec.ts` in a spin checkout (SPIN=, by default ../spin) wrote them - the catalog and the audit in screens/, the images on a release of this repository.
+    vars:
+      SPIN: '{{.SPIN | default "../spin"}}'
+    cmds:
+      - go run ./cmd/screens -spin {{.SPIN}} -from {{.SCREENS}}
+
   preview:
     desc: Serve index.html, the laboratory - the site, the dashboard and a phone's width in the palette, in either mode and through each deficiency - at http://127.0.0.1:4330/
     cmds:
@@ -45,3 +52,4 @@ tasks:
       - go run ./cmd/palette -check
       - go run ./cmd/mark -check
       - go run ./cmd/shots -check
+      - go run ./cmd/screens -check

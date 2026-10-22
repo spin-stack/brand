@@ -15,6 +15,7 @@ through protanopia, deuteranopia or tritanopia, with every pair the palette is h
 |---|---|
 | `palette.toml` | `dist/`: `tokens.css` (every role as `--spin-*`), `starlight.css` (the website's `--sl-color-*`), `dashboard.css` (shadcn's HSL variables, light on `:root`, dark on `.dark`), `tokens.json`, and `perception.js` and `simulate.svg` for the preview |
 | spin's `dashboard/e2e/site.spec.ts` | `shots/`: the app as it is, screenshots spin's dashboard suite takes of its e2e stack, with the release and commit of the spin tree that took them (`task screenshots SHOTS=<dir>`); the website copies them from here |
+| spin's `dashboard/e2e/catalog.spec.ts` | `screens/`: every route, tab, dialog and menu of the app in both themes at 1440 and 390 px, and what each draws that this palette does not have - a colour, a face, a size, a radius, contrast, overflow, a target too small (`task screens SCREENS=<dir>`). The catalog and the audit are committed; the images, hundreds a release, are an archive on a release of this repository that `screens.json` names and Pages unpacks. [See them](https://spin-stack.github.io/brand/screens.html) |
 | `assets/avatar.png` | `logos/`: the stack of disks cut from the organization's avatar, without the wordmark: the tile on its own navy (512, 256; the favicon at 64 and 32) for a dark ground, and clear - the ground taken out - (512, 256) for a light one |
 
 ```

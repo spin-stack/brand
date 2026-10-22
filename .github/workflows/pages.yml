@@ -31,6 +31,15 @@ jobs:
       - run: go run ./cmd/palette -check
       - run: go run ./cmd/mark -check
       - run: go run ./cmd/shots -check
+      - run: go run ./cmd/screens -check
+      # The screens' images are not in git: screens.json names the release that holds them, and
+      # the page serves them from screens/img.
+      - if: github.ref == 'refs/heads/main' && hashFiles('screens/screens.json') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p screens/img
+          gh release download "$(jq -r .tag screens/screens.json)" --repo "${{ github.repository }}" --pattern screens.tar.gz --output - | tar -xz -C screens/img
       - if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
