@@ -4,7 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spinbox brand</title>
-<link rel="icon" href="logos/favicon-64.png">
+<link rel="icon" href="logos/mark.svg" type="image/svg+xml">
+<link rel="icon" href="logos/favicon-64.png" sizes="64x64">
+<link rel="apple-touch-icon" href="logos/apple-touch-icon.png">
 <link rel="stylesheet" href="dist/tokens.css">
 <style>
 @font-face { font-family: 'IBM Plex Sans'; src: url(fonts/ibm-plex-sans-latin-400-normal.woff2) format('woff2'); font-weight: 400; }
@@ -61,6 +63,7 @@ section, .part { scroll-margin-top: 3rem; }
 .guide { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2rem; align-items: start; }
 .tiles { display: grid; gap: 1rem; }
 .tiles figure, .donts figure { margin: 0; }
+.trace { grid-column: 1 / -1; margin: 0; } .trace img { max-width: 100%; height: auto; border-radius: var(--spin-radius); display: block; }
 .ground { display: grid; place-items: center; height: 200px; border-radius: var(--spin-radius-lg); border: 1px solid var(--spin-border); }
 .ground.dark { background: var(--spin-brand-navy); } .ground.light { background: #fff; }
 .ground.dark img { border-radius: 22%; }
@@ -179,7 +182,7 @@ body.embed .wrap { padding-top: 0; }
 <div id="filters"></div>
 <header class="masthead only-full">
 	<div class="wrap">
-		<div class="lockup"><img class="on-dark" src="logos/mark-256.png" alt=""><img class="on-light" src="logos/mark-clear-256.png" alt=""><span>spinbox</span></div>
+		<div class="lockup"><img class="on-dark" src="logos/mark.svg" alt=""><img class="on-light" src="logos/mark-clear.svg" alt=""><span>spinbox</span></div>
 		<h1>Spinbox brand system</h1>
 		<p class="muted">One palette, one mark and one type for the site, the dashboard and everything else that draws Spinbox - each color checked here, and copied from here by each of them. This page is the laboratory; the product is at <a href="https://spin-stack.github.io/website/">the website</a>.</p>
 		<div class="controls" role="group" aria-label="View">
@@ -202,7 +205,7 @@ body.embed .wrap { padding-top: 0; }
 <section id="site">
 	<span class="label">The site</span>
 	<div class="site">
-		<header><img class="on-dark" src="logos/mark-256.png" alt=""><img class="on-light" src="logos/mark-clear-256.png" alt=""><b>Spinbox</b><span class="search">Search</span></header>
+		<header><img class="on-dark" src="logos/mark.svg" alt=""><img class="on-light" src="logos/mark-clear.svg" alt=""><b>Spinbox</b><span class="search">Search</span></header>
 		<div class="banner"><strong>Spinbox is experimental: APIs change and data may be lost.</strong> <a href="#">Status</a> lists what is built and what proves it.</div>
 		<div class="hero">
 			<div>
@@ -211,7 +214,7 @@ body.embed .wrap { padding-top: 0; }
 				<p class="muted">Sandboxes for people and agents that run in your own AWS account.</p>
 				<p><a class="btn primary" href="#">Evaluate →</a> <a class="btn ghost" href="#">Install on AWS</a></p>
 			</div>
-			<img class="on-dark" src="logos/mark-512.png" alt=""><img class="on-light" src="logos/mark-clear-512.png" alt="">
+			<img class="on-dark" src="logos/mark.svg" alt=""><img class="on-light" src="logos/mark-clear.svg" alt="">
 		</div>
 		<div class="doc">
 			<nav><a href="#">What is Spinbox</a><a href="#">Status</a><a class="current" href="#">Snapshots and rollback</a><a href="#">Network and egress</a><a href="#">Ports and sharing</a></nav>
@@ -260,30 +263,31 @@ D  /etc/issue</pre>
 	<div class="shots" id="shots"></div>
 </section>
 
-<div class="part only-full" id="decisions"><span class="num">2</span><div><h2>Decisions</h2><p class="muted">What the brand is: the mark and how it is used, and the palette, each color by what it is for. These are what palette.toml and the mark's cut hold.</p></div></div>
+<div class="part only-full" id="decisions"><span class="num">2</span><div><h2>Decisions</h2><p class="muted">What the brand is: the mark and how it is used, and the palette, each color by what it is for. These are what palette.toml and the mark's trace hold.</p></div></div>
 
 <section class="only-full" id="mark">
 	<span class="label">The mark</span>
 	<div class="guide">
 		<div class="tiles">
-			<figure><div class="ground dark"><img src="logos/mark-512.png" alt="The mark on its own ground" width="128"></div><figcaption>The tile, on its own ground: a dark page, the favicon, a link preview.</figcaption></figure>
-			<figure><div class="ground light"><img src="logos/mark-clear-512.png" alt="The mark without its ground" width="128"></div><figcaption>Clear: on a light page, a light header.</figcaption></figure>
+			<figure><div class="ground dark"><img src="logos/mark.svg" alt="The mark on its own ground" width="128"></div><figcaption>The tile, on its own ground: a dark page, the favicon, a link preview.</figcaption></figure>
+			<figure><div class="ground light"><img src="logos/mark-clear.svg" alt="The mark without its ground" width="128"></div><figcaption>Clear: on a light page, a light header.</figcaption></figure>
 		</div>
+		<figure class="trace"><img src="logos/trace.png" alt="The avatar's stack enlarged beside the mark drawn from assets/mark.svg" width="604"><figcaption>The avatar, enlarged, and the mark traced from it (<code>assets/mark.svg</code>): a vector, so sharp at any size and on a 2x screen. <code>task check</code> fails when the trace moves away from the avatar.</figcaption></figure>
 		<div class="rules">
 			<h3>Sizes</h3>
-			<div class="sizes"><img src="logos/mark-clear-256.png" width="64" alt=""><img src="logos/mark-clear-256.png" width="32" alt=""><img src="logos/favicon-32.png" width="16" alt=""><span class="muted">64 · 32 · 16 px. Below 24 px the favicon's tile, never the clear mark: its seams close up.</span></div>
+			<div class="sizes"><img src="logos/mark-clear.svg" width="64" alt=""><img src="logos/mark-clear.svg" width="32" alt=""><img src="logos/favicon-32.png" width="16" alt=""><span class="muted">64 · 32 · 16 px. Below 24 px the favicon's tile, never the clear mark: its seams close up.</span></div>
 			<h3>Clear space</h3>
-			<div class="space"><img src="logos/mark-clear-256.png" width="72" alt=""></div>
+			<div class="space"><img src="logos/mark-clear.svg" width="72" alt=""></div>
 			<p class="muted">A quarter of the mark's height on every side, dashed above: no text or edge inside it.</p>
 			<h3>Lockup</h3>
-			<div class="lockup big"><img class="on-dark" src="logos/mark-256.png" alt=""><img class="on-light" src="logos/mark-clear-256.png" alt=""><span>spinbox</span></div>
+			<div class="lockup big"><img class="on-dark" src="logos/mark.svg" alt=""><img class="on-light" src="logos/mark-clear.svg" alt=""><span>spinbox</span></div>
 			<p class="muted">The mark, then <code>spinbox</code> in IBM Plex Mono 600, its cap height the mark's middle disk.</p>
 			<h3>Not</h3>
 			<div class="donts">
-				<figure><img src="logos/mark-clear-256.png" width="56" alt="" style="transform:scaleX(1.5)"><figcaption>stretched</figcaption></figure>
-				<figure><img src="logos/mark-clear-256.png" width="56" alt="" style="filter:hue-rotate(140deg)"><figcaption>recolored</figcaption></figure>
-				<figure><div style="background:var(--spin-accent);padding:6px;border-radius:8px"><img src="logos/mark-clear-256.png" width="44" alt=""></div><figcaption>on the accent</figcaption></figure>
-				<figure><div style="background:#fff;padding:6px;border-radius:8px"><img src="logos/mark-256.png" width="44" alt="" style="border-radius:22%"></div><figcaption>the tile on white</figcaption></figure>
+				<figure><img src="logos/mark-clear.svg" width="56" alt="" style="transform:scaleX(1.5)"><figcaption>stretched</figcaption></figure>
+				<figure><img src="logos/mark-clear.svg" width="56" alt="" style="filter:hue-rotate(140deg)"><figcaption>recolored</figcaption></figure>
+				<figure><div style="background:var(--spin-accent);padding:6px;border-radius:8px"><img src="logos/mark-clear.svg" width="44" alt=""></div><figcaption>on the accent</figcaption></figure>
+				<figure><div style="background:#fff;padding:6px;border-radius:8px"><img src="logos/mark.svg" width="44" alt="" style="border-radius:22%"></div><figcaption>the tile on white</figcaption></figure>
 			</div>
 		</div>
 	</div>

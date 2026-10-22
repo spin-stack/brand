@@ -1,6 +1,6 @@
 version: '3'
 
-# Spinbox's colors, type, layout and mark: palette.toml and assets/avatar.png are the sources, and
+# Spinbox's colors, type, layout and mark: palette.toml and assets/mark.svg are the sources, and
 # dist/ and logos/ are what they make, committed, for the website, the dashboard and anything else
 # that draws Spinbox to copy. `task check` holds them to the sources.
 
@@ -21,7 +21,7 @@ tasks:
       - go run ./cmd/palette -report
 
   mark:
-    desc: Cut the stack of disks out of the organization's avatar, without its wordmark, into logos/ at each size.
+    desc: Draw the mark from assets/mark.svg, the avatar's stack traced as a vector, into logos/ - the SVG, tile and clear, and a PNG at each size.
     cmds:
       - go run ./cmd/mark
 
