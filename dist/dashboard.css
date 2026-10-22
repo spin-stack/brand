@@ -13,15 +13,16 @@
 	--primary-foreground: 0.0 0.0% 100.0%;
 	--secondary: 214.7 40.4% 90.8%;
 	--secondary-foreground: 220.9 39.3% 11.0%;
-	--accent: 200.4 45.4% 85.5%;
-	--accent-foreground: 200.9 89.2% 29.0%;
+	--accent: 213.3 42.9% 95.9%;
+	--accent-foreground: 220.9 39.3% 11.0%;
 	--destructive: 343.9 67.4% 42.2%;
 	--destructive-foreground: 0.0 0.0% 100.0%;
+	--error: 318.8 70.3% 35.7%;
+	--label: 216.0 83.3% 28.2%;
 	--success: 149.3 57.7% 27.8%;
-	--success-foreground: 220.9 39.3% 11.0%;
+	--success-foreground: 0.0 0.0% 100.0%;
 	--warning: 39.1 100.0% 27.1%;
-	--warning-foreground: 220.9 39.3% 11.0%;
-	--radius: 0.25rem;
+	--warning-foreground: 0.0 0.0% 100.0%;
 }
 .dark {
 	--background: 220.9 39.3% 11.0%;
@@ -37,12 +38,39 @@
 	--primary-foreground: 220.9 39.3% 11.0%;
 	--secondary: 221.5 37.9% 20.2%;
 	--secondary-foreground: 213.8 47.1% 93.3%;
-	--accent: 200.9 57.7% 20.3%;
-	--accent-foreground: 192.7 80.8% 53.1%;
+	--accent: 221.5 37.9% 20.2%;
+	--accent-foreground: 213.8 47.1% 93.3%;
 	--destructive: 347.3 60.3% 47.5%;
 	--destructive-foreground: 0.0 0.0% 100.0%;
+	--error: 331.7 86.0% 72.0%;
+	--label: 174.1 70.2% 63.1%;
 	--success: 154.0 69.4% 55.1%;
 	--success-foreground: 220.9 39.3% 11.0%;
 	--warning: 40.4 100.0% 67.1%;
 	--warning-foreground: 220.9 39.3% 11.0%;
+}
+:root {
+	--radius: 4px;
+	--scrim: rgb(17 24 39 / 0.6);
+	--spin-font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--spin-font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+	--spin-text-xs: 12px;
+	--spin-text-xs-lh: 16px;
+	--spin-text-sm: 13px;
+	--spin-text-sm-lh: 20px;
+	--spin-text-base: 14px;
+	--spin-text-base-lh: 22px;
+	--spin-text-lg: 16px;
+	--spin-text-lg-lh: 24px;
+	--spin-text-xl: 18px;
+	--spin-text-xl-lh: 26px;
+	--spin-text-2xl: 20px;
+	--spin-text-2xl-lh: 28px;
+	--spin-text-3xl: 24px;
+	--spin-text-3xl-lh: 32px;
+	--spin-heading-tracking: -0.02em;
+	--spin-duration-fast: 120ms;
+	--spin-duration: 200ms;
+	--spin-duration-slow: 400ms;
+	--spin-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }

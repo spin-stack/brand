@@ -159,14 +159,23 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 		if isDark {
 			card = c["surface"]
 		}
+		// The label on a fill: white, or the theme's darkest ink - the dark page, the light text -
+		// whichever reads on it.
+		ink := c["text"]
+		if isDark {
+			ink = c["page"]
+		}
 		on := func(fill rgb) rgb {
-			if contrast(c["page"], fill) >= contrast(rgb{1, 1, 1}, fill) {
-				if isDark {
-					return c["page"]
-				}
-				return c["text"]
+			if contrast(ink, fill) >= contrast(rgb{1, 1, 1}, fill) {
+				return ink
 			}
 			return rgb{1, 1, 1}
+		}
+		// Hover and the navigation's selection are neutral: the accent is the primary action's
+		// and the focus ring's alone.
+		neutral := c["surface"]
+		if isDark {
+			neutral = c["raised"]
 		}
 		vars := [][2]string{
 			{"background", hsl(c["page"])}, {"foreground", hsl(c["text"])},
@@ -175,8 +184,9 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 			{"border", hsl(c["border"])}, {"input", hsl(c["border_strong"])}, {"ring", hsl(c["accent"])},
 			{"primary", hsl(c["accent"])}, {"primary-foreground", hsl(c["on_accent"])},
 			{"secondary", hsl(c["raised"])}, {"secondary-foreground", hsl(c["text"])},
-			{"accent", hsl(c["accent"].over(c["page"], p.Tint.Selected))}, {"accent-foreground", hsl(c["accent_text"])},
-			{"destructive", hsl(c["destructive"])}, {"destructive-foreground", hsl(rgb{1, 1, 1})},
+			{"accent", hsl(neutral)}, {"accent-foreground", hsl(c["text"])},
+			{"destructive", hsl(c["destructive"])}, {"destructive-foreground", hsl(on(c["destructive"]))},
+			{"error", hsl(c["error"])}, {"label", hsl(c["label"])},
 			{"success", hsl(c["success"])}, {"success-foreground", hsl(on(c["success"]))},
 			{"warning", hsl(c["warning"])}, {"warning-foreground", hsl(on(c["warning"]))},
 		}
@@ -184,15 +194,35 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 		for _, v := range vars {
 			fmt.Fprintf(&b, "\t--%s: %s;\n", v[0], v[1])
 		}
-		if !isDark {
-			// The dashboard is dense - tables of runners and workspaces - and square enough that
-			// a table reads as one: its radius is the small one, and a chip's is 2px under it.
-			fmt.Fprintf(&b, "\t--radius: %grem;\n", float64(p.Layout.RadiusSm)/16)
-		}
 		b.WriteString("}\n")
 	}
 	block(":root", light, false)
 	block(".dark", dark, true)
+
+	// What does not change with the theme. The dashboard is dense - tables of runners and
+	// workspaces - and square enough that a table reads as one: every corner is the small radius.
+	// Its theme (dashboard/src/styles/globals.css) maps Tailwind's names onto these.
+	b.WriteString(":root {\n")
+	fmt.Fprintf(&b, "\t--radius: %gpx;\n", float64(p.Layout.RadiusSm))
+	// The dim behind a dialog: the mark's navy, in either theme, at the palette's scrim.
+	navy, err := parseHex(p.Brand["navy"])
+	if err != nil {
+		panic("palette.toml's brand.navy: " + err.Error())
+	}
+	b255 := func(v float64) int { return int(math.Round(v * 255)) }
+	fmt.Fprintf(&b, "\t--scrim: rgb(%d %d %d / %g);\n", b255(navy.r), b255(navy.g), b255(navy.b), p.Tint.Scrim)
+	fmt.Fprintf(&b, "\t--spin-font-sans: '%s', %s;\n\t--spin-font-mono: '%s', %s;\n", p.Type.Sans, p.Type.FallbackSans, p.Type.Mono, p.Type.FallbackMono)
+	for _, k := range []string{"xs", "sm", "base", "lg", "xl", "2xl", "3xl"} {
+		step, ok := p.Type.DenseScale[k]
+		if !ok {
+			panic("palette.toml's dense_scale has no " + k)
+		}
+		fmt.Fprintf(&b, "\t--spin-text-%s: %dpx;\n\t--spin-text-%s-lh: %dpx;\n", k, step[0], k, step[1])
+	}
+	fmt.Fprintf(&b, "\t--spin-heading-tracking: %gem;\n", p.Type.HeadingTracking)
+	fmt.Fprintf(&b, "\t--spin-duration-fast: %dms;\n\t--spin-duration: %dms;\n", p.Motion.Fast, p.Motion.Base)
+	fmt.Fprintf(&b, "\t--spin-duration-slow: %dms;\n\t--spin-ease: %s;\n", p.Motion.Slow, p.Motion.Ease)
+	b.WriteString("}\n")
 	return b.String()
 }
 
