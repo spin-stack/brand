@@ -4,7 +4,7 @@ The colors, type, layout and mark of Spin, written once, checked, and made into 
 place that draws Spin reads: the website (Starlight), the dashboard (Tailwind, shadcn's
 variables) and anything else (`dist/tokens.json`).
 
-**[See it](https://spin-stack.github.io/brand/preview.html)**: `preview.html` is the laboratory.
+**[See it](https://spin-stack.github.io/brand/)**: `index.html` is the laboratory.
 It draws the site's landing and a docs page, the dashboard's workspaces with their states, a
 dialog and a toast; the app as it is, in screenshots spin's own suite takes; the mark's guide -
 sizes, clear space, the lockup, the grounds it goes on and what it is not; the palette by what
@@ -20,7 +20,7 @@ through protanopia, deuteranopia or tritanopia, with every pair the palette is h
 ```
 task            # palette and mark: check, and write dist/ and logos/
 task report     # every pair, its contrast or its distance in each view
-task preview    # http://127.0.0.1:4330/preview.html
+task preview    # http://127.0.0.1:4330/
 task check      # what CI runs: fails on a pair below its floor, or a stale dist/ or logos/
 ```
 

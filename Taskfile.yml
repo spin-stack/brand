@@ -33,7 +33,7 @@ tasks:
       - go run ./cmd/shots -spin {{.SPIN}} -from {{.SHOTS}}
 
   preview:
-    desc: Serve preview.html - the site, the dashboard and a phone's width in the palette, in either mode and through each deficiency - at http://127.0.0.1:4330/preview.html
+    desc: Serve index.html, the laboratory - the site, the dashboard and a phone's width in the palette, in either mode and through each deficiency - at http://127.0.0.1:4330/
     cmds:
       - python3 -m http.server 4330 --bind 127.0.0.1
 
