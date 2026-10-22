@@ -42,6 +42,21 @@ a { color: var(--spin-accent-text); text-underline-offset: .2em; }
 .lockup.big { font-size: 40px; gap: 1rem; } .lockup.big img { width: 64px; height: 64px; }
 :root[data-theme='light'] .on-dark, :root:not([data-theme='light']) .on-light { display: none !important; }
 
+/* The index: every section a click away, while the page scrolls. */
+.index { position: sticky; top: 0; z-index: 4; background: color-mix(in srgb, var(--spin-page) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--spin-border); }
+.index .wrap { display: flex; gap: .25rem 1rem; padding-block: .5rem; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+.index a { font: 500 12px var(--spin-font-mono); color: var(--spin-muted); text-decoration: none; padding: .35rem .15rem; }
+.index a:hover { color: var(--spin-accent-text); }
+.index a[href="#in-use"], .index a[href="#decisions"], .index a[href="#checks"] { color: var(--spin-label); margin-left: .5rem; }
+section, .part { scroll-margin-top: 3rem; }
+
+/* A part: what follows is sample content, a decision, or a check. */
+.part { display: flex; gap: 1rem; align-items: baseline; margin-top: 4rem; padding: 1.25rem 0; border-top: 2px solid var(--spin-border-strong); }
+.part .num { font: 600 2rem var(--spin-font-mono); color: var(--spin-label); line-height: 1; }
+.part h2 { margin: 0; font-size: 1.4rem; } .part p { margin: .25rem 0 0; max-width: 52rem; }
+#page > .part:first-child { margin-top: 1.5rem; border-top: 0; }
+.perc-wrap summary { cursor: pointer; font: 500 13px var(--spin-font-mono); padding: .5rem 0; color: var(--spin-text); }
+
 /* The mark's guide */
 .guide { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2rem; align-items: start; }
 .tiles { display: grid; gap: 1rem; }
@@ -147,7 +162,8 @@ th { color: var(--spin-muted); font-weight: 500; }
 	.hero, .doc, .dash { grid-template-columns: 1fr; }
 	.doc nav, .doc aside, .dash nav { display: none; }
 	.hero { padding: 2rem 1rem; } .doc article { padding: 1.25rem 1rem; }
-	.hero h1 { font-size: 1.75rem; } .hero img { max-width: 10rem; }
+	.hero { gap: 1rem; padding: 1.5rem 1rem; } .hero h1 { font-size: 1.6rem; margin-top: .25rem; } .hero img { max-width: 6.5rem; }
+	.part { margin-top: 2.5rem; } .part .num { font-size: 1.5rem; }
 	.wrap { padding-inline: 1rem; } table { font-size: 13px; }
 	.site header .search { display: none; }
 	.btn, .dash input, .dash .btn { min-height: var(--spin-target-touch); }
@@ -172,9 +188,18 @@ body.embed .wrap { padding-top: 0; }
 		</div>
 	</div>
 </header>
+<nav class="index only-full" aria-label="On this page">
+	<div class="wrap">
+		<a href="#in-use">1 · In use</a><a href="#site">Site</a><a href="#dashboard">Dashboard</a><a href="#app">App</a>
+		<a href="#decisions">2 · Decisions</a><a href="#mark">Mark</a><a href="#palette-section">Palette</a>
+		<a href="#checks">3 · Checks</a><a href="#widths">Widths</a><a href="#perception">Perception</a>
+	</div>
+</nav>
 <div class="wrap" id="page">
 
-<section>
+<div class="part only-full" id="in-use"><span class="num">1</span><div><h2>In use</h2><p class="muted">Sample screens drawn from the tokens. The words, rows and names in them are fixtures, there to show the palette at work: nothing in them is a decision.</p></div></div>
+
+<section id="site">
 	<span class="label">The site</span>
 	<div class="site">
 		<header><img class="on-dark" src="logos/mark-256.png" alt=""><img class="on-light" src="logos/mark-clear-256.png" alt=""><b>Spin</b><span class="search">Search</span></header>
@@ -207,7 +232,7 @@ D  /etc/issue</pre>
 	</div>
 </section>
 
-<section>
+<section id="dashboard">
 	<span class="label">The dashboard</span>
 	<div class="dash">
 		<nav><div class="cap">Work</div><a class="current" href="#">Workspaces</a><a href="#">Snapshots</a><a href="#">Teams</a><div class="cap">Administer</div><a href="#">Hosts</a><a href="#">Settings</a></nav>
@@ -235,7 +260,9 @@ D  /etc/issue</pre>
 	<div class="shots" id="shots"></div>
 </section>
 
-<section class="only-full">
+<div class="part only-full" id="decisions"><span class="num">2</span><div><h2>Decisions</h2><p class="muted">What the brand is: the mark and how it is used, and the palette, each color by what it is for. These are what palette.toml and the mark's cut hold.</p></div></div>
+
+<section class="only-full" id="mark">
 	<span class="label">The mark</span>
 	<div class="guide">
 		<div class="tiles">
@@ -262,12 +289,14 @@ D  /etc/issue</pre>
 	</div>
 </section>
 
-<section class="only-full">
+<section class="only-full" id="palette-section">
 	<span class="label">Palette</span>
 	<div id="palette"></div>
 </section>
 
-<section class="only-full">
+<div class="part only-full" id="checks"><span class="num">3</span><div><h2>Checks</h2><p class="muted">What holds the decisions: the same page at a phone's and a tablet's width, and every pair of colors task palette measures.</p></div></div>
+
+<section class="only-full" id="widths">
 	<span class="label">Widths</span>
 	<p class="muted">This page at a phone's and a tablet's width (<code>layout.phone</code>, <code>layout.tablet</code>), in the mode and the view chosen above.</p>
 	<div class="frames">
@@ -276,10 +305,10 @@ D  /etc/issue</pre>
 	</div>
 </section>
 
-<section class="only-full">
+<section class="only-full" id="perception">
 	<span class="label">Perception</span>
 	<p class="muted">Every pair <code>task palette</code> holds, as drawn and in each view (<code>dist/perception.js</code>). Contrast is WCAG 2.2's; distance is CIEDE2000.</p>
-	<table class="perc" id="perc"></table>
+	<details class="perc-wrap"><summary id="perc-summary">Every pair</summary><table class="perc" id="perc"></table></details>
 </section>
 </div>
 
@@ -328,6 +357,8 @@ document.getElementById('perc').innerHTML = '<tr><th>mode</th><th>kind</th><th>p
 	perception.map((r) => `<tr><td>${r.Mode}</td><td>${r.Kind}</td><td>${r.What}</td><td>${r.Distance ? r.Floor + '/' + r.Worst : r.Floor + ':1'}</td>` +
 		(r.Distance ? views.map((v) => `<td class="${r.Distance[v] < (v === 'drawn' ? r.Floor : r.Worst) ? 'fail' : ''}">${r.Distance[v]}</td>`).join('')
 			: `<td class="${r.OK ? '' : 'fail'}" colspan="8">${r.Contrast}:1</td>`) + '</tr>').join('');
+const held = perception.filter((r) => r.OK).length;
+document.getElementById('perc-summary').textContent = `Every pair: ${held} of ${perception.length} hold their floors - open the table`;
 apply();
 </script>
 </body>
