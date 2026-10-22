@@ -4,15 +4,17 @@ The colors, type, layout and mark of Spin, written once, checked, and made into 
 place that draws Spin reads: the website (Starlight), the dashboard (Tailwind, shadcn's
 variables) and anything else (`dist/tokens.json`).
 
-**[See it](https://spin-stack.github.io/brand/preview.html)**: `preview.html` draws the site's
-landing and a docs page, the dashboard's workspaces with their states, a dialog and a toast, and
-the same page at a phone's and a tablet's width, in dark or light and through protanopia,
-deuteranopia or tritanopia - with every pair the palette is held to, and how it held.
+**[See it](https://spin-stack.github.io/brand/preview.html)**: `preview.html` is the laboratory.
+It draws the site's landing and a docs page, the dashboard's workspaces with their states, a
+dialog and a toast; the app as it is, in screenshots spin's own suite takes; the mark's guide -
+sizes, clear space, the lockup, the grounds it goes on and what it is not; the palette by what
+each color is for; and the same page at a phone's and a tablet's width - in dark or light and
+through protanopia, deuteranopia or tritanopia, with every pair the palette is held to.
 
 | Source | What it makes |
 |---|---|
 | `palette.toml` | `dist/`: `tokens.css` (every role as `--spin-*`), `starlight.css` (the website's `--sl-color-*`), `dashboard.css` (shadcn's HSL variables, light on `:root`, dark on `.dark`), `tokens.json`, and `perception.js` and `simulate.svg` for the preview |
-| `assets/avatar.png` | `logos/`: the stack of disks cut from the organization's avatar, without the wordmark, at 512, 256, 64 and 32 px |
+| `assets/avatar.png` | `logos/`: the stack of disks cut from the organization's avatar, without the wordmark: the tile on its own navy (512, 256; the favicon at 64 and 32) for a dark ground, and clear - the ground taken out - (512, 256) for a light one |
 
 ```
 task            # palette and mark: check, and write dist/ and logos/
