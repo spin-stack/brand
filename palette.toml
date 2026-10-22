@@ -57,21 +57,31 @@ warning = "#8A5A00"
 error = "#9B1B73"       # magenta-leaning, as dark's: a deutan tells it from success by its blue
 destructive = "#B4234A"
 
-# The accent over a surface, for what is selected or hovered: an alpha, so one value serves every
-# surface. The label on a tint is accent_text.
+# The accent over a surface, for what is selected or hovered on the site (the current page in the
+# sidebar, a hovered link): an alpha, so one value serves every surface. The label on a tint is
+# accent_text. The dashboard keeps the accent for its one primary action and the focus ring: its
+# hover and its navigation's selection are neutral, the surface a step off the page. The scrim is
+# the navy behind a dialog, the only dim there is.
 [tint]
 hover = 0.10
 selected = 0.22
+scrim = 0.6
 
 # Type. IBM Plex, served by the site that uses it: a sans for reading and a mono for what a
-# machine says - commands, output, ids - and for headings, which set Spinbox in its console's face.
+# machine says - commands, output, ids, a state, a time - and for the site's headings, which set
+# Spinbox in its console's face. The dashboard's page titles are sans; a title that names a thing
+# (a workspace, a runner) is its identifier, in mono.
 [type]
 sans = "IBM Plex Sans"
 mono = "IBM Plex Mono"
 fallback_sans = "system-ui, -apple-system, 'Segoe UI', sans-serif"
 fallback_mono = "ui-monospace, 'SF Mono', Menlo, monospace"
 reading_size = 16       # px: the docs' body. Below 16 iOS zooms into a focused input
-dense_size = 14         # px: the dashboard's body, where a table of runners is the content
+dense_size = 13         # px: the dashboard's body, where a table of runners is the content
+# The dashboard's scale, by the names its Tailwind theme gives them: a step under Tailwind's own,
+# which is sized for reading an article; set a table of runners in it and it reads as shouting.
+# Each step is [size, line height] in px.
+dense_scale = { xs = [12, 16], sm = [13, 20], base = [14, 22], lg = [16, 24], xl = [18, 26], "2xl" = [20, 28], "3xl" = [24, 32] }
 line_height = 1.6       # reading; dense text takes 1.45
 heading_weight = 600
 heading_tracking = -0.02 # em: mono headings are wide; this tightens them to read as one word
@@ -81,9 +91,9 @@ heading_tracking = -0.02 # em: mono headings are wide; this tightens them to rea
 [layout]
 measure = 72            # ch: a line of reading text; 45-75 is the range people read without losing it
 sidebar = 17            # rem
-radius_sm = 4           # px: inputs, chips, code
-radius = 8              # px: cards, buttons, panels
-radius_lg = 12          # px: dialogs, hero figures
+radius_sm = 4           # px: inputs, chips, code; every corner of the dashboard, dialogs included
+radius = 8              # px: the site's cards, buttons, panels
+radius_lg = 12          # px: the site's dialogs and hero figures
 target = 24             # px: the least a pointer target is (WCAG 2.2, 2.5.8)
 target_touch = 44       # px: a target on a coarse pointer (WCAG 2.5.5, Apple's HIG)
 phone = 390             # px: the narrow width every page is drawn at in preview.html

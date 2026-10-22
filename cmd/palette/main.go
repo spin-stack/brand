@@ -33,16 +33,17 @@ type palette struct {
 	Brand map[string]string
 	Dark  mode
 	Light mode
-	Tint  struct{ Hover, Selected float64 }
+	Tint  struct{ Hover, Selected, Scrim float64 }
 	Type  struct {
 		Sans, Mono      string
-		FallbackSans    string  `toml:"fallback_sans"`
-		FallbackMono    string  `toml:"fallback_mono"`
-		ReadingSize     int     `toml:"reading_size"`
-		DenseSize       int     `toml:"dense_size"`
-		LineHeight      float64 `toml:"line_height"`
-		HeadingWeight   int     `toml:"heading_weight"`
-		HeadingTracking float64 `toml:"heading_tracking"`
+		FallbackSans    string            `toml:"fallback_sans"`
+		FallbackMono    string            `toml:"fallback_mono"`
+		ReadingSize     int               `toml:"reading_size"`
+		DenseSize       int               `toml:"dense_size"`
+		DenseScale      map[string][2]int `toml:"dense_scale"`
+		LineHeight      float64           `toml:"line_height"`
+		HeadingWeight   int               `toml:"heading_weight"`
+		HeadingTracking float64           `toml:"heading_tracking"`
 	}
 	Layout struct {
 		Measure, Sidebar       int
