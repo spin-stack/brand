@@ -1,7 +1,12 @@
-// Command mark cuts the spin-stack mark - the stack of disks - out of the organization's avatar
-// (assets/avatar.png), without the wordmark under it, and writes it at the sizes the places that
-// show it use, into logos/: on its own ground, square, for each to round as it rounds a tile.
-// With -check it writes nothing and fails when logos/ is not what the avatar makes.
+// Command mark cuts the spin-stack mark - the stack of disks - out of assets/mark.png, the mark as
+// it was drawn: 1024 px on a clear ground, the stack some 450 of them. (The organization's avatar
+// is the same mark shrunk to 460 px on the navy with the wordmark under it, the stack 240 px: cut
+// from it, every logo larger than that, or on a 2x screen, was an enlargement.)
+// It writes the mark at the sizes the places that show it use, into logos/: on the brand's navy,
+// square, for each to round as it rounds a tile, and clear, for a light ground. Every size is the
+// drawing reduced, never enlarged: a size the drawing is too small for fails.
+//
+// With -check it writes nothing and fails when logos/ is not what the drawing makes.
 package main
 
 import (
@@ -11,28 +16,33 @@ import (
 	"image"
 	"image/color"
 	"image/png"
-	"math"
 	"os"
 	"path/filepath"
+	"strconv"
 
+	"github.com/BurntSushi/toml"
 	"golang.org/x/image/draw"
 )
 
-// logo is one file logos/ holds: the mark at a size something shows it at, on its own ground (a
-// tile) or with the ground taken out (clear).
+// logo is one file logos/ holds: the mark at a size something shows it at, on the navy (a tile)
+// or on nothing (clear).
 type logo struct {
 	size  int
 	clear bool
 }
 
 var sizes = map[string]logo{
-	"mark-512.png":       {512, false}, // the link preview, a dark hero
-	"mark-256.png":       {256, false}, // a dark header
-	"mark-clear-512.png": {512, true},  // on any ground: a light page, a light hero
-	"mark-clear-256.png": {256, true},  // a light header
-	"favicon-64.png":     {64, false},  // a browser's tab, whose ground is the browser's
-	"favicon-32.png":     {32, false},
+	"mark-512.png":         {512, false}, // the link preview, a dark hero
+	"mark-256.png":         {256, false}, // a dark header
+	"mark-clear-512.png":   {512, true},  // on any ground: a light page, a light hero
+	"mark-clear-256.png":   {256, true},  // a light header
+	"apple-touch-icon.png": {180, false}, // a phone's home screen
+	"favicon-64.png":       {64, false},  // a browser's tab, whose ground is the browser's
+	"favicon-32.png":       {32, false},
 }
+
+// margin is the square's side over the stack's longer one: a fifth of it around the stack.
+const margin = 1.22
 
 func main() {
 	if err := run(); err != nil {
@@ -42,40 +52,42 @@ func main() {
 }
 
 func run() error {
-	src := flag.String("avatar", "assets/avatar.png", "the organization's avatar")
+	src := flag.String("mark", "assets/mark.png", "the mark as drawn, on a clear ground")
+	palette := flag.String("palette", "palette.toml", "the palette, whose brand navy is the tile's ground")
 	out := flag.String("out", "logos", "where the mark is written")
-	check := flag.Bool("check", false, "write nothing; fail if logos/ is not what the avatar makes")
+	check := flag.Bool("check", false, "write nothing; fail if logos/ is not what the drawing makes")
 	flag.Parse()
 
+	navy, err := ground(*palette)
+	if err != nil {
+		return err
+	}
 	f, err := os.Open(*src)
 	if err != nil {
 		return err
 	}
 	defer f.Close()
-	avatar, err := png.Decode(f)
+	drawing, err := png.Decode(f)
 	if err != nil {
 		return err
 	}
-	tile, err := cut(avatar)
+	stack, err := stackOf(drawing)
 	if err != nil {
-		return err
+		return fmt.Errorf("%s: %w", *src, err)
 	}
-	clear := unground(tile, avatar.At(avatar.Bounds().Min.X+4, avatar.Bounds().Min.Y+4))
+
 	var stale []string
 	for name, l := range sizes {
-		src := tile
-		if l.clear {
-			src = clear
+		img, err := cut(drawing, stack, l.size, l.clear, navy)
+		if err != nil {
+			return fmt.Errorf("%s: %w", name, err)
 		}
-		dst := image.NewRGBA(image.Rect(0, 0, l.size, l.size))
-		draw.CatmullRom.Scale(dst, dst.Bounds(), src, src.Bounds(), draw.Src, nil)
 		var b bytes.Buffer
-		if err := (&png.Encoder{CompressionLevel: png.BestCompression}).Encode(&b, dst); err != nil {
+		if err := (&png.Encoder{CompressionLevel: png.BestCompression}).Encode(&b, img); err != nil {
 			return err
 		}
 		path := filepath.Join(*out, name)
-		have, err := os.ReadFile(path)
-		if err == nil && bytes.Equal(have, b.Bytes()) {
+		if have, err := os.ReadFile(path); err == nil && bytes.Equal(have, b.Bytes()) {
 			continue
 		}
 		stale = append(stale, name)
@@ -95,122 +107,55 @@ func run() error {
 	return nil
 }
 
-// cut finds the stack in the avatar - the first band of rows with anything but the ground in
-// them, which ends at the gap above the wordmark - and centers it on a square of the ground, with
-// a fifth of its size as margin.
-func cut(avatar image.Image) (image.Image, error) {
-	b := avatar.Bounds()
-	ground := avatar.At(b.Min.X+4, b.Min.Y+4)
-	away := func(x, y int) bool {
-		r1, g1, b1, _ := avatar.At(x, y).RGBA()
-		r2, g2, b2, _ := ground.RGBA()
-		d := func(a, b uint32) int {
-			if a > b {
-				return int(a-b) >> 8
-			}
-			return int(b-a) >> 8
-		}
-		return d(r1, r2)+d(g1, g2)+d(b1, b2) > 40
+// ground is the palette's brand navy, the tile's ground and the dark page's.
+func ground(palette string) (color.RGBA, error) {
+	var p struct{ Brand map[string]string }
+	if _, err := toml.DecodeFile(palette, &p); err != nil {
+		return color.RGBA{}, err
 	}
-	rowHas := func(y int) bool {
-		for x := b.Min.X; x < b.Max.X; x++ {
-			if away(x, y) {
-				return true
-			}
-		}
-		return false
+	hex := p.Brand["navy"]
+	if len(hex) != 7 || hex[0] != '#' {
+		return color.RGBA{}, fmt.Errorf("%s: brand.navy %q is no #rrggbb", palette, hex)
 	}
-	top := -1
-	for y := b.Min.Y; y < b.Max.Y; y++ {
-		if rowHas(y) {
-			top = y
-			break
-		}
+	v, err := strconv.ParseUint(hex[1:], 16, 32)
+	if err != nil {
+		return color.RGBA{}, fmt.Errorf("%s: brand.navy %q is no #rrggbb", palette, hex)
 	}
-	if top < 0 {
-		return nil, fmt.Errorf("the avatar is only its ground")
-	}
-	bottom, gap := top, 0
-	for y := top; y < b.Max.Y && gap <= 6; y++ {
-		if rowHas(y) {
-			bottom, gap = y, 0
-		} else {
-			gap++
-		}
-	}
-	left, right := b.Max.X, b.Min.X
-	for y := top; y <= bottom; y++ {
-		for x := b.Min.X; x < b.Max.X; x++ {
-			if away(x, y) {
-				left, right = min(left, x), max(right, x)
-			}
-		}
-	}
-	stack := image.Rect(left-4, top-4, right+5, bottom+5)
-	side := int(float64(max(stack.Dx(), stack.Dy())) * 1.22)
-	tile := image.NewRGBA(image.Rect(0, 0, side, side))
-	draw.Draw(tile, tile.Bounds(), &image.Uniform{color.RGBAModel.Convert(ground)}, image.Point{}, draw.Src)
-	at := image.Pt((side-stack.Dx())/2, (side-stack.Dy())/2)
-	draw.Draw(tile, stack.Sub(stack.Min).Add(at), avatar, stack.Min, draw.Src)
-	return tile, nil
+	return color.RGBA{uint8(v >> 16), uint8(v >> 8), uint8(v), 255}, nil
 }
 
-// unground takes the avatar's ground out of the tile: the ground is what a fill from the
-// tile's edges reaches through pixels within a few levels of it, and everything else - the
-// disks, the ring, the dark seams between the disks, which are darker than the ground - stays
-// opaque in its own color. The ground is textured, so a pixel near its edge fades by how far it
-// is from the ground rather than being cut, which keeps the silhouette's antialiasing.
-func unground(tile image.Image, ground color.Color) image.Image {
-	const near, far = 5.0, 11.0 // distance to the ground, in 8-bit levels: ground under near, opaque past far
-	gr, gg, gb, _ := ground.RGBA()
-	dist := func(c color.Color) float64 {
-		r, g, b, _ := c.RGBA()
-		dr, dg, db := float64(r>>8)-float64(gr>>8), float64(g>>8)-float64(gg>>8), float64(b>>8)-float64(gb>>8)
-		return math.Sqrt(dr*dr + dg*dg + db*db)
-	}
-	b := tile.Bounds()
-	w, h := b.Dx(), b.Dy()
-	isGround := make([]bool, w*h)
-	var queue []image.Point
-	push := func(x, y int) {
-		if x < 0 || y < 0 || x >= w || y >= h || isGround[y*w+x] {
-			return
-		}
-		if dist(tile.At(b.Min.X+x, b.Min.Y+y)) >= far {
-			return
-		}
-		isGround[y*w+x] = true
-		queue = append(queue, image.Pt(x, y))
-	}
-	for x := range w {
-		push(x, 0)
-		push(x, h-1)
-	}
-	for y := range h {
-		push(0, y)
-		push(w-1, y)
-	}
-	for len(queue) > 0 {
-		p := queue[len(queue)-1]
-		queue = queue[:len(queue)-1]
-		push(p.X+1, p.Y)
-		push(p.X-1, p.Y)
-		push(p.X, p.Y+1)
-		push(p.X, p.Y-1)
-	}
-	out := image.NewNRGBA(b)
-	for y := range h {
-		for x := range w {
-			c := color.NRGBAModel.Convert(tile.At(b.Min.X+x, b.Min.Y+y)).(color.NRGBA)
-			if isGround[y*w+x] {
-				d := dist(c)
-				if d <= near {
-					continue
-				}
-				c.A = uint8(255 * (d - near) / (far - near))
+// stackOf is the box of what the drawing draws: every pixel past a faint alpha, which leaves out
+// the drawing's near-invisible haze.
+func stackOf(drawing image.Image) (image.Rectangle, error) {
+	b := drawing.Bounds()
+	box := image.Rectangle{}
+	for y := b.Min.Y; y < b.Max.Y; y++ {
+		for x := b.Min.X; x < b.Max.X; x++ {
+			if _, _, _, a := drawing.At(x, y).RGBA(); a>>8 > 16 {
+				box = box.Union(image.Rect(x, y, x+1, y+1))
 			}
-			out.SetNRGBA(b.Min.X+x, b.Min.Y+y, c)
 		}
 	}
-	return out
+	if box.Empty() {
+		return box, fmt.Errorf("it draws nothing: no pixel is more than faintly opaque")
+	}
+	return box, nil
+}
+
+// cut is the stack centered on a square of size pixels, a fifth of its size around it, on the
+// navy or on nothing.
+func cut(drawing image.Image, stack image.Rectangle, size int, clear bool, navy color.RGBA) (*image.RGBA, error) {
+	side := float64(max(stack.Dx(), stack.Dy())) * margin
+	scale := float64(size) / side
+	if scale > 1 {
+		return nil, fmt.Errorf("%d px would enlarge the drawing %.2f times: its stack is %d px", size, scale, max(stack.Dx(), stack.Dy()))
+	}
+	w, h := int(float64(stack.Dx())*scale+0.5), int(float64(stack.Dy())*scale+0.5)
+	at := image.Pt((size-w)/2, (size-h)/2)
+	img := image.NewRGBA(image.Rect(0, 0, size, size))
+	if !clear {
+		draw.Draw(img, img.Bounds(), &image.Uniform{navy}, image.Point{}, draw.Src)
+	}
+	draw.CatmullRom.Scale(img, image.Rectangle{at, at.Add(image.Pt(w, h))}, drawing, stack, draw.Over, nil)
+	return img, nil
 }
