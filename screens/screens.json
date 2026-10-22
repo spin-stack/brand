@@ -1,0 +1,994 @@
+{
+	"release": "v20261019.02",
+	"commit": "de68946b18b42edc530767ab8f4e7a6a945d7b02",
+	"tag": "screens-v20261019.02-de68946b18b4",
+	"images": [
+		"add-identity-provider.dark.desktop.png",
+		"add-identity-provider.dark.mobile.png",
+		"add-identity-provider.light.desktop.png",
+		"add-identity-provider.light.mobile.png",
+		"add-runner.dark.desktop.png",
+		"add-runner.dark.mobile.png",
+		"add-runner.light.desktop.png",
+		"add-runner.light.mobile.png",
+		"add-ssh-key.dark.desktop.png",
+		"add-ssh-key.dark.mobile.png",
+		"add-ssh-key.light.desktop.png",
+		"add-ssh-key.light.mobile.png",
+		"add-team-member.dark.desktop.png",
+		"add-team-member.dark.mobile.png",
+		"add-team-member.light.desktop.png",
+		"add-team-member.light.mobile.png",
+		"admin-audit.dark.desktop.png",
+		"admin-audit.dark.mobile.png",
+		"admin-audit.light.desktop.png",
+		"admin-audit.light.mobile.png",
+		"admin-costs.dark.desktop.png",
+		"admin-costs.dark.mobile.png",
+		"admin-costs.light.desktop.png",
+		"admin-costs.light.mobile.png",
+		"admin-extensions.dark.desktop.png",
+		"admin-extensions.dark.mobile.png",
+		"admin-extensions.light.desktop.png",
+		"admin-extensions.light.mobile.png",
+		"admin-indexes.dark.desktop.png",
+		"admin-indexes.dark.mobile.png",
+		"admin-indexes.light.desktop.png",
+		"admin-indexes.light.mobile.png",
+		"admin-jobs.dark.desktop.png",
+		"admin-jobs.dark.mobile.png",
+		"admin-jobs.light.desktop.png",
+		"admin-jobs.light.mobile.png",
+		"admin-logs.dark.desktop.png",
+		"admin-logs.dark.mobile.png",
+		"admin-logs.light.desktop.png",
+		"admin-logs.light.mobile.png",
+		"admin-metrics.dark.desktop.png",
+		"admin-metrics.dark.mobile.png",
+		"admin-metrics.light.desktop.png",
+		"admin-metrics.light.mobile.png",
+		"admin-network.dark.desktop.png",
+		"admin-network.dark.mobile.png",
+		"admin-network.light.desktop.png",
+		"admin-network.light.mobile.png",
+		"admin-runner.dark.desktop.png",
+		"admin-runner.dark.mobile.png",
+		"admin-runner.light.desktop.png",
+		"admin-runner.light.mobile.png",
+		"admin-runners-registration.dark.desktop.png",
+		"admin-runners-registration.dark.mobile.png",
+		"admin-runners-registration.light.desktop.png",
+		"admin-runners-registration.light.mobile.png",
+		"admin-runners-versions.dark.desktop.png",
+		"admin-runners-versions.dark.mobile.png",
+		"admin-runners-versions.light.desktop.png",
+		"admin-runners-versions.light.mobile.png",
+		"admin-runners.dark.desktop.png",
+		"admin-runners.dark.mobile.png",
+		"admin-runners.light.desktop.png",
+		"admin-runners.light.mobile.png",
+		"admin-security.dark.desktop.png",
+		"admin-security.dark.mobile.png",
+		"admin-security.light.desktop.png",
+		"admin-security.light.mobile.png",
+		"admin-settings-general.dark.desktop.png",
+		"admin-settings-general.dark.mobile.png",
+		"admin-settings-general.light.desktop.png",
+		"admin-settings-general.light.mobile.png",
+		"admin-settings-presets.dark.desktop.png",
+		"admin-settings-presets.dark.mobile.png",
+		"admin-settings-presets.light.desktop.png",
+		"admin-settings-presets.light.mobile.png",
+		"admin-settings-telemetry.dark.desktop.png",
+		"admin-settings-telemetry.dark.mobile.png",
+		"admin-settings-telemetry.light.desktop.png",
+		"admin-settings-telemetry.light.mobile.png",
+		"admin-storage.dark.desktop.png",
+		"admin-storage.dark.mobile.png",
+		"admin-storage.light.desktop.png",
+		"admin-storage.light.mobile.png",
+		"admin-teams.dark.desktop.png",
+		"admin-teams.dark.mobile.png",
+		"admin-teams.light.desktop.png",
+		"admin-teams.light.mobile.png",
+		"admin-traces.dark.desktop.png",
+		"admin-traces.dark.mobile.png",
+		"admin-traces.light.desktop.png",
+		"admin-traces.light.mobile.png",
+		"admin-users.dark.desktop.png",
+		"admin-users.dark.mobile.png",
+		"admin-users.light.desktop.png",
+		"admin-users.light.mobile.png",
+		"auth-callback.dark.desktop.png",
+		"auth-callback.dark.mobile.png",
+		"auth-callback.light.desktop.png",
+		"auth-callback.light.mobile.png",
+		"change-size.dark.desktop.png",
+		"change-size.dark.mobile.png",
+		"change-size.light.desktop.png",
+		"change-size.light.mobile.png",
+		"command-palette.dark.desktop.png",
+		"command-palette.dark.mobile.png",
+		"command-palette.light.desktop.png",
+		"command-palette.light.mobile.png",
+		"create-api-key.dark.desktop.png",
+		"create-api-key.dark.mobile.png",
+		"create-api-key.light.desktop.png",
+		"create-api-key.light.mobile.png",
+		"create-preset.dark.desktop.png",
+		"create-preset.dark.mobile.png",
+		"create-preset.light.desktop.png",
+		"create-preset.light.mobile.png",
+		"create-snapshot.dark.desktop.png",
+		"create-snapshot.dark.mobile.png",
+		"create-snapshot.light.desktop.png",
+		"create-snapshot.light.mobile.png",
+		"create-team.dark.desktop.png",
+		"create-team.dark.mobile.png",
+		"create-team.light.desktop.png",
+		"create-team.light.mobile.png",
+		"create-workspace.dark.desktop.png",
+		"create-workspace.dark.mobile.png",
+		"create-workspace.light.desktop.png",
+		"create-workspace.light.mobile.png",
+		"dashboard.dark.desktop.png",
+		"dashboard.dark.mobile.png",
+		"dashboard.light.desktop.png",
+		"dashboard.light.mobile.png",
+		"delete-all-workspaces.dark.desktop.png",
+		"delete-all-workspaces.dark.mobile.png",
+		"delete-all-workspaces.light.desktop.png",
+		"delete-all-workspaces.light.mobile.png",
+		"delete-identity-provider.dark.desktop.png",
+		"delete-identity-provider.dark.mobile.png",
+		"delete-identity-provider.light.desktop.png",
+		"delete-identity-provider.light.mobile.png",
+		"delete-network-policy.dark.desktop.png",
+		"delete-network-policy.dark.mobile.png",
+		"delete-network-policy.light.desktop.png",
+		"delete-network-policy.light.mobile.png",
+		"delete-ssh-key.dark.desktop.png",
+		"delete-ssh-key.dark.mobile.png",
+		"delete-ssh-key.light.desktop.png",
+		"delete-ssh-key.light.mobile.png",
+		"delete-team.dark.desktop.png",
+		"delete-team.dark.mobile.png",
+		"delete-team.light.desktop.png",
+		"delete-team.light.mobile.png",
+		"delete-workspace.dark.desktop.png",
+		"delete-workspace.dark.mobile.png",
+		"delete-workspace.light.desktop.png",
+		"delete-workspace.light.mobile.png",
+		"device-signed-out.dark.desktop.png",
+		"device-signed-out.dark.mobile.png",
+		"device-signed-out.light.desktop.png",
+		"device-signed-out.light.mobile.png",
+		"device.dark.desktop.png",
+		"device.dark.mobile.png",
+		"device.light.desktop.png",
+		"device.light.mobile.png",
+		"expose-port.dark.desktop.png",
+		"expose-port.dark.mobile.png",
+		"expose-port.light.desktop.png",
+		"expose-port.light.mobile.png",
+		"force-delete-workspace.dark.desktop.png",
+		"force-delete-workspace.dark.mobile.png",
+		"force-delete-workspace.light.desktop.png",
+		"force-delete-workspace.light.mobile.png",
+		"force-stop-workspace.dark.desktop.png",
+		"force-stop-workspace.dark.mobile.png",
+		"force-stop-workspace.light.desktop.png",
+		"force-stop-workspace.light.mobile.png",
+		"invite-guest.dark.desktop.png",
+		"invite-guest.dark.mobile.png",
+		"invite-guest.light.desktop.png",
+		"invite-guest.light.mobile.png",
+		"keyring-anew.dark.desktop.png",
+		"keyring-anew.dark.mobile.png",
+		"keyring-anew.light.desktop.png",
+		"keyring-anew.light.mobile.png",
+		"launch.dark.desktop.png",
+		"launch.dark.mobile.png",
+		"launch.light.desktop.png",
+		"launch.light.mobile.png",
+		"leave-team.dark.desktop.png",
+		"leave-team.dark.mobile.png",
+		"leave-team.light.desktop.png",
+		"leave-team.light.mobile.png",
+		"login.dark.desktop.png",
+		"login.dark.mobile.png",
+		"login.light.desktop.png",
+		"login.light.mobile.png",
+		"new-network-policy.dark.desktop.png",
+		"new-network-policy.dark.mobile.png",
+		"new-network-policy.light.desktop.png",
+		"new-network-policy.light.mobile.png",
+		"new-project.dark.desktop.png",
+		"new-project.dark.mobile.png",
+		"new-project.light.desktop.png",
+		"new-project.light.mobile.png",
+		"remove-team-member.dark.desktop.png",
+		"remove-team-member.dark.mobile.png",
+		"remove-team-member.light.desktop.png",
+		"remove-team-member.light.mobile.png",
+		"revoke-runner.dark.desktop.png",
+		"revoke-runner.dark.mobile.png",
+		"revoke-runner.light.desktop.png",
+		"revoke-runner.light.mobile.png",
+		"run-job.dark.desktop.png",
+		"run-job.dark.mobile.png",
+		"run-job.light.desktop.png",
+		"run-job.light.mobile.png",
+		"search-syntax.dark.desktop.png",
+		"search-syntax.dark.mobile.png",
+		"search-syntax.light.desktop.png",
+		"search-syntax.light.mobile.png",
+		"settings-api-keys.dark.desktop.png",
+		"settings-api-keys.dark.mobile.png",
+		"settings-api-keys.light.desktop.png",
+		"settings-api-keys.light.mobile.png",
+		"settings-dotfiles.dark.desktop.png",
+		"settings-dotfiles.dark.mobile.png",
+		"settings-dotfiles.light.desktop.png",
+		"settings-dotfiles.light.mobile.png",
+		"settings-keys.dark.desktop.png",
+		"settings-keys.dark.mobile.png",
+		"settings-keys.light.desktop.png",
+		"settings-keys.light.mobile.png",
+		"settings-preferences.dark.desktop.png",
+		"settings-preferences.dark.mobile.png",
+		"settings-preferences.light.desktop.png",
+		"settings-preferences.light.mobile.png",
+		"settings-profile.dark.desktop.png",
+		"settings-profile.dark.mobile.png",
+		"settings-profile.light.desktop.png",
+		"settings-profile.light.mobile.png",
+		"shared.dark.desktop.png",
+		"shared.dark.mobile.png",
+		"shared.light.desktop.png",
+		"shared.light.mobile.png",
+		"shortcuts.dark.desktop.png",
+		"shortcuts.dark.mobile.png",
+		"shortcuts.light.desktop.png",
+		"shortcuts.light.mobile.png",
+		"team-member-menu.dark.desktop.png",
+		"team-member-menu.dark.mobile.png",
+		"team-member-menu.light.desktop.png",
+		"team-member-menu.light.mobile.png",
+		"team-members.dark.desktop.png",
+		"team-members.dark.mobile.png",
+		"team-members.light.desktop.png",
+		"team-members.light.mobile.png",
+		"team-projects.dark.desktop.png",
+		"team-projects.dark.mobile.png",
+		"team-projects.light.desktop.png",
+		"team-projects.light.mobile.png",
+		"team-settings.dark.desktop.png",
+		"team-settings.dark.mobile.png",
+		"team-settings.light.desktop.png",
+		"team-settings.light.mobile.png",
+		"team-usage.dark.desktop.png",
+		"team-usage.dark.mobile.png",
+		"team-usage.light.desktop.png",
+		"team-usage.light.mobile.png",
+		"teams.dark.desktop.png",
+		"teams.dark.mobile.png",
+		"teams.light.desktop.png",
+		"teams.light.mobile.png",
+		"untag-image.dark.desktop.png",
+		"untag-image.dark.mobile.png",
+		"untag-image.light.desktop.png",
+		"untag-image.light.mobile.png",
+		"user-menu.dark.desktop.png",
+		"user-menu.dark.mobile.png",
+		"user-menu.light.desktop.png",
+		"user-menu.light.mobile.png",
+		"workspace-access.dark.desktop.png",
+		"workspace-access.dark.mobile.png",
+		"workspace-access.light.desktop.png",
+		"workspace-access.light.mobile.png",
+		"workspace-actions-menu.dark.desktop.png",
+		"workspace-actions-menu.dark.mobile.png",
+		"workspace-actions-menu.light.desktop.png",
+		"workspace-actions-menu.light.mobile.png",
+		"workspace-history.dark.desktop.png",
+		"workspace-history.dark.mobile.png",
+		"workspace-history.light.desktop.png",
+		"workspace-history.light.mobile.png",
+		"workspace-logs.dark.desktop.png",
+		"workspace-logs.dark.mobile.png",
+		"workspace-logs.light.desktop.png",
+		"workspace-logs.light.mobile.png",
+		"workspace-network.dark.desktop.png",
+		"workspace-network.dark.mobile.png",
+		"workspace-network.light.desktop.png",
+		"workspace-network.light.mobile.png",
+		"workspace-ports.dark.desktop.png",
+		"workspace-ports.dark.mobile.png",
+		"workspace-ports.light.desktop.png",
+		"workspace-ports.light.mobile.png",
+		"workspace-snapshots.dark.desktop.png",
+		"workspace-snapshots.dark.mobile.png",
+		"workspace-snapshots.light.desktop.png",
+		"workspace-snapshots.light.mobile.png",
+		"workspace-status.dark.desktop.png",
+		"workspace-status.dark.mobile.png",
+		"workspace-status.light.desktop.png",
+		"workspace-status.light.mobile.png",
+		"workspace-stopped.dark.desktop.png",
+		"workspace-stopped.dark.mobile.png",
+		"workspace-stopped.light.desktop.png",
+		"workspace-stopped.light.mobile.png",
+		"workspace.dark.desktop.png",
+		"workspace.dark.mobile.png",
+		"workspace.light.desktop.png",
+		"workspace.light.mobile.png",
+		"workspaces.dark.desktop.png",
+		"workspaces.dark.mobile.png",
+		"workspaces.light.desktop.png",
+		"workspaces.light.mobile.png"
+	],
+	"screens": [
+		{
+			"name": "login",
+			"title": "Sign in",
+			"area": "access",
+			"route": "/login",
+			"kind": "page"
+		},
+		{
+			"name": "device",
+			"title": "Authorize the CLI",
+			"area": "access",
+			"route": "/device",
+			"kind": "page"
+		},
+		{
+			"name": "device-signed-out",
+			"title": "Authorize the CLI, signed out",
+			"area": "access",
+			"route": "/device",
+			"kind": "page"
+		},
+		{
+			"name": "auth-callback",
+			"title": "A sign-in that came back with nothing",
+			"area": "access",
+			"route": "/auth/callback",
+			"kind": "page"
+		},
+		{
+			"name": "dashboard",
+			"title": "The dashboard",
+			"area": "everywhere",
+			"route": "/",
+			"kind": "page"
+		},
+		{
+			"name": "command-palette",
+			"title": "The command palette",
+			"area": "everywhere",
+			"route": "/",
+			"kind": "page"
+		},
+		{
+			"name": "shortcuts",
+			"title": "The keyboard shortcuts",
+			"area": "everywhere",
+			"route": "/",
+			"kind": "page"
+		},
+		{
+			"name": "user-menu",
+			"title": "The user menu",
+			"area": "everywhere",
+			"route": "/",
+			"kind": "page"
+		},
+		{
+			"name": "workspaces",
+			"title": "A person's workspaces",
+			"area": "workspaces",
+			"route": "/workspaces/",
+			"kind": "page"
+		},
+		{
+			"name": "workspace-actions-menu",
+			"title": "A running workspace's actions",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "page"
+		},
+		{
+			"name": "workspace",
+			"title": "A running workspace",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "page"
+		},
+		{
+			"name": "workspace-stopped",
+			"title": "A stopped workspace",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "page"
+		},
+		{
+			"name": "workspace-access",
+			"title": "A running workspace's access",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "page"
+		},
+		{
+			"name": "workspace-status",
+			"title": "A running workspace's status",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "page"
+		},
+		{
+			"name": "workspace-history",
+			"title": "A running workspace's history",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "page"
+		},
+		{
+			"name": "workspace-snapshots",
+			"title": "A running workspace's snapshots",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "page"
+		},
+		{
+			"name": "workspace-ports",
+			"title": "A running workspace's ports",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "page"
+		},
+		{
+			"name": "workspace-network",
+			"title": "A running workspace's network",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "page"
+		},
+		{
+			"name": "workspace-logs",
+			"title": "A running workspace's logs",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "page"
+		},
+		{
+			"name": "create-workspace",
+			"title": "Create a workspace",
+			"area": "workspaces",
+			"route": "/workspaces/",
+			"kind": "dialog"
+		},
+		{
+			"name": "delete-all-workspaces",
+			"title": "Delete every workspace",
+			"area": "workspaces",
+			"route": "/workspaces/",
+			"kind": "dialog"
+		},
+		{
+			"name": "delete-workspace",
+			"title": "Delete a stopped workspace",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "dialog"
+		},
+		{
+			"name": "force-stop-workspace",
+			"title": "Force a running workspace to stop",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "dialog"
+		},
+		{
+			"name": "force-delete-workspace",
+			"title": "Force a workspace's delete",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "dialog"
+		},
+		{
+			"name": "change-size",
+			"title": "Change a workspace's size",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "dialog"
+		},
+		{
+			"name": "invite-guest",
+			"title": "Invite a guest",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "dialog"
+		},
+		{
+			"name": "create-snapshot",
+			"title": "Take a snapshot",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "dialog"
+		},
+		{
+			"name": "expose-port",
+			"title": "Expose a port",
+			"area": "workspaces",
+			"route": "/workspaces/$id",
+			"kind": "dialog"
+		},
+		{
+			"name": "shared",
+			"title": "Shared with me",
+			"area": "workspaces",
+			"route": "/shared",
+			"kind": "page"
+		},
+		{
+			"name": "launch",
+			"title": "Open a repository",
+			"area": "workspaces",
+			"route": "/launch",
+			"kind": "page"
+		},
+		{
+			"name": "teams",
+			"title": "A person's teams",
+			"area": "teams",
+			"route": "/teams/",
+			"kind": "page"
+		},
+		{
+			"name": "team-members",
+			"title": "A team's members",
+			"area": "teams",
+			"route": "/teams/$id",
+			"kind": "page"
+		},
+		{
+			"name": "team-projects",
+			"title": "A team's projects",
+			"area": "teams",
+			"route": "/teams/$id",
+			"kind": "page"
+		},
+		{
+			"name": "team-usage",
+			"title": "A team's usage",
+			"area": "teams",
+			"route": "/teams/$id",
+			"kind": "page"
+		},
+		{
+			"name": "team-settings",
+			"title": "A team's settings",
+			"area": "teams",
+			"route": "/teams/$id",
+			"kind": "page"
+		},
+		{
+			"name": "team-member-menu",
+			"title": "A member's actions",
+			"area": "teams",
+			"route": "/teams/$id",
+			"kind": "page"
+		},
+		{
+			"name": "create-team",
+			"title": "Create a team",
+			"area": "teams",
+			"route": "/teams/",
+			"kind": "dialog"
+		},
+		{
+			"name": "add-team-member",
+			"title": "Add a member",
+			"area": "teams",
+			"route": "/teams/$id",
+			"kind": "dialog"
+		},
+		{
+			"name": "remove-team-member",
+			"title": "Remove a member",
+			"area": "teams",
+			"route": "/teams/$id",
+			"kind": "dialog"
+		},
+		{
+			"name": "delete-team",
+			"title": "Delete a team",
+			"area": "teams",
+			"route": "/teams/$id",
+			"kind": "dialog"
+		},
+		{
+			"name": "leave-team",
+			"title": "Leave a team",
+			"area": "teams",
+			"route": "/teams/$id",
+			"kind": "dialog"
+		},
+		{
+			"name": "new-project",
+			"title": "Make a project",
+			"area": "teams",
+			"route": "/teams/$id",
+			"kind": "dialog"
+		},
+		{
+			"name": "settings-profile",
+			"title": "Profile",
+			"area": "settings",
+			"route": "/settings/",
+			"kind": "page"
+		},
+		{
+			"name": "settings-keys",
+			"title": "Devices and keys",
+			"area": "settings",
+			"route": "/settings/keys",
+			"kind": "page"
+		},
+		{
+			"name": "settings-api-keys",
+			"title": "API keys",
+			"area": "settings",
+			"route": "/settings/api-keys",
+			"kind": "page"
+		},
+		{
+			"name": "settings-dotfiles",
+			"title": "Dotfiles",
+			"area": "settings",
+			"route": "/settings/dotfiles",
+			"kind": "page"
+		},
+		{
+			"name": "settings-preferences",
+			"title": "Preferences",
+			"area": "settings",
+			"route": "/settings/preferences",
+			"kind": "page"
+		},
+		{
+			"name": "add-ssh-key",
+			"title": "Add an SSH key",
+			"area": "settings",
+			"route": "/settings/keys",
+			"kind": "dialog"
+		},
+		{
+			"name": "delete-ssh-key",
+			"title": "Delete an SSH key",
+			"area": "settings",
+			"route": "/settings/keys",
+			"kind": "dialog"
+		},
+		{
+			"name": "keyring-anew",
+			"title": "Start a keyring anew",
+			"area": "settings",
+			"route": "/settings/keys",
+			"kind": "dialog"
+		},
+		{
+			"name": "create-api-key",
+			"title": "Create an API key",
+			"area": "settings",
+			"route": "/settings/api-keys",
+			"kind": "dialog"
+		},
+		{
+			"name": "admin-audit",
+			"title": "The audit log",
+			"area": "admin",
+			"route": "/admin/audit",
+			"kind": "page"
+		},
+		{
+			"name": "admin-costs",
+			"title": "Costs",
+			"area": "admin",
+			"route": "/admin/costs",
+			"kind": "page"
+		},
+		{
+			"name": "admin-extensions",
+			"title": "Extensions",
+			"area": "admin",
+			"route": "/admin/extensions",
+			"kind": "page"
+		},
+		{
+			"name": "admin-indexes",
+			"title": "Indexes",
+			"area": "admin",
+			"route": "/admin/indexes",
+			"kind": "page"
+		},
+		{
+			"name": "admin-jobs",
+			"title": "Jobs",
+			"area": "admin",
+			"route": "/admin/jobs",
+			"kind": "page"
+		},
+		{
+			"name": "admin-logs",
+			"title": "The installation's logs",
+			"area": "admin",
+			"route": "/admin/logs",
+			"kind": "page"
+		},
+		{
+			"name": "admin-metrics",
+			"title": "Metrics",
+			"area": "admin",
+			"route": "/admin/metrics",
+			"kind": "page"
+		},
+		{
+			"name": "admin-network",
+			"title": "Network policies",
+			"area": "admin",
+			"route": "/admin/network",
+			"kind": "page"
+		},
+		{
+			"name": "admin-runners",
+			"title": "Runners",
+			"area": "admin",
+			"route": "/admin/runners/",
+			"kind": "page"
+		},
+		{
+			"name": "admin-runners-registration",
+			"title": "Runners: registration tokens",
+			"area": "admin",
+			"route": "/admin/runners/",
+			"kind": "page"
+		},
+		{
+			"name": "admin-runners-versions",
+			"title": "Runners: versions",
+			"area": "admin",
+			"route": "/admin/runners/",
+			"kind": "page"
+		},
+		{
+			"name": "admin-runner",
+			"title": "A runner",
+			"area": "admin",
+			"route": "/admin/runners/$hostId",
+			"kind": "page"
+		},
+		{
+			"name": "admin-security",
+			"title": "Security",
+			"area": "admin",
+			"route": "/admin/security",
+			"kind": "page"
+		},
+		{
+			"name": "admin-settings-general",
+			"title": "Installation settings: general",
+			"area": "admin",
+			"route": "/admin/settings",
+			"kind": "page"
+		},
+		{
+			"name": "admin-settings-presets",
+			"title": "Installation settings: resource presets",
+			"area": "admin",
+			"route": "/admin/settings",
+			"kind": "page"
+		},
+		{
+			"name": "admin-settings-telemetry",
+			"title": "Installation settings: telemetry",
+			"area": "admin",
+			"route": "/admin/settings",
+			"kind": "page"
+		},
+		{
+			"name": "admin-storage",
+			"title": "Object storage",
+			"area": "admin",
+			"route": "/admin/storage",
+			"kind": "page"
+		},
+		{
+			"name": "admin-teams",
+			"title": "Every team",
+			"area": "admin",
+			"route": "/admin/teams",
+			"kind": "page"
+		},
+		{
+			"name": "admin-traces",
+			"title": "Traces",
+			"area": "admin",
+			"route": "/admin/traces/",
+			"kind": "page"
+		},
+		{
+			"name": "admin-users",
+			"title": "Users",
+			"area": "admin",
+			"route": "/admin/users",
+			"kind": "page"
+		},
+		{
+			"name": "run-job",
+			"title": "Run a job that has no schedule",
+			"area": "admin",
+			"route": "/admin/jobs",
+			"kind": "dialog"
+		},
+		{
+			"name": "search-syntax",
+			"title": "Search syntax",
+			"area": "admin",
+			"route": "/admin/logs",
+			"kind": "dialog"
+		},
+		{
+			"name": "new-network-policy",
+			"title": "Declare a network policy",
+			"area": "admin",
+			"route": "/admin/network",
+			"kind": "dialog"
+		},
+		{
+			"name": "delete-network-policy",
+			"title": "Delete a network policy",
+			"area": "admin",
+			"route": "/admin/network",
+			"kind": "dialog"
+		},
+		{
+			"name": "add-runner",
+			"title": "Add a runner",
+			"area": "admin",
+			"route": "/admin/runners/",
+			"kind": "dialog"
+		},
+		{
+			"name": "revoke-runner",
+			"title": "Revoke a runner",
+			"area": "admin",
+			"route": "/admin/runners/",
+			"kind": "dialog"
+		},
+		{
+			"name": "add-identity-provider",
+			"title": "Add an identity provider",
+			"area": "admin",
+			"route": "/admin/security",
+			"kind": "dialog"
+		},
+		{
+			"name": "delete-identity-provider",
+			"title": "Delete an identity provider",
+			"area": "admin",
+			"route": "/admin/security",
+			"kind": "dialog"
+		},
+		{
+			"name": "create-preset",
+			"title": "Create a preset",
+			"area": "admin",
+			"route": "/admin/settings",
+			"kind": "dialog"
+		},
+		{
+			"name": "untag-image",
+			"title": "Untag or remove an image",
+			"area": "admin",
+			"route": "/admin/storage",
+			"kind": "dialog"
+		}
+	],
+	"exempt": [
+		{
+			"what": "/setup/",
+			"reason": "the stack's database is set up before the suite runs, and a set-up installation sends /setup to /"
+		},
+		{
+			"what": "/settings/profile",
+			"reason": "the profile under the address it had before the tab was /settings; it draws settings-profile"
+		},
+		{
+			"what": "/workspace-sign-in",
+			"reason": "it is the page a workspace's own link lands on, signed in through the browser terminal's passkey"
+		},
+		{
+			"what": "/admin/traces/$traceId",
+			"reason": "a trace is kept when it fails, is slow or is sampled, so which one the stack has is chance"
+		},
+		{
+			"what": "src/components/team/projects-tab.tsx: Delete Project",
+			"reason": "needs a project, which the stack does not make"
+		},
+		{
+			"what": "src/components/team/projects-tab.tsx: Workspace created",
+			"reason": "needs a project and creates a workspace"
+		},
+		{
+			"what": "src/components/team/projects-tab.tsx: Open a project",
+			"reason": "needs a project, which the stack does not make"
+		},
+		{
+			"what": "src/components/workspace/create-workspace-modal.tsx: Workspace created",
+			"reason": "creates a workspace on the stack's one runner"
+		},
+		{
+			"what": "src/components/workspace/deleted-workspaces.tsx: Delete Permanently",
+			"reason": "needs a trashed workspace, which the stack does not make"
+		},
+		{
+			"what": "src/components/workspace/exposed-ports.tsx: Remove Port Exposure",
+			"reason": "needs an exposed port, which the stack does not make"
+		},
+		{
+			"what": "src/components/workspace/quarantine.tsx: Quarantine Workspace",
+			"reason": "an administrator's, on a workspace the administrator can open; the stack's are another person's"
+		},
+		{
+			"what": "src/components/workspace/quarantine.tsx: Re-key the disk",
+			"reason": "an administrator's, on a workspace the administrator can open; the stack's are another person's"
+		},
+		{
+			"what": "src/components/workspace/recover-workspace.tsx: Move to another runner",
+			"reason": "needs a workspace whose runner is gone"
+		},
+		{
+			"what": "src/components/workspace/snapshot-diff.tsx: Changes",
+			"reason": "needs a published snapshot, which the stack does not make"
+		},
+		{
+			"what": "src/components/workspace/snapshot-list.tsx: Restore this snapshot",
+			"reason": "needs a published snapshot, which the stack does not make"
+		},
+		{
+			"what": "src/components/workspace/snapshot-list.tsx: Delete Snapshot",
+			"reason": "needs a snapshot, which the stack does not make"
+		},
+		{
+			"what": "src/components/workspace/snapshot-share.tsx: Share snapshot",
+			"reason": "needs a published snapshot, which the stack does not make"
+		},
+		{
+			"what": "src/components/workspace/workspace-access.tsx: Remove the guest",
+			"reason": "needs a guest, which the stack does not invite"
+		},
+		{
+			"what": "src/components/workspace/workspace-actions.tsx: Start from Disk",
+			"reason": "needs a workspace suspended on a machine that no longer runs"
+		},
+		{
+			"what": "src/routes/admin/security.lazy.tsx: Add to Whitelist",
+			"reason": "opens only with registration set to the allowlist, an installation-wide change"
+		},
+		{
+			"what": "src/routes/admin/settings.lazy.tsx: Delete preset",
+			"reason": "needs a resource preset, which the stack does not declare"
+		},
+		{
+			"what": "src/routes/settings/api-keys.lazy.tsx: Revoke API Key",
+			"reason": "needs an API key, which the stack does not make"
+		},
+		{
+			"what": "src/routes/shared.lazy.tsx: Start a workspace from it",
+			"reason": "needs a snapshot shared with the person, which the stack does not make"
+		}
+	]
+}

@@ -1,0 +1,5071 @@
+{
+	"findings": [
+		{
+			"screen": "add-identity-provider",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "add-identity-provider",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "add-identity-provider",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.flex.items-center \u003e div.flex.items-center \u003e div.flex.items-center \u003e button.icon-button",
+			"count": 12
+		},
+		{
+			"screen": "add-identity-provider",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "add-identity-provider",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "add-identity-provider",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "add-identity-provider",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.flex.items-center \u003e div.flex.items-center \u003e div.flex.items-center \u003e button.icon-button",
+			"count": 12
+		},
+		{
+			"screen": "add-identity-provider",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "add-runner",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "add-runner",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.mt-4.space-y-4 \u003e fieldset.grid.grid-cols-2 \u003e label.cursor-pointer.rounded-lg \u003e input.sr-only",
+			"count": 2
+		},
+		{
+			"screen": "add-runner",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "add-runner",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 14
+		},
+		{
+			"screen": "add-runner",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "add-runner",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "add-runner",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.mt-4.space-y-4 \u003e fieldset.grid.grid-cols-2 \u003e label.cursor-pointer.rounded-lg \u003e input.sr-only",
+			"count": 2
+		},
+		{
+			"screen": "add-runner",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "add-runner",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 14
+		},
+		{
+			"screen": "add-runner",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "add-ssh-key",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "add-ssh-key",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "add-ssh-key",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 12
+		},
+		{
+			"screen": "add-ssh-key",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "add-ssh-key",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "add-ssh-key",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "add-ssh-key",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 12
+		},
+		{
+			"screen": "add-ssh-key",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "add-team-member",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 2
+		},
+		{
+			"screen": "add-team-member",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "add-team-member",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "add-team-member",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 16
+		},
+		{
+			"screen": "add-team-member",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "add-team-member",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 2
+		},
+		{
+			"screen": "add-team-member",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "add-team-member",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "add-team-member",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 16
+		},
+		{
+			"screen": "add-team-member",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "admin-audit",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-audit",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.flex-wrap \u003e label.flex.items-center \u003e select.rounded-lg.border \"Last 24 hoursLast 7 days\"",
+			"count": 3
+		},
+		{
+			"screen": "admin-audit",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-audit",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.flex-wrap \u003e label.flex.items-center \u003e select.rounded-lg.border \"Last 24 hoursLast 7 days\"",
+			"count": 3
+		},
+		{
+			"screen": "admin-costs",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-costs",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-extensions",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-extensions",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-indexes",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.space-y-6 \u003e section.card-elevated.overflow-hidden \u003e div.flex.flex-wrap \u003e a.text-xs.text-primary \"Search it\"",
+			"count": 2
+		},
+		{
+			"screen": "admin-indexes",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-indexes",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e section.card-elevated.overflow-hidden \u003e div.flex.flex-wrap \u003e a.text-xs.text-primary \"Search it\"",
+			"count": 2
+		},
+		{
+			"screen": "admin-indexes",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.space-y-6 \u003e section.card-elevated.overflow-hidden \u003e div.flex.flex-wrap \u003e a.text-xs.text-primary \"Search it\"",
+			"count": 2
+		},
+		{
+			"screen": "admin-indexes",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-indexes",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e section.card-elevated.overflow-hidden \u003e div.flex.flex-wrap \u003e a.text-xs.text-primary \"Search it\"",
+			"count": 2
+		},
+		{
+			"screen": "admin-jobs",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "tbody.divide-y.divide-border/30 \u003e tr.align-top \u003e td.px-5.py-2 \u003e a.inline-flex.items-center \"Trace\"",
+			"count": 1
+		},
+		{
+			"screen": "admin-jobs",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-jobs",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.space-y-4 \u003e label.flex.items-center \u003e select.rounded-lg.border \"SessionsExpired dataWork\"",
+			"count": 5
+		},
+		{
+			"screen": "admin-jobs",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "overflow",
+			"value": "416px in 390px",
+			"selector": "html",
+			"count": 1
+		},
+		{
+			"screen": "admin-jobs",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "tbody.divide-y.divide-border/30 \u003e tr.align-top \u003e td.px-5.py-2 \u003e a.inline-flex.items-center \"Trace\"",
+			"count": 1
+		},
+		{
+			"screen": "admin-jobs",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-jobs",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.space-y-4 \u003e label.flex.items-center \u003e select.rounded-lg.border \"SessionsExpired dataWork\"",
+			"count": 5
+		},
+		{
+			"screen": "admin-jobs",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "overflow",
+			"value": "416px in 390px",
+			"selector": "html",
+			"count": 1
+		},
+		{
+			"screen": "admin-logs",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-logs",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.relative.flex \u003e form.flex.h-12 \u003e div.relative.min-w-[16rem] \u003e input.h-8.w-full",
+			"count": 6
+		},
+		{
+			"screen": "admin-logs",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "aside.flex.h-full \u003e div.min-h-0.flex-1 \u003e div.border-b.border-border \u003e button.flex.w-full \"error22\"",
+			"count": 6
+		},
+		{
+			"screen": "admin-logs",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "size",
+			"value": "10px",
+			"selector": "section.border-b.border-border \u003e div.flex.gap-2 \u003e div.flex.h-24 \u003e span \"572\"",
+			"count": 8
+		},
+		{
+			"screen": "admin-logs",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-logs",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "aside.flex.h-full \u003e div.flex.h-12 \u003e div.relative.w-full \u003e input.h-8.w-full",
+			"count": 47
+		},
+		{
+			"screen": "admin-logs",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "size",
+			"value": "10px",
+			"selector": "section.border-b.border-border \u003e div.flex.gap-2 \u003e div.flex.h-24 \u003e span \"572\"",
+			"count": 8
+		},
+		{
+			"screen": "admin-metrics",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.mx-auto.w-full \u003e div.flex.flex-col \u003e div.flex.items-end \u003e a.flex.items-center \"Open in Grafana\"",
+			"count": 1
+		},
+		{
+			"screen": "admin-metrics",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-metrics",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.flex.flex-col \u003e div.flex.items-end \u003e a.flex.items-center \"Open in Grafana\"",
+			"count": 3
+		},
+		{
+			"screen": "admin-metrics",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.mx-auto.w-full \u003e div.flex.flex-col \u003e div.flex.items-end \u003e a.flex.items-center \"Open in Grafana\"",
+			"count": 1
+		},
+		{
+			"screen": "admin-metrics",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-metrics",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.flex.flex-col \u003e div.flex.items-end \u003e a.flex.items-center \"Open in Grafana\"",
+			"count": 3
+		},
+		{
+			"screen": "admin-network",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-network",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e div.flex.items-end \u003e button.inline-flex.items-center \"New policy\"",
+			"count": 17
+		},
+		{
+			"screen": "admin-network",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-network",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e div.flex.items-end \u003e button.inline-flex.items-center \"New policy\"",
+			"count": 17
+		},
+		{
+			"screen": "admin-runner",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Runners\"",
+			"count": 2
+		},
+		{
+			"screen": "admin-runner",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-runner",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Runners\"",
+			"count": 3
+		},
+		{
+			"screen": "admin-runner",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Runners\"",
+			"count": 2
+		},
+		{
+			"screen": "admin-runner",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-runner",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Runners\"",
+			"count": 3
+		},
+		{
+			"screen": "admin-runners-registration",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-runners-registration",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 4
+		},
+		{
+			"screen": "admin-runners-registration",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-runners-registration",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 4
+		},
+		{
+			"screen": "admin-runners-versions",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-runners-versions",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 4
+		},
+		{
+			"screen": "admin-runners-versions",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-runners-versions",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 4
+		},
+		{
+			"screen": "admin-runners",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-runners",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 8
+		},
+		{
+			"screen": "admin-runners",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-runners",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 8
+		},
+		{
+			"screen": "admin-security",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-security",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.flex.items-center \u003e div.flex.items-center \u003e div.flex.items-center \u003e button.icon-button",
+			"count": 3
+		},
+		{
+			"screen": "admin-security",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-security",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.flex.items-center \u003e div.flex.items-center \u003e div.flex.items-center \u003e button.icon-button",
+			"count": 3
+		},
+		{
+			"screen": "admin-settings-general",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-settings-general",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div \u003e div.flex.gap-6 \u003e button.-mb-px.flex \"General\"",
+			"count": 12
+		},
+		{
+			"screen": "admin-settings-general",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-settings-general",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div \u003e div.flex.gap-6 \u003e button.-mb-px.flex \"General\"",
+			"count": 12
+		},
+		{
+			"screen": "admin-settings-presets",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-settings-presets",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div \u003e div.flex.gap-6 \u003e button.-mb-px.flex \"General\"",
+			"count": 3
+		},
+		{
+			"screen": "admin-settings-presets",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-settings-presets",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div \u003e div.flex.gap-6 \u003e button.-mb-px.flex \"General\"",
+			"count": 3
+		},
+		{
+			"screen": "admin-settings-telemetry",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-settings-telemetry",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div \u003e div.flex.gap-6 \u003e button.-mb-px.flex \"General\"",
+			"count": 9
+		},
+		{
+			"screen": "admin-settings-telemetry",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-settings-telemetry",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div \u003e div.flex.gap-6 \u003e button.-mb-px.flex \"General\"",
+			"count": 9
+		},
+		{
+			"screen": "admin-storage",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-storage",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "form.flex.items-end \u003e div.flex-1 \u003e div.space-y-1.5 \u003e input.w-full.rounded-lg",
+			"count": 3
+		},
+		{
+			"screen": "admin-storage",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-storage",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "form.flex.items-end \u003e div.flex-1 \u003e div.space-y-1.5 \u003e input.w-full.rounded-lg",
+			"count": 3
+		},
+		{
+			"screen": "admin-teams",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-teams",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e input.w-full.max-w-md",
+			"count": 1
+		},
+		{
+			"screen": "admin-teams",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-teams",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e input.w-full.max-w-md",
+			"count": 1
+		},
+		{
+			"screen": "admin-traces",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "tbody.divide-y.divide-border/30 \u003e tr \u003e td.px-3.py-1 \u003e button.tabular-nums.hover:underline \"5242\"",
+			"count": 9
+		},
+		{
+			"screen": "admin-traces",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-traces",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.flex.min-w-0 \u003e main.flex.min-h-0 \u003e section.shrink-0.border-b \u003e button.flex.w-full \"Services\"",
+			"count": 18
+		},
+		{
+			"screen": "admin-traces",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "tbody.divide-y.divide-border/30 \u003e tr \u003e td.px-3.py-1 \u003e button.tabular-nums.hover:underline \"5242\"",
+			"count": 9
+		},
+		{
+			"screen": "admin-traces",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-traces",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.flex.min-w-0 \u003e main.flex.min-h-0 \u003e section.shrink-0.border-b \u003e button.flex.w-full \"Services\"",
+			"count": 18
+		},
+		{
+			"screen": "admin-users",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.flex.flex-col \u003e div.flex.items-center \u003e label.flex.cursor-pointer \u003e input.h-4.w-4",
+			"count": 1
+		},
+		{
+			"screen": "admin-users",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-users",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.flex-col \u003e div.relative.flex-1 \u003e input.w-full.rounded-lg",
+			"count": 18
+		},
+		{
+			"screen": "admin-users",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.flex.flex-col \u003e div.flex.items-center \u003e label.flex.cursor-pointer \u003e input.h-4.w-4",
+			"count": 1
+		},
+		{
+			"screen": "admin-users",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "admin-users",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.flex-col \u003e div.relative.flex-1 \u003e input.w-full.rounded-lg",
+			"count": 18
+		},
+		{
+			"screen": "change-size",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 5
+		},
+		{
+			"screen": "change-size",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "change-size",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "change-size",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 25
+		},
+		{
+			"screen": "change-size",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "change-size",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 5
+		},
+		{
+			"screen": "change-size",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "change-size",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "change-size",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 25
+		},
+		{
+			"screen": "change-size",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "command-palette",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "command-palette",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.@container.px-4 \u003e div.flex.items-center \u003e div.flex.items-center \u003e a.font-medium.text-foreground \"e2e-stopped\"",
+			"count": 3
+		},
+		{
+			"screen": "command-palette",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.5)",
+			"selector": "div \u003e div.flex.h-dvh \u003e div.fixed.inset-0 \u003e button.absolute.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "command-palette",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "command-palette",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 25
+		},
+		{
+			"screen": "command-palette",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "command-palette",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.5)",
+			"selector": "div \u003e div.flex.h-dvh \u003e div.fixed.inset-0 \u003e button.absolute.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "command-palette",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "command-palette",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.@container.px-4 \u003e div.flex.items-center \u003e div.flex.items-center \u003e a.font-medium.text-foreground \"e2e-stopped\"",
+			"count": 3
+		},
+		{
+			"screen": "command-palette",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.5)",
+			"selector": "div \u003e div.flex.h-dvh \u003e div.fixed.inset-0 \u003e button.absolute.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "command-palette",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "command-palette",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 25
+		},
+		{
+			"screen": "command-palette",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "command-palette",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.5)",
+			"selector": "div \u003e div.flex.h-dvh \u003e div.fixed.inset-0 \u003e button.absolute.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-api-key",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-api-key",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div \u003e div.space-y-1 \u003e label.flex.cursor-pointer \u003e input.h-4.w-4",
+			"count": 7
+		},
+		{
+			"screen": "create-api-key",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "create-api-key",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 18
+		},
+		{
+			"screen": "create-api-key",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-api-key",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-api-key",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div \u003e div.space-y-1 \u003e label.flex.cursor-pointer \u003e input.h-4.w-4",
+			"count": 7
+		},
+		{
+			"screen": "create-api-key",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "create-api-key",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 18
+		},
+		{
+			"screen": "create-api-key",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-preset",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-preset",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "create-preset",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div \u003e div.flex.gap-6 \u003e button.-mb-px.flex \"General\"",
+			"count": 15
+		},
+		{
+			"screen": "create-preset",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-preset",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-preset",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "create-preset",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div \u003e div.flex.gap-6 \u003e button.-mb-px.flex \"General\"",
+			"count": 15
+		},
+		{
+			"screen": "create-preset",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-snapshot",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 2
+		},
+		{
+			"screen": "create-snapshot",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-snapshot",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "create-snapshot",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 16
+		},
+		{
+			"screen": "create-snapshot",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-snapshot",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 2
+		},
+		{
+			"screen": "create-snapshot",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-snapshot",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "create-snapshot",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 16
+		},
+		{
+			"screen": "create-snapshot",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-team",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-team",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "create-team",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 8
+		},
+		{
+			"screen": "create-team",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-team",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-team",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "create-team",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 8
+		},
+		{
+			"screen": "create-team",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-workspace",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "create-workspace",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.@container.px-4 \u003e div.flex.items-center \u003e div.flex.items-center \u003e a.font-medium.text-foreground \"e2e-stopped\"",
+			"count": 3
+		},
+		{
+			"screen": "create-workspace",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-workspace",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "create-workspace",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 27
+		},
+		{
+			"screen": "create-workspace",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "create-workspace",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-workspace",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "create-workspace",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.@container.px-4 \u003e div.flex.items-center \u003e div.flex.items-center \u003e a.font-medium.text-foreground \"e2e-stopped\"",
+			"count": 3
+		},
+		{
+			"screen": "create-workspace",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "create-workspace",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "create-workspace",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 27
+		},
+		{
+			"screen": "create-workspace",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "create-workspace",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "dashboard",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.grid.gap-6 \u003e section.card-elevated \u003e div.flex.items-center \u003e a.text-sm.text-muted-foreground \"View all\"",
+			"count": 1
+		},
+		{
+			"screen": "dashboard",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "dashboard",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.grid.gap-6 \u003e section.card-elevated \u003e div.flex.items-center \u003e a.text-sm.text-muted-foreground \"View all\"",
+			"count": 4
+		},
+		{
+			"screen": "dashboard",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.grid.gap-6 \u003e section.card-elevated \u003e div.flex.items-center \u003e a.text-sm.text-muted-foreground \"View all\"",
+			"count": 1
+		},
+		{
+			"screen": "dashboard",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "dashboard",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.grid.gap-6 \u003e section.card-elevated \u003e div.flex.items-center \u003e a.text-sm.text-muted-foreground \"View all\"",
+			"count": 4
+		},
+		{
+			"screen": "delete-all-workspaces",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "delete-all-workspaces",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.@container.px-4 \u003e div.flex.items-center \u003e div.flex.items-center \u003e a.font-medium.text-foreground \"e2e-stopped\"",
+			"count": 2
+		},
+		{
+			"screen": "delete-all-workspaces",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-all-workspaces",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "delete-all-workspaces",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 23
+		},
+		{
+			"screen": "delete-all-workspaces",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "delete-all-workspaces",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-all-workspaces",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "delete-all-workspaces",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.@container.px-4 \u003e div.flex.items-center \u003e div.flex.items-center \u003e a.font-medium.text-foreground \"e2e-stopped\"",
+			"count": 2
+		},
+		{
+			"screen": "delete-all-workspaces",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-all-workspaces",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "delete-all-workspaces",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 23
+		},
+		{
+			"screen": "delete-all-workspaces",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "delete-all-workspaces",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-identity-provider",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-identity-provider",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "delete-identity-provider",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.flex.items-center \u003e div.flex.items-center \u003e div.flex.items-center \u003e button.icon-button",
+			"count": 5
+		},
+		{
+			"screen": "delete-identity-provider",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-identity-provider",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-identity-provider",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "delete-identity-provider",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.flex.items-center \u003e div.flex.items-center \u003e div.flex.items-center \u003e button.icon-button",
+			"count": 5
+		},
+		{
+			"screen": "delete-identity-provider",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-network-policy",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-network-policy",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "delete-network-policy",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e div.flex.items-end \u003e button.inline-flex.items-center \"New policy\"",
+			"count": 19
+		},
+		{
+			"screen": "delete-network-policy",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-network-policy",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-network-policy",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "delete-network-policy",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e div.flex.items-end \u003e button.inline-flex.items-center \"New policy\"",
+			"count": 19
+		},
+		{
+			"screen": "delete-network-policy",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-ssh-key",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-ssh-key",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "delete-ssh-key",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 10
+		},
+		{
+			"screen": "delete-ssh-key",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-ssh-key",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-ssh-key",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "delete-ssh-key",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 10
+		},
+		{
+			"screen": "delete-ssh-key",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-team",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "delete-team",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-team",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "delete-team",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 12
+		},
+		{
+			"screen": "delete-team",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-team",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "delete-team",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-team",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "delete-team",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 12
+		},
+		{
+			"screen": "delete-team",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-workspace",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 4
+		},
+		{
+			"screen": "delete-workspace",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-workspace",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "delete-workspace",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 21
+		},
+		{
+			"screen": "delete-workspace",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-workspace",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 4
+		},
+		{
+			"screen": "delete-workspace",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "delete-workspace",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "delete-workspace",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 21
+		},
+		{
+			"screen": "delete-workspace",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "device-signed-out",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div \u003e div.flex.min-h-screen \u003e div.w-full.max-w-md \u003e button.inline-flex.items-center \"Sign in to continue\"",
+			"count": 1
+		},
+		{
+			"screen": "device-signed-out",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div \u003e div.flex.min-h-screen \u003e div.w-full.max-w-md \u003e button.inline-flex.items-center \"Sign in to continue\"",
+			"count": 1
+		},
+		{
+			"screen": "device",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.flex.min-h-screen \u003e div.w-full.max-w-md \u003e div.space-y-4 \u003e button.inline-flex.items-center \"Authorize Device\"",
+			"count": 1
+		},
+		{
+			"screen": "device",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.flex.min-h-screen \u003e div.w-full.max-w-md \u003e div.space-y-4 \u003e button.inline-flex.items-center \"Authorize Device\"",
+			"count": 1
+		},
+		{
+			"screen": "expose-port",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 2
+		},
+		{
+			"screen": "expose-port",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "expose-port",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "expose-port",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 17
+		},
+		{
+			"screen": "expose-port",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "expose-port",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 2
+		},
+		{
+			"screen": "expose-port",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "expose-port",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "expose-port",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 17
+		},
+		{
+			"screen": "expose-port",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "force-delete-workspace",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 4
+		},
+		{
+			"screen": "force-delete-workspace",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "force-delete-workspace",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "force-delete-workspace",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 21
+		},
+		{
+			"screen": "force-delete-workspace",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "force-delete-workspace",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 4
+		},
+		{
+			"screen": "force-delete-workspace",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "force-delete-workspace",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "force-delete-workspace",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 21
+		},
+		{
+			"screen": "force-delete-workspace",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "force-stop-workspace",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 4
+		},
+		{
+			"screen": "force-stop-workspace",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "force-stop-workspace",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "force-stop-workspace",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 21
+		},
+		{
+			"screen": "force-stop-workspace",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "force-stop-workspace",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 4
+		},
+		{
+			"screen": "force-stop-workspace",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "force-stop-workspace",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "force-stop-workspace",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 21
+		},
+		{
+			"screen": "force-stop-workspace",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "invite-guest",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 4
+		},
+		{
+			"screen": "invite-guest",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "invite-guest",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "invite-guest",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 19
+		},
+		{
+			"screen": "invite-guest",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "invite-guest",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 4
+		},
+		{
+			"screen": "invite-guest",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "invite-guest",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "invite-guest",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 19
+		},
+		{
+			"screen": "invite-guest",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "keyring-anew",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "keyring-anew",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "keyring-anew",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 10
+		},
+		{
+			"screen": "keyring-anew",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "keyring-anew",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "keyring-anew",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "keyring-anew",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 10
+		},
+		{
+			"screen": "keyring-anew",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "launch",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "launch",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "leave-team",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "leave-team",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "leave-team",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "leave-team",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 12
+		},
+		{
+			"screen": "leave-team",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "leave-team",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "leave-team",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "leave-team",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "leave-team",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 12
+		},
+		{
+			"screen": "leave-team",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "login",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.flex.min-h-screen \u003e div.w-full.max-w-md \u003e div.space-y-3 \u003e button.flex.w-full \"Continue with Mock OAuth\"",
+			"count": 1
+		},
+		{
+			"screen": "login",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.flex.min-h-screen \u003e div.w-full.max-w-md \u003e div.space-y-3 \u003e button.flex.w-full \"Continue with Mock OAuth\"",
+			"count": 1
+		},
+		{
+			"screen": "new-network-policy",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "new-network-policy",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "new-network-policy",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e div.flex.items-end \u003e button.inline-flex.items-center \"New policy\"",
+			"count": 30
+		},
+		{
+			"screen": "new-network-policy",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "new-network-policy",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "new-network-policy",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "new-network-policy",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e div.flex.items-end \u003e button.inline-flex.items-center \"New policy\"",
+			"count": 30
+		},
+		{
+			"screen": "new-network-policy",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "new-project",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "new-project",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "new-project",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "new-project",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 17
+		},
+		{
+			"screen": "new-project",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "new-project",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "new-project",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "new-project",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "new-project",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 17
+		},
+		{
+			"screen": "new-project",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "remove-team-member",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "remove-team-member",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "remove-team-member",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "remove-team-member",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 12
+		},
+		{
+			"screen": "remove-team-member",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "remove-team-member",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "remove-team-member",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "remove-team-member",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "remove-team-member",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 12
+		},
+		{
+			"screen": "remove-team-member",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "revoke-runner",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "revoke-runner",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "revoke-runner",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 10
+		},
+		{
+			"screen": "revoke-runner",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "revoke-runner",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "revoke-runner",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "revoke-runner",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 10
+		},
+		{
+			"screen": "revoke-runner",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "run-job",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "run-job",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "run-job",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.space-y-4 \u003e label.flex.items-center \u003e select.rounded-lg.border \"SessionsExpired dataWork\"",
+			"count": 4
+		},
+		{
+			"screen": "run-job",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "run-job",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "run-job",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "run-job",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.space-y-4 \u003e label.flex.items-center \u003e select.rounded-lg.border \"SessionsExpired dataWork\"",
+			"count": 4
+		},
+		{
+			"screen": "run-job",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "search-syntax",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "aside.flex.h-full \u003e div.min-h-0.flex-1 \u003e div.border-b.border-border \u003e button.flex.w-full \"error29\"",
+			"count": 6
+		},
+		{
+			"screen": "search-syntax",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "size",
+			"value": "10px",
+			"selector": "section.border-b.border-border \u003e div.flex.gap-2 \u003e div.flex.h-24 \u003e span \"579\"",
+			"count": 8
+		},
+		{
+			"screen": "search-syntax",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.3)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "search-syntax",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "search-syntax",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "aside.flex.h-full \u003e div.flex.h-12 \u003e div.relative.w-full \u003e input.h-8.w-full",
+			"count": 53
+		},
+		{
+			"screen": "search-syntax",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "size",
+			"value": "10px",
+			"selector": "section.border-b.border-border \u003e div.flex.gap-2 \u003e div.flex.h-24 \u003e span \"579\"",
+			"count": 8
+		},
+		{
+			"screen": "search-syntax",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.3)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "search-syntax",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "aside.flex.h-full \u003e div.min-h-0.flex-1 \u003e div.border-b.border-border \u003e button.flex.w-full \"error29\"",
+			"count": 6
+		},
+		{
+			"screen": "search-syntax",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "size",
+			"value": "10px",
+			"selector": "section.border-b.border-border \u003e div.flex.gap-2 \u003e div.flex.h-24 \u003e span \"579\"",
+			"count": 8
+		},
+		{
+			"screen": "search-syntax",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.3)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "search-syntax",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "search-syntax",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "aside.flex.h-full \u003e div.flex.h-12 \u003e div.relative.w-full \u003e input.h-8.w-full",
+			"count": 53
+		},
+		{
+			"screen": "search-syntax",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "size",
+			"value": "10px",
+			"selector": "section.border-b.border-border \u003e div.flex.gap-2 \u003e div.flex.h-24 \u003e span \"579\"",
+			"count": 8
+		},
+		{
+			"screen": "search-syntax",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.3)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "settings-api-keys",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "settings-api-keys",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 6
+		},
+		{
+			"screen": "settings-api-keys",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "settings-api-keys",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 6
+		},
+		{
+			"screen": "settings-dotfiles",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.p-4 \u003e div \u003e div.mt-4.flex \u003e a.flex.items-center \"Learn about dotfiles\"",
+			"count": 1
+		},
+		{
+			"screen": "settings-dotfiles",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "settings-dotfiles",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 10
+		},
+		{
+			"screen": "settings-dotfiles",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.p-4 \u003e div \u003e div.mt-4.flex \u003e a.flex.items-center \"Learn about dotfiles\"",
+			"count": 1
+		},
+		{
+			"screen": "settings-dotfiles",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "settings-dotfiles",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 10
+		},
+		{
+			"screen": "settings-keys",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "settings-keys",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 8
+		},
+		{
+			"screen": "settings-keys",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "settings-keys",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 8
+		},
+		{
+			"screen": "settings-preferences",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "settings-preferences",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 9
+		},
+		{
+			"screen": "settings-preferences",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "settings-preferences",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 9
+		},
+		{
+			"screen": "settings-profile",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "settings-profile",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 5
+		},
+		{
+			"screen": "settings-profile",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "settings-profile",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e nav.flex.gap-6 \u003e a.-mb-px.flex \"Profile\"",
+			"count": 5
+		},
+		{
+			"screen": "shared",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e label.flex.items-center \u003e input",
+			"count": 1
+		},
+		{
+			"screen": "shared",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "shared",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e label.flex.items-center \u003e input",
+			"count": 1
+		},
+		{
+			"screen": "shared",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e label.flex.items-center \u003e input",
+			"count": 1
+		},
+		{
+			"screen": "shared",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "shared",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.mx-auto.w-full \u003e div.space-y-6 \u003e label.flex.items-center \u003e input",
+			"count": 1
+		},
+		{
+			"screen": "shortcuts",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "shortcuts",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.@container.px-4 \u003e div.flex.items-center \u003e div.flex.items-center \u003e a.font-medium.text-foreground \"e2e-stopped\"",
+			"count": 2
+		},
+		{
+			"screen": "shortcuts",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.5)",
+			"selector": "div \u003e div.flex.h-dvh \u003e div.fixed.inset-0 \u003e button.absolute.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "shortcuts",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "shortcuts",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 22
+		},
+		{
+			"screen": "shortcuts",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "shortcuts",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.5)",
+			"selector": "div \u003e div.flex.h-dvh \u003e div.fixed.inset-0 \u003e button.absolute.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "shortcuts",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "shortcuts",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.@container.px-4 \u003e div.flex.items-center \u003e div.flex.items-center \u003e a.font-medium.text-foreground \"e2e-stopped\"",
+			"count": 2
+		},
+		{
+			"screen": "shortcuts",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.5)",
+			"selector": "div \u003e div.flex.h-dvh \u003e div.fixed.inset-0 \u003e button.absolute.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "shortcuts",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "shortcuts",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 22
+		},
+		{
+			"screen": "shortcuts",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "shortcuts",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.5)",
+			"selector": "div \u003e div.flex.h-dvh \u003e div.fixed.inset-0 \u003e button.absolute.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "team-member-menu",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "team-member-menu",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "radius",
+			"value": "12px",
+			"selector": "div \u003e div.z-50.w-48 \"Change roleAdminMemberRe\"",
+			"count": 1
+		},
+		{
+			"screen": "team-member-menu",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "team-member-menu",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 13
+		},
+		{
+			"screen": "team-member-menu",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "radius",
+			"value": "12px",
+			"selector": "div \u003e div.z-50.w-48 \"Change roleAdminMemberRe\"",
+			"count": 1
+		},
+		{
+			"screen": "team-member-menu",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "team-member-menu",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "radius",
+			"value": "12px",
+			"selector": "div \u003e div.z-50.w-48 \"Change roleAdminMemberRe\"",
+			"count": 1
+		},
+		{
+			"screen": "team-member-menu",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "team-member-menu",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 13
+		},
+		{
+			"screen": "team-member-menu",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "radius",
+			"value": "12px",
+			"selector": "div \u003e div.z-50.w-48 \"Change roleAdminMemberRe\"",
+			"count": 1
+		},
+		{
+			"screen": "team-members",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "team-members",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "team-members",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 10
+		},
+		{
+			"screen": "team-members",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "team-members",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "team-members",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 10
+		},
+		{
+			"screen": "team-projects",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "team-projects",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "team-projects",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 7
+		},
+		{
+			"screen": "team-projects",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "team-projects",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "team-projects",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 7
+		},
+		{
+			"screen": "team-settings",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "team-settings",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "team-settings",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 10
+		},
+		{
+			"screen": "team-settings",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "team-settings",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "team-settings",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 10
+		},
+		{
+			"screen": "team-usage",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "team-usage",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "team-usage",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 6
+		},
+		{
+			"screen": "team-usage",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 1
+		},
+		{
+			"screen": "team-usage",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "team-usage",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Teams\"",
+			"count": 6
+		},
+		{
+			"screen": "teams",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "teams",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 2
+		},
+		{
+			"screen": "teams",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "teams",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 2
+		},
+		{
+			"screen": "untag-image",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "tbody \u003e tr.border-t.border-border/40 \u003e td.py-2.pr-3 \u003e button.inline-flex.items-center \"volumes/01a1650c-e471-7b\"",
+			"count": 2
+		},
+		{
+			"screen": "untag-image",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "untag-image",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "untag-image",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "form.flex.items-end \u003e div.flex-1 \u003e div.space-y-1.5 \u003e input.w-full.rounded-lg",
+			"count": 9
+		},
+		{
+			"screen": "untag-image",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "untag-image",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "overflow",
+			"value": "695px in 390px",
+			"selector": "html",
+			"count": 1
+		},
+		{
+			"screen": "untag-image",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "tbody \u003e tr.border-t.border-border/40 \u003e td.py-2.pr-3 \u003e button.inline-flex.items-center \"volumes/01a1650c-e471-7b\"",
+			"count": 2
+		},
+		{
+			"screen": "untag-image",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "untag-image",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "untag-image",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "form.flex.items-end \u003e div.flex-1 \u003e div.space-y-1.5 \u003e input.w-full.rounded-lg",
+			"count": 9
+		},
+		{
+			"screen": "untag-image",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "color",
+			"value": "background oklab(0 0 0 / 0.4)",
+			"selector": "div.fixed.inset-0",
+			"count": 1
+		},
+		{
+			"screen": "untag-image",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "overflow",
+			"value": "695px in 390px",
+			"selector": "html",
+			"count": 1
+		},
+		{
+			"screen": "user-menu",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "user-menu",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.@container.px-4 \u003e div.flex.items-center \u003e div.flex.items-center \u003e a.font-medium.text-foreground \"e2e-stopped\"",
+			"count": 2
+		},
+		{
+			"screen": "user-menu",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "user-menu",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 21
+		},
+		{
+			"screen": "user-menu",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "user-menu",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "user-menu",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.@container.px-4 \u003e div.flex.items-center \u003e div.flex.items-center \u003e a.font-medium.text-foreground \"e2e-stopped\"",
+			"count": 2
+		},
+		{
+			"screen": "user-menu",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "user-menu",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 21
+		},
+		{
+			"screen": "user-menu",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "workspace-access",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 4
+		},
+		{
+			"screen": "workspace-access",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-access",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 15
+		},
+		{
+			"screen": "workspace-access",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 4
+		},
+		{
+			"screen": "workspace-access",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-access",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 15
+		},
+		{
+			"screen": "workspace-actions-menu",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 4
+		},
+		{
+			"screen": "workspace-actions-menu",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-actions-menu",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 23
+		},
+		{
+			"screen": "workspace-actions-menu",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 4
+		},
+		{
+			"screen": "workspace-actions-menu",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-actions-menu",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 23
+		},
+		{
+			"screen": "workspace-history",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 1
+		},
+		{
+			"screen": "workspace-history",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-history",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 11
+		},
+		{
+			"screen": "workspace-history",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 1
+		},
+		{
+			"screen": "workspace-history",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-history",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 11
+		},
+		{
+			"screen": "workspace-logs",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 1
+		},
+		{
+			"screen": "workspace-logs",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-logs",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 17
+		},
+		{
+			"screen": "workspace-logs",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 1
+		},
+		{
+			"screen": "workspace-logs",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-logs",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 17
+		},
+		{
+			"screen": "workspace-network",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 1
+		},
+		{
+			"screen": "workspace-network",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-network",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 12
+		},
+		{
+			"screen": "workspace-network",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 1
+		},
+		{
+			"screen": "workspace-network",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-network",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 12
+		},
+		{
+			"screen": "workspace-ports",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 1
+		},
+		{
+			"screen": "workspace-ports",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-ports",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 12
+		},
+		{
+			"screen": "workspace-ports",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 1
+		},
+		{
+			"screen": "workspace-ports",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-ports",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 12
+		},
+		{
+			"screen": "workspace-snapshots",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 1
+		},
+		{
+			"screen": "workspace-snapshots",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-snapshots",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 12
+		},
+		{
+			"screen": "workspace-snapshots",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 1
+		},
+		{
+			"screen": "workspace-snapshots",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-snapshots",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 12
+		},
+		{
+			"screen": "workspace-status",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 1
+		},
+		{
+			"screen": "workspace-status",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-status",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 12
+		},
+		{
+			"screen": "workspace-status",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 1
+		},
+		{
+			"screen": "workspace-status",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-status",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 12
+		},
+		{
+			"screen": "workspace-stopped",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 4
+		},
+		{
+			"screen": "workspace-stopped",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-stopped",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 19
+		},
+		{
+			"screen": "workspace-stopped",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 4
+		},
+		{
+			"screen": "workspace-stopped",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace-stopped",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 19
+		},
+		{
+			"screen": "workspace",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 4
+		},
+		{
+			"screen": "workspace",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 19
+		},
+		{
+			"screen": "workspace",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 4
+		},
+		{
+			"screen": "workspace",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspace",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "main.flex-1.overflow-auto \u003e div.mx-auto.w-full \u003e div.space-y-6 \u003e a.inline-flex.items-center \"Workspaces\"",
+			"count": 19
+		},
+		{
+			"screen": "workspaces",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "workspaces",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.@container.px-4 \u003e div.flex.items-center \u003e div.flex.items-center \u003e a.font-medium.text-foreground \"e2e-stopped\"",
+			"count": 2
+		},
+		{
+			"screen": "workspaces",
+			"theme": "light",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspaces",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 21
+		},
+		{
+			"screen": "workspaces",
+			"theme": "light",
+			"width": "mobile",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "workspaces",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		},
+		{
+			"screen": "workspaces",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "target",
+			"value": "under 24px",
+			"selector": "div.@container.px-4 \u003e div.flex.items-center \u003e div.flex.items-center \u003e a.font-medium.text-foreground \"e2e-stopped\"",
+			"count": 2
+		},
+		{
+			"screen": "workspaces",
+			"theme": "dark",
+			"width": "desktop",
+			"kind": "contrast",
+			"value": "#808a9c on #ffffff: 3.48 (needs 4.5:1)",
+			"selector": ".pt-1",
+			"count": 1
+		},
+		{
+			"screen": "workspaces",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "target",
+			"value": "under 44px",
+			"selector": "div.space-y-6 \u003e div.flex.items-end \u003e div.flex.items-center \u003e button.rounded-lg.p-2",
+			"count": 21
+		},
+		{
+			"screen": "workspaces",
+			"theme": "dark",
+			"width": "mobile",
+			"kind": "radius",
+			"value": "1px",
+			"selector": "button.flex.w-full \u003e span.flex.items-center \u003e span.inline-flex \u003e span.inline-flex.h-2.5",
+			"count": 2
+		}
+	]
+}
