@@ -72,6 +72,14 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 	block(":root", dark)
 	block(":root[data-theme='light']", light)
 	b.WriteString(":root {\n")
+	names := make([]string, 0, len(p.Brand))
+	for k := range p.Brand {
+		names = append(names, k)
+	}
+	sort.Strings(names)
+	for _, k := range names {
+		fmt.Fprintf(&b, "\t--spin-brand-%s: %s;\n", k, strings.ToUpper(p.Brand[k]))
+	}
 	fmt.Fprintf(&b, "\t--spin-font-sans: '%s', %s;\n", p.Type.Sans, p.Type.FallbackSans)
 	fmt.Fprintf(&b, "\t--spin-font-mono: '%s', %s;\n", p.Type.Mono, p.Type.FallbackMono)
 	fmt.Fprintf(&b, "\t--spin-text-reading: %dpx;\n\t--spin-text-dense: %dpx;\n", p.Type.ReadingSize, p.Type.DenseSize)
@@ -93,6 +101,12 @@ func starlightCSS(p palette, dark, light map[string]rgb) string {
 	white := rgb{1, 1, 1}
 	black := rgb{0, 0, 0}
 	block := func(sel string, c map[string]rgb, isDark bool) {
+		// Dark's sidebar, header and inline code are gray-6, which is the surface; light's
+		// sidebar is gray-6 too, a step under its header (gray-7).
+		sidebar := c["surface"]
+		if !isDark {
+			sidebar = c["raised"]
+		}
 		strong := white.over(c["text"], 0.6)
 		if !isDark {
 			strong = black.over(c["text"], 0.4)
@@ -107,13 +121,15 @@ func starlightCSS(p palette, dark, light map[string]rgb) string {
 			{"gray-3", c["muted"].hex()},
 			{"gray-4", c["border_strong"].hex()},
 			{"gray-5", c["border"].hex()},
-			{"gray-6", c["surface"].hex()},
+			{"gray-6", sidebar.hex()},
 			{"black", c["page"].hex()},
 			{"banner-bg", c["accent"].over(c["surface"], 0.22).hex()},
 			{"banner-text", c["text"].hex()},
 		}
 		if !isDark {
-			vars = append(vars, [2]string{"gray-7", c["raised"].hex()})
+			// Light's header is gray-7, and its sidebar and its hairlines gray-6: the sidebar a
+			// step under the header, and a hairline that shows on white.
+			vars = append(vars, [2]string{"gray-7", c["surface"].hex()})
 		}
 		fmt.Fprintf(&b, "%s {\n", sel)
 		for _, v := range vars {

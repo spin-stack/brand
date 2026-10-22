@@ -40,6 +40,12 @@
 	--spin-accent-selected: #C9DFEB;
 }
 :root {
+	--spin-brand-blue: #2F6BE3;
+	--spin-brand-cyan: #27BFE8;
+	--spin-brand-deep: #0C3C84;
+	--spin-brand-frost: #EAF0F6;
+	--spin-brand-mint: #5FE3D6;
+	--spin-brand-navy: #111827;
 	--spin-font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
 	--spin-font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 	--spin-text-reading: 16px;

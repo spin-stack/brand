@@ -24,11 +24,11 @@
 	--sl-color-gray-3: #4A5871;
 	--sl-color-gray-4: #6E7D96;
 	--sl-color-gray-5: #B9C6D8;
-	--sl-color-gray-6: #F0F4F9;
+	--sl-color-gray-6: #DEE6F1;
 	--sl-color-black: #FFFFFF;
 	--sl-color-banner-bg: #BDD7E6;
 	--sl-color-banner-text: #111827;
-	--sl-color-gray-7: #DEE6F1;
+	--sl-color-gray-7: #F0F4F9;
 }
 :root {
 	--sl-font: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
