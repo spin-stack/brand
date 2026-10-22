@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spinbox screens</title>
+<link rel="icon" href="logos/favicon-64.png">
+<link rel="stylesheet" href="dist/tokens.css">
+<style>
+@font-face { font-family: 'IBM Plex Sans'; src: url(fonts/ibm-plex-sans-latin-400-normal.woff2) format('woff2'); font-weight: 400; }
+@font-face { font-family: 'IBM Plex Sans'; src: url(fonts/ibm-plex-sans-latin-600-normal.woff2) format('woff2'); font-weight: 600; }
+@font-face { font-family: 'IBM Plex Mono'; src: url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2'); font-weight: 400; }
+@font-face { font-family: 'IBM Plex Mono'; src: url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2'); font-weight: 600; }
+
+/* Everything below is drawn from dist/tokens.css: a color here that is not a token is a bug. */
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--spin-page); color: var(--spin-text); font: var(--spin-text-reading)/var(--spin-line-height) var(--spin-font-sans); }
+a { color: var(--spin-accent-text); text-underline-offset: .2em; }
+:focus-visible { outline: 2px solid var(--spin-accent); outline-offset: 2px; }
+.muted { color: var(--spin-muted); }
+code { font-family: var(--spin-font-mono); font-size: .9em; }
+.wrap { max-width: 1600px; margin: 0 auto; padding: 1.25rem 1rem 4rem; }
+h1, h2 { font-family: var(--spin-font-mono); font-weight: var(--spin-heading-weight); letter-spacing: var(--spin-heading-tracking); }
+:root[data-theme='light'] .on-dark, :root:not([data-theme='light']) .on-light { display: none !important; }
+
+.masthead { background: var(--spin-surface); border-bottom: 1px solid var(--spin-border); }
+.masthead .wrap { padding-block: 1.25rem 1rem; }
+.lockup { display: inline-flex; align-items: center; gap: .5rem; font: 600 18px var(--spin-font-mono); color: var(--spin-text); text-decoration: none; }
+.lockup img { width: 28px; height: 28px; border-radius: 22%; }
+.masthead h1 { font-size: clamp(1.4rem, 1rem + 1.5vw, 2rem); margin: .75rem 0 .25rem; }
+.masthead p { margin: 0; max-width: 60rem; }
+
+/* The view: sticky, so a filter is a reach away from any screen. */
+.bar { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--spin-page) 94%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--spin-border); }
+.bar .wrap { display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: center; padding-block: .6rem; }
+.bar label { display: inline-flex; gap: .4rem; align-items: center; font: 500 13px var(--spin-font-mono); color: var(--spin-muted); }
+.bar select, .bar input[type=search] { font: 500 13px var(--spin-font-mono); color: var(--spin-text); background: var(--spin-raised); border: 1px solid var(--spin-border-strong); border-radius: var(--spin-radius-sm); min-height: var(--spin-target); padding: 0 .5rem; }
+.bar input[type=checkbox] { width: 16px; height: 16px; accent-color: var(--spin-accent); }
+.count { margin-left: auto; font: 500 13px var(--spin-font-mono); color: var(--spin-muted); }
+
+/* The audit, summed: what kind of thing is off, how often, and the values most often off. */
+.summary { display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); gap: .75rem; margin: 1.25rem 0 2rem; }
+.kind { background: var(--spin-surface); border: 1px solid var(--spin-border); border-radius: var(--spin-radius); padding: .75rem 1rem; }
+.kind b { display: block; font: 600 1.5rem var(--spin-font-mono); }
+.kind span { font: 500 12px var(--spin-font-mono); color: var(--spin-label); text-transform: uppercase; letter-spacing: .08em; }
+.kind small { display: block; color: var(--spin-muted); margin-top: .25rem; }
+.kind.zero b { color: var(--spin-success); }
+.kind:not(.zero) b { color: var(--spin-warning); }
+
+.area { margin-top: 2.5rem; }
+.area > h2 { font-size: 1.1rem; border-top: 1px solid var(--spin-border); padding-top: 1rem; margin: 0 0 1rem; text-transform: capitalize; }
+.screen { background: var(--spin-surface); border: 1px solid var(--spin-border); border-radius: var(--spin-radius); margin-bottom: 1.25rem; overflow: hidden; }
+.screen header { display: flex; flex-wrap: wrap; gap: .25rem 1rem; align-items: baseline; padding: .75rem 1rem; border-bottom: 1px solid var(--spin-border); }
+.screen header h3 { margin: 0; font: 600 15px var(--spin-font-sans); }
+.screen header code { color: var(--spin-muted); }
+.tag { font: 500 11px var(--spin-font-mono); color: var(--spin-label); border: 1px solid var(--spin-border-strong); border-radius: var(--spin-radius-sm); padding: 0 .35rem; }
+.tag.off { color: var(--spin-warning); border-color: var(--spin-warning); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--spin-border); }
+.pair.mobile { grid-template-columns: repeat(4, 1fr); }
+.pair figure { margin: 0; background: var(--spin-page); }
+.pair figcaption { font: 500 11px var(--spin-font-mono); color: var(--spin-muted); padding: .3rem .6rem; }
+.pair img { display: block; width: 100%; height: auto; }
+.findings { padding: .5rem 1rem .75rem; }
+.findings summary { cursor: pointer; font: 500 13px var(--spin-font-mono); color: var(--spin-text); padding: .25rem 0; }
+.findings table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: .5rem; }
+.findings th, .findings td { text-align: left; padding: .3rem .5rem; border-top: 1px solid var(--spin-border); vertical-align: top; }
+.findings th { font: 500 12px var(--spin-font-mono); color: var(--spin-muted); }
+.findings td code { word-break: break-all; }
+.empty { padding: 3rem 1rem; text-align: center; }
+@media (max-width: 720px) { .pair, .pair.mobile { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<header class="masthead">
+	<div class="wrap">
+		<a class="lockup" href="./"><img class="on-dark" src="logos/mark-256.png" alt=""><img class="on-light" src="logos/mark-clear-256.png" alt=""><span>spinbox</span></a>
+		<h1>Every screen</h1>
+		<p class="muted" id="about">Every route, tab, dialog and menu of the dashboard, in both themes and at both widths, with what each draws that this palette does not have.</p>
+	</div>
+</header>
+<div class="bar" role="group" aria-label="View">
+	<div class="wrap">
+		<label>Page <select id="mode"><option>dark</option><option>light</option></select></label>
+		<label>Width <select id="width"><option value="desktop">desktop</option><option value="mobile">mobile</option><option value="both">both</option></select></label>
+		<label>Area <select id="area"><option value="">all</option></select></label>
+		<label>Kind <select id="kind"><option value="">pages and dialogs</option><option value="page">pages</option><option value="dialog">dialogs</option></select></label>
+		<label>Finding <select id="finding"><option value="">any or none</option></select></label>
+		<label><input type="search" id="q" placeholder="name, title or route"></label>
+		<span class="count" id="count"></span>
+	</div>
+</div>
+<main class="wrap">
+	<div class="summary" id="summary"></div>
+	<div id="screens"></div>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const kinds = {
+	color: 'a colour that is none of the palette\'s', contrast: 'text under its contrast (axe)', target: 'a target too small to hit',
+	overflow: 'a page wider than the phone', size: 'a size off the type scale', font: 'a face that is not Plex', radius: 'a radius that is not the brand\'s',
+};
+let index = null, audit = [];
+
+function view() {
+	try { localStorage.setItem('screens-view', JSON.stringify({ mode: $('mode').value, width: $('width').value })); } catch {}
+	document.documentElement.dataset.theme = $('mode').value;
+	const width = $('width').value, area = $('area').value, kind = $('kind').value, finding = $('finding').value, q = $('q').value.trim().toLowerCase();
+	const shown = index.screens.filter((s) =>
+		(!area || s.area === area) && (!kind || s.kind === kind) &&
+		(!q || `${s.name} ${s.title} ${s.route}`.toLowerCase().includes(q)) &&
+		(!finding || audit.some((f) => f.screen === s.name && f.kind === finding)));
+	$('count').textContent = `${shown.length} of ${index.screens.length} screens`;
+	const areas = [...new Set(shown.map((s) => s.area))];
+	$('screens').innerHTML = shown.length === 0 ? '<p class="empty muted">No screen matches.</p>' : areas.map((a) =>
+		`<section class="area"><h2>${esc(a)}</h2>` + shown.filter((s) => s.area === a).map((s) => card(s, width, finding)).join('') + '</section>').join('');
+}
+
+function card(s, width, finding) {
+	const widths = width === 'both' ? ['desktop', 'mobile'] : [width];
+	const imgs = widths.flatMap((w) => ['light', 'dark'].map((t) => {
+		const src = `screens/img/${s.name}.${t}.${w}.png`;
+		return `<figure><a href="${src}" target="_blank" rel="noopener"><img src="${src}" alt="${esc(s.title)}, ${t}, ${w}" loading="lazy"></a><figcaption>${t} · ${w}</figcaption></figure>`;
+	})).join('');
+	const found = audit.filter((f) => f.screen === s.name && (!finding || f.kind === finding));
+	const byKind = Object.entries(found.reduce((m, f) => (m[f.kind] = (m[f.kind] || 0) + f.count, m), {}));
+	return `<article class="screen" id="${s.name}"><header><h3>${esc(s.title)}</h3><code>${esc(s.route)}</code><span class="tag">${s.kind}</span>` +
+		byKind.map(([k, n]) => `<span class="tag off">${k} ${n}</span>`).join('') + `<a href="#${s.name}" class="muted"><code>#${s.name}</code></a></header>` +
+		`<div class="pair ${width === 'both' ? 'mobile' : ''}">${imgs}</div>` +
+		(found.length ? `<details class="findings"><summary>${found.length} findings</summary><table><tr><th>kind</th><th>where</th><th>value</th><th>element</th><th>n</th></tr>` +
+			found.map((f) => `<tr><td>${f.kind}</td><td>${f.theme} · ${f.width}</td><td><code>${esc(f.value)}</code></td><td><code>${esc(f.selector)}</code></td><td>${f.count}</td></tr>`).join('') +
+			'</table></details>' : '') + '</article>';
+}
+
+function summarize() {
+	$('summary').innerHTML = Object.entries(kinds).map(([k, what]) => {
+		const fs = audit.filter((f) => f.kind === k);
+		const n = fs.reduce((t, f) => t + f.count, 0);
+		const screens = new Set(fs.map((f) => f.screen)).size;
+		return `<div class="kind ${n ? '' : 'zero'}"><span>${k}</span><b>${n}</b><small>${what}${n ? `, on ${screens} screens` : ''}</small></div>`;
+	}).join('');
+	for (const k of Object.keys(kinds)) if (audit.some((f) => f.kind === k)) $('finding').insertAdjacentHTML('beforeend', `<option value="${k}">${k}</option>`);
+}
+
+Promise.all([fetch('screens/screens.json'), fetch('screens/audit.json')]).then(async ([s, a]) => {
+	if (!s.ok) { $('screens').innerHTML = '<p class="empty muted">No screens taken yet: <code>task screens</code> takes them from spin.</p>'; return; }
+	index = await s.json();
+	audit = a.ok ? (await a.json()).findings : [];
+	$('about').innerHTML = `Every route, tab, dialog and menu of the dashboard of spin <code>${esc(index.release)}</code> (<code>${esc(index.commit.slice(0, 12))}</code>), in both themes and at both widths, each opened by spin's suite on a real installation. ` +
+		`The images are the <a href="https://github.com/spin-stack/brand/releases/tag/${esc(index.tag)}">${esc(index.tag)}</a> release's.` +
+		(index.exempt.length ? ` ${index.exempt.length} are not drawn yet, each with its reason in spin's <code>dashboard/e2e/catalog.ts</code>.` : '');
+	for (const a of [...new Set(index.screens.map((s) => s.area))]) $('area').insertAdjacentHTML('beforeend', `<option>${esc(a)}</option>`);
+	try { const v = JSON.parse(localStorage.getItem('screens-view') || '{}'); if (v.mode) $('mode').value = v.mode; if (v.width) $('width').value = v.width; } catch {}
+	summarize();
+	for (const id of ['mode', 'width', 'area', 'kind', 'finding', 'q']) $(id).addEventListener('input', view);
+	view();
+});
+</script>
+</body>
+</html>
