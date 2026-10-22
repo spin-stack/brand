@@ -1,5 +1,5 @@
 /* Written by `task palette` from palette.toml (spin-stack/brand). Edit palette.toml, not this file. */
-:root {
+:root, .spin-dark {
 	--spin-accent: #27BFE8;
 	--spin-accent-text: #27BFE8;
 	--spin-border: #33435F;

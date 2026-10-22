@@ -55,8 +55,8 @@ func sortedKeys(m map[string]rgb) []string {
 	return keys
 }
 
-// tokensCSS is every role as --spin-<role>: dark on :root, light under data-theme="light", and
-// the type and layout tokens beside them.
+// tokensCSS is every role as --spin-<role>: dark on :root and .spin-dark, light under
+// data-theme="light", and the type, layout and motion tokens beside them.
 func tokensCSS(p palette, dark, light map[string]rgb) string {
 	var b strings.Builder
 	b.WriteString(header)
@@ -69,7 +69,9 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 		fmt.Fprintf(&b, "\t--spin-accent-selected: %s;\n", c["accent"].over(c["page"], p.Tint.Selected).hex())
 		b.WriteString("}\n")
 	}
-	block(":root", dark)
+	// .spin-dark is a part that is dark in either theme - a terminal, a drawing on the navy - and
+	// takes the dark roles in place of the page's.
+	block(":root, .spin-dark", dark)
 	block(":root[data-theme='light']", light)
 	b.WriteString(":root {\n")
 	names := make([]string, 0, len(p.Brand))
