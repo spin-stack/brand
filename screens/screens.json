@@ -1,7 +1,7 @@
 {
 	"release": "v20261019.02",
-	"commit": "de68946b18b42edc530767ab8f4e7a6a945d7b02",
-	"tag": "screens-v20261019.02-de68946b18b4",
+	"commit": "c9b683d5ded4ab227b0aaa6e6263760bcd4574d0",
+	"tag": "screens-v20261019.02-c9b683d5ded4",
 	"images": [
 		"add-identity-provider.dark.desktop.png",
 		"add-identity-provider.dark.mobile.png",
@@ -107,6 +107,10 @@
 		"change-size.dark.mobile.png",
 		"change-size.light.desktop.png",
 		"change-size.light.mobile.png",
+		"change-user-access.dark.desktop.png",
+		"change-user-access.dark.mobile.png",
+		"change-user-access.light.desktop.png",
+		"change-user-access.light.mobile.png",
 		"command-palette.dark.desktop.png",
 		"command-palette.dark.mobile.png",
 		"command-palette.light.desktop.png",
@@ -167,6 +171,10 @@
 		"device.dark.mobile.png",
 		"device.light.desktop.png",
 		"device.light.mobile.png",
+		"drain-runner.dark.desktop.png",
+		"drain-runner.dark.mobile.png",
+		"drain-runner.light.desktop.png",
+		"drain-runner.light.mobile.png",
 		"expose-port.dark.desktop.png",
 		"expose-port.dark.mobile.png",
 		"expose-port.light.desktop.png",
@@ -199,6 +207,10 @@
 		"login.dark.mobile.png",
 		"login.light.desktop.png",
 		"login.light.mobile.png",
+		"mobile-more.dark.desktop.png",
+		"mobile-more.dark.mobile.png",
+		"mobile-more.light.desktop.png",
+		"mobile-more.light.mobile.png",
 		"new-network-policy.dark.desktop.png",
 		"new-network-policy.dark.mobile.png",
 		"new-network-policy.light.desktop.png",
@@ -267,10 +279,6 @@
 		"team-settings.dark.mobile.png",
 		"team-settings.light.desktop.png",
 		"team-settings.light.mobile.png",
-		"team-usage.dark.desktop.png",
-		"team-usage.dark.mobile.png",
-		"team-usage.light.desktop.png",
-		"team-usage.light.mobile.png",
 		"teams.dark.desktop.png",
 		"teams.dark.mobile.png",
 		"teams.light.desktop.png",
@@ -376,7 +384,14 @@
 			"title": "The keyboard shortcuts",
 			"area": "everywhere",
 			"route": "/",
-			"kind": "page"
+			"kind": "dialog"
+		},
+		{
+			"name": "mobile-more",
+			"title": "Everything else, on a phone",
+			"area": "everywhere",
+			"route": "/",
+			"kind": "dialog"
 		},
 		{
 			"name": "user-menu",
@@ -556,13 +571,6 @@
 		{
 			"name": "team-projects",
 			"title": "A team's projects",
-			"area": "teams",
-			"route": "/teams/$id",
-			"kind": "page"
-		},
-		{
-			"name": "team-usage",
-			"title": "A team's usage",
 			"area": "teams",
 			"route": "/teams/$id",
 			"kind": "page"
@@ -827,6 +835,13 @@
 			"kind": "page"
 		},
 		{
+			"name": "change-user-access",
+			"title": "Make a user an administrator, or disable them",
+			"area": "admin",
+			"route": "/admin/users",
+			"kind": "dialog"
+		},
+		{
 			"name": "run-job",
 			"title": "Run a job that has no schedule",
 			"area": "admin",
@@ -869,6 +884,13 @@
 			"kind": "dialog"
 		},
 		{
+			"name": "drain-runner",
+			"title": "Drain a runner",
+			"area": "admin",
+			"route": "/admin/runners/",
+			"kind": "dialog"
+		},
+		{
 			"name": "add-identity-provider",
 			"title": "Add an identity provider",
 			"area": "admin",
@@ -901,10 +923,6 @@
 		{
 			"what": "/setup/",
 			"reason": "the stack's database is set up before the suite runs, and a set-up installation sends /setup to /"
-		},
-		{
-			"what": "/settings/profile",
-			"reason": "the profile under the address it had before the tab was /settings; it draws settings-profile"
 		},
 		{
 			"what": "/workspace-sign-in",
