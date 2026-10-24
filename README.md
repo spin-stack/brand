@@ -19,11 +19,15 @@ through protanopia, deuteranopia or tritanopia, with every pair the palette is h
 | `assets/mark.png` | `logos/`: the stack of disks, cut from the mark as it was drawn (1024 px on a clear ground): the tile on the brand's navy (512, 256; the touch icon at 180, the favicon at 64 and 32) for a dark ground, and clear (512, 256) for a light one. Each is the drawing reduced; a size it would have to enlarge fails |
 
 ```
-task            # palette and mark: check, and write dist/ and logos/
-task report     # every pair, its contrast or its distance in each view
-task preview    # http://127.0.0.1:4330/
-task check      # what CI runs: fails on a pair below its floor, or a stale dist/ or logos/
+go tool task            # palette and mark: check, and write dist/ and logos/
+go tool task report     # every pair, its contrast or its distance in each view
+go tool task preview    # http://127.0.0.1:4330/
+go tool task check      # what CI runs: fails on a pair below its floor, or a stale dist/ or logos/
 ```
+
+Task is a tool in `go.mod`, so `go tool task` is the version CI runs. `task check` also fails on a
+workflow step that is not one task (`go tool taskgate`) and on a package install that skips Socket
+Firewall (`go tool sfw check`), from [go-tools](https://github.com/spin-stack/go-tools).
 
 ## What holds the palette
 
