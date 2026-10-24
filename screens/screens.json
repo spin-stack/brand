@@ -1,7 +1,7 @@
 {
 	"release": "v20261019.02",
-	"commit": "c9b683d5ded4ab227b0aaa6e6263760bcd4574d0",
-	"tag": "screens-v20261019.02-c9b683d5ded4",
+	"commit": "c2f0602021cc046429513e6efb5d1e9d620d04b4",
+	"tag": "screens-v20261019.02-c2f0602021cc",
 	"images": [
 		"add-identity-provider.dark.desktop.png",
 		"add-identity-provider.dark.mobile.png",
@@ -955,6 +955,10 @@
 		{
 			"what": "src/components/workspace/exposed-ports.tsx: Remove Port Exposure",
 			"reason": "needs an exposed port, which the stack does not make"
+		},
+		{
+			"what": "src/routes/admin/runners/index.lazy.tsx: Revoke token",
+			"reason": "needs an unused registration token, which the stack does not make"
 		},
 		{
 			"what": "src/components/workspace/quarantine.tsx: Quarantine Workspace",

@@ -120,8 +120,9 @@ func run() error {
 		return err
 	}
 	// One file a screen: a test that is retried starts a new worker, which would lose what an
-	// earlier test had gathered in memory.
-	var a audit
+	// earlier test had gathered in memory. An audit with nothing found is an empty list, not null:
+	// screens.html reads it as an array.
+	a := audit{Findings: []finding{}}
 	audits, err := filepath.Glob(filepath.Join(*from, "*.audit.json"))
 	if err != nil {
 		return err
@@ -211,6 +212,9 @@ func whole(screens []screen, images []string, a audit) error {
 		if !have[w] {
 			errs = append(errs, fmt.Errorf("%s was not taken", w))
 		}
+	}
+	if a.Findings == nil {
+		errs = append(errs, errors.New("the audit's findings are null, not a list: screens.html reads an array"))
 	}
 	for _, f := range a.Findings {
 		if !names[f.Screen] || !slices.Contains(themes, f.Theme) || !slices.Contains(widths, f.Width) {
