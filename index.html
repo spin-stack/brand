@@ -77,9 +77,6 @@ figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); padding
 .group h3 { font-size: 14px; margin: 0 0 .25rem; } .group p { margin: 0; font-size: 13px; }
 .group .example { margin-top: .75rem; display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; font-size: 14px; }
 
-/* The app's screenshots */
-.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr)); gap: 1rem; }
-.shots figure { margin: 0; } .shots img { width: 100%; border-radius: var(--spin-radius); border: 1px solid var(--spin-border); display: block; }
 
 /* The docs' contents on a narrow screen: a disclosure where the side column was. */
 .otp { display: none; margin-bottom: 1rem; border: 1px solid var(--spin-border); border-radius: var(--spin-radius-sm); background: var(--spin-raised); }
@@ -256,8 +253,7 @@ D  /etc/issue</pre>
 
 <section class="only-full" id="app">
 	<span class="label">The app, as it is</span>
-	<p class="muted" id="shots-note">Screenshots spin's own dashboard suite takes of a real installation (<code>shots/</code>, by <code>task screenshots</code>).</p>
-	<div class="shots" id="shots"></div>
+	<p class="muted">Every screen of it in both themes, and what each draws that this palette does not have, is <a href="screens.html">the catalog</a>. The screenshots the site shows are of the spin release it documents, put on that release by spin's site-shots.yml: <a href="https://spin-stack.github.io/website/use/dashboard/">the dashboard</a>.</p>
 </section>
 
 <div class="part only-full" id="decisions"><span class="num">2</span><div><h2>Decisions</h2><p class="muted">What the brand is: the mark and how it is used, and the palette, each color by what it is for. These are what palette.toml and the mark's cut hold.</p></div></div>
@@ -347,11 +343,6 @@ function swatches() {
 		roles.map((r) => { const v = cs.getPropertyValue('--spin-' + r).trim(); return `<div class="sw"><i style="background:${v}"></i><b>${r}</b><code>${v}</code></div>`; }).join('') +
 		'</div></div>').join('');
 }
-fetch('shots/shots.json').then((r) => r.ok ? r.json() : null).then((s) => {
-	if (!s) { document.getElementById('shots-note').textContent = 'No screenshots yet: task screenshots takes them from spin.'; return; }
-	document.getElementById('shots-note').innerHTML = `Screenshots of spin <code>${s.release}</code>, taken by its dashboard suite on a real installation - each by a test that first checks the screen shows what its title says.`;
-	document.getElementById('shots').innerHTML = s.shots.map((x) => `<figure><img src="shots/${x.name}.png" alt="${x.test}" loading="lazy"><figcaption>${x.test}</figcaption></figure>`).join('');
-});
 const views = ['drawn','ips','dim','protan','deutan','tritan','protan+ips','deutan+ips'];
 document.getElementById('perc').innerHTML = '<tr><th>mode</th><th>kind</th><th>pair</th><th>floor</th>' + views.map((v) => `<th>${v}</th>`).join('') + '</tr>' +
 	perception.map((r) => `<tr><td>${r.Mode}</td><td>${r.Kind}</td><td>${r.What}</td><td>${r.Distance ? r.Floor + '/' + r.Worst : r.Floor + ':1'}</td>` +

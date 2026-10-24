@@ -1,6 +1,6 @@
 name: Pages
 
-# Checks the palette, the mark and the screenshots against their sources on every push and pull request, and
+# Checks the palette, the mark and the screens against their sources on every push and pull request, and
 # publishes main to GitHub Pages: index.html with dist/, logos/, fonts/ and assets/ beside it.
 
 on:
