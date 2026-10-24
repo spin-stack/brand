@@ -6,7 +6,7 @@ variables) and anything else (`dist/tokens.json`).
 
 **[See it](https://spin-stack.github.io/brand/)**: `index.html` is the laboratory.
 It draws the site's landing and a docs page, the dashboard's workspaces with their states, a
-dialog and a toast; the app as it is, in screenshots spin's own suite takes; the mark's guide -
+dialog and a toast; where the app as it is is shown; the mark's guide -
 sizes, clear space, the lockup, the grounds it goes on and what it is not; the palette by what
 each color is for; and the same page at a phone's and a tablet's width - in dark or light and
 through protanopia, deuteranopia or tritanopia, with every pair the palette is held to.
@@ -14,7 +14,6 @@ through protanopia, deuteranopia or tritanopia, with every pair the palette is h
 | Source | What it makes |
 |---|---|
 | `palette.toml` | `dist/`: `tokens.css` (every role as `--spin-*`), `starlight.css` (the website's `--sl-color-*`), `dashboard.css` (shadcn's HSL variables, light on `:root`, dark on `.dark`, and the dashboard's radius, scrim, dense type scale, heading tracking and motion), `tokens.json`, and `perception.js` and `simulate.svg` for the preview |
-| spin's `dashboard/e2e/site.spec.ts` | `shots/`: the app as it is, screenshots spin's dashboard suite takes of its e2e stack, with the release and commit of the spin tree that took them (`task screenshots SHOTS=<dir>`); the website copies them from here |
 | spin's `dashboard/e2e/catalog.spec.ts` | `screens/`: every route, tab, dialog and menu of the app in both themes at 1440 and 390 px, and what each draws that this palette does not have - a colour, a face, a size, a radius, contrast, overflow, a target too small (`task screens SCREENS=<dir>`). The catalog and the audit are committed; the images, hundreds a release, are an archive on a release of this repository that `screens.json` names and Pages unpacks. [See them](https://spin-stack.github.io/brand/screens.html) |
 | `assets/mark.png` | `logos/`: the stack of disks, cut from the mark as it was drawn (1024 px on a clear ground): the tile on the brand's navy (512, 256; the touch icon at 180, the favicon at 64 and 32) for a dark ground, and clear (512, 256) for a light one. Each is the drawing reduced; a size it would have to enlarge fails |
 
