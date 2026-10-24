@@ -16,6 +16,7 @@ func TestWholeRefusesACatalogWithAGap(t *testing.T) {
 		screens []screen
 		images  []string
 		audit   audit
+		null    bool
 		refused string
 	}{
 		{name: "every theme at every width", screens: []screen{workspaces}, images: all},
@@ -23,6 +24,10 @@ func TestWholeRefusesACatalogWithAGap(t *testing.T) {
 		{name: "an image of no screen", screens: []screen{workspaces}, images: append(all, "gone.light.desktop.png"), refused: "gone.light.desktop.png is no screen"},
 		{name: "a kind that is neither", screens: []screen{{Name: "workspaces", Kind: "drawer"}}, images: all, refused: `"drawer", not a page or a dialog`},
 		{name: "one name twice", screens: []screen{workspaces, workspaces}, images: all, refused: "two screens are named workspaces"},
+		{
+			name: "findings that are null", screens: []screen{workspaces}, images: all, null: true,
+			refused: "the audit's findings are null",
+		},
 		{
 			name: "a finding about no screen", screens: []screen{workspaces}, images: all,
 			audit:   audit{Findings: []finding{{Screen: "gone", Theme: "dark", Width: "desktop"}}},
@@ -36,6 +41,9 @@ func TestWholeRefusesACatalogWithAGap(t *testing.T) {
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
+			if c.audit.Findings == nil && !c.null {
+				c.audit.Findings = []finding{}
+			}
 			err := whole(c.screens, c.images, c.audit)
 			if c.refused == "" {
 				if err != nil {
