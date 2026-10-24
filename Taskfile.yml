@@ -45,11 +45,20 @@ tasks:
       - python3 -m http.server 4330 --bind 127.0.0.1
 
   check:
-    desc: Fail if a pair is below its floor, dist/ or logos/ is not what the sources make, or shots/ lacks a screenshot it lists.
+    desc: What CI runs - fail if a pair is below its floor, dist/ or logos/ is not what the sources make, shots/ lacks a screenshot it lists, a workflow step is not one task, or an install skips Socket Firewall.
     cmds:
+      - go tool taskgate
+      - go tool sfw check
       - go vet ./...
       - go test ./...
       - go run ./cmd/palette -check
       - go run ./cmd/mark -check
       - go run ./cmd/shots -check
       - go run ./cmd/screens -check
+
+  screens:download:
+    desc: Unpack the screens' images into screens/img from the release screens/screens.json names - they are not in git, and the published page serves them from there.
+    cmds:
+      - mkdir -p screens/img
+      # GITHUB_REPOSITORY is set in CI; outside it, this repository.
+      - gh release download "$(jq -r .tag screens/screens.json)" --repo "${GITHUB_REPOSITORY:-spin-stack/brand}" --pattern screens.tar.gz --output - | tar -xz -C screens/img
