@@ -52,6 +52,7 @@
 :root {
 	--radius: 4px;
 	--scrim: rgb(17 24 39 / 0.6);
+	--spin-wordmark: "Spinbox";
 	--spin-font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
 	--spin-font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 	--spin-text-xs: 12px;
