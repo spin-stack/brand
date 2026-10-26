@@ -54,6 +54,9 @@ type palette struct {
 		Target                 int
 		TargetTouch            int `toml:"target_touch"`
 		Phone, Tablet, Desktop int
+		WidthContained         int `toml:"width_contained"`
+		WidthDetail            int `toml:"width_detail"`
+		WidthWide              int `toml:"width_wide"`
 	}
 	Motion struct {
 		Fast, Base, Slow, Draw int

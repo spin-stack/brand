@@ -103,6 +103,14 @@ target_touch = 44       # px: a target on a coarse pointer (WCAG 2.5.5, Apple's 
 phone = 390             # px: the narrow width every page is drawn at in preview.html
 tablet = 768
 desktop = 1280
+# How wide a page grows, by what it shows: a document or a form stays a column one reads; one
+# thing and what is around it - a workspace, a runner - is two columns of a few rows, which
+# drift apart past this; a table of many takes what a wide screen gives. An explorer - logs,
+# traces - takes the viewport. The dashboard's page-width.ts reads these; the October review
+# read the workspace detail at 1400 px as two columns the eye crossed whitespace between.
+width_contained = 1200  # px
+width_detail = 1152     # px
+width_wide = 1600       # px
 
 # Motion. A movement says what something does - a layer sealed on the one under it, a diff drawn
 # between two - or that it answered a hand; one that only decorates is left out. Each runs once:
