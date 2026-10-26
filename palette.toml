@@ -85,6 +85,10 @@ dense_scale = { xs = [12, 16], sm = [13, 20], base = [14, 22], lg = [16, 24], xl
 line_height = 1.6       # reading; dense text takes 1.45
 heading_weight = 600
 heading_tracking = -0.02 # em: mono headings are wide; this tightens them to read as one word
+# The name beside the mark, and in every header: the word the prose uses, since a lowercase mark
+# beside a capitalised product was two spellings of one name. The dashboard's catalog audit holds
+# its sidebar to this; the website's reference holds its title to it.
+wordmark = "Spinbox"
 
 # Layout. A measure readers keep their place in, targets fingers hit, and corners that read as
 # one product from the site to the dashboard.

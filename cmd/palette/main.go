@@ -44,6 +44,7 @@ type palette struct {
 		LineHeight      float64           `toml:"line_height"`
 		HeadingWeight   int               `toml:"heading_weight"`
 		HeadingTracking float64           `toml:"heading_tracking"`
+		Wordmark        string
 	}
 	Layout struct {
 		Measure, Sidebar       int

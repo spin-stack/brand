@@ -82,6 +82,7 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 	for _, k := range names {
 		fmt.Fprintf(&b, "\t--spin-brand-%s: %s;\n", k, strings.ToUpper(p.Brand[k]))
 	}
+	fmt.Fprintf(&b, "\t--spin-wordmark: %q;\n", p.Type.Wordmark)
 	fmt.Fprintf(&b, "\t--spin-font-sans: '%s', %s;\n", p.Type.Sans, p.Type.FallbackSans)
 	fmt.Fprintf(&b, "\t--spin-font-mono: '%s', %s;\n", p.Type.Mono, p.Type.FallbackMono)
 	fmt.Fprintf(&b, "\t--spin-text-reading: %dpx;\n\t--spin-text-dense: %dpx;\n", p.Type.ReadingSize, p.Type.DenseSize)
@@ -211,6 +212,8 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 	}
 	b255 := func(v float64) int { return int(math.Round(v * 255)) }
 	fmt.Fprintf(&b, "\t--scrim: rgb(%d %d %d / %g);\n", b255(navy.r), b255(navy.g), b255(navy.b), p.Tint.Scrim)
+	// The word the sidebar writes beside the mark: the app's catalog audit holds its text to this.
+	fmt.Fprintf(&b, "\t--spin-wordmark: %q;\n", p.Type.Wordmark)
 	fmt.Fprintf(&b, "\t--spin-font-sans: '%s', %s;\n\t--spin-font-mono: '%s', %s;\n", p.Type.Sans, p.Type.FallbackSans, p.Type.Mono, p.Type.FallbackMono)
 	for _, k := range []string{"xs", "sm", "base", "lg", "xl", "2xl", "3xl"} {
 		step, ok := p.Type.DenseScale[k]
