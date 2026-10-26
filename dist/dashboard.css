@@ -51,6 +51,9 @@
 }
 :root {
 	--radius: 4px;
+	--spin-width-contained: 1200px;
+	--spin-width-detail: 1152px;
+	--spin-width-wide: 1600px;
 	--scrim: rgb(17 24 39 / 0.6);
 	--spin-wordmark: "Spinbox";
 	--spin-font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
