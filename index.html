@@ -125,7 +125,8 @@ th { color: var(--spin-muted); font-weight: 500; }
 .dash nav { background: var(--spin-surface); padding: 1rem .75rem; border-right: 1px solid var(--spin-border); }
 .dash nav .cap { font: 600 11px var(--spin-font-mono); color: var(--spin-muted); letter-spacing: .08em; text-transform: uppercase; margin: 1rem .5rem .4rem; }
 .dash nav a { display: block; padding: .35rem .5rem; border-radius: var(--spin-radius-sm); color: var(--spin-text); text-decoration: none; }
-.dash nav a.current { background: var(--spin-accent-selected); color: var(--spin-accent-text); }
+.dash nav a.current { background: var(--spin-raised); color: var(--spin-text); }
+.dash h3 { font-family: var(--spin-font-sans); letter-spacing: 0; }
 .dash main { padding: 1.25rem 1.5rem; }
 .dash .tools { display: flex; gap: .5rem; align-items: center; margin: .75rem 0 1rem; flex-wrap: wrap; }
 .dash input { font: inherit; color: var(--spin-text); background: var(--spin-raised); border: 1px solid var(--spin-border-strong); border-radius: var(--spin-radius-sm); min-height: 34px; padding: 0 .6rem; min-width: 14rem; }
@@ -136,8 +137,8 @@ th { color: var(--spin-muted); font-weight: 500; }
 .state.ok { color: var(--spin-success); } .state.warn { color: var(--spin-warning); } .state.err { color: var(--spin-error); } .state.idle { color: var(--spin-muted); }
 .state.warn::before { border-radius: 1px; transform: rotate(45deg); } .state.err::before { border-radius: 0; }
 .panel { background: var(--spin-raised); border: 1px solid var(--spin-border); border-radius: var(--spin-radius); padding: 1rem; }
-.dialog { background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-lg); padding: 1.25rem; max-width: 26rem; box-shadow: 0 16px 40px rgb(0 0 0 / .35); }
-.toast { display: inline-flex; gap: .6rem; align-items: center; background: var(--spin-overlay); border: 1px solid var(--spin-border); border-left: 3px solid var(--spin-success); border-radius: var(--spin-radius); padding: .6rem .9rem; }
+.dialog { background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-lg); padding: 1.25rem; max-width: 26rem; box-shadow: var(--spin-shadow-overlay); }
+.toast { display: inline-flex; gap: .6rem; align-items: center; background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius); padding: .6rem .9rem; box-shadow: var(--spin-shadow-overlay); }
 .row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-start; margin-top: 1rem; }
 
 /* Widths */
@@ -208,7 +209,7 @@ body.embed .wrap { padding-top: 0; }
 				<p class="muted">Sandboxes for people and agents that run in your own AWS account.</p>
 				<p><a class="btn primary" href="#">Evaluate →</a> <a class="btn ghost" href="#">Install on AWS</a></p>
 			</div>
-			<img class="on-dark" src="logos/mark-512.png" alt=""><img class="on-light" src="logos/mark-clear-512.png" alt="">
+			<img src="logos/mark-clear-512.png" alt="">
 		</div>
 		<div class="doc">
 			<nav><a href="#">What is Spinbox</a><a href="#">Status</a><a class="current" href="#">Snapshots and rollback</a><a href="#">Network and egress</a><a href="#">Ports and sharing</a></nav>
@@ -244,7 +245,7 @@ D  /etc/issue</pre>
 				<tr><td><a href="#">notes</a></td><td><span class="state idle">stopped</span></td><td>—</td><td>yesterday</td></tr>
 			</table>
 			<div class="row">
-				<div class="dialog"><h3 style="margin-top:0">Delete agent-1?</h3><p class="muted">It goes to the trash with its disk; you can undelete it until its days are up.</p><button class="btn danger">Delete</button> <button class="btn ghost">Cancel</button></div>
+				<div class="dialog"><h3 style="margin-top:0">Delete agent-1?</h3><p class="muted">It goes to the trash with its disk; you can undelete it until its days are up.</p><div style="display:flex;gap:.5rem;justify-content:flex-end"><button class="btn ghost">Cancel</button><button class="btn danger">Delete</button></div></div>
 				<div class="toast"><span class="state ok">done</span> Snapshot <code>clean</code> published</div>
 			</div>
 		</main>
@@ -295,6 +296,10 @@ D  /etc/issue</pre>
 		<p class="muted">A Starlight page: one column at the reading measure, the sidebar at <code>--spin-sidebar</code>, headings in the mono. A claim links to the row of the status page that proves it.</p>
 		<h3>Application</h3>
 		<p class="muted">The dashboard, read for diagnosis. A page grows only as wide as what it shows: a document or a form to <code>--spin-width-contained</code>, one thing and what is around it to <code>--spin-width-detail</code>, a table of many to <code>--spin-width-wide</code>, an explorer to the viewport. A page is a header - the title, its state, its context and its one primary action on one row - and sections of rows between hairlines; the name beside the mark is <code>--spin-wordmark</code>, which the catalog audit holds the sidebar to.</p>
+		<h3>Actions</h3>
+		<p class="muted">One primary action per view, solid in the accent and in words alone: <em>New workspace</em> on a list, <em>Open terminal</em> on a workspace. A row's actions are quiet: its most likely one as a secondary button (the raised fill, a hairline edge, no icon) and the rest behind <code>⋯</code>. An icon goes alone, with a tooltip, only where the toolbar has no room for words; never an icon and a word on every row. What destroys is in the destructive fill, in a confirmation, after Cancel.</p>
+		<h3>Elevation</h3>
+		<p class="muted">A menu, a dialog or a toast is on <code>overlay</code> with a hairline edge and <code>--spin-shadow-overlay</code>: a soft shadow in light; in dark only a crisp edge, since a black shadow on a near-black scrim drew a second rectangle around the dialog. The scrim covers the whole viewport.</p>
 	</div>
 </section>
 

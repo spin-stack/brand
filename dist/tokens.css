@@ -1,43 +1,45 @@
 /* Written by `task palette` from palette.toml (spin-stack/brand). Edit palette.toml, not this file. */
 :root, .spin-dark {
-	--spin-accent: #27BFE8;
-	--spin-accent-text: #27BFE8;
-	--spin-border: #33435F;
-	--spin-border-strong: #6A7EA0;
-	--spin-destructive: #C2304F;
-	--spin-error: #F57AB4;
-	--spin-label: #5FE3D6;
-	--spin-muted: #9AA9C2;
-	--spin-on-accent: #111827;
-	--spin-overlay: #273552;
-	--spin-page: #111827;
-	--spin-raised: #202C47;
-	--spin-success: #3DDC97;
-	--spin-surface: #172035;
-	--spin-text: #E6EDF6;
-	--spin-warning: #FFC857;
-	--spin-accent-hover: #13293A;
-	--spin-accent-selected: #163D51;
+	--spin-accent: #1B7DB4;
+	--spin-accent-text: #6CC6EE;
+	--spin-border: #373E48;
+	--spin-border-strong: #6A7280;
+	--spin-destructive: #C4384F;
+	--spin-error: #EE7BB0;
+	--spin-label: #8FB3C6;
+	--spin-muted: #9BA2AD;
+	--spin-on-accent: #FFFFFF;
+	--spin-overlay: #2A2F37;
+	--spin-page: #0E1013;
+	--spin-raised: #21252C;
+	--spin-success: #4CC38A;
+	--spin-surface: #171A20;
+	--spin-text: #E7E9EC;
+	--spin-warning: #E3B04B;
+	--spin-shadow-overlay: 0 0 0 1px rgb(0 0 0 / 0.4);
+	--spin-accent-hover: #0F1B23;
+	--spin-accent-selected: #112A3A;
 }
 :root[data-theme='light'] {
 	--spin-accent: #0A6FA3;
-	--spin-accent-text: #085E8C;
-	--spin-border: #B9C6D8;
-	--spin-border-strong: #6E7D96;
-	--spin-destructive: #B4234A;
-	--spin-error: #9B1B73;
-	--spin-label: #0C3C84;
-	--spin-muted: #4A5871;
+	--spin-accent-text: #075A86;
+	--spin-border: #C3CAD3;
+	--spin-border-strong: #7A828E;
+	--spin-destructive: #C0303F;
+	--spin-error: #A8236A;
+	--spin-label: #33586E;
+	--spin-muted: #555D69;
 	--spin-on-accent: #FFFFFF;
 	--spin-overlay: #FFFFFF;
 	--spin-page: #FFFFFF;
-	--spin-raised: #DEE6F1;
-	--spin-success: #1E7046;
-	--spin-surface: #F0F4F9;
-	--spin-text: #111827;
+	--spin-raised: #E0E4EA;
+	--spin-success: #167046;
+	--spin-surface: #F0F2F5;
+	--spin-text: #14171C;
 	--spin-warning: #8A5A00;
+	--spin-shadow-overlay: 0 12px 32px rgb(16 19 24 / 0.14), 0 2px 6px rgb(16 19 24 / 0.08);
 	--spin-accent-hover: #E7F1F6;
-	--spin-accent-selected: #C9DFEB;
+	--spin-accent-selected: #C4DCE9;
 }
 :root {
 	--spin-brand-blue: #2F6BE3;
@@ -56,7 +58,7 @@
 	--spin-heading-tracking: -0.02em;
 	--spin-measure: 72ch;
 	--spin-sidebar: 17rem;
-	--spin-radius-sm: 4px;
+	--spin-radius-sm: 6px;
 	--spin-radius: 8px;
 	--spin-radius-lg: 12px;
 	--spin-target: 24px;
