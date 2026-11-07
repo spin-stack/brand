@@ -1,34 +1,34 @@
 /* Written by `task palette` from palette.toml (spin-stack/brand). Edit palette.toml, not this file. */
 :root {
-	--sl-color-accent-low: #112A3A;
+	--sl-color-accent-low: #0F2C41;
 	--sl-color-accent: #1B7DB4;
-	--sl-color-accent-high: #AAD8ED;
-	--sl-color-white: #F5F6F7;
-	--sl-color-gray-1: #EEF0F2;
-	--sl-color-gray-2: #E7E9EC;
-	--sl-color-gray-3: #9BA2AD;
-	--sl-color-gray-4: #6A7280;
-	--sl-color-gray-5: #373E48;
-	--sl-color-gray-6: #171A20;
-	--sl-color-black: #0E1013;
-	--sl-color-banner-bg: #183041;
-	--sl-color-banner-text: #E7E9EC;
+	--sl-color-accent-high: #A9D9F0;
+	--sl-color-white: #F5F7FA;
+	--sl-color-gray-1: #EEF1F6;
+	--sl-color-gray-2: #E6EBF2;
+	--sl-color-gray-3: #9AA5B8;
+	--sl-color-gray-4: #67738A;
+	--sl-color-gray-5: #2D3749;
+	--sl-color-gray-6: #111723;
+	--sl-color-black: #0A0E16;
+	--sl-color-banner-bg: #132D43;
+	--sl-color-banner-text: #E6EBF2;
 }
 :root[data-theme='light'] {
-	--sl-color-accent-low: #C4DCE9;
+	--sl-color-accent-low: #BDD8E6;
 	--sl-color-accent: #0A6FA3;
-	--sl-color-accent-high: #0E3951;
-	--sl-color-white: #0C0E11;
-	--sl-color-gray-1: #101216;
-	--sl-color-gray-2: #14171C;
-	--sl-color-gray-3: #555D69;
-	--sl-color-gray-4: #7A828E;
-	--sl-color-gray-5: #C3CAD3;
-	--sl-color-gray-6: #E0E4EA;
+	--sl-color-accent-high: #0C3957;
+	--sl-color-white: #0A0E17;
+	--sl-color-gray-1: #0E131F;
+	--sl-color-gray-2: #111827;
+	--sl-color-gray-3: #525D72;
+	--sl-color-gray-4: #77829A;
+	--sl-color-gray-5: #C4CCD8;
+	--sl-color-gray-6: #E1E7F0;
 	--sl-color-black: #FFFFFF;
-	--sl-color-banner-bg: #BDD5E3;
-	--sl-color-banner-text: #14171C;
-	--sl-color-gray-7: #F0F2F5;
+	--sl-color-banner-bg: #BED7E6;
+	--sl-color-banner-text: #111827;
+	--sl-color-gray-7: #F1F4F9;
 }
 :root {
 	--sl-font: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;

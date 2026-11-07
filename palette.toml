@@ -5,9 +5,9 @@
 # terminal page, and anything else that reads dist/tokens.json. THEMING.md says where each goes.
 #
 # The colors come from the spin-stack mark: a stack of disks - the layers a workspace's disk is
-# made of - in cyan and blue on navy, with a mint ring. The mark keeps them; the interface uses
-# one of them, the cyan deepened, as its accent, on a neutral ground, and sparingly. A royal blue
-# in its place read as any SaaS; the cyan is what reads as Spinbox. Dark is the default.
+# made of - in cyan and blue on navy, with a mint ring. The interface is navy ink with the cyan,
+# deepened, as its one accent, used sparingly. A royal blue in its place read as any SaaS; navy and
+# cyan are what read as Spinbox. Dark is the default.
 
 [brand]
 navy = "#111827"   # the mark's ground, as the avatar and the favicon's tile have it; not a surface
@@ -20,19 +20,19 @@ frost = "#EAF0F6"  # the mark's top disk; text on navy
 
 # Surfaces, darkest to lightest in dark mode and lightest to darkest in light: page (behind
 # everything), surface (navigation and sidebars, a step off the page), raised (cards, code,
-# inputs), overlay (menus, dialogs). Neutral greys with a trace of the navy's hue (~215, at most
-# 15% saturation): the planes are quiet so that the accent, a state and the content are what is
-# seen. Each step is held apart by lightness (the edge floor), not by hue. The navy of 39% that
-# was every surface tinted every grey and every border blue, and the eye had nowhere to rest.
+# inputs), overlay (menus, dialogs). Dark is the mark's navy as ink: darker than the avatar's
+# (#0A0E16, L 6%), each step a clear lightness apart (the edge floor), the lines grey rather than
+# blue. The navy the dark page was before (#111827 to #273552 in steps of 4%) blended its planes,
+# and its blue-grey borders were louder than they were; the hue was never the problem.
 [dark]
-page = "#0E1013"
-surface = "#171A20"
-raised = "#21252C"
-overlay = "#2A2F37"
-border = "#373E48"      # a line between two surfaces, and an input's edge: 3:1 is held on page
-border_strong = "#6A7280" # an input's edge where it must read as a control (WCAG 1.4.11)
-text = "#E7E9EC"
-muted = "#9BA2AD"       # secondary text: held to 4.5:1 on every surface up to overlay
+page = "#0A0E16"
+surface = "#111723"
+raised = "#19212F"
+overlay = "#242E40"
+border = "#2D3749"      # a line between two surfaces, and an input's edge: 3:1 is held on page
+border_strong = "#67738A" # an input's edge where it must read as a control (WCAG 1.4.11)
+text = "#E6EBF2"
+muted = "#9AA5B8"       # secondary text: held to 4.5:1 on every surface up to overlay
 accent = "#1B7DB4"      # the one primary action per view, solid; indicators; the focus ring
 accent_text = "#6CC6EE" # links and labels in the accent
 on_accent = "#FFFFFF"   # text on the solid accent
@@ -44,13 +44,13 @@ destructive = "#C4384F" # the fill of a destructive action, its label white
 
 [light]
 page = "#FFFFFF"
-surface = "#F0F2F5"
-raised = "#E0E4EA"
+surface = "#F1F4F9"
+raised = "#E1E7F0"
 overlay = "#FFFFFF"
-border = "#C3CAD3"
-border_strong = "#7A828E"
-text = "#14171C"
-muted = "#555D69"
+border = "#C4CCD8"
+border_strong = "#77829A"
+text = "#111827"
+muted = "#525D72"
 accent = "#0A6FA3"      # the cyan darkened until white text on it, and it on white, read
 accent_text = "#075A86"
 on_accent = "#FFFFFF"
@@ -67,7 +67,7 @@ destructive = "#C0303F"
 # the dark page behind a dialog, the only dim there is.
 [tint]
 hover = 0.10
-selected = 0.24
+selected = 0.27      # cyan over navy is close in hue: a stronger tint keeps a selection told apart
 scrim = 0.5
 # A solid fill under the pointer: black over it at this alpha, and twice it when pressed. Darker in
 # both themes, since the label on the accent and on the destructive is white.

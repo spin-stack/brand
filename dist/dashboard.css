@@ -1,15 +1,15 @@
 /* Written by `task palette` from palette.toml (spin-stack/brand). Edit palette.toml, not this file. */
 :root {
 	--background: 0.0 0.0% 100.0%;
-	--foreground: 217.5 16.7% 9.4%;
+	--foreground: 220.9 39.3% 11.0%;
 	--card: 0.0 0.0% 100.0%;
-	--card-foreground: 217.5 16.7% 9.4%;
+	--card-foreground: 220.9 39.3% 11.0%;
 	--popover: 0.0 0.0% 100.0%;
-	--popover-foreground: 217.5 16.7% 9.4%;
-	--muted: 216.0 20.0% 95.1%;
-	--muted-foreground: 216.0 10.5% 37.3%;
-	--border: 213.8 15.4% 79.6%;
-	--input: 216.0 8.1% 51.8%;
+	--popover-foreground: 220.9 39.3% 11.0%;
+	--muted: 217.5 40.0% 96.1%;
+	--muted-foreground: 219.4 16.3% 38.4%;
+	--border: 216.0 20.4% 80.8%;
+	--input: 221.1 14.8% 53.5%;
 	--ring: 200.4 88.4% 33.9%;
 	--primary: 200.4 88.4% 33.9%;
 	--primary-foreground: 0.0 0.0% 100.0%;
@@ -17,11 +17,11 @@
 	--primary-active: 200.4 88.4% 25.8%;
 	--destructive-hover: 353.8 60.0% 41.4%;
 	--destructive-active: 353.8 60.0% 35.8%;
-	--secondary-hover: 216.0 19.2% 89.8%;
-	--secondary: 216.0 20.0% 95.1%;
-	--secondary-foreground: 217.5 16.7% 9.4%;
-	--accent: 216.0 19.2% 89.8%;
-	--accent-foreground: 217.5 16.7% 9.4%;
+	--secondary-hover: 216.0 33.3% 91.2%;
+	--secondary: 217.5 40.0% 96.1%;
+	--secondary-foreground: 220.9 39.3% 11.0%;
+	--accent: 216.0 33.3% 91.2%;
+	--accent-foreground: 220.9 39.3% 11.0%;
 	--destructive: 353.8 60.0% 47.1%;
 	--destructive-foreground: 0.0 0.0% 100.0%;
 	--error: 328.0 65.5% 39.8%;
@@ -33,16 +33,16 @@
 	--shadow-overlay: 0 12px 32px rgb(16 19 24 / 0.14), 0 2px 6px rgb(16 19 24 / 0.08);
 }
 .dark {
-	--background: 216.0 15.2% 6.5%;
-	--foreground: 216.0 11.6% 91.6%;
-	--card: 220.0 16.4% 10.8%;
-	--card-foreground: 216.0 11.6% 91.6%;
-	--popover: 216.9 13.4% 19.0%;
-	--popover-foreground: 216.0 11.6% 91.6%;
-	--muted: 218.2 14.3% 15.1%;
-	--muted-foreground: 216.7 9.9% 64.3%;
-	--border: 215.3 13.4% 24.9%;
-	--input: 218.2 9.4% 45.9%;
+	--background: 220.0 37.5% 6.3%;
+	--foreground: 215.0 31.6% 92.5%;
+	--card: 220.0 34.6% 10.2%;
+	--card-foreground: 215.0 31.6% 92.5%;
+	--popover: 218.6 28.0% 19.6%;
+	--popover-foreground: 215.0 31.6% 92.5%;
+	--muted: 218.2 30.6% 14.1%;
+	--muted-foreground: 218.0 17.4% 66.3%;
+	--border: 218.6 23.7% 23.1%;
+	--input: 219.4 14.5% 47.3%;
 	--ring: 201.6 73.9% 40.6%;
 	--primary: 201.6 73.9% 40.6%;
 	--primary-foreground: 0.0 0.0% 100.0%;
@@ -50,19 +50,19 @@
 	--primary-active: 201.6 73.9% 30.8%;
 	--destructive-hover: 350.1 55.6% 43.5%;
 	--destructive-active: 350.1 55.6% 37.6%;
-	--secondary-hover: 216.9 13.4% 19.0%;
-	--secondary: 218.2 14.3% 15.1%;
-	--secondary-foreground: 216.0 11.6% 91.6%;
-	--accent: 218.2 14.3% 15.1%;
-	--accent-foreground: 216.0 11.6% 91.6%;
+	--secondary-hover: 218.6 28.0% 19.6%;
+	--secondary: 218.2 30.6% 14.1%;
+	--secondary-foreground: 215.0 31.6% 92.5%;
+	--accent: 218.2 30.6% 14.1%;
+	--accent-foreground: 215.0 31.6% 92.5%;
 	--destructive: 350.1 55.6% 49.4%;
 	--destructive-foreground: 0.0 0.0% 100.0%;
 	--error: 332.3 77.2% 70.8%;
 	--label: 200.7 32.5% 66.9%;
 	--success: 151.3 49.8% 53.1%;
-	--success-foreground: 216.0 15.2% 6.5%;
+	--success-foreground: 220.0 37.5% 6.3%;
 	--warning: 39.9 73.1% 59.2%;
-	--warning-foreground: 216.0 15.2% 6.5%;
+	--warning-foreground: 220.0 37.5% 6.3%;
 	--shadow-overlay: 0 0 0 1px rgb(0 0 0 / 0.4);
 }
 :root {
@@ -75,7 +75,7 @@
 	--spin-width-contained: 1200px;
 	--spin-width-detail: 1152px;
 	--spin-width-wide: 1600px;
-	--scrim: rgb(14 16 19 / 0.5);
+	--scrim: rgb(10 14 22 / 0.5);
 	--spin-wordmark: "Spinbox";
 	--spin-font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
 	--spin-font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
