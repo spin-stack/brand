@@ -33,7 +33,7 @@ type palette struct {
 	Brand map[string]string
 	Dark  mode
 	Light mode
-	Tint  struct{ Hover, Selected, Scrim float64 }
+	Tint  struct{ Hover, Selected, Scrim, Fill float64 }
 	// What lifts a menu or a dialog off what is under it, per theme: a CSS box-shadow.
 	Elevation struct{ Dark, Light string }
 	Type      struct {
@@ -59,6 +59,11 @@ type palette struct {
 		WidthContained         int `toml:"width_contained"`
 		WidthDetail            int `toml:"width_detail"`
 		WidthWide              int `toml:"width_wide"`
+	}
+	// A control's geometry: the heights of a button or an input, the icon in it, and the gap
+	// between an icon and its word.
+	Controls struct {
+		Sm, Md, Lg, Icon, Gap int
 	}
 	Motion struct {
 		Fast, Base, Slow, Draw int

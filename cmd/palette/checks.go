@@ -110,6 +110,13 @@ func holds(p palette) ([]result, error) {
 		}
 		hold("text", "on_accent on accent", c["on_accent"], c["accent"], text)
 		hold("text", "white on destructive", white, c["destructive"], text)
+		st := controlStates(p, c, m.name == "dark")
+		hold("text", "on_accent on accent under the pointer", c["on_accent"], st.accentHover, text)
+		hold("text", "on_accent on accent pressed", c["on_accent"], st.accentActive, text)
+		hold("text", "white on destructive under the pointer", white, st.destructiveHover, text)
+		hold("text", "white on destructive pressed", white, st.destructiveActive, text)
+		hold("text", "text on a secondary button", c["text"], st.control, bodyText)
+		hold("text", "text on a secondary button under the pointer", c["text"], st.controlHover, bodyText)
 		for _, s := range []string{"page", "raised"} {
 			hold("non-text", "border_strong on "+s, c["border_strong"], c[s], nonText)
 			hold("non-text", "accent (the focus ring) on "+s, c["accent"], c[s], nonText)
@@ -124,6 +131,10 @@ func holds(p palette) ([]result, error) {
 			apart("state", "selected tint over "+s+" | "+s, c["accent"].over(c[s], p.Tint.Selected), c[s], 0)
 			apart("hover", "hover tint over "+s+" | "+s, c["accent"].over(c[s], p.Tint.Hover), c[s], 0)
 		}
+		apart("hover", "accent under the pointer | accent", st.accentHover, c["accent"], 0)
+		apart("hover", "destructive under the pointer | destructive", st.destructiveHover, c["destructive"], 0)
+		apart("hover", "secondary under the pointer | secondary", st.controlHover, st.control, 0)
+		apart("edge", "secondary button | page", st.control, c["page"], 0)
 		for _, pair := range [][2]string{
 			{"success", "error"}, {"success", "warning"}, {"warning", "error"},
 			{"accent", "success"}, {"accent", "error"},

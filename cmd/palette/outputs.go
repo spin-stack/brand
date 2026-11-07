@@ -22,7 +22,7 @@ func outputs(p palette, results []result) (map[string][]byte, error) {
 
 	j, err := json.MarshalIndent(map[string]any{
 		"brand": p.Brand, "dark": hexes(dark), "light": hexes(light),
-		"tint": p.Tint, "type": p.Type, "layout": p.Layout, "motion": p.Motion,
+		"tint": p.Tint, "type": p.Type, "layout": p.Layout, "controls": p.Controls, "elevation": p.Elevation, "motion": p.Motion,
 	}, "", "  ")
 	if err != nil {
 		return nil, err
@@ -60,10 +60,18 @@ func sortedKeys(m map[string]rgb) []string {
 func tokensCSS(p palette, dark, light map[string]rgb) string {
 	var b strings.Builder
 	b.WriteString(header)
-	block := func(sel string, c map[string]rgb, shadow string) {
+	block := func(sel string, c map[string]rgb, shadow string, isDark bool) {
 		fmt.Fprintf(&b, "%s {\n", sel)
 		for _, k := range sortedKeys(c) {
 			fmt.Fprintf(&b, "\t--spin-%s: %s;\n", strings.ReplaceAll(k, "_", "-"), c[k].hex())
+		}
+		st := controlStates(p, c, isDark)
+		for _, v := range [][2]string{
+			{"accent-fill-hover", st.accentHover.hex()}, {"accent-fill-active", st.accentActive.hex()},
+			{"destructive-hover", st.destructiveHover.hex()}, {"destructive-active", st.destructiveActive.hex()},
+			{"control", st.control.hex()}, {"control-hover", st.controlHover.hex()},
+		} {
+			fmt.Fprintf(&b, "\t--spin-%s: %s;\n", v[0], v[1])
 		}
 		fmt.Fprintf(&b, "\t--spin-shadow-overlay: %s;\n", shadow)
 		fmt.Fprintf(&b, "\t--spin-accent-hover: %s;\n", c["accent"].over(c["page"], p.Tint.Hover).hex())
@@ -72,8 +80,8 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 	}
 	// .spin-dark is a part that is dark in either theme - a terminal, a drawing on the navy - and
 	// takes the dark roles in place of the page's.
-	block(":root, .spin-dark", dark, p.Elevation.Dark)
-	block(":root[data-theme='light']", light, p.Elevation.Light)
+	block(":root, .spin-dark", dark, p.Elevation.Dark, true)
+	block(":root[data-theme='light']", light, p.Elevation.Light, false)
 	b.WriteString(":root {\n")
 	names := make([]string, 0, len(p.Brand))
 	for k := range p.Brand {
@@ -92,6 +100,8 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--spin-measure: %dch;\n\t--spin-sidebar: %drem;\n", p.Layout.Measure, p.Layout.Sidebar)
 	fmt.Fprintf(&b, "\t--spin-radius-sm: %dpx;\n\t--spin-radius: %dpx;\n\t--spin-radius-lg: %dpx;\n", p.Layout.RadiusSm, p.Layout.Radius, p.Layout.RadiusLg)
 	fmt.Fprintf(&b, "\t--spin-target: %dpx;\n\t--spin-target-touch: %dpx;\n", p.Layout.Target, p.Layout.TargetTouch)
+	fmt.Fprintf(&b, "\t--spin-control-sm: %dpx;\n\t--spin-control-md: %dpx;\n\t--spin-control-lg: %dpx;\n", p.Controls.Sm, p.Controls.Md, p.Controls.Lg)
+	fmt.Fprintf(&b, "\t--spin-control-icon: %dpx;\n\t--spin-control-gap: %dpx;\n", p.Controls.Icon, p.Controls.Gap)
 	fmt.Fprintf(&b, "\t--spin-width-contained: %dpx;\n\t--spin-width-detail: %dpx;\n\t--spin-width-wide: %dpx;\n", p.Layout.WidthContained, p.Layout.WidthDetail, p.Layout.WidthWide)
 	fmt.Fprintf(&b, "\t--spin-duration-fast: %dms;\n\t--spin-duration: %dms;\n", p.Motion.Fast, p.Motion.Base)
 	fmt.Fprintf(&b, "\t--spin-duration-slow: %dms;\n\t--spin-duration-draw: %dms;\n", p.Motion.Slow, p.Motion.Draw)
@@ -178,6 +188,7 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 		// and the focus ring's alone. Raised in both themes: light's surface was a step off white
 		// that a selected item in the sidebar did not show.
 		neutral := c["raised"]
+		st := controlStates(p, c, isDark)
 		// A step off the page - a code block, a secondary button's fill: raised in dark; in light
 		// the surface, since raised there read as a grey slab and a button on it as disabled.
 		step := c["surface"]
@@ -193,7 +204,10 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 			{"muted", hsl(step)}, {"muted-foreground", hsl(c["muted"])},
 			{"border", hsl(c["border"])}, {"input", hsl(c["border_strong"])}, {"ring", hsl(c["accent"])},
 			{"primary", hsl(c["accent"])}, {"primary-foreground", hsl(c["on_accent"])},
-			{"secondary", hsl(step)}, {"secondary-foreground", hsl(c["text"])},
+			{"primary-hover", hsl(st.accentHover)}, {"primary-active", hsl(st.accentActive)},
+			{"destructive-hover", hsl(st.destructiveHover)}, {"destructive-active", hsl(st.destructiveActive)},
+			{"secondary-hover", hsl(st.controlHover)},
+			{"secondary", hsl(st.control)}, {"secondary-foreground", hsl(c["text"])},
 			{"accent", hsl(neutral)}, {"accent-foreground", hsl(c["text"])},
 			{"destructive", hsl(c["destructive"])}, {"destructive-foreground", hsl(on(c["destructive"]))},
 			{"error", hsl(c["error"])}, {"label", hsl(c["label"])},
@@ -219,6 +233,8 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 	// Its theme (dashboard/src/styles/globals.css) maps Tailwind's names onto these.
 	b.WriteString(":root {\n")
 	fmt.Fprintf(&b, "\t--radius: %gpx;\n", float64(p.Layout.RadiusSm))
+	fmt.Fprintf(&b, "\t--spin-control-sm: %dpx;\n\t--spin-control-md: %dpx;\n\t--spin-control-lg: %dpx;\n", p.Controls.Sm, p.Controls.Md, p.Controls.Lg)
+	fmt.Fprintf(&b, "\t--spin-control-icon: %dpx;\n\t--spin-control-gap: %dpx;\n", p.Controls.Icon, p.Controls.Gap)
 	// How wide a page may grow, by what it shows (the dashboard's page-width.ts reads these).
 	fmt.Fprintf(&b, "\t--spin-width-contained: %dpx;\n\t--spin-width-detail: %dpx;\n\t--spin-width-wide: %dpx;\n", p.Layout.WidthContained, p.Layout.WidthDetail, p.Layout.WidthWide)
 	// The dim behind a dialog: the dark page, in either theme, at the palette's scrim - a neutral
