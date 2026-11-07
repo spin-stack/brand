@@ -36,16 +36,16 @@
 	--shadow-overlay: 0 12px 32px rgb(16 19 24 / 0.14), 0 2px 6px rgb(16 19 24 / 0.08);
 }
 .dark {
-	--background: 220.0 37.5% 6.3%;
+	--background: 221.1 40.4% 9.2%;
 	--foreground: 215.0 31.6% 92.5%;
-	--card: 220.0 34.6% 10.2%;
+	--card: 220.8 36.2% 13.5%;
 	--card-foreground: 215.0 31.6% 92.5%;
-	--popover: 218.6 28.0% 19.6%;
+	--popover: 222.6 31.1% 23.9%;
 	--popover-foreground: 215.0 31.6% 92.5%;
-	--muted: 218.2 30.6% 14.1%;
+	--muted: 221.8 34.7% 18.6%;
 	--muted-foreground: 218.0 17.4% 66.3%;
-	--border: 218.6 23.7% 23.1%;
-	--input: 219.4 14.5% 47.3%;
+	--border: 221.1 26.8% 27.8%;
+	--input: 221.0 16.1% 50.0%;
 	--ring: 201.6 73.9% 40.6%;
 	--primary: 201.6 73.9% 40.6%;
 	--primary-foreground: 0.0 0.0% 100.0%;
@@ -53,22 +53,22 @@
 	--primary-active: 201.6 73.9% 30.8%;
 	--destructive-hover: 350.1 55.6% 43.5%;
 	--destructive-active: 350.1 55.6% 37.6%;
-	--secondary-hover: 218.6 28.0% 19.6%;
-	--secondary: 218.2 30.6% 14.1%;
+	--secondary-hover: 222.6 31.1% 23.9%;
+	--secondary: 221.8 34.7% 18.6%;
 	--secondary-foreground: 215.0 31.6% 92.5%;
-	--accent: 218.2 30.6% 14.1%;
+	--accent: 221.8 34.7% 18.6%;
 	--accent-foreground: 215.0 31.6% 92.5%;
 	--destructive: 350.1 55.6% 49.4%;
 	--destructive-foreground: 0.0 0.0% 100.0%;
 	--error: 332.3 77.2% 70.8%;
 	--label: 200.7 32.5% 66.9%;
-	--success-subtle: 189.6 32.6% 14.0%;
-	--warning-subtle: 39.0 2.9% 16.1%;
-	--error-subtle: 270.2 19.5% 17.0%;
+	--success-subtle: 196.5 34.1% 16.9%;
+	--warning-subtle: 225.3 3.9% 19.0%;
+	--error-subtle: 259.0 20.6% 20.3%;
 	--success: 151.3 49.8% 53.1%;
-	--success-foreground: 220.0 37.5% 6.3%;
+	--success-foreground: 221.1 40.4% 9.2%;
 	--warning: 39.9 73.1% 59.2%;
-	--warning-foreground: 220.0 37.5% 6.3%;
+	--warning-foreground: 221.1 40.4% 9.2%;
 	--shadow-overlay: 0 0 0 1px rgb(0 0 0 / 0.4);
 }
 :root {
@@ -81,7 +81,7 @@
 	--spin-width-contained: 1200px;
 	--spin-width-detail: 1152px;
 	--spin-width-wide: 1600px;
-	--scrim: rgb(10 14 22 / 0.64);
+	--scrim: rgb(14 20 33 / 0.64);
 	--spin-wordmark: "Spinbox";
 	--spin-font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
 	--spin-font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;

@@ -47,6 +47,8 @@ type palette struct {
 		HeadingWeight   int               `toml:"heading_weight"`
 		HeadingTracking float64           `toml:"heading_tracking"`
 		Heading         string
+		Display         string
+		DisplayTracking float64 `toml:"display_tracking"`
 		Fluid           map[string][2]int
 		Numeric         string
 		Wordmark        string

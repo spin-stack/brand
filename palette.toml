@@ -20,17 +20,17 @@ frost = "#EAF0F6"  # the mark's top disk; text on navy
 
 # Surfaces, darkest to lightest in dark mode and lightest to darkest in light: page (behind
 # everything), surface (navigation and sidebars, a step off the page), raised (cards, code,
-# inputs), overlay (menus, dialogs). Dark is the mark's navy as ink: darker than the avatar's
-# (#0A0E16, L 6%), each step a clear lightness apart (the edge floor), the lines grey rather than
-# blue. The navy the dark page was before (#111827 to #273552 in steps of 4%) blended its planes,
+# inputs), overlay (menus, dialogs). Dark is the mark's navy at its own chroma, a step under the
+# avatar's (#0E1421, L 9%), each step a clear lightness apart (the edge floor). A darker ink
+# (#0A0E16) read as near-black on the website: the navy was gone with the glare. The navy the dark page was before (#111827 to #273552 in steps of 4%) blended its planes,
 # and its blue-grey borders were louder than they were; the hue was never the problem.
 [dark]
-page = "#0A0E16"
-surface = "#111723"
-raised = "#19212F"
-overlay = "#242E40"
-border = "#2D3749"      # a line between two surfaces, and an input's edge: 3:1 is held on page
-border_strong = "#67738A" # an input's edge where it must read as a control (WCAG 1.4.11)
+page = "#0E1421"
+surface = "#161E2F"
+raised = "#1F2940"
+overlay = "#2A3550"
+border = "#34405A"      # a line between two surfaces, and an input's edge: 3:1 is held on page
+border_strong = "#6B7894" # an input's edge where it must read as a control (WCAG 1.4.11)
 text = "#E6EBF2"
 muted = "#9AA5B8"       # secondary text: held to 4.5:1 on every surface up to overlay
 accent = "#1B7DB4"      # the one primary action per view, solid; indicators; the focus ring
@@ -84,10 +84,9 @@ badge = 0.12
 light = "0 12px 32px rgb(16 19 24 / 0.14), 0 2px 6px rgb(16 19 24 / 0.08)"
 dark = "0 0 0 1px rgb(0 0 0 / 0.4)"
 
-# Type. IBM Plex, served by the site that uses it: a sans for reading and every heading, and a mono
-# for what a machine says - commands, output, ids, an image, a state, a time. A heading in the mono
-# at 52 px read as a terminal (the November council, all three reviewers): the mono is for what is
-# copied, the sans for what is read. A title that names a thing (a workspace, a runner) is its
+# Type. IBM Plex, served by the site that uses it: a sans for reading and the app's headings, and a
+# mono for what a machine says - commands, output, ids, an image, a state, a time - and for the
+# site's headings (type.display), which set Spinbox in its console's face. A title that names a thing (a workspace, a runner) is its
 # identifier, in mono. Mono beside sans is set at the sans' size, never smaller: an id or a state
 # at 11 px beside a 13 px name was the least legible thing on every screen.
 [type]
@@ -104,7 +103,13 @@ dense_scale = { xs = [12, 16], sm = [13, 20], base = [14, 22], lg = [16, 24], xl
 line_height = 1.6       # reading; dense text takes 1.45
 heading_weight = 600
 heading_tracking = -0.02 # em: a large sans set tight reads as one word
-heading = "sans"        # the face of every heading, the site's included
+heading = "sans"        # the face of the app's headings, and the laboratory's
+# The face of the site's headings - the landing's and the docs': the mono, set tight. The website's
+# blind council (November, 16 of 20 verdicts) took the mono headings as what made the site read as
+# Spinbox's and not a template; what a reviewer of the laboratory read as a terminal was a 52 px
+# mono with its own wide spacing. So the mono, at the display tracking, and its word gaps closed.
+display = "mono"
+display_tracking = -0.035
 # Headings from a phone's width (layout.phone) to a desktop's (layout.desktop), [px there, px here]:
 # a clamp() in between, so a title neither shouts on a phone nor whispers on a monitor.
 fluid = { display = [32, 52], h1 = [26, 36], h2 = [21, 26], h3 = [17, 20] }
