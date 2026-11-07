@@ -1,17 +1,17 @@
 /* Written by `task palette` from palette.toml (spin-stack/brand). Edit palette.toml, not this file. */
 :root {
-	--sl-color-accent-low: #0F2C41;
+	--sl-color-accent-low: #123049;
 	--sl-color-accent: #1B7DB4;
 	--sl-color-accent-high: #A9D9F0;
 	--sl-color-white: #F5F7FA;
 	--sl-color-gray-1: #EEF1F6;
 	--sl-color-gray-2: #E6EBF2;
 	--sl-color-gray-3: #9AA5B8;
-	--sl-color-gray-4: #67738A;
-	--sl-color-gray-5: #2D3749;
-	--sl-color-gray-6: #111723;
-	--sl-color-black: #0A0E16;
-	--sl-color-banner-bg: #132D43;
+	--sl-color-gray-4: #6B7894;
+	--sl-color-gray-5: #34405A;
+	--sl-color-gray-6: #161E2F;
+	--sl-color-black: #0E1421;
+	--sl-color-banner-bg: #17334C;
 	--sl-color-banner-text: #E6EBF2;
 }
 :root[data-theme='light'] {

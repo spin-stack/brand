@@ -2,33 +2,33 @@
 :root, .spin-dark {
 	--spin-accent: #1B7DB4;
 	--spin-accent-text: #6CC6EE;
-	--spin-border: #2D3749;
-	--spin-border-strong: #67738A;
+	--spin-border: #34405A;
+	--spin-border-strong: #6B7894;
 	--spin-destructive: #C4384F;
 	--spin-error: #EE7BB0;
 	--spin-label: #8FB3C6;
 	--spin-muted: #9AA5B8;
 	--spin-on-accent: #FFFFFF;
-	--spin-overlay: #242E40;
-	--spin-page: #0A0E16;
-	--spin-raised: #19212F;
+	--spin-overlay: #2A3550;
+	--spin-page: #0E1421;
+	--spin-raised: #1F2940;
 	--spin-success: #4CC38A;
-	--spin-surface: #111723;
+	--spin-surface: #161E2F;
 	--spin-text: #E6EBF2;
 	--spin-warning: #E3B04B;
 	--spin-accent-fill-hover: #186E9E;
 	--spin-accent-fill-active: #155F89;
 	--spin-destructive-hover: #AC3146;
 	--spin-destructive-active: #952B3C;
-	--spin-control: #19212F;
-	--spin-control-hover: #242E40;
+	--spin-control: #1F2940;
+	--spin-control-hover: #2A3550;
 	--spin-shadow-overlay: 0 0 0 1px rgb(0 0 0 / 0.4);
 	--spin-success-badge: color-mix(in srgb, var(--spin-success) 12%, transparent);
 	--spin-warning-badge: color-mix(in srgb, var(--spin-warning) 12%, transparent);
 	--spin-error-badge: color-mix(in srgb, var(--spin-error) 12%, transparent);
 	--spin-accent-text-badge: color-mix(in srgb, var(--spin-accent-text) 12%, transparent);
-	--spin-accent-hover: #0C1926;
-	--spin-accent-selected: #0F2C41;
+	--spin-accent-hover: #0F1E30;
+	--spin-accent-selected: #123049;
 }
 :root[data-theme='light'] {
 	--spin-accent: #0A6FA3;
@@ -77,6 +77,8 @@
 	--spin-heading-weight: 600;
 	--spin-heading-tracking: -0.02em;
 	--spin-font-heading: var(--spin-font-sans);
+	--spin-font-display: var(--spin-font-mono);
+	--spin-display-tracking: -0.035em;
 	--spin-numeric: tabular-nums;
 	--spin-text-display: clamp(2rem, 1.452rem + 2.247vw, 3.25rem);
 	--spin-text-h1: clamp(1.625rem, 1.351rem + 1.124vw, 2.25rem);
