@@ -68,7 +68,7 @@ destructive = "#C0303F"
 [tint]
 hover = 0.10
 selected = 0.27      # cyan over navy is close in hue: a stronger tint keeps a selection told apart
-scrim = 0.5
+scrim = 0.64
 # A solid fill under the pointer: black over it at this alpha, and twice it when pressed. Darker in
 # both themes, since the label on the accent and on the destructive is white.
 fill = 0.12

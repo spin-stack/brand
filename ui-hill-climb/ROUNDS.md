@@ -12,7 +12,7 @@ All 100 pairs hold.
 
 ## 02 — selection and the lab's sample follow the app
 Neutral hover/selection is `raised` in both themes (light's selected item was invisible); scrim
-0.6 → 0.5; the lab's dashboard sample: neutral selection, sans title, Cancel before Delete; ids
+0.6 → 0.5 (0.64 in 06: on navy the dialog needed more of it); the lab's dashboard sample: neutral selection, sans title, Cancel before Delete; ids
 and states do not wrap.
 Council round 1 (on 01's capture): median 7.0 (+1.0), win 40%, but noise 3.5 (control drift).
 Claude and Gemini took the neutral ground in dark; Codex and Claude in light read the royal blue
