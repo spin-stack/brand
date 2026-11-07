@@ -102,6 +102,7 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--spin-line-height: %g;\n", p.Type.LineHeight)
 	fmt.Fprintf(&b, "\t--spin-heading-weight: %d;\n\t--spin-heading-tracking: %gem;\n", p.Type.HeadingWeight, p.Type.HeadingTracking)
 	fmt.Fprintf(&b, "\t--spin-font-heading: var(--spin-font-%s);\n", p.Type.Heading)
+	fmt.Fprintf(&b, "\t--spin-font-display: var(--spin-font-%s);\n\t--spin-display-tracking: %gem;\n", p.Type.Display, p.Type.DisplayTracking)
 	fmt.Fprintf(&b, "\t--spin-numeric: %s;\n", p.Type.Numeric)
 	for _, k := range []string{"display", "h1", "h2", "h3"} {
 		fmt.Fprintf(&b, "\t--spin-text-%s: %s;\n", k, fluid(p, k))
