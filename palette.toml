@@ -5,67 +5,78 @@
 # terminal page, and anything else that reads dist/tokens.json. THEMING.md says where each goes.
 #
 # The colors come from the spin-stack mark: a stack of disks - the layers a workspace's disk is
-# made of - in cyan and blue on navy, with a mint ring. Dark is the default: the mark's own ground.
-# Light keeps the hues and darkens them until text in them reads on white.
+# made of - in cyan and blue on navy, with a mint ring. The mark keeps them; the interface uses
+# one of them, the cyan deepened, as its accent, on a neutral ground, and sparingly. A royal blue
+# in its place read as any SaaS; the cyan is what reads as Spinbox. Dark is the default.
 
 [brand]
-navy = "#111827"   # the mark's ground, as the avatar has it; the dark page
-cyan = "#27BFE8"   # the mark's middle disk; the accent in dark mode
-blue = "#2F6BE3"   # the mark's lower disk; drawings only, never text on navy
-deep = "#0C3C84"   # the mark's base; drawings, and light mode's strongest accent
-mint = "#5FE3D6"   # the ring; labels that name a thing in dark mode (an eyebrow, a command
+navy = "#111827"   # the mark's ground, as the avatar and the favicon's tile have it; not a surface
+cyan = "#27BFE8"   # the mark's middle disk; the accent is this cyan, deepened until white reads on it
+blue = "#2F6BE3"   # the mark's lower disk; drawings only
+deep = "#0C3C84"   # the mark's base; drawings only
+mint = "#5FE3D6"   # the ring; drawings only (an eyebrow in mint competed with every state
                    # in a drawing), never a surface
 frost = "#EAF0F6"  # the mark's top disk; text on navy
 
 # Surfaces, darkest to lightest in dark mode and lightest to darkest in light: page (behind
 # everything), surface (navigation and sidebars, a step off the page), raised (cards, code,
-# inputs), overlay (menus, dialogs). Grays carry the navy's hue (~222), so a surface and the mark
-# are one material, not cyan on a stock grey.
+# inputs), overlay (menus, dialogs). Neutral greys with a trace of the navy's hue (~215, at most
+# 15% saturation): the planes are quiet so that the accent, a state and the content are what is
+# seen. Each step is held apart by lightness (the edge floor), not by hue. The navy of 39% that
+# was every surface tinted every grey and every border blue, and the eye had nowhere to rest.
 [dark]
-page = "#111827"
-surface = "#172035"
-raised = "#202C47"
-overlay = "#273552"
-border = "#33435F"      # a line between two surfaces, and an input's edge: 3:1 is held on page
-border_strong = "#6A7EA0" # an input's edge where it must read as a control (WCAG 1.4.11)
-text = "#E6EDF6"
-muted = "#9AA9C2"       # secondary text: held to 4.5:1 on every surface up to overlay
-accent = "#27BFE8"      # the one primary action per view, solid; indicators; the focus ring
-accent_text = "#27BFE8" # links and labels in the accent
-on_accent = "#111827"   # text on the solid accent
-label = "#5FE3D6"       # the mint: a small label that names a section or a command
-success = "#3DDC97"
-warning = "#FFC857"
-error = "#F57AB4"       # leans pink to magenta: a deutan tells it from success by its blue
-destructive = "#C2304F" # the fill of a destructive action, its label white
+page = "#0E1013"
+surface = "#171A20"
+raised = "#21252C"
+overlay = "#2A2F37"
+border = "#373E48"      # a line between two surfaces, and an input's edge: 3:1 is held on page
+border_strong = "#6A7280" # an input's edge where it must read as a control (WCAG 1.4.11)
+text = "#E7E9EC"
+muted = "#9BA2AD"       # secondary text: held to 4.5:1 on every surface up to overlay
+accent = "#1B7DB4"      # the one primary action per view, solid; indicators; the focus ring
+accent_text = "#6CC6EE" # links and labels in the accent
+on_accent = "#FFFFFF"   # text on the solid accent
+label = "#8FB3C6"       # a slate: a small label that names a section, quieter than a state
+success = "#4CC38A"
+warning = "#E3B04B"
+error = "#EE7BB0"       # leans pink to magenta: a deutan tells it from success by its blue
+destructive = "#C4384F" # the fill of a destructive action, its label white
 
 [light]
 page = "#FFFFFF"
-surface = "#F0F4F9"
-raised = "#DEE6F1"
+surface = "#F0F2F5"
+raised = "#E0E4EA"
 overlay = "#FFFFFF"
-border = "#B9C6D8"
-border_strong = "#6E7D96"
-text = "#111827"
-muted = "#4A5871"
+border = "#C3CAD3"
+border_strong = "#7A828E"
+text = "#14171C"
+muted = "#555D69"
 accent = "#0A6FA3"      # the cyan darkened until white text on it, and it on white, read
-accent_text = "#085E8C"
+accent_text = "#075A86"
 on_accent = "#FFFFFF"
-label = "#0C3C84"       # the mark's deep blue: mint does not read on white
-success = "#1E7046"
+label = "#33586E"       # the slate, darkened to read on white
+success = "#167046"
 warning = "#8A5A00"
-error = "#9B1B73"       # magenta-leaning, as dark's: a deutan tells it from success by its blue
-destructive = "#B4234A"
+error = "#A8236A"       # magenta-leaning, as dark's: a deutan tells it from success by its blue
+destructive = "#C0303F"
 
 # The accent over a surface, for what is selected or hovered on the site (the current page in the
 # sidebar, a hovered link): an alpha, so one value serves every surface. The label on a tint is
 # accent_text. The dashboard keeps the accent for its one primary action and the focus ring: its
 # hover and its navigation's selection are neutral, the surface a step off the page. The scrim is
-# the navy behind a dialog, the only dim there is.
+# the dark page behind a dialog, the only dim there is.
 [tint]
 hover = 0.10
-selected = 0.22
-scrim = 0.6
+selected = 0.24
+scrim = 0.5
+
+# Elevation: what lifts a menu, a dialog or a toast off what is under it. In light, a soft shadow
+# under a white plane. In dark, a shadow is black on near-black: under a scrim it drew a darker
+# rectangle around the dialog that read as a second, smaller overlay. There the plane's own
+# lightness (overlay) and its border lift it, and the shadow is only a crisp edge.
+[elevation]
+light = "0 12px 32px rgb(16 19 24 / 0.14), 0 2px 6px rgb(16 19 24 / 0.08)"
+dark = "0 0 0 1px rgb(0 0 0 / 0.4)"
 
 # Type. IBM Plex, served by the site that uses it: a sans for reading and a mono for what a
 # machine says - commands, output, ids, a state, a time - and for the site's headings, which set
@@ -95,7 +106,7 @@ wordmark = "Spinbox"
 [layout]
 measure = 72            # ch: a line of reading text; 45-75 is the range people read without losing it
 sidebar = 17            # rem
-radius_sm = 4           # px: inputs, chips, code; every corner of the dashboard, dialogs included
+radius_sm = 6           # px: inputs, chips, code; every corner of the dashboard, dialogs included
 radius = 8              # px: the site's cards, buttons, panels
 radius_lg = 12          # px: the site's dialogs and hero figures
 target = 24             # px: the least a pointer target is (WCAG 2.2, 2.5.8)

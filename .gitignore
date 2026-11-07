@@ -1,2 +1,5 @@
 .task/
 screens/img/
+_output/
+ui-hill-climb/rounds/
+ui-hill-climb/references/*.png

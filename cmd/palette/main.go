@@ -34,7 +34,9 @@ type palette struct {
 	Dark  mode
 	Light mode
 	Tint  struct{ Hover, Selected, Scrim float64 }
-	Type  struct {
+	// What lifts a menu or a dialog off what is under it, per theme: a CSS box-shadow.
+	Elevation struct{ Dark, Light string }
+	Type      struct {
 		Sans, Mono      string
 		FallbackSans    string            `toml:"fallback_sans"`
 		FallbackMono    string            `toml:"fallback_mono"`

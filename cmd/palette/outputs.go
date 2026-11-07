@@ -60,19 +60,20 @@ func sortedKeys(m map[string]rgb) []string {
 func tokensCSS(p palette, dark, light map[string]rgb) string {
 	var b strings.Builder
 	b.WriteString(header)
-	block := func(sel string, c map[string]rgb) {
+	block := func(sel string, c map[string]rgb, shadow string) {
 		fmt.Fprintf(&b, "%s {\n", sel)
 		for _, k := range sortedKeys(c) {
 			fmt.Fprintf(&b, "\t--spin-%s: %s;\n", strings.ReplaceAll(k, "_", "-"), c[k].hex())
 		}
+		fmt.Fprintf(&b, "\t--spin-shadow-overlay: %s;\n", shadow)
 		fmt.Fprintf(&b, "\t--spin-accent-hover: %s;\n", c["accent"].over(c["page"], p.Tint.Hover).hex())
 		fmt.Fprintf(&b, "\t--spin-accent-selected: %s;\n", c["accent"].over(c["page"], p.Tint.Selected).hex())
 		b.WriteString("}\n")
 	}
 	// .spin-dark is a part that is dark in either theme - a terminal, a drawing on the navy - and
 	// takes the dark roles in place of the page's.
-	block(":root, .spin-dark", dark)
-	block(":root[data-theme='light']", light)
+	block(":root, .spin-dark", dark, p.Elevation.Dark)
+	block(":root[data-theme='light']", light, p.Elevation.Light)
 	b.WriteString(":root {\n")
 	names := make([]string, 0, len(p.Brand))
 	for k := range p.Brand {
@@ -174,18 +175,25 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 			return rgb{1, 1, 1}
 		}
 		// Hover and the navigation's selection are neutral: the accent is the primary action's
-		// and the focus ring's alone.
-		neutral := c["surface"]
+		// and the focus ring's alone. Raised in both themes: light's surface was a step off white
+		// that a selected item in the sidebar did not show.
+		neutral := c["raised"]
+		// A step off the page - a code block, a secondary button's fill: raised in dark; in light
+		// the surface, since raised there read as a grey slab and a button on it as disabled.
+		step := c["surface"]
 		if isDark {
-			neutral = c["raised"]
+			step = c["raised"]
 		}
 		vars := [][2]string{
 			{"background", hsl(c["page"])}, {"foreground", hsl(c["text"])},
 			{"card", hsl(card)}, {"card-foreground", hsl(c["text"])},
-			{"muted", hsl(c["raised"])}, {"muted-foreground", hsl(c["muted"])},
+			// A menu's or a dialog's plane: overlay, the lightest step in dark, so that it is lifted
+			// by its own lightness rather than by a shadow; white in light.
+			{"popover", hsl(c["overlay"])}, {"popover-foreground", hsl(c["text"])},
+			{"muted", hsl(step)}, {"muted-foreground", hsl(c["muted"])},
 			{"border", hsl(c["border"])}, {"input", hsl(c["border_strong"])}, {"ring", hsl(c["accent"])},
 			{"primary", hsl(c["accent"])}, {"primary-foreground", hsl(c["on_accent"])},
-			{"secondary", hsl(c["raised"])}, {"secondary-foreground", hsl(c["text"])},
+			{"secondary", hsl(step)}, {"secondary-foreground", hsl(c["text"])},
 			{"accent", hsl(neutral)}, {"accent-foreground", hsl(c["text"])},
 			{"destructive", hsl(c["destructive"])}, {"destructive-foreground", hsl(on(c["destructive"]))},
 			{"error", hsl(c["error"])}, {"label", hsl(c["label"])},
@@ -196,6 +204,11 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 		for _, v := range vars {
 			fmt.Fprintf(&b, "\t--%s: %s;\n", v[0], v[1])
 		}
+		shadow := p.Elevation.Light
+		if isDark {
+			shadow = p.Elevation.Dark
+		}
+		fmt.Fprintf(&b, "\t--shadow-overlay: %s;\n", shadow)
 		b.WriteString("}\n")
 	}
 	block(":root", light, false)
@@ -208,13 +221,11 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--radius: %gpx;\n", float64(p.Layout.RadiusSm))
 	// How wide a page may grow, by what it shows (the dashboard's page-width.ts reads these).
 	fmt.Fprintf(&b, "\t--spin-width-contained: %dpx;\n\t--spin-width-detail: %dpx;\n\t--spin-width-wide: %dpx;\n", p.Layout.WidthContained, p.Layout.WidthDetail, p.Layout.WidthWide)
-	// The dim behind a dialog: the mark's navy, in either theme, at the palette's scrim.
-	navy, err := parseHex(p.Brand["navy"])
-	if err != nil {
-		panic("palette.toml's brand.navy: " + err.Error())
-	}
+	// The dim behind a dialog: the dark page, in either theme, at the palette's scrim - a neutral
+	// dim, not the mark's navy, which tinted everything behind a dialog blue.
+	dim := dark["page"]
 	b255 := func(v float64) int { return int(math.Round(v * 255)) }
-	fmt.Fprintf(&b, "\t--scrim: rgb(%d %d %d / %g);\n", b255(navy.r), b255(navy.g), b255(navy.b), p.Tint.Scrim)
+	fmt.Fprintf(&b, "\t--scrim: rgb(%d %d %d / %g);\n", b255(dim.r), b255(dim.g), b255(dim.b), p.Tint.Scrim)
 	// The word the sidebar writes beside the mark: the app's catalog audit holds its text to this.
 	fmt.Fprintf(&b, "\t--spin-wordmark: %q;\n", p.Type.Wordmark)
 	fmt.Fprintf(&b, "\t--spin-font-sans: '%s', %s;\n\t--spin-font-mono: '%s', %s;\n", p.Type.Sans, p.Type.FallbackSans, p.Type.Mono, p.Type.FallbackMono)

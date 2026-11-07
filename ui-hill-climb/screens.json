@@ -1,0 +1,211 @@
+{
+ "viewports": {
+  "desktop": [
+   1440,
+   900
+  ],
+  "mobile": [
+   390,
+   844
+  ]
+ },
+ "themes": [
+  "dark"
+ ],
+ "screens": [
+  {
+   "id": "app-list-dark",
+   "path": "/ui-hill-climb/app.html?mode=dark&view=list",
+   "viewports": [
+    "desktop",
+    "mobile"
+   ],
+   "steps": [
+    {
+     "wait": 200
+    }
+   ],
+   "fullPage": false
+  },
+  {
+   "id": "app-list-light",
+   "path": "/ui-hill-climb/app.html?mode=light&view=list",
+   "viewports": [
+    "desktop",
+    "mobile"
+   ],
+   "steps": [
+    {
+     "wait": 200
+    }
+   ],
+   "fullPage": false
+  },
+  {
+   "id": "app-detail-dark",
+   "path": "/ui-hill-climb/app.html?mode=dark&view=detail",
+   "viewports": [
+    "desktop",
+    "mobile"
+   ],
+   "steps": [
+    {
+     "wait": 200
+    }
+   ],
+   "fullPage": false
+  },
+  {
+   "id": "app-detail-light",
+   "path": "/ui-hill-climb/app.html?mode=light&view=detail",
+   "viewports": [
+    "desktop",
+    "mobile"
+   ],
+   "steps": [
+    {
+     "wait": 200
+    }
+   ],
+   "fullPage": false
+  },
+  {
+   "id": "app-dialog-dark",
+   "path": "/ui-hill-climb/app.html?mode=dark&view=dialog",
+   "viewports": [
+    "desktop"
+   ],
+   "steps": [
+    {
+     "wait": 200
+    }
+   ],
+   "fullPage": false
+  },
+  {
+   "id": "app-dialog-light",
+   "path": "/ui-hill-climb/app.html?mode=light&view=dialog",
+   "viewports": [
+    "desktop"
+   ],
+   "steps": [
+    {
+     "wait": 200
+    }
+   ],
+   "fullPage": false
+  },
+  {
+   "id": "site-dark",
+   "path": "/index.html?mode=dark",
+   "viewports": [
+    "desktop",
+    "mobile"
+   ],
+   "steps": [
+    {
+     "eval": "document.fonts.ready"
+    },
+    {
+     "eval": "for (const el of document.querySelectorAll('#page > *, .masthead, .index')) if (el.id !== 'site') el.style.display='none'"
+    },
+    {
+     "wait": 200
+    }
+   ]
+  },
+  {
+   "id": "site-light",
+   "path": "/index.html?mode=light",
+   "viewports": [
+    "desktop",
+    "mobile"
+   ],
+   "steps": [
+    {
+     "eval": "for (const el of document.querySelectorAll('#page > *, .masthead, .index')) if (el.id !== 'site') el.style.display='none'"
+    },
+    {
+     "wait": 200
+    }
+   ]
+  },
+  {
+   "id": "dashboard-dark",
+   "path": "/index.html?mode=dark",
+   "viewports": [
+    "desktop",
+    "mobile"
+   ],
+   "steps": [
+    {
+     "eval": "for (const el of document.querySelectorAll('#page > *, .masthead, .index')) if (el.id !== 'dashboard') el.style.display='none'"
+    },
+    {
+     "wait": 200
+    }
+   ]
+  },
+  {
+   "id": "dashboard-light",
+   "path": "/index.html?mode=light",
+   "viewports": [
+    "desktop",
+    "mobile"
+   ],
+   "steps": [
+    {
+     "eval": "for (const el of document.querySelectorAll('#page > *, .masthead, .index')) if (el.id !== 'dashboard') el.style.display='none'"
+    },
+    {
+     "wait": 200
+    }
+   ]
+  },
+  {
+   "id": "palette-dark",
+   "path": "/index.html?mode=dark",
+   "viewports": [
+    "desktop"
+   ],
+   "steps": [
+    {
+     "eval": "for (const el of document.querySelectorAll('#page > *, .index')) if (el.id !== 'palette-section') el.style.display='none'"
+    },
+    {
+     "wait": 300
+    }
+   ]
+  },
+  {
+   "id": "palette-light",
+   "path": "/index.html?mode=light",
+   "viewports": [
+    "desktop"
+   ],
+   "steps": [
+    {
+     "eval": "for (const el of document.querySelectorAll('#page > *, .index')) if (el.id !== 'palette-section') el.style.display='none'"
+    },
+    {
+     "wait": 300
+    }
+   ]
+  },
+  {
+   "id": "mark-dark",
+   "path": "/index.html?mode=dark",
+   "viewports": [
+    "desktop"
+   ],
+   "steps": [
+    {
+     "eval": "for (const el of document.querySelectorAll('#page > *, .masthead, .index')) if (el.id !== 'mark') el.style.display='none'"
+    },
+    {
+     "wait": 200
+    }
+   ]
+  }
+ ]
+}
