@@ -112,7 +112,10 @@ display = "mono"
 display_tracking = -0.035
 # Headings from a phone's width (layout.phone) to a desktop's (layout.desktop), [px there, px here]:
 # a clamp() in between, so a title neither shouts on a phone nor whispers on a monitor.
-fluid = { display = [32, 52], h1 = [26, 36], h2 = [21, 26], h3 = [17, 20] }
+# The display is the landing's headline alone: a page's title is h1, a step under it, so that a
+# doc's title keeps its proportion to its sections (Starlight's h1 was the display, and a title
+# towered over its h2s).
+fluid = { display = [32, 52], h1 = [28, 40], h2 = [22, 30], h3 = [18, 22], h4 = [16, 18] }
 # Figures in tables and meters line up: every digit the same width.
 numeric = "tabular-nums"
 # The name beside the mark, and in every header: the word the prose uses, since a lowercase mark

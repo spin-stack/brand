@@ -104,7 +104,7 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--spin-font-heading: var(--spin-font-%s);\n", p.Type.Heading)
 	fmt.Fprintf(&b, "\t--spin-font-display: var(--spin-font-%s);\n\t--spin-display-tracking: %gem;\n", p.Type.Display, p.Type.DisplayTracking)
 	fmt.Fprintf(&b, "\t--spin-numeric: %s;\n", p.Type.Numeric)
-	for _, k := range []string{"display", "h1", "h2", "h3"} {
+	for _, k := range []string{"display", "h1", "h2", "h3", "h4"} {
 		fmt.Fprintf(&b, "\t--spin-text-%s: %s;\n", k, fluid(p, k))
 	}
 	fmt.Fprintf(&b, "\t--spin-measure: %dch;\n\t--spin-sidebar: %drem;\n", p.Layout.Measure, p.Layout.Sidebar)
@@ -172,7 +172,7 @@ func starlightCSS(p palette, dark, light map[string]rgb) string {
 	// The headings' sizes, fluid from a phone's width to a desktop's: Starlight's own scale is a
 	// step for each breakpoint, and between them a heading jumped.
 	b.WriteString(":root {\n")
-	for _, h := range [][2]string{{"h1", "display"}, {"h2", "h1"}, {"h3", "h2"}, {"h4", "h3"}} {
+	for _, h := range [][2]string{{"h1", "h1"}, {"h2", "h2"}, {"h3", "h3"}, {"h4", "h4"}} {
 		fmt.Fprintf(&b, "\t--sl-text-%s: %s;\n", h[0], fluid(p, h[1]))
 	}
 	b.WriteString("}\n")
