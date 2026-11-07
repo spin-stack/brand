@@ -81,7 +81,7 @@
 	--spin-width-contained: 1200px;
 	--spin-width-detail: 1152px;
 	--spin-width-wide: 1600px;
-	--scrim: rgb(10 14 22 / 0.5);
+	--scrim: rgb(10 14 22 / 0.64);
 	--spin-wordmark: "Spinbox";
 	--spin-font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
 	--spin-font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;

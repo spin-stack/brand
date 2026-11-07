@@ -63,6 +63,11 @@ input::placeholder { color: hsl(var(--muted-foreground)); }
 .wrow .name b { font-weight: 600; }
 .state { display: inline-flex; gap: 6px; align-items: center; font: var(--spin-text-sm) var(--spin-font-mono); color: hsl(var(--muted-foreground)); }
 .state.ok { color: hsl(var(--success)); } .state.warn { color: hsl(var(--warning)); } .state.err { color: hsl(var(--error)); }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 20px; padding: 0 8px 0 7px; border-radius: 999px; font: 400 var(--spin-text-xs)/1 var(--spin-font-mono); white-space: nowrap; }
+.badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex: none; }
+.badge.ok { color: hsl(var(--success)); background: hsl(var(--success-subtle)); }
+.badge.err { color: hsl(var(--error)); background: hsl(var(--error-subtle)); } .badge.err::before { border-radius: 1px; }
+.badge.idle { color: hsl(var(--muted-foreground)); box-shadow: inset 0 0 0 1px hsl(var(--border)); } .badge.idle::before { background: none; box-shadow: inset 0 0 0 1.5px currentColor; }
 .img { color: hsl(var(--muted-foreground)); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .meta { color: hsl(var(--muted-foreground)); font-size: var(--spin-text-xs); white-space: nowrap; }
 .tabs { display: flex; gap: 24px; border-bottom: 1px solid hsl(var(--border)); margin-top: 20px; overflow-x: auto; }
@@ -127,17 +132,17 @@ pre { margin: 12px 0 0; padding: 12px 14px; background: hsl(var(--muted)); borde
 				<span class="filter"><span class="dot err"></span>Failed <b>1</b></span>
 			</div>
 			<div class="list">
-				<div class="wrow"><span class="name"><b>api</b><span class="state ok"><span class="dot ok"></span>running</span></span><span class="img mono">ghcr.io/spin-stack/spinbox/sandbox:v20261014.01</span><span class="meta">4 CPU · 8 GB · 50 GB</span><span class="meta">Updated 2m ago</span><span class="actions"><button class="btn secondary">Open terminal</button><span class="more" aria-label="More actions">⋯</span></span></div>
-				<div class="wrow"><span class="name"><b>agent-1</b><span class="state ok"><span class="dot ok"></span>running</span></span><span class="img mono">ghcr.io/spin-stack/spinbox/sandbox:v20261014.01</span><span class="meta">2 CPU · 4 GB · 20 GB</span><span class="meta">Updated 9m ago</span><span class="actions"><button class="btn secondary">Open terminal</button><span class="more" aria-label="More actions">⋯</span></span></div>
-				<div class="wrow"><span class="name"><b>ci-job</b><span class="state err"><span class="dot err"></span>failed</span></span><span class="img mono">ghcr.io/acme/builder:2026.10</span><span class="meta">8 CPU · 16 GB · 100 GB</span><span class="meta">Updated 1h ago</span><span class="actions"><button class="btn secondary">View logs</button><span class="more" aria-label="More actions">⋯</span></span></div>
-				<div class="wrow"><span class="name"><b>notes</b><span class="state"><span class="dot off"></span>stopped</span></span><span class="img mono">ghcr.io/spin-stack/spinbox/sandbox:v20261014.01</span><span class="meta">1 CPU · 0.5 GB · 10 GB</span><span class="meta">Updated yesterday</span><span class="actions"><button class="btn secondary">Start</button><span class="more" aria-label="More actions">⋯</span></span></div>
+				<div class="wrow"><span class="name"><b>api</b><span class="badge ok">running</span></span><span class="img mono">ghcr.io/spin-stack/spinbox/sandbox:v20261014.01</span><span class="meta">4 CPU · 8 GB · 50 GB</span><span class="meta">Updated 2m ago</span><span class="actions"><button class="btn secondary">Open terminal</button><span class="more" aria-label="More actions">⋯</span></span></div>
+				<div class="wrow"><span class="name"><b>agent-1</b><span class="badge ok">running</span></span><span class="img mono">ghcr.io/spin-stack/spinbox/sandbox:v20261014.01</span><span class="meta">2 CPU · 4 GB · 20 GB</span><span class="meta">Updated 9m ago</span><span class="actions"><button class="btn secondary">Open terminal</button><span class="more" aria-label="More actions">⋯</span></span></div>
+				<div class="wrow"><span class="name"><b>ci-job</b><span class="badge err">failed</span></span><span class="img mono">ghcr.io/acme/builder:2026.10</span><span class="meta">8 CPU · 16 GB · 100 GB</span><span class="meta">Updated 1h ago</span><span class="actions"><button class="btn secondary">View logs</button><span class="more" aria-label="More actions">⋯</span></span></div>
+				<div class="wrow"><span class="name"><b>notes</b><span class="badge idle">stopped</span></span><span class="img mono">ghcr.io/spin-stack/spinbox/sandbox:v20261014.01</span><span class="meta">1 CPU · 0.5 GB · 10 GB</span><span class="meta">Updated yesterday</span><span class="actions"><button class="btn secondary">Start</button><span class="more" aria-label="More actions">⋯</span></span></div>
 			</div>
 		</div>
 
 		<div class="page" id="detail" hidden>
 			<div class="crumb">← Workspaces</div>
 			<div class="head">
-				<div><h1 class="mono">api</h1><div class="sub mono" style="font-size:var(--spin-text-xs);display:flex;gap:8px;align-items:center"><span class="state ok"><span class="dot ok"></span>running</span> · ghcr.io/spin-stack/spinbox/sandbox:v20261014.01</div></div>
+				<div><h1 class="mono">api</h1><div class="sub mono" style="font-size:var(--spin-text-xs);display:flex;gap:8px;align-items:center"><span class="badge ok">running</span> · ghcr.io/spin-stack/spinbox/sandbox:v20261014.01</div></div>
 				<div class="actions"><button class="btn md secondary">Stop</button><button class="btn md primary">Open terminal</button><span class="more" aria-label="More actions">⋯</span></div>
 			</div>
 			<div class="tabs"><a class="current" href="#">Overview</a><a href="#">Access</a><a href="#">Status</a><a href="#">History</a><a href="#">Snapshots</a><a href="#">Ports</a><a href="#">Network</a><a href="#">Logs</a></div>
