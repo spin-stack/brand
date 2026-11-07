@@ -221,6 +221,10 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 			{"muted", hsl(step)}, {"muted-foreground", hsl(c["muted"])},
 			{"border", hsl(c["border"])}, {"input", hsl(c["border_strong"])}, {"ring", hsl(c["accent"])},
 			{"primary", hsl(c["accent"])}, {"primary-foreground", hsl(c["on_accent"])},
+			// The accent as text - a link, an action written as words: accent_text, held at 4.5:1 on
+			// every surface. The accent itself is a fill under a white label; as text on the dark
+			// navy it was 4.1:1, and the dashboard drew its links in it (text-primary).
+			{"link", hsl(c["accent_text"])},
 			{"primary-hover", hsl(st.accentHover)}, {"primary-active", hsl(st.accentActive)},
 			{"destructive-hover", hsl(st.destructiveHover)}, {"destructive-active", hsl(st.destructiveActive)},
 			{"secondary-hover", hsl(st.controlHover)},
