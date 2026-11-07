@@ -69,6 +69,9 @@ destructive = "#C0303F"
 hover = 0.10
 selected = 0.24
 scrim = 0.5
+# A solid fill under the pointer: black over it at this alpha, and twice it when pressed. Darker in
+# both themes, since the label on the accent and on the destructive is white.
+fill = 0.12
 
 # Elevation: what lifts a menu, a dialog or a toast off what is under it. In light, a soft shadow
 # under a white plane. In dark, a shadow is black on near-black: under a scrim it drew a darker
@@ -122,6 +125,17 @@ desktop = 1280
 width_contained = 1200  # px
 width_detail = 1152     # px
 width_wide = 1600       # px
+
+# Controls: a button's or an input's height, small (a row's action, a toolbar), medium (a form, a
+# page's header) and large (a dialog's footer, the site); the icon in it and the gap to its word.
+# 44 px on a coarse pointer is layout.target_touch. One rule for words and icons: a primary action
+# is words alone; an icon goes alone, with a tooltip, where a toolbar has no room for words.
+[controls]
+sm = 28
+md = 32
+lg = 36
+icon = 16
+gap = 6
 
 # Motion. A movement says what something does - a layer sealed on the one under it, a diff drawn
 # between two - or that it answered a hand; one that only decorates is left out. Each runs once:

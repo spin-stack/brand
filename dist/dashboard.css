@@ -13,6 +13,11 @@
 	--ring: 200.4 88.4% 33.9%;
 	--primary: 200.4 88.4% 33.9%;
 	--primary-foreground: 0.0 0.0% 100.0%;
+	--primary-hover: 200.4 88.4% 29.9%;
+	--primary-active: 200.4 88.4% 25.8%;
+	--destructive-hover: 353.8 60.0% 41.4%;
+	--destructive-active: 353.8 60.0% 35.8%;
+	--secondary-hover: 216.0 19.2% 89.8%;
 	--secondary: 216.0 20.0% 95.1%;
 	--secondary-foreground: 217.5 16.7% 9.4%;
 	--accent: 216.0 19.2% 89.8%;
@@ -41,6 +46,11 @@
 	--ring: 201.6 73.9% 40.6%;
 	--primary: 201.6 73.9% 40.6%;
 	--primary-foreground: 0.0 0.0% 100.0%;
+	--primary-hover: 201.6 73.9% 35.7%;
+	--primary-active: 201.6 73.9% 30.8%;
+	--destructive-hover: 350.1 55.6% 43.5%;
+	--destructive-active: 350.1 55.6% 37.6%;
+	--secondary-hover: 216.9 13.4% 19.0%;
 	--secondary: 218.2 14.3% 15.1%;
 	--secondary-foreground: 216.0 11.6% 91.6%;
 	--accent: 218.2 14.3% 15.1%;
@@ -57,6 +67,11 @@
 }
 :root {
 	--radius: 6px;
+	--spin-control-sm: 28px;
+	--spin-control-md: 32px;
+	--spin-control-lg: 36px;
+	--spin-control-icon: 16px;
+	--spin-control-gap: 6px;
 	--spin-width-contained: 1200px;
 	--spin-width-detail: 1152px;
 	--spin-width-wide: 1600px;

@@ -16,6 +16,12 @@
 	--spin-surface: #171A20;
 	--spin-text: #E7E9EC;
 	--spin-warning: #E3B04B;
+	--spin-accent-fill-hover: #186E9E;
+	--spin-accent-fill-active: #155F89;
+	--spin-destructive-hover: #AC3146;
+	--spin-destructive-active: #952B3C;
+	--spin-control: #21252C;
+	--spin-control-hover: #2A2F37;
 	--spin-shadow-overlay: 0 0 0 1px rgb(0 0 0 / 0.4);
 	--spin-accent-hover: #0F1B23;
 	--spin-accent-selected: #112A3A;
@@ -37,6 +43,12 @@
 	--spin-surface: #F0F2F5;
 	--spin-text: #14171C;
 	--spin-warning: #8A5A00;
+	--spin-accent-fill-hover: #09628F;
+	--spin-accent-fill-active: #08547C;
+	--spin-destructive-hover: #A92A37;
+	--spin-destructive-active: #922430;
+	--spin-control: #F0F2F5;
+	--spin-control-hover: #E0E4EA;
 	--spin-shadow-overlay: 0 12px 32px rgb(16 19 24 / 0.14), 0 2px 6px rgb(16 19 24 / 0.08);
 	--spin-accent-hover: #E7F1F6;
 	--spin-accent-selected: #C4DCE9;
@@ -63,6 +75,11 @@
 	--spin-radius-lg: 12px;
 	--spin-target: 24px;
 	--spin-target-touch: 44px;
+	--spin-control-sm: 28px;
+	--spin-control-md: 32px;
+	--spin-control-lg: 36px;
+	--spin-control-icon: 16px;
+	--spin-control-gap: 6px;
 	--spin-width-contained: 1200px;
 	--spin-width-detail: 1152px;
 	--spin-width-wide: 1600px;
