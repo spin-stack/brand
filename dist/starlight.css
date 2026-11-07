@@ -34,3 +34,9 @@
 	--sl-font: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
 	--sl-font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 }
+:root {
+	--sl-text-h1: clamp(2rem, 1.452rem + 2.247vw, 3.25rem);
+	--sl-text-h2: clamp(1.625rem, 1.351rem + 1.124vw, 2.25rem);
+	--sl-text-h3: clamp(1.312rem, 1.176rem + 0.5618vw, 1.625rem);
+	--sl-text-h4: clamp(1.062rem, 0.9803rem + 0.3371vw, 1.25rem);
+}

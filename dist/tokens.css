@@ -23,6 +23,10 @@
 	--spin-control: #19212F;
 	--spin-control-hover: #242E40;
 	--spin-shadow-overlay: 0 0 0 1px rgb(0 0 0 / 0.4);
+	--spin-success-badge: color-mix(in srgb, var(--spin-success) 12%, transparent);
+	--spin-warning-badge: color-mix(in srgb, var(--spin-warning) 12%, transparent);
+	--spin-error-badge: color-mix(in srgb, var(--spin-error) 12%, transparent);
+	--spin-accent-text-badge: color-mix(in srgb, var(--spin-accent-text) 12%, transparent);
 	--spin-accent-hover: #0C1926;
 	--spin-accent-selected: #0F2C41;
 }
@@ -32,17 +36,17 @@
 	--spin-border: #C4CCD8;
 	--spin-border-strong: #77829A;
 	--spin-destructive: #C0303F;
-	--spin-error: #A8236A;
+	--spin-error: #9A1F60;
 	--spin-label: #33586E;
 	--spin-muted: #525D72;
 	--spin-on-accent: #FFFFFF;
 	--spin-overlay: #FFFFFF;
 	--spin-page: #FFFFFF;
 	--spin-raised: #E1E7F0;
-	--spin-success: #167046;
+	--spin-success: #0F6844;
 	--spin-surface: #F1F4F9;
 	--spin-text: #111827;
-	--spin-warning: #8A5A00;
+	--spin-warning: #845000;
 	--spin-accent-fill-hover: #09628F;
 	--spin-accent-fill-active: #08547C;
 	--spin-destructive-hover: #A92A37;
@@ -50,6 +54,10 @@
 	--spin-control: #F1F4F9;
 	--spin-control-hover: #E1E7F0;
 	--spin-shadow-overlay: 0 12px 32px rgb(16 19 24 / 0.14), 0 2px 6px rgb(16 19 24 / 0.08);
+	--spin-success-badge: color-mix(in srgb, var(--spin-success) 12%, transparent);
+	--spin-warning-badge: color-mix(in srgb, var(--spin-warning) 12%, transparent);
+	--spin-error-badge: color-mix(in srgb, var(--spin-error) 12%, transparent);
+	--spin-accent-text-badge: color-mix(in srgb, var(--spin-accent-text) 12%, transparent);
 	--spin-accent-hover: #E7F1F6;
 	--spin-accent-selected: #BDD8E6;
 }
@@ -68,6 +76,12 @@
 	--spin-line-height: 1.6;
 	--spin-heading-weight: 600;
 	--spin-heading-tracking: -0.02em;
+	--spin-font-heading: var(--spin-font-sans);
+	--spin-numeric: tabular-nums;
+	--spin-text-display: clamp(2rem, 1.452rem + 2.247vw, 3.25rem);
+	--spin-text-h1: clamp(1.625rem, 1.351rem + 1.124vw, 2.25rem);
+	--spin-text-h2: clamp(1.312rem, 1.176rem + 0.5618vw, 1.625rem);
+	--spin-text-h3: clamp(1.062rem, 0.9803rem + 0.3371vw, 1.25rem);
 	--spin-measure: 72ch;
 	--spin-sidebar: 17rem;
 	--spin-radius-sm: 6px;

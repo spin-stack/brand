@@ -102,6 +102,12 @@ func holds(p palette) ([]result, error) {
 				hold("text", st+" on "+s, c[st], c[s], text)
 			}
 		}
+		// A state's badge: its colour as text on its colour as a tint, wherever a badge sits.
+		for _, s := range []string{"page", "surface", "raised"} {
+			for _, st := range []string{"success", "warning", "error", "accent_text"} {
+				hold("text", st+" on its badge over "+s, c[st], c[st].over(c[s], p.Tint.Badge), text)
+			}
+		}
 		for _, s := range []string{"page", "surface"} {
 			hold("text", "label on "+s, c["label"], c[s], text)
 			sel := c["accent"].over(c[s], p.Tint.Selected)

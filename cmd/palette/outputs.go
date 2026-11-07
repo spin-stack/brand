@@ -74,6 +74,10 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 			fmt.Fprintf(&b, "\t--spin-%s: %s;\n", v[0], v[1])
 		}
 		fmt.Fprintf(&b, "\t--spin-shadow-overlay: %s;\n", shadow)
+		// A state's badge: its colour at tint.badge over whatever is under it.
+		for _, k := range []string{"success", "warning", "error", "accent-text"} {
+			fmt.Fprintf(&b, "\t--spin-%s-badge: color-mix(in srgb, var(--spin-%s) %g%%, transparent);\n", k, k, p.Tint.Badge*100)
+		}
 		fmt.Fprintf(&b, "\t--spin-accent-hover: %s;\n", c["accent"].over(c["page"], p.Tint.Hover).hex())
 		fmt.Fprintf(&b, "\t--spin-accent-selected: %s;\n", c["accent"].over(c["page"], p.Tint.Selected).hex())
 		b.WriteString("}\n")
@@ -97,6 +101,11 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--spin-text-reading: %dpx;\n\t--spin-text-dense: %dpx;\n", p.Type.ReadingSize, p.Type.DenseSize)
 	fmt.Fprintf(&b, "\t--spin-line-height: %g;\n", p.Type.LineHeight)
 	fmt.Fprintf(&b, "\t--spin-heading-weight: %d;\n\t--spin-heading-tracking: %gem;\n", p.Type.HeadingWeight, p.Type.HeadingTracking)
+	fmt.Fprintf(&b, "\t--spin-font-heading: var(--spin-font-%s);\n", p.Type.Heading)
+	fmt.Fprintf(&b, "\t--spin-numeric: %s;\n", p.Type.Numeric)
+	for _, k := range []string{"display", "h1", "h2", "h3"} {
+		fmt.Fprintf(&b, "\t--spin-text-%s: %s;\n", k, fluid(p, k))
+	}
 	fmt.Fprintf(&b, "\t--spin-measure: %dch;\n\t--spin-sidebar: %drem;\n", p.Layout.Measure, p.Layout.Sidebar)
 	fmt.Fprintf(&b, "\t--spin-radius-sm: %dpx;\n\t--spin-radius: %dpx;\n\t--spin-radius-lg: %dpx;\n", p.Layout.RadiusSm, p.Layout.Radius, p.Layout.RadiusLg)
 	fmt.Fprintf(&b, "\t--spin-target: %dpx;\n\t--spin-target-touch: %dpx;\n", p.Layout.Target, p.Layout.TargetTouch)
@@ -159,6 +168,13 @@ func starlightCSS(p palette, dark, light map[string]rgb) string {
 	block(":root[data-theme='light']", light, false)
 	fmt.Fprintf(&b, ":root {\n\t--sl-font: '%s', %s;\n\t--sl-font-mono: '%s', %s;\n}\n",
 		p.Type.Sans, p.Type.FallbackSans, p.Type.Mono, p.Type.FallbackMono)
+	// The headings' sizes, fluid from a phone's width to a desktop's: Starlight's own scale is a
+	// step for each breakpoint, and between them a heading jumped.
+	b.WriteString(":root {\n")
+	for _, h := range [][2]string{{"h1", "display"}, {"h2", "h1"}, {"h3", "h2"}, {"h4", "h3"}} {
+		fmt.Fprintf(&b, "\t--sl-text-%s: %s;\n", h[0], fluid(p, h[1]))
+	}
+	b.WriteString("}\n")
 	return b.String()
 }
 
@@ -211,6 +227,10 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 			{"accent", hsl(neutral)}, {"accent-foreground", hsl(c["text"])},
 			{"destructive", hsl(c["destructive"])}, {"destructive-foreground", hsl(on(c["destructive"]))},
 			{"error", hsl(c["error"])}, {"label", hsl(c["label"])},
+			// A badge's fill: the state at tint.badge over the card it sits on.
+			{"success-subtle", hsl(c["success"].over(card, p.Tint.Badge))},
+			{"warning-subtle", hsl(c["warning"].over(card, p.Tint.Badge))},
+			{"error-subtle", hsl(c["error"].over(card, p.Tint.Badge))},
 			{"success", hsl(c["success"])}, {"success-foreground", hsl(on(c["success"]))},
 			{"warning", hsl(c["warning"])}, {"warning-foreground", hsl(on(c["warning"]))},
 		}
@@ -253,6 +273,7 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 		fmt.Fprintf(&b, "\t--spin-text-%s: %dpx;\n\t--spin-text-%s-lh: %dpx;\n", k, step[0], k, step[1])
 	}
 	fmt.Fprintf(&b, "\t--spin-heading-tracking: %gem;\n", p.Type.HeadingTracking)
+	fmt.Fprintf(&b, "\t--spin-numeric: %s;\n", p.Type.Numeric)
 	fmt.Fprintf(&b, "\t--spin-duration-fast: %dms;\n\t--spin-duration: %dms;\n", p.Motion.Fast, p.Motion.Base)
 	fmt.Fprintf(&b, "\t--spin-duration-slow: %dms;\n\t--spin-ease: %s;\n", p.Motion.Slow, p.Motion.Ease)
 	b.WriteString("}\n")
@@ -325,4 +346,17 @@ func simulateSVG() string {
 	}
 	b.WriteString("</svg>\n")
 	return b.String()
+}
+
+// fluid is a size that grows with the viewport from the phone's width to the desktop's, as a
+// clamp() in rem, so that a reader's zoom still scales it: [min, max] in px at those widths.
+func fluid(p palette, name string) string {
+	s, ok := p.Type.Fluid[name]
+	if !ok {
+		panic("palette.toml's type.fluid has no " + name)
+	}
+	lo, hi := float64(p.Layout.Phone), float64(p.Layout.Desktop)
+	slope := float64(s[1]-s[0]) / (hi - lo)
+	base := float64(s[0]) - slope*lo
+	return fmt.Sprintf("clamp(%.4grem, %.4grem + %.4gvw, %.4grem)", float64(s[0])/16, base/16, slope*100, float64(s[1])/16)
 }

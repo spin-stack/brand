@@ -55,9 +55,9 @@ accent = "#0A6FA3"      # the cyan darkened until white text on it, and it on wh
 accent_text = "#075A86"
 on_accent = "#FFFFFF"
 label = "#33586E"       # the slate, darkened to read on white
-success = "#167046"
-warning = "#8A5A00"
-error = "#A8236A"       # magenta-leaning, as dark's: a deutan tells it from success by its blue
+success = "#0F6844"
+warning = "#845000"
+error = "#9A1F60"       # magenta-leaning, as dark's: a deutan tells it from success by its blue
 destructive = "#C0303F"
 
 # The accent over a surface, for what is selected or hovered on the site (the current page in the
@@ -72,6 +72,9 @@ scrim = 0.5
 # A solid fill under the pointer: black over it at this alpha, and twice it when pressed. Darker in
 # both themes, since the label on the accent and on the destructive is white.
 fill = 0.12
+# A state's badge (running, waiting, failed): the state's colour as a tint under its own text, so a
+# state reads as a thing and not as coloured words. Its text holds 4.5:1 on it over every surface.
+badge = 0.12
 
 # Elevation: what lifts a menu, a dialog or a toast off what is under it. In light, a soft shadow
 # under a white plane. In dark, a shadow is black on near-black: under a scrim it drew a darker
@@ -81,10 +84,12 @@ fill = 0.12
 light = "0 12px 32px rgb(16 19 24 / 0.14), 0 2px 6px rgb(16 19 24 / 0.08)"
 dark = "0 0 0 1px rgb(0 0 0 / 0.4)"
 
-# Type. IBM Plex, served by the site that uses it: a sans for reading and a mono for what a
-# machine says - commands, output, ids, a state, a time - and for the site's headings, which set
-# Spinbox in its console's face. The dashboard's page titles are sans; a title that names a thing
-# (a workspace, a runner) is its identifier, in mono.
+# Type. IBM Plex, served by the site that uses it: a sans for reading and every heading, and a mono
+# for what a machine says - commands, output, ids, an image, a state, a time. A heading in the mono
+# at 52 px read as a terminal (the November council, all three reviewers): the mono is for what is
+# copied, the sans for what is read. A title that names a thing (a workspace, a runner) is its
+# identifier, in mono. Mono beside sans is set at the sans' size, never smaller: an id or a state
+# at 11 px beside a 13 px name was the least legible thing on every screen.
 [type]
 sans = "IBM Plex Sans"
 mono = "IBM Plex Mono"
@@ -98,7 +103,13 @@ dense_size = 13         # px: the dashboard's body, where a table of runners is 
 dense_scale = { xs = [12, 16], sm = [13, 20], base = [14, 22], lg = [16, 24], xl = [18, 26], "2xl" = [20, 28], "3xl" = [24, 32] }
 line_height = 1.6       # reading; dense text takes 1.45
 heading_weight = 600
-heading_tracking = -0.02 # em: mono headings are wide; this tightens them to read as one word
+heading_tracking = -0.02 # em: a large sans set tight reads as one word
+heading = "sans"        # the face of every heading, the site's included
+# Headings from a phone's width (layout.phone) to a desktop's (layout.desktop), [px there, px here]:
+# a clamp() in between, so a title neither shouts on a phone nor whispers on a monitor.
+fluid = { display = [32, 52], h1 = [26, 36], h2 = [21, 26], h3 = [17, 20] }
+# Figures in tables and meters line up: every digit the same width.
+numeric = "tabular-nums"
 # The name beside the mark, and in every header: the word the prose uses, since a lowercase mark
 # beside a capitalised product was two spellings of one name. The dashboard's catalog audit holds
 # its sidebar to this; the website's reference holds its title to it.

@@ -238,6 +238,38 @@
      "wait": 300
     }
    ]
+  },
+  {
+   "id": "components-dark",
+   "path": "/index.html?mode=dark",
+   "viewports": [
+    "desktop",
+    "mobile"
+   ],
+   "steps": [
+    {
+     "eval": "for (const el of document.querySelectorAll('#page > *, .index, .masthead')) if (!['states','fields','tables'].includes(el.id)) el.style.display='none'"
+    },
+    {
+     "wait": 300
+    }
+   ]
+  },
+  {
+   "id": "components-light",
+   "path": "/index.html?mode=light",
+   "viewports": [
+    "desktop",
+    "mobile"
+   ],
+   "steps": [
+    {
+     "eval": "for (const el of document.querySelectorAll('#page > *, .index, .masthead')) if (!['states','fields','tables'].includes(el.id)) el.style.display='none'"
+    },
+    {
+     "wait": 300
+    }
+   ]
   }
  ]
 }
