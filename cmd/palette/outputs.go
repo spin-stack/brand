@@ -206,19 +206,16 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 		// that a selected item in the sidebar did not show.
 		neutral := c["raised"]
 		st := controlStates(p, c, isDark)
-		// A step off the page - a code block, a secondary button's fill: raised in dark; in light
-		// the surface, since raised there read as a grey slab and a button on it as disabled.
-		step := c["surface"]
-		if isDark {
-			step = c["raised"]
-		}
+		// muted is raised in both themes: it is the dashboard's selected navigation, and on light's
+		// surface the current page all but vanished (the dashboard's round 1). A secondary
+		// button's fill is controlStates'.
 		vars := [][2]string{
 			{"background", hsl(c["page"])}, {"foreground", hsl(c["text"])},
 			{"card", hsl(card)}, {"card-foreground", hsl(c["text"])},
 			// A menu's or a dialog's plane: overlay, the lightest step in dark, so that it is lifted
 			// by its own lightness rather than by a shadow; white in light.
 			{"popover", hsl(c["overlay"])}, {"popover-foreground", hsl(c["text"])},
-			{"muted", hsl(step)}, {"muted-foreground", hsl(c["muted"])},
+			{"muted", hsl(c["raised"])}, {"muted-foreground", hsl(c["muted"])},
 			{"border", hsl(c["border"])}, {"input", hsl(c["border_strong"])}, {"ring", hsl(c["accent"])},
 			{"primary", hsl(c["accent"])}, {"primary-foreground", hsl(c["on_accent"])},
 			// The accent as text - a link, an action written as words: accent_text, held at 4.5:1 on
