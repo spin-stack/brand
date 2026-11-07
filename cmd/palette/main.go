@@ -33,7 +33,7 @@ type palette struct {
 	Brand map[string]string
 	Dark  mode
 	Light mode
-	Tint  struct{ Hover, Selected, Scrim, Fill float64 }
+	Tint  struct{ Hover, Selected, Scrim, Fill, Badge float64 }
 	// What lifts a menu or a dialog off what is under it, per theme: a CSS box-shadow.
 	Elevation struct{ Dark, Light string }
 	Type      struct {
@@ -46,6 +46,9 @@ type palette struct {
 		LineHeight      float64           `toml:"line_height"`
 		HeadingWeight   int               `toml:"heading_weight"`
 		HeadingTracking float64           `toml:"heading_tracking"`
+		Heading         string
+		Fluid           map[string][2]int
+		Numeric         string
 		Wordmark        string
 	}
 	Layout struct {

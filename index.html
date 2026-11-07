@@ -21,8 +21,8 @@ body { margin: 0; background: var(--spin-page); color: var(--spin-text); font: v
 .bar label { display: inline-flex; gap: .4rem; align-items: center; color: var(--spin-muted); }
 .bar select, .bar button { font: inherit; color: var(--spin-text); background: var(--spin-raised); border: 1px solid var(--spin-border-strong); border-radius: var(--spin-radius-sm); min-height: var(--spin-target); padding: 0 .5rem; }
 .wrap { max-width: 1280px; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
-h1, h2, h3 { font-family: var(--spin-font-mono); font-weight: var(--spin-heading-weight); letter-spacing: var(--spin-heading-tracking); color: var(--spin-text); }
-.label { font: 600 12px var(--spin-font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--spin-label); }
+h1, h2, h3 { font-family: var(--spin-font-heading); font-weight: var(--spin-heading-weight); letter-spacing: var(--spin-heading-tracking); color: var(--spin-text); }
+.label { font: 600 13px/1.4 var(--spin-font-sans); color: var(--spin-label); }
 section { margin-top: 3rem; }
 section > .label { display: block; border-top: 1px solid var(--spin-border); padding-top: 1.5rem; margin-bottom: 1rem; }
 .muted { color: var(--spin-muted); }
@@ -32,7 +32,7 @@ a { color: var(--spin-accent-text); text-underline-offset: .2em; }
 /* The masthead: what this page is, and the view's controls. */
 .masthead { background: var(--spin-surface); border-bottom: 1px solid var(--spin-border); }
 .masthead .wrap { padding-block: 1.5rem 1.25rem; }
-.masthead h1 { font-size: clamp(1.6rem, 1rem + 2vw, 2.4rem); margin: .75rem 0 .25rem; }
+.masthead h1 { font-size: var(--spin-text-h1); margin: .75rem 0 .25rem; }
 .masthead p { margin: 0 0 1rem; max-width: 60rem; }
 .controls { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; }
 .controls label { display: inline-flex; gap: .5rem; align-items: center; font: 500 13px var(--spin-font-mono); color: var(--spin-muted); }
@@ -53,7 +53,7 @@ section, .part { scroll-margin-top: 3rem; }
 /* A part: what follows is sample content, a decision, or a check. */
 .part { display: flex; gap: 1rem; align-items: baseline; margin-top: 4rem; padding: 1.25rem 0; border-top: 2px solid var(--spin-border-strong); }
 .part .num { font: 600 2rem var(--spin-font-mono); color: var(--spin-label); line-height: 1; }
-.part h2 { margin: 0; font-size: 1.4rem; } .part p { margin: .25rem 0 0; max-width: 52rem; }
+.part h2 { margin: 0; font-size: var(--spin-text-h2); } .part p { margin: .25rem 0 0; max-width: 52rem; }
 #page > .part:first-child { margin-top: 1.5rem; border-top: 0; }
 .perc-wrap summary { cursor: pointer; font: 500 13px var(--spin-font-mono); padding: .5rem 0; color: var(--spin-text); }
 
@@ -71,6 +71,42 @@ figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); padding
 .space img { display: block; }
 .donts { display: flex; gap: 1.25rem; flex-wrap: wrap; }
 .donts figure { text-align: center; } .donts figcaption::before { content: '✕ '; color: var(--spin-error); }
+
+
+/* A state as a badge: its shape and word on its tint (--spin-*-badge), the same in a table, a
+   header and a toast. Stopped has no colour of its own: a hollow ring, the muted ink. */
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 8px 0 7px; border-radius: 999px; font: 400 12px/1 var(--spin-font-mono); white-space: nowrap; }
+.badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex: none; }
+.badge.ok { color: var(--spin-success); background: var(--spin-success-badge); }
+.badge.warn { color: var(--spin-warning); background: var(--spin-warning-badge); } .badge.warn::before { border-radius: 1px; transform: rotate(45deg); width: 6px; height: 6px; }
+.badge.err { color: var(--spin-error); background: var(--spin-error-badge); } .badge.err::before { border-radius: 1px; }
+.badge.busy { color: var(--spin-accent-text); background: var(--spin-accent-text-badge); } .badge.busy::before { background: none; border: 2px solid currentColor; border-right-color: transparent; width: 6px; height: 6px; }
+.badge.idle { color: var(--spin-muted); box-shadow: inset 0 0 0 1px var(--spin-border); } .badge.idle::before { background: none; box-shadow: inset 0 0 0 1.5px currentColor; }
+.specimen { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; margin-top: 1rem; }
+.specimen > figure { margin: 0; border: 1px solid var(--spin-border); border-radius: var(--spin-radius); padding: 1rem; background: var(--spin-surface); }
+.badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+/* Fields: the input's edge at 3:1 (border-strong), the focus ring in the accent, an error in its
+   colour with its message under it, a hint in muted. 16 px on a touch screen (iOS zooms below). */
+.field { display: grid; gap: 6px; margin-top: .75rem; }
+.field label { font: 500 13px var(--spin-font-sans); color: var(--spin-text); }
+.field input { font: 13px var(--spin-font-sans); color: var(--spin-text); background: var(--spin-page); border: 1px solid var(--spin-border-strong); border-radius: var(--spin-radius-sm); height: var(--spin-control-md); padding: 0 10px; width: 100%; }
+.field input.mono { font-family: var(--spin-font-mono); }
+.field input:hover, .field input.is-hover { border-color: var(--spin-muted); }
+.field input:focus-visible, .field input.is-focus { outline: 2px solid var(--spin-accent); outline-offset: 0; border-color: var(--spin-accent); }
+.field input[aria-invalid="true"] { border-color: var(--spin-error); }
+.field input:disabled { opacity: .5; }
+.field small { font: 12px var(--spin-font-sans); color: var(--spin-muted); } .field small.err { color: var(--spin-error); }
+@media (pointer: coarse) { .field input { font-size: 16px; height: var(--spin-target-touch); } }
+/* A table of many: headers in the muted sans, rows in the dense size, ids in mono, figures right
+   and tabular, a row under the pointer on the control fill, a selected one on the accent's tint. */
+.grid { width: 100%; border-collapse: collapse; font: 13px/1.45 var(--spin-font-sans); font-variant-numeric: var(--spin-numeric); }
+.grid th { font-weight: 500; font-size: 12px; color: var(--spin-muted); text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--spin-border); white-space: nowrap; }
+.grid td { padding: 8px 10px; border-bottom: 1px solid var(--spin-border); white-space: nowrap; }
+.grid .n { text-align: right; } .grid .id { font-family: var(--spin-font-mono); color: var(--spin-muted); }
+.grid tr.is-hover td { background: var(--spin-control); } .grid tbody tr:hover td { background: var(--spin-control); }
+.grid tr.is-selected td { background: var(--spin-accent-hover); } .grid tr.is-selected td:first-child { box-shadow: inset 2px 0 0 var(--spin-accent); }
+.grid-wrap { overflow-x: auto; border: 1px solid var(--spin-border); border-radius: var(--spin-radius); margin-top: 1rem; }
+.grid-wrap .grid tr:last-child td { border-bottom: 0; }
 
 /* The palette, by what each color is for */
 .group { display: grid; grid-template-columns: minmax(10rem, 14rem) 1fr; gap: 1rem 1.5rem; padding: 1rem 0; border-top: 1px solid var(--spin-border); }
@@ -99,7 +135,7 @@ figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); padding
 .site header .search { margin-left: auto; min-width: 12rem; min-height: var(--spin-target); border: 1px solid var(--spin-border); border-radius: var(--spin-radius); padding: .25rem .75rem; color: var(--spin-muted); background: var(--spin-page); }
 .banner { padding: .5rem 1rem; text-align: center; font-size: 14px; background: var(--spin-accent-selected); border-bottom: 1px solid var(--spin-border); }
 .hero { display: grid; gap: 2rem; padding: 3rem 2rem; grid-template-columns: 7fr 5fr; align-items: center; }
-.hero h1 { font-size: clamp(2rem, 1rem + 3vw, 3.2rem); line-height: 1.08; margin: .5rem 0 1rem; }
+.hero h1 { font-size: var(--spin-text-display); line-height: 1.08; margin: .5rem 0 1rem; text-wrap: balance; }
 .hero img { width: 100%; max-width: 20rem; justify-self: center; border-radius: 22%; }
 /* Buttons: one geometry from the site to the dashboard - the control heights, the small radius,
    a fill and a hairline - and the states palette.toml derives and checks (dist/tokens.css). */
@@ -138,16 +174,17 @@ figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); padding
 .doc aside { padding: 1rem; font-size: 13px; border-left: 1px solid var(--spin-border); color: var(--spin-muted); }
 pre { background: var(--spin-raised); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-sm); padding: .9rem 1rem; overflow-x: auto; font: 14px/1.55 var(--spin-font-mono); color: var(--spin-text); }
 code { font-family: var(--spin-font-mono); }
+p code { white-space: nowrap; }
 p code, td code { background: var(--spin-raised); border: 1px solid var(--spin-border); border-radius: 4px; padding: 0 .3em; font-size: .9em; }
 .aside { border-left: 3px solid var(--spin-warning); background: var(--spin-raised); padding: .75rem 1rem; border-radius: var(--spin-radius-sm); }
-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: var(--spin-numeric); }
 th, td { text-align: left; padding: .55rem .6rem; border-bottom: 1px solid var(--spin-border); }
 th { color: var(--spin-muted); font-weight: 500; }
 
 /* The dashboard */
 .dash { display: grid; grid-template-columns: 14rem 1fr; border: 1px solid var(--spin-border); border-radius: var(--spin-radius-lg); overflow: hidden; font-size: var(--spin-text-dense); line-height: 1.45; }
 .dash nav { background: var(--spin-surface); padding: 1rem .75rem; border-right: 1px solid var(--spin-border); }
-.dash nav .cap { font: 600 11px var(--spin-font-mono); color: var(--spin-muted); letter-spacing: .08em; text-transform: uppercase; margin: 1rem .5rem .4rem; }
+.dash nav .cap { font: 500 12px var(--spin-font-sans); color: var(--spin-muted); margin: 1rem .5rem .4rem; }
 .dash nav a { display: block; padding: .35rem .5rem; border-radius: var(--spin-radius-sm); color: var(--spin-text); text-decoration: none; }
 .dash nav a.current { background: var(--spin-raised); color: var(--spin-text); }
 .dash h3 { font-family: var(--spin-font-sans); letter-spacing: 0; }
@@ -155,7 +192,7 @@ th { color: var(--spin-muted); font-weight: 500; }
 .dash .tools { display: flex; gap: .5rem; align-items: center; margin: .75rem 0 1rem; flex-wrap: wrap; }
 .dash input { font: inherit; color: var(--spin-text); background: var(--spin-raised); border: 1px solid var(--spin-border-strong); border-radius: var(--spin-radius-sm); min-height: 34px; padding: 0 .6rem; min-width: 14rem; }
 .dash input::placeholder { color: var(--spin-muted); }
-.state { display: inline-flex; align-items: center; gap: .4rem; font: 500 12px var(--spin-font-mono); }
+.state { display: inline-flex; align-items: center; gap: .4rem; font: 400 1em var(--spin-font-mono); }
 .state::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
 .state.ok { color: var(--spin-success); } .state.warn { color: var(--spin-warning); } .state.err { color: var(--spin-error); } .state.idle { color: var(--spin-muted); }
 .state.warn::before { border-radius: 1px; transform: rotate(45deg); } .state.err::before { border-radius: 0; }
@@ -200,7 +237,7 @@ body.embed .wrap { padding-top: 0; }
 <div id="filters"></div>
 <header class="masthead only-full">
 	<div class="wrap">
-		<div class="lockup"><img class="on-dark" src="logos/mark-256.png" alt=""><img class="on-light" src="logos/mark-clear-256.png" alt=""><span>Spinbox</span></div>
+		<div class="lockup"><img class="on-dark" src="logos/mark-dark-256.png" alt=""><img class="on-light" src="logos/mark-clear-256.png" alt=""><span>Spinbox</span></div>
 		<h1>Spinbox brand system</h1>
 		<p class="muted">One palette, one mark and one type for the site, the dashboard and everything else that draws Spinbox - each color checked here, and copied from here by each of them. This page is the laboratory; the product is at <a href="https://spin-stack.github.io/website/">the website</a>.</p>
 		<div class="controls" role="group" aria-label="View">
@@ -212,7 +249,7 @@ body.embed .wrap { padding-top: 0; }
 <nav class="index only-full" aria-label="On this page">
 	<div class="wrap">
 		<a href="#in-use">1 · In use</a><a href="#site">Site</a><a href="#dashboard">Dashboard</a><a href="#app">App</a>
-		<a href="#decisions">2 · Decisions</a><a href="#mark">Mark</a><a href="#buttons">Buttons</a><a href="#palette-section">Palette</a>
+		<a href="#decisions">2 · Decisions</a><a href="#mark">Mark</a><a href="#buttons">Buttons</a><a href="#states">States</a><a href="#fields">Fields</a><a href="#tables">Tables</a><a href="#palette-section">Palette</a>
 		<a href="#checks">3 · Checks</a><a href="#widths">Widths</a><a href="#perception">Perception</a><a href="screens.html">Every screen →</a>
 	</div>
 </nav>
@@ -223,7 +260,7 @@ body.embed .wrap { padding-top: 0; }
 <section id="site">
 	<span class="label">The site</span>
 	<div class="site">
-		<header><img class="on-dark" src="logos/mark-256.png" alt=""><img class="on-light" src="logos/mark-clear-256.png" alt=""><b>Spinbox</b><span class="search">Search</span></header>
+		<header><img class="on-dark" src="logos/mark-dark-256.png" alt=""><img class="on-light" src="logos/mark-clear-256.png" alt=""><b>Spinbox</b><span class="search">Search</span></header>
 		<div class="banner"><strong>Spinbox is experimental: APIs change and data may be lost.</strong> <a href="#">Status</a> lists what is built and what proves it.</div>
 		<div class="hero">
 			<div>
@@ -232,7 +269,7 @@ body.embed .wrap { padding-top: 0; }
 				<p class="muted">Sandboxes for people and agents that run in your own AWS account.</p>
 				<p style="display:flex;gap:.5rem;flex-wrap:wrap"><a class="btn lg primary" href="#">Evaluate</a><a class="btn lg secondary" href="#">Install on AWS</a></p>
 			</div>
-			<img src="logos/mark-clear-512.png" alt="">
+			<img class="on-dark" src="logos/mark-dark-512.png" alt=""><img class="on-light" src="logos/mark-clear-512.png" alt="">
 		</div>
 		<div class="doc">
 			<nav><a href="#">What is Spinbox</a><a href="#">Status</a><a class="current" href="#">Snapshots and rollback</a><a href="#">Network and egress</a><a href="#">Ports and sharing</a></nav>
@@ -296,7 +333,7 @@ D  /etc/issue</pre>
 			<div class="space"><img src="logos/mark-clear-256.png" width="72" alt=""></div>
 			<p class="muted">A quarter of the mark's height on every side, dashed above: no text or edge inside it.</p>
 			<h3>Lockup</h3>
-			<div class="lockup big"><img class="on-dark" src="logos/mark-256.png" alt=""><img class="on-light" src="logos/mark-clear-256.png" alt=""><span>Spinbox</span></div>
+			<div class="lockup big"><img class="on-dark" src="logos/mark-dark-256.png" alt=""><img class="on-light" src="logos/mark-clear-256.png" alt=""><span>Spinbox</span></div>
 			<p class="muted">The mark, then <code>Spinbox</code> in IBM Plex Mono 600 - the word the prose uses, capitalised, its cap height the mark's middle disk.</p>
 			<h3>Not</h3>
 			<div class="donts">
@@ -330,6 +367,38 @@ D  /etc/issue</pre>
 			<figure class="use"><figcaption>A dialog's footer</figcaption><div class="row" style="justify-content:flex-end"><button class="btn lg secondary">Cancel</button><button class="btn lg danger">Delete</button></div></figure>
 		</div>
 	</div>
+</section>
+
+
+<section class="only-full" id="states">
+	<span class="label">States</span>
+	<div class="rules">
+		<p class="muted">A state is a badge: its shape, its word in the mono, on its own tint (<code>--spin-success-badge</code> and the rest, <code>tint.badge</code> over whatever is under it). The word holds 4.5:1 on its tint over the page, a surface and a raised fill; the shape tells it apart where the hue does not. The same badge in a table, a header and a toast.</p>
+		<div class="badges"><span class="badge ok">running</span><span class="badge busy">starting</span><span class="badge warn">waiting for a host</span><span class="badge err">failed</span><span class="badge idle">stopped</span></div>
+	</div>
+</section>
+
+<section class="only-full" id="fields">
+	<span class="label">Fields</span>
+	<div class="specimen">
+		<figure><div class="field"><label for="f1">Name</label><input id="f1" placeholder="my-workspace"><small>Lowercase, digits and dashes.</small></div><div class="field"><label for="f2">Image</label><input id="f2" class="mono is-hover" value="ghcr.io/spin-stack/spinbox/sandbox:v20261014.01"></div></figure>
+		<figure><div class="field"><label for="f3">Description</label><input id="f3" class="is-focus" value="clean"><small>Focused: the accent's ring, the edge in the accent.</small></div><div class="field"><label for="f4">Type agent-1 to confirm</label><input id="f4" class="mono" aria-invalid="true" value="agent"><small class="err">The name does not match agent-1.</small></div></figure>
+		<figure><div class="field"><label for="f5">Region</label><input id="f5" value="us-east-1" disabled><small>Disabled: set by the installation.</small></div><p class="muted" style="font-size:13px;margin:.75rem 0 0">An input's edge is <code>border-strong</code>, 3:1 on the page (WCAG 1.4.11); 16 px on a touch screen, since iOS zooms into anything smaller.</p></figure>
+	</div>
+</section>
+
+<section class="only-full" id="tables">
+	<span class="label">Tables</span>
+	<div class="grid-wrap"><table class="grid">
+		<thead><tr><th>Name</th><th>State</th><th>Image</th><th class="n">CPU</th><th class="n">Memory</th><th class="n">Disk</th><th>Updated</th></tr></thead>
+		<tbody>
+			<tr><td>api</td><td><span class="badge ok">running</span></td><td class="id">sandbox:v20261014.01</td><td class="n">4</td><td class="n">8.0 GB</td><td class="n">50 GB</td><td>2 min ago</td></tr>
+			<tr class="is-hover"><td>agent-1</td><td><span class="badge warn">waiting</span></td><td class="id">sandbox:v20261014.01</td><td class="n">2</td><td class="n">4.0 GB</td><td class="n">20 GB</td><td>9 min ago</td></tr>
+			<tr class="is-selected"><td>ci-job</td><td><span class="badge err">failed</span></td><td class="id">acme/builder:2026.10</td><td class="n">16</td><td class="n">32.0 GB</td><td class="n">100 GB</td><td>1 h ago</td></tr>
+			<tr><td>notes</td><td><span class="badge idle">stopped</span></td><td class="id">sandbox:v20261014.01</td><td class="n">1</td><td class="n">0.5 GB</td><td class="n">10 GB</td><td>yesterday</td></tr>
+		</tbody>
+	</table></div>
+	<p class="muted" style="font-size:13px">Headers in the muted sans, never uppercase; ids in the mono; figures right-aligned in tabular digits (<code>--spin-numeric</code>); agent-1 under the pointer, ci-job selected. On a phone a table scrolls inside its frame, the page does not.</p>
 </section>
 
 <section class="only-full" id="compositions">

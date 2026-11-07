@@ -33,3 +33,20 @@ disabled, light code a slab, dark planes too close, failed pink reads friendly.
 Dark surface/raised/overlay one step further apart (#171A20, #21252C, #2A2F37), border #373E48,
 border_strong #6A7280 to hold 3:1 on the new raised; error #EE7BB0 (a red fails deutans against
 success, so magenta stays). The dashboard's `muted`/`secondary` are the surface in light.
+Council round 4 (claude, codex; gemini out of quota): claude 8-2 (2 ties, the two "losses" with
+reasons that describe the candidate), codex 6-5. The owner: navy+cyan is the identity, the
+problem was contrast - not to be dropped.
+
+## 05 — B, navy ink; buttons are brand's
+The owner chose B: the navy darkened to #0A0E16, steps apart, grey lines. [controls] (28/32/36,
+icon, gap) and tint.fill: hover and pressed fills derived and held (120 pairs). Lab: Buttons.
+
+## 06 — type system, states, fields, tables, the mark on dark
+Font council (claude, codex, 3 screens × 3 matchups at DPR 1): no family wins (Inter–Plex 3-3,
+Inter–Geist 4-2, Plex–Geist 4-1); both name the system - 11 px mono states, non-tabular figures,
+a 52 px mono headline, uppercase mono labels, broken inline code. Headings are sans
+(type.heading), fluid from 390 to 1280 px (type.fluid, also Starlight's --sl-text-h*), figures
+tabular, labels sentence case, mono at the size of the text beside it. A state is a badge on its
+own tint (tint.badge, held at 4.5:1 over page, surface and raised; light states darkened, success
+toward teal for protans): 144 pairs hold. Lab: States, Fields, Tables. logos/mark-dark-*: the
+clear mark with its shadow drawn for the dark page.

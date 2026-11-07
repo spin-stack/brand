@@ -25,20 +25,24 @@ import (
 )
 
 // logo is one file logos/ holds: the mark at a size something shows it at, on the navy (a tile)
-// or on nothing (clear).
+// or on nothing (clear); clear and dark is on nothing too, its shadow drawn for the dark page.
 type logo struct {
 	size  int
 	clear bool
+	dark  bool
 }
 
 var sizes = map[string]logo{
-	"mark-512.png":         {512, false}, // the link preview, a dark hero
-	"mark-256.png":         {256, false}, // a dark header
-	"mark-clear-512.png":   {512, true},  // on any ground: a light page, a light hero
-	"mark-clear-256.png":   {256, true},  // a light header
-	"apple-touch-icon.png": {180, false}, // a phone's home screen
-	"favicon-64.png":       {64, false},  // a browser's tab, whose ground is the browser's
-	"favicon-32.png":       {32, false},
+	"mark-512.png":       {size: 512, clear: false}, // the link preview, a dark hero
+	"mark-256.png":       {size: 256, clear: false}, // a dark header
+	"mark-clear-512.png": {size: 512, clear: true},  // on any ground: a light page, a light hero
+	"mark-clear-256.png": {size: 256, clear: true},  // a light header
+	// On a dark page with no tile: the clear mark's light grey shadow read there as a pale ring.
+	"mark-dark-512.png":    {size: 512, clear: true, dark: true}, // a dark hero
+	"mark-dark-256.png":    {size: 256, clear: true, dark: true}, // a dark header
+	"apple-touch-icon.png": {size: 180, clear: false},            // a phone's home screen
+	"favicon-64.png":       {size: 64, clear: false},             // a browser's tab, whose ground is the browser's
+	"favicon-32.png":       {size: 32, clear: false},
 }
 
 // margin is the square's side over the stack's longer one: a fifth of it around the stack.
@@ -58,7 +62,7 @@ func run() error {
 	check := flag.Bool("check", false, "write nothing; fail if logos/ is not what the drawing makes")
 	flag.Parse()
 
-	navy, err := ground(*palette)
+	navy, page, err := ground(*palette)
 	if err != nil {
 		return err
 	}
@@ -77,11 +81,15 @@ func run() error {
 	}
 
 	onNavy := shadowOn(drawing, stack, navy)
+	onDark := shadowOn(drawing, stack, page)
 
 	var stale []string
 	for name, l := range sizes {
 		src := onNavy
-		if l.clear {
+		switch {
+		case l.dark:
+			src = onDark
+		case l.clear:
 			src = drawing
 		}
 		img, err := cut(src, stack, l.size, l.clear, navy)
@@ -113,19 +121,30 @@ func run() error {
 	return nil
 }
 
-// ground is the palette's brand navy, the tile's ground and the dark page's.
-func ground(palette string) (color.RGBA, error) {
-	var p struct{ Brand map[string]string }
-	if _, err := toml.DecodeFile(palette, &p); err != nil {
-		return color.RGBA{}, err
+// ground is the palette's brand navy, the tile's ground, and its dark page, the ground of the
+// clear mark drawn for a dark page.
+func ground(palette string) (navy, page color.RGBA, err error) {
+	var p struct {
+		Brand map[string]string
+		Dark  struct{ Page string }
 	}
-	hex := p.Brand["navy"]
+	if _, err := toml.DecodeFile(palette, &p); err != nil {
+		return navy, page, err
+	}
+	if navy, err = rgbOf(palette, "brand.navy", p.Brand["navy"]); err != nil {
+		return navy, page, err
+	}
+	page, err = rgbOf(palette, "dark.page", p.Dark.Page)
+	return navy, page, err
+}
+
+func rgbOf(palette, key, hex string) (color.RGBA, error) {
 	if len(hex) != 7 || hex[0] != '#' {
-		return color.RGBA{}, fmt.Errorf("%s: brand.navy %q is no #rrggbb", palette, hex)
+		return color.RGBA{}, fmt.Errorf("%s: %s %q is no #rrggbb", palette, key, hex)
 	}
 	v, err := strconv.ParseUint(hex[1:], 16, 32)
 	if err != nil {
-		return color.RGBA{}, fmt.Errorf("%s: brand.navy %q is no #rrggbb", palette, hex)
+		return color.RGBA{}, fmt.Errorf("%s: %s %q is no #rrggbb", palette, key, hex)
 	}
 	return color.RGBA{uint8(v >> 16), uint8(v >> 8), uint8(v), 255}, nil
 }
