@@ -111,7 +111,7 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--spin-target: %dpx;\n\t--spin-target-touch: %dpx;\n", p.Layout.Target, p.Layout.TargetTouch)
 	fmt.Fprintf(&b, "\t--spin-control-sm: %dpx;\n\t--spin-control-md: %dpx;\n\t--spin-control-lg: %dpx;\n", p.Controls.Sm, p.Controls.Md, p.Controls.Lg)
 	fmt.Fprintf(&b, "\t--spin-control-icon: %dpx;\n\t--spin-control-gap: %dpx;\n", p.Controls.Icon, p.Controls.Gap)
-	fmt.Fprintf(&b, "\t--spin-width-contained: %dpx;\n\t--spin-width-detail: %dpx;\n\t--spin-width-wide: %dpx;\n", p.Layout.WidthContained, p.Layout.WidthDetail, p.Layout.WidthWide)
+	fmt.Fprintf(&b, "\t--spin-width-page: %dpx;\n", p.Layout.WidthPage)
 	fmt.Fprintf(&b, "\t--spin-duration-fast: %dms;\n\t--spin-duration: %dms;\n", p.Motion.Fast, p.Motion.Base)
 	fmt.Fprintf(&b, "\t--spin-duration-slow: %dms;\n\t--spin-duration-draw: %dms;\n", p.Motion.Slow, p.Motion.Draw)
 	fmt.Fprintf(&b, "\t--spin-ease: %s;\n", p.Motion.Ease)
@@ -255,8 +255,8 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--radius: %gpx;\n", float64(p.Layout.RadiusSm))
 	fmt.Fprintf(&b, "\t--spin-control-sm: %dpx;\n\t--spin-control-md: %dpx;\n\t--spin-control-lg: %dpx;\n", p.Controls.Sm, p.Controls.Md, p.Controls.Lg)
 	fmt.Fprintf(&b, "\t--spin-control-icon: %dpx;\n\t--spin-control-gap: %dpx;\n", p.Controls.Icon, p.Controls.Gap)
-	// How wide a page may grow, by what it shows (the dashboard's page-width.ts reads these).
-	fmt.Fprintf(&b, "\t--spin-width-contained: %dpx;\n\t--spin-width-detail: %dpx;\n\t--spin-width-wide: %dpx;\n", p.Layout.WidthContained, p.Layout.WidthDetail, p.Layout.WidthWide)
+	// How wide a page may grow (the dashboard's page-width.ts reads it).
+	fmt.Fprintf(&b, "\t--spin-width-page: %dpx;\n", p.Layout.WidthPage)
 	// The dim behind a dialog: the dark page, in either theme, at the palette's scrim - a neutral
 	// dim, not the mark's navy, which tinted everything behind a dialog blue.
 	dim := dark["page"]

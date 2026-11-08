@@ -128,14 +128,12 @@ target_touch = 44       # px: a target on a coarse pointer (WCAG 2.5.5, Apple's 
 phone = 390             # px: the narrow width every page is drawn at in preview.html
 tablet = 768
 desktop = 1280
-# How wide a page grows, by what it shows: a document or a form stays a column one reads; one
-# thing and what is around it - a workspace, a runner - is two columns of a few rows, which
-# drift apart past this; a table of many takes what a wide screen gives. An explorer - logs,
-# traces - takes the viewport. The dashboard's page-width.ts reads these; the October review
-# read the workspace detail at 1400 px as two columns the eye crossed whitespace between.
-width_contained = 1200  # px
-width_detail = 1152     # px
-width_wide = 1600       # px
+# How wide a page grows: every page but an explorer is one column of this width, centred, so a
+# page keeps its edges where the one before it had them. Three widths by what a page showed
+# moved the title and the primary action between pages; the user read that as a bug
+# (2026-11-08). An explorer - logs, traces - takes the viewport. The dashboard's page-width.ts
+# reads this.
+width_page = 1600       # px
 
 # Controls: a button's or an input's height, small (a row's action, a toolbar), medium (a form, a
 # page's header) and large (a dialog's footer, the site); the icon in it and the gap to its word.

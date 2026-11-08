@@ -94,9 +94,7 @@
 	--spin-control-lg: 36px;
 	--spin-control-icon: 16px;
 	--spin-control-gap: 6px;
-	--spin-width-contained: 1200px;
-	--spin-width-detail: 1152px;
-	--spin-width-wide: 1600px;
+	--spin-width-page: 1600px;
 	--spin-duration-fast: 120ms;
 	--spin-duration: 200ms;
 	--spin-duration-slow: 400ms;
