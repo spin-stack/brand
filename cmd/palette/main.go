@@ -59,9 +59,7 @@ type palette struct {
 		Target                 int
 		TargetTouch            int `toml:"target_touch"`
 		Phone, Tablet, Desktop int
-		WidthContained         int `toml:"width_contained"`
-		WidthDetail            int `toml:"width_detail"`
-		WidthWide              int `toml:"width_wide"`
+		WidthPage              int `toml:"width_page"`
 	}
 	// A control's geometry: the heights of a button or an input, the icon in it, and the gap
 	// between an icon and its word.
