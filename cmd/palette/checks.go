@@ -49,7 +49,8 @@ var tiers = map[string][2]float64{
 	"line":    {6, 4},   // a 1px border against the surface outside it
 	"state":   {10, 6},  // selected against not selected
 	"hover":   {3, 2},   // a step under the pointer
-	"meaning": {20, 10}, // hue that carries meaning: status against status and against the accent
+	"meaning": {20, 10}, // hue that carries meaning: status against status and against the accent,
+	// a chart's series against the one drawn next to it, and a chart's statuses against each other
 }
 
 // meaningTritan is the floor for meaning through tritanopia, where blue and green are one: a
@@ -153,6 +154,11 @@ func holds(p palette) ([]result, error) {
 		return nil, err
 	}
 	out = append(out, term...)
+	ch, err := chartHolds(p)
+	if err != nil {
+		return nil, err
+	}
+	out = append(out, ch...)
 	for _, r := range out {
 		if math.IsNaN(r.contrast) {
 			return nil, fmt.Errorf("%s %s: not a number", r.mode, r.what)
@@ -192,6 +198,66 @@ func terminalHolds(p palette) ([]result, error) {
 	r := result{mode: "term", kind: "non-text", what: "cursor on background", contrast: contrast(c["cursor"], bg), floor: nonText}
 	r.ok = r.contrast >= nonText
 	out = append(out, r)
+	return out, nil
+}
+
+// chartHolds is the chart's colours, one set for both modes: each a line or a fill that holds
+// 3:1 on either mode's page, each series apart from the one drawn next to it, and each status
+// apart from the others.
+func chartHolds(p palette) ([]result, error) {
+	series, statuses, err := p.Chart.colors()
+	if err != nil {
+		return nil, fmt.Errorf("chart: %w", err)
+	}
+	dark, err := colors(p.Dark)
+	if err != nil {
+		return nil, err
+	}
+	light, err := colors(p.Light)
+	if err != nil {
+		return nil, err
+	}
+	var out []result
+	hold := func(what string, fg rgb) {
+		for _, page := range []struct {
+			mode string
+			c    rgb
+		}{{"dark", dark["page"]}, {"light", light["page"]}} {
+			r := result{mode: page.mode, kind: "non-text", what: what + " on page", contrast: contrast(fg, page.c), floor: nonText}
+			r.ok = r.contrast >= nonText
+			out = append(out, r)
+		}
+	}
+	apart := func(tier, what string, a, b rgb) {
+		f := tiers[tier]
+		r := result{mode: "chart", kind: tier, what: what, distance: map[string]float64{}, floor: f[0], worst: f[1], ok: true}
+		for _, v := range views {
+			d := deltaE00(v.fn(a.linear()).lab(), v.fn(b.linear()).lab())
+			r.distance[v.name] = d
+			floor := f[1]
+			if v.name == "drawn" {
+				floor = f[0]
+			}
+			if d < floor {
+				r.ok = false
+			}
+		}
+		out = append(out, r)
+	}
+	for i, c := range series {
+		hold(fmt.Sprintf("series %d", i+1), c)
+		if i > 0 {
+			apart("meaning", fmt.Sprintf("series %d | series %d", i, i+1), series[i-1], c)
+		}
+	}
+	for _, s := range chartStatuses {
+		hold(s, statuses[s])
+	}
+	for i, a := range chartStatuses {
+		for _, b := range chartStatuses[i+1:] {
+			apart("meaning", a+" | "+b, statuses[a], statuses[b])
+		}
+	}
 	return out, nil
 }
 
