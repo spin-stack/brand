@@ -197,7 +197,15 @@ th { color: var(--spin-muted); font-weight: 500; }
 .state::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
 .state.ok { color: var(--spin-success); } .state.warn { color: var(--spin-warning); } .state.err { color: var(--spin-error); } .state.idle { color: var(--spin-muted); }
 .state.warn::before { border-radius: 1px; transform: rotate(45deg); } .state.err::before { border-radius: 0; }
-.panel { background: var(--spin-raised); border: 1px solid var(--spin-border); border-radius: var(--spin-radius); padding: 1rem; }
+.panels { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--spin-width-panel-min)), 1fr)); gap: 1rem; }
+.panel { background: var(--spin-page); border: 1px solid var(--spin-border); border-radius: var(--spin-radius); overflow: hidden; }
+.panel header { display: flex; align-items: center; gap: .6rem; padding: .5rem .75rem; background: var(--spin-surface); border-bottom: 1px solid var(--spin-border); font-size: 13px; }
+.panel header b { font: 600 14px var(--spin-font-mono); }
+.panel header .grow { flex: 1; }
+.panel .grid { table-layout: fixed; }
+.panel .grid td, .panel .grid th { white-space: normal; }
+.panel .grid tr:last-child td { border-bottom: 0; }
+.panel .grid .id { color: var(--spin-text); }
 .dialog { background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-lg); padding: 1.25rem; max-width: 26rem; box-shadow: var(--spin-shadow-overlay); }
 .toast { display: inline-flex; gap: .6rem; align-items: center; background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius); padding: .6rem .9rem; box-shadow: var(--spin-shadow-overlay); }
 .row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-start; margin-top: 1rem; }
@@ -250,7 +258,7 @@ body.embed .wrap { padding-top: 0; }
 <nav class="index only-full" aria-label="On this page">
 	<div class="wrap">
 		<a href="#in-use">1 · In use</a><a href="#site">Site</a><a href="#dashboard">Dashboard</a><a href="#app">App</a>
-		<a href="#decisions">2 · Decisions</a><a href="#mark">Mark</a><a href="#buttons">Buttons</a><a href="#states">States</a><a href="#fields">Fields</a><a href="#tables">Tables</a><a href="#palette-section">Palette</a>
+		<a href="#decisions">2 · Decisions</a><a href="#mark">Mark</a><a href="#buttons">Buttons</a><a href="#states">States</a><a href="#fields">Fields</a><a href="#tables">Tables</a><a href="#panels">Panels</a><a href="#palette-section">Palette</a>
 		<a href="#checks">3 · Checks</a><a href="#widths">Widths</a><a href="#perception">Perception</a><a href="screens.html">Every screen →</a>
 	</div>
 </nav>
@@ -402,6 +410,23 @@ D  /etc/issue</pre>
 	<p class="muted" style="font-size:13px">Headers in the muted sans, never uppercase; ids in the mono; figures right-aligned in tabular digits (<code>--spin-numeric</code>); agent-1 under the pointer, ci-job selected. On a phone a table scrolls inside its frame, the page does not.</p>
 </section>
 
+<section class="only-full" id="panels">
+	<span class="label">Panels</span>
+	<div class="rules">
+		<p class="muted">A section of a page is a heading and its rows; a thing with its own identity and its single action is a panel. A hairline edge at <code>--spin-radius</code>, its header - the name in the mono, its state, the one action and <code>⋯</code> - on <code>surface</code>, its body on the page, no shadow: it does not float. Panels tile across the column, none narrower than <code>--spin-width-panel-min</code>; inside one, a table has fixed tracks, so a column is at one x in every panel. A list of many is a table, never a panel per row.</p>
+		<div class="panels">
+			<article class="panel">
+				<header><b>web</b><span class="state warn">pending</span><span class="grow"></span><button class="btn sm secondary">Edit</button><button class="btn sm ghost icon" aria-label="More actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></button></header>
+				<table class="grid"><colgroup><col style="width:65%"><col></colgroup><thead><tr><th>Destinations</th><th>Ports</th></tr></thead><tbody><tr><td class="muted">Any address</td><td class="id">80/tcp, 443/tcp</td></tr><tr><td class="id">github.com</td><td class="id">443/tcp</td></tr></tbody></table>
+			</article>
+			<article class="panel">
+				<header><b>ping</b><span class="state ok">enforced on 2 runners</span><span class="grow"></span><button class="btn sm secondary">Edit</button><button class="btn sm ghost icon" aria-label="More actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></button></header>
+				<table class="grid"><colgroup><col style="width:65%"><col></colgroup><thead><tr><th>Destinations</th><th>Ports</th></tr></thead><tbody><tr><td class="muted">Any address</td><td class="id">ping</td></tr></tbody></table>
+			</article>
+		</div>
+	</div>
+</section>
+
 <section class="only-full" id="compositions">
 	<span class="label">Compositions</span>
 	<div class="rules">
@@ -411,7 +436,7 @@ D  /etc/issue</pre>
 		<h3>Documentation</h3>
 		<p class="muted">A Starlight page: one column at the reading measure, the sidebar at <code>--spin-sidebar</code>, headings in the mono. A claim links to the row of the status page that proves it.</p>
 		<h3>Application</h3>
-		<p class="muted">The dashboard, read for diagnosis. Every page is one centred column <code>--spin-width-page</code> wide, so its edges stay where the page before had them; an explorer takes the viewport. A page is a header - the title, its state, its context and its one primary action on one row - and sections of rows between hairlines; the name beside the mark is <code>--spin-wordmark</code>, which the catalog audit holds the sidebar to.</p>
+		<p class="muted">The dashboard, read for diagnosis. Every page is one centred column <code>--spin-width-page</code> wide, so its edges stay where the page before had them; an explorer takes the viewport. A page is a header - the title, its state, its context and its one primary action on one row - and sections of rows between hairlines; a thing with its own identity and its single action is a <a href="#panels">panel</a>, and panels tile across the column; the name beside the mark is <code>--spin-wordmark</code>, which the catalog audit holds the sidebar to.</p>
 		<h3>Actions</h3>
 		<p class="muted">One primary action per view, solid in the accent and in words alone: <em>New workspace</em> on a list, <em>Open terminal</em> on a workspace. A row's actions are quiet: its most likely one as a secondary button (the raised fill, a hairline edge, no icon) and the rest behind <code>⋯</code>. An icon goes alone, with a tooltip, only where the toolbar has no room for words; never an icon and a word on every row. What destroys is in the destructive fill, in a confirmation, after Cancel.</p>
 		<h3>Elevation</h3>

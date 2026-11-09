@@ -170,6 +170,17 @@ desktop = 1280
 # (2026-11-08). An explorer - logs, traces - takes the viewport. The dashboard's page-width.ts
 # reads this.
 width_page = 1600       # px
+# What a page is made of, inside that column. A section of a page is a heading, a hairline and
+# its rows, on the page's own plane: a border around every section made the console a grid of
+# cards (the October review). A thing with its own identity and its single action - a network
+# policy, a server, an image - is a panel: a hairline edge at `radius`, its header (name, state,
+# the action and its menu) on `surface`, its body on the page, no shadow, since it does not
+# float. A list of many is a table, never a panel per row. Panels tile across the column, each
+# at least this wide: at 1600 px two rules tables side by side, where one stretched to the
+# column's width put a port 1000 px from its destination (2026-11-08). In the column a table has
+# fixed tracks, so a column is at one x in every row and every panel, and a label and its value
+# sit together, never split across the width.
+width_panel_min = 560   # px
 
 # Controls: a button's or an input's height, small (a row's action, a toolbar), medium (a form, a
 # page's header) and large (a dialog's footer, the site); the icon in it and the gap to its word.
