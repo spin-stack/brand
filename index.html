@@ -198,7 +198,7 @@ th { color: var(--spin-muted); font-weight: 500; }
 .state.ok { color: var(--spin-success); } .state.warn { color: var(--spin-warning); } .state.err { color: var(--spin-error); } .state.idle { color: var(--spin-muted); }
 .state.warn::before { border-radius: 1px; transform: rotate(45deg); } .state.err::before { border-radius: 0; }
 .panels { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--spin-width-panel-min)), 1fr)); gap: 1rem; }
-.panel { background: var(--spin-page); border: 1px solid var(--spin-border); border-radius: var(--spin-radius); overflow: hidden; }
+.panel { background: var(--spin-page); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-sm); overflow: hidden; }
 .panel header { display: flex; align-items: center; gap: .6rem; padding: .5rem .75rem; background: var(--spin-surface); border-bottom: 1px solid var(--spin-border); font-size: 13px; }
 .panel header b { font: 600 14px var(--spin-font-mono); }
 .panel header .grow { flex: 1; }
@@ -413,7 +413,7 @@ D  /etc/issue</pre>
 <section class="only-full" id="panels">
 	<span class="label">Panels</span>
 	<div class="rules">
-		<p class="muted">A section of a page is a heading and its rows; a thing with its own identity and its single action is a panel. A hairline edge at <code>--spin-radius</code>, its header - the name in the mono, its state, the one action and <code>⋯</code> - on <code>surface</code>, its body on the page, no shadow: it does not float. Panels tile across the column, none narrower than <code>--spin-width-panel-min</code>; inside one, a table has fixed tracks, so a column is at one x in every panel. A list of many is a table, never a panel per row.</p>
+		<p class="muted">A section of a page is a heading and its rows; a thing with its own identity and its single action is a panel. A hairline edge at the dashboard's one corner, <code>--spin-radius-sm</code>, its header - the name in the mono, its state, the one action and <code>⋯</code> - on <code>surface</code>, its body on the page, no shadow: it does not float. Panels tile across the column, none narrower than <code>--spin-width-panel-min</code>; inside one, a table has fixed tracks, so a column is at one x in every panel. A list of many is a table, never a panel per row.</p>
 		<div class="panels">
 			<article class="panel">
 				<header><b>web</b><span class="state warn">pending</span><span class="grow"></span><button class="btn sm secondary">Edit</button><button class="btn sm ghost icon" aria-label="More actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></button></header>
