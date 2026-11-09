@@ -173,7 +173,7 @@ width_page = 1600       # px
 # What a page is made of, inside that column. A section of a page is a heading, a hairline and
 # its rows, on the page's own plane: a border around every section made the console a grid of
 # cards (the October review). A thing with its own identity and its single action - a network
-# policy, a server, an image - is a panel: a hairline edge at `radius`, its header (name, state,
+# policy, a resource preset, a forge's app - is a panel: a hairline edge at `radius`, its header (name, state,
 # the action and its menu) on `surface`, its body on the page, no shadow, since it does not
 # float. A list of many is a table, never a panel per row. Panels tile across the column, each
 # at least this wide: at 1600 px two rules tables side by side, where one stretched to the
