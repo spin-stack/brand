@@ -40,9 +40,10 @@ tasks:
   check:
     desc: What CI runs - fail if a pair is below its floor, dist/ or logos/ is not what the sources make, a workflow step is not one task, or an install skips Socket Firewall.
     cmds:
-      # The Task running this one: go.mod's is not on PATH, and taskgate asks it for the task names.
-      - go tool taskgate -task {{.TASK_EXE}}
-      - go tool sfw check
+      # The Task running this one, which taskgate asks for the task names. go-tools' commands are on
+      # its PATH: `go tool task` (go-tools' cmd/task) runs the Task versions.yaml pins with them.
+      - taskgate -task {{.TASK_EXE}}
+      - sfw check
       - go vet ./...
       - go test ./...
       - go run ./cmd/palette -check
