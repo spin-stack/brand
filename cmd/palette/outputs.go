@@ -18,10 +18,14 @@ func outputs(p palette, results []result) (map[string][]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+	term, err := p.Terminal.colors()
+	if err != nil {
+		return nil, err
+	}
 	files := map[string][]byte{}
 
 	j, err := json.MarshalIndent(map[string]any{
-		"brand": p.Brand, "dark": hexes(dark), "light": hexes(light),
+		"brand": p.Brand, "dark": hexes(dark), "light": hexes(light), "terminal": hexes(term),
 		"tint": p.Tint, "type": p.Type, "layout": p.Layout, "controls": p.Controls, "elevation": p.Elevation, "motion": p.Motion,
 	}, "", "  ")
 	if err != nil {
@@ -95,6 +99,7 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 	for _, k := range names {
 		fmt.Fprintf(&b, "\t--spin-brand-%s: %s;\n", k, strings.ToUpper(p.Brand[k]))
 	}
+	b.WriteString(terminalVars(p, "spin-terminal"))
 	fmt.Fprintf(&b, "\t--spin-wordmark: %q;\n", p.Type.Wordmark)
 	fmt.Fprintf(&b, "\t--spin-font-sans: '%s', %s;\n", p.Type.Sans, p.Type.FallbackSans)
 	fmt.Fprintf(&b, "\t--spin-font-mono: '%s', %s;\n", p.Type.Mono, p.Type.FallbackMono)
@@ -264,6 +269,8 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 	dim := dark["page"]
 	b255 := func(v float64) int { return int(math.Round(v * 255)) }
 	fmt.Fprintf(&b, "\t--scrim: rgb(%d %d %d / %g);\n", b255(dim.r), b255(dim.g), b255(dim.b), p.Tint.Scrim)
+	// A terminal, black in either theme: hex, since xterm reads them off the page for its canvas.
+	b.WriteString(terminalVars(p, "terminal"))
 	// The word the sidebar writes beside the mark: the app's catalog audit holds its text to this.
 	fmt.Fprintf(&b, "\t--spin-wordmark: %q;\n", p.Type.Wordmark)
 	fmt.Fprintf(&b, "\t--spin-font-sans: '%s', %s;\n\t--spin-font-mono: '%s', %s;\n", p.Type.Sans, p.Type.FallbackSans, p.Type.Mono, p.Type.FallbackMono)
@@ -279,6 +286,20 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--spin-duration-fast: %dms;\n\t--spin-duration: %dms;\n", p.Motion.Fast, p.Motion.Base)
 	fmt.Fprintf(&b, "\t--spin-duration-slow: %dms;\n\t--spin-ease: %s;\n", p.Motion.Slow, p.Motion.Ease)
 	b.WriteString("}\n")
+	return b.String()
+}
+
+// terminalVars is the terminal's roles, then its sixteen colours in a program's order, as
+// --<prefix>-<name>: hex.
+func terminalVars(p palette, prefix string) string {
+	c, err := p.Terminal.colors()
+	if err != nil {
+		panic("palette.toml's terminal: " + err.Error())
+	}
+	var b strings.Builder
+	for _, k := range append(append([]string{}, terminalRoles...), ansi...) {
+		fmt.Fprintf(&b, "\t--%s-%s: %s;\n", prefix, strings.ReplaceAll(k, "_", "-"), c[k].hex())
+	}
 	return b.String()
 }
 
