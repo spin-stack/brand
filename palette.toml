@@ -60,6 +60,34 @@ warning = "#845000"
 error = "#9A1F60"       # magenta-leaning, as dark's: a deutan tells it from success by its blue
 destructive = "#C0303F"
 
+# A terminal - the workspace's shell, an agent's console, a machine's boot log - is black in either
+# theme: a console on the page's white read as a document, not a shell (2026-11-08). Its own roles,
+# not the dark theme's: the dark page is navy, and a terminal on it would be a card, not a screen.
+# The dashboard frames it with the theme's border. The sixteen ANSI colours are what a program asks
+# for by number; each reads at 4.5:1 on the background (the foreground and white at 7), except
+# black, which a program paints as a cell's background and the foreground reads on.
+[terminal]
+background = "#0A0C10"
+foreground = "#E6EBF2"
+cursor = "#27BFE8"         # the brand's cyan; the character under it is the background
+selection = "#2C3A55"      # the foreground holds 7:1 on it
+black = "#262C38"
+red = "#F0707A"
+green = "#4CC38A"
+yellow = "#E3B04B"
+blue = "#6A9FF0"
+magenta = "#D58AE6"
+cyan = "#27BFE8"
+white = "#C9D1DE"
+bright_black = "#7D889C"
+bright_red = "#FF9CA4"
+bright_green = "#7EE0AE"
+bright_yellow = "#F5CF7A"
+bright_blue = "#9CC0FF"
+bright_magenta = "#EBB2F7"
+bright_cyan = "#5FE3D6"
+bright_white = "#FFFFFF"
+
 # The accent over a surface, for what is selected or hovered on the site (the current page in the
 # sidebar, a hovered link): an alpha, so one value serves every surface. The label on a tint is
 # accent_text. The dashboard keeps the accent for its one primary action and the focus ring: its

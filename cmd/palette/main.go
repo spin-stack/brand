@@ -29,11 +29,48 @@ type mode struct {
 	Destructive                    string
 }
 
+type terminal struct {
+	Background, Foreground, Cursor, Selection             string
+	Black, Red, Green, Yellow, Blue, Magenta, Cyan, White string
+	BrightBlack                                           string `toml:"bright_black"`
+	BrightRed                                             string `toml:"bright_red"`
+	BrightGreen                                           string `toml:"bright_green"`
+	BrightYellow                                          string `toml:"bright_yellow"`
+	BrightBlue                                            string `toml:"bright_blue"`
+	BrightMagenta                                         string `toml:"bright_magenta"`
+	BrightCyan                                            string `toml:"bright_cyan"`
+	BrightWhite                                           string `toml:"bright_white"`
+}
+
+// ansi is the sixteen colours by palette.toml's names, in the order a program numbers them.
+var ansi = []string{
+	"black", "red", "green", "yellow", "blue", "magenta", "cyan", "white",
+	"bright_black", "bright_red", "bright_green", "bright_yellow", "bright_blue", "bright_magenta", "bright_cyan", "bright_white",
+}
+
+// terminalRoles is the terminal's roles before the sixteen colours, in the order they are written.
+var terminalRoles = []string{"background", "foreground", "cursor", "selection"}
+
+// colors reads the terminal's roles and colours by palette.toml's names.
+func (t terminal) colors() (map[string]rgb, error) {
+	named := map[string]string{
+		"background": t.Background, "foreground": t.Foreground, "cursor": t.Cursor, "selection": t.Selection,
+		"black": t.Black, "red": t.Red, "green": t.Green, "yellow": t.Yellow,
+		"blue": t.Blue, "magenta": t.Magenta, "cyan": t.Cyan, "white": t.White,
+		"bright_black": t.BrightBlack, "bright_red": t.BrightRed, "bright_green": t.BrightGreen,
+		"bright_yellow": t.BrightYellow, "bright_blue": t.BrightBlue, "bright_magenta": t.BrightMagenta,
+		"bright_cyan": t.BrightCyan, "bright_white": t.BrightWhite,
+	}
+	return parseNamed(named)
+}
+
 type palette struct {
 	Brand map[string]string
 	Dark  mode
 	Light mode
-	Tint  struct{ Hover, Selected, Scrim, Fill, Badge float64 }
+	// A terminal's roles and its sixteen ANSI colours, the same in either theme.
+	Terminal terminal
+	Tint     struct{ Hover, Selected, Scrim, Fill, Badge float64 }
 	// What lifts a menu or a dialog off what is under it, per theme: a CSS box-shadow.
 	Elevation struct{ Dark, Light string }
 	Type      struct {

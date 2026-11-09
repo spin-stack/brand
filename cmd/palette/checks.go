@@ -148,11 +148,50 @@ func holds(p palette) ([]result, error) {
 			apart("meaning", pair[0]+" | "+pair[1], c[pair[0]], c[pair[1]], meaningTritan)
 		}
 	}
+	term, err := terminalHolds(p)
+	if err != nil {
+		return nil, err
+	}
+	out = append(out, term...)
 	for _, r := range out {
 		if math.IsNaN(r.contrast) {
 			return nil, fmt.Errorf("%s %s: not a number", r.mode, r.what)
 		}
 	}
+	return out, nil
+}
+
+// terminalHolds is the terminal's pairs, the same in either theme: its text on its background,
+// each ANSI colour on it, and the foreground on what a program or a person paints under a cell -
+// ANSI black and the selection. The cursor is a block the character under it reads on.
+func terminalHolds(p palette) ([]result, error) {
+	c, err := p.Terminal.colors()
+	if err != nil {
+		return nil, fmt.Errorf("terminal: %w", err)
+	}
+	var out []result
+	hold := func(what string, fg, bg rgb, floor float64) {
+		r := result{mode: "term", kind: "text", what: what, contrast: contrast(fg, bg), floor: floor}
+		r.ok = r.contrast >= floor
+		out = append(out, r)
+	}
+	bg := c["background"]
+	hold("foreground on background", c["foreground"], bg, bodyText)
+	for _, k := range ansi {
+		switch k {
+		case "black":
+			hold("foreground on black", c["foreground"], c[k], bodyText)
+		case "white", "bright_white":
+			hold(k+" on background", c[k], bg, bodyText)
+		default:
+			hold(k+" on background", c[k], bg, text)
+		}
+	}
+	hold("foreground on selection", c["foreground"], c["selection"], bodyText)
+	hold("background on cursor", bg, c["cursor"], text)
+	r := result{mode: "term", kind: "non-text", what: "cursor on background", contrast: contrast(c["cursor"], bg), floor: nonText}
+	r.ok = r.contrast >= nonText
+	out = append(out, r)
 	return out, nil
 }
 
@@ -164,6 +203,11 @@ func colors(m mode) (map[string]rgb, error) {
 		"accent": m.Accent, "accent_text": m.AccentText, "on_accent": m.OnAccent, "label": m.Label,
 		"success": m.Success, "warning": m.Warning, "error": m.Error, "destructive": m.Destructive,
 	}
+	return parseNamed(named)
+}
+
+// parseNamed parses every color by its name, failing on one that is missing.
+func parseNamed(named map[string]string) (map[string]rgb, error) {
 	out := map[string]rgb{}
 	for name, hex := range named {
 		if hex == "" {
