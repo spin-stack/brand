@@ -40,7 +40,8 @@ tasks:
   check:
     desc: What CI runs - fail if a pair is below its floor, dist/ or logos/ is not what the sources make, a workflow step is not one task, or an install skips Socket Firewall.
     cmds:
-      - go tool taskgate
+      # The Task running this one: go.mod's is not on PATH, and taskgate asks it for the task names.
+      - go tool taskgate -task {{.TASK_EXE}}
       - go tool sfw check
       - go vet ./...
       - go test ./...
