@@ -24,9 +24,10 @@ go tool task preview    # http://127.0.0.1:4330/
 go tool task check      # what CI runs: fails on a pair below its floor, or a stale dist/ or logos/
 ```
 
-Task is a tool in `go.mod`, so `go tool task` is the version CI runs. `task check` also fails on a
-workflow step that is not one task (`go tool taskgate`) and on a package install that skips Socket
-Firewall (`go tool sfw check`), from [go-tools](https://github.com/spin-stack/go-tools).
+`go tool task` is [go-tools](https://github.com/spin-stack/go-tools)' task command, the one tool
+`go.mod` takes: it runs the Task `versions.yaml` pins, the version CI runs, with go-tools' commands
+on its PATH. `task check` also fails on a workflow step that is not one task (`taskgate`) and on a
+package install that skips Socket Firewall (`sfw check`).
 
 ## What holds the palette
 
