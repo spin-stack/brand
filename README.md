@@ -40,6 +40,10 @@ Firewall (`go tool sfw check`), from [go-tools](https://github.com/spin-stack/go
   panel at 30% backlight, and through each dichromacy (Machado, Oliveira and Fernandes 2009,
   severity 1.0), protan and deutan also on the IPS panel. The floors are in `checks.go`, each with
   its reason; they follow spin-stack's sibling CONSTRUCT.
+- **Charts** (`[chart]`, `tokens.json`'s `chart`): eight series in a fixed order and three
+  threshold statuses, one set for both modes because Grafana draws one dashboard JSON in either
+  theme. Each holds 3:1 on dark's page and on light's, and each series is held apart from the
+  next, and each status from the others, at the meaning tier.
 - **No meaning by hue alone**: a status carries a shape too (the preview's states: a dot, a
   diamond, a square), since a floor for colour-vision deficiencies is a floor, not comfort.
 

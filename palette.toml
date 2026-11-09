@@ -88,6 +88,28 @@ bright_magenta = "#EBB2F7"
 bright_cyan = "#5FE3D6"
 bright_white = "#FFFFFF"
 
+# Charts: the installation's Grafana dashboards, the only charts Spinbox draws. One set for both
+# modes, because a dashboard is one JSON that Grafana draws in whichever theme the viewer chose,
+# and a colour in it is one hex: each holds 3:1 as a line on dark's page and on light's (WCAG
+# 1.4.11), which puts them all in the middle band of lightness. Series are given in this order,
+# never cycled - a ninth series is folded into "other", not a generated hue - and the first is the
+# mark's blue. The statuses are a threshold's steps (good, warning, critical) and are never a
+# series: a value in one is always printed beside it, so the hue is never alone.
+[chart]
+series = [
+  "#2F6BE3", # the mark's blue
+  "#D9622B", # orange
+  "#1C9E8C", # teal, the mint's hue darkened into the band
+  "#B58300", # ochre
+  "#C94F9B", # magenta
+  "#4F9A3A", # green
+  "#7A5FE0", # violet
+  "#D24B57", # red
+]
+good = "#2F9A5C"
+warning = "#B07C00"
+critical = "#D04A9E" # magenta-leaning, as error is: a deutan tells it from good by its blue
+
 # The accent over a surface, for what is selected or hovered on the site (the current page in the
 # sidebar, a hovered link): an alpha, so one value serves every surface. The label on a tint is
 # accent_text. The dashboard keeps the accent for its one primary action and the focus ring: its

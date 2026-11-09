@@ -25,7 +25,7 @@ func outputs(p palette, results []result) (map[string][]byte, error) {
 	files := map[string][]byte{}
 
 	j, err := json.MarshalIndent(map[string]any{
-		"brand": p.Brand, "dark": hexes(dark), "light": hexes(light), "terminal": hexes(term),
+		"brand": p.Brand, "dark": hexes(dark), "light": hexes(light), "terminal": hexes(term), "chart": chartJSON(p.Chart),
 		"tint": p.Tint, "type": p.Type, "layout": p.Layout, "controls": p.Controls, "elevation": p.Elevation, "motion": p.Motion,
 	}, "", "  ")
 	if err != nil {
@@ -41,6 +41,19 @@ func outputs(p palette, results []result) (map[string][]byte, error) {
 }
 
 const header = "/* Written by `task palette` from palette.toml (spin-stack/brand). Edit palette.toml, not this file. */\n"
+
+// chartJSON is the chart's colours as tokens.json carries them: the series in their order, and
+// each status by name, in the case palette.toml writes them.
+func chartJSON(c chart) map[string]any {
+	series := make([]string, 0, len(c.Series))
+	for _, s := range c.Series {
+		series = append(series, strings.ToUpper(s))
+	}
+	return map[string]any{
+		"series": series, "good": strings.ToUpper(c.Good),
+		"warning": strings.ToUpper(c.Warning), "critical": strings.ToUpper(c.Critical),
+	}
+}
 
 func hexes(c map[string]rgb) map[string]string {
 	out := map[string]string{}

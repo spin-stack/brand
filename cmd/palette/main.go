@@ -64,10 +64,41 @@ func (t terminal) colors() (map[string]rgb, error) {
 	return parseNamed(named)
 }
 
+// chart is the colours a chart draws with, one set for both modes (palette.toml says why).
+type chart struct {
+	Series                  []string
+	Good, Warning, Critical string
+}
+
+// chartStatuses are a threshold's steps, in the order a value climbs through them.
+var chartStatuses = []string{"good", "warning", "critical"}
+
+// colors is the series in their order and the statuses by name. Fewer than two series is no
+// palette: a chart with one series takes the first, and a palette of one was never checked apart.
+func (c chart) colors() ([]rgb, map[string]rgb, error) {
+	if len(c.Series) < 2 {
+		return nil, nil, fmt.Errorf("%d series, want at least two", len(c.Series))
+	}
+	series := make([]rgb, 0, len(c.Series))
+	for i, hex := range c.Series {
+		v, err := parseHex(hex)
+		if err != nil {
+			return nil, nil, fmt.Errorf("series %d: %w", i+1, err)
+		}
+		series = append(series, v)
+	}
+	statuses, err := parseNamed(map[string]string{"good": c.Good, "warning": c.Warning, "critical": c.Critical})
+	if err != nil {
+		return nil, nil, err
+	}
+	return series, statuses, nil
+}
+
 type palette struct {
 	Brand map[string]string
 	Dark  mode
 	Light mode
+	Chart chart
 	// A terminal's roles and its sixteen ANSI colours, the same in either theme.
 	Terminal terminal
 	Tint     struct{ Hover, Selected, Scrim, Fill, Badge float64 }
