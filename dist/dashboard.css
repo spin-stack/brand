@@ -8,6 +8,7 @@
 	--popover-foreground: 220.9 39.3% 11.0%;
 	--muted: 216.0 33.3% 91.2%;
 	--muted-foreground: 219.4 16.3% 38.4%;
+	--surface: 217.5 40.0% 96.1%;
 	--border: 216.0 20.4% 80.8%;
 	--input: 221.1 14.8% 53.5%;
 	--ring: 200.4 88.4% 33.9%;
@@ -45,6 +46,7 @@
 	--popover-foreground: 215.0 31.6% 92.5%;
 	--muted: 221.8 34.7% 18.6%;
 	--muted-foreground: 218.0 17.4% 66.3%;
+	--surface: 220.8 36.2% 13.5%;
 	--border: 221.1 26.8% 27.8%;
 	--input: 221.0 16.1% 50.0%;
 	--ring: 201.6 73.9% 40.6%;
@@ -81,6 +83,7 @@
 	--spin-control-icon: 16px;
 	--spin-control-gap: 6px;
 	--spin-width-page: 1600px;
+	--spin-width-panel-min: 560px;
 	--scrim: rgb(14 20 33 / 0.64);
 	--terminal-background: #0A0C10;
 	--terminal-foreground: #E6EBF2;

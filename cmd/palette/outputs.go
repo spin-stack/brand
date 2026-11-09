@@ -118,6 +118,7 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--spin-control-sm: %dpx;\n\t--spin-control-md: %dpx;\n\t--spin-control-lg: %dpx;\n", p.Controls.Sm, p.Controls.Md, p.Controls.Lg)
 	fmt.Fprintf(&b, "\t--spin-control-icon: %dpx;\n\t--spin-control-gap: %dpx;\n", p.Controls.Icon, p.Controls.Gap)
 	fmt.Fprintf(&b, "\t--spin-width-page: %dpx;\n", p.Layout.WidthPage)
+	fmt.Fprintf(&b, "\t--spin-width-panel-min: %dpx;\n", p.Layout.WidthPanelMin)
 	fmt.Fprintf(&b, "\t--spin-duration-fast: %dms;\n\t--spin-duration: %dms;\n", p.Motion.Fast, p.Motion.Base)
 	fmt.Fprintf(&b, "\t--spin-duration-slow: %dms;\n\t--spin-duration-draw: %dms;\n", p.Motion.Slow, p.Motion.Draw)
 	fmt.Fprintf(&b, "\t--spin-ease: %s;\n", p.Motion.Ease)
@@ -221,6 +222,9 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 			// by its own lightness rather than by a shadow; white in light.
 			{"popover", hsl(c["overlay"])}, {"popover-foreground", hsl(c["text"])},
 			{"muted", hsl(c["raised"])}, {"muted-foreground", hsl(c["muted"])},
+			// A panel's header: the surface, a step off the page in either theme, so a thing's name
+			// and its action read as one band without a second border saying so.
+			{"surface", hsl(c["surface"])},
 			{"border", hsl(c["border"])}, {"input", hsl(c["border_strong"])}, {"ring", hsl(c["accent"])},
 			{"primary", hsl(c["accent"])}, {"primary-foreground", hsl(c["on_accent"])},
 			// The accent as text - a link, an action written as words: accent_text, held at 4.5:1 on
@@ -264,6 +268,8 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--spin-control-icon: %dpx;\n\t--spin-control-gap: %dpx;\n", p.Controls.Icon, p.Controls.Gap)
 	// How wide a page may grow (the dashboard's page-width.ts reads it).
 	fmt.Fprintf(&b, "\t--spin-width-page: %dpx;\n", p.Layout.WidthPage)
+	// The least a panel is as panels tile across the column (layout.width_panel_min).
+	fmt.Fprintf(&b, "\t--spin-width-panel-min: %dpx;\n", p.Layout.WidthPanelMin)
 	// The dim behind a dialog: the dark page, in either theme, at the palette's scrim - a neutral
 	// dim, not the mark's navy, which tinted everything behind a dialog blue.
 	dim := dark["page"]
