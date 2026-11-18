@@ -1,0 +1,27 @@
+# Every change to this file - a comment's too - starts a run of every ecosystem below, whatever
+# the schedule says: change it rarely. It runs Monday morning, and rebase-strategy is disabled so a
+# pull request is not remade each time main moves: main's ruleset merges a branch only up to date
+# with it, and "Update branch" or `@dependabot rebase` brings one up when it is merged.
+#
+# Only go-tools, whose cmd/task is go.mod's tool: each of its releases is also a module version,
+# v0.<YYYYMMDD>.<N>, so this is how a change there reaches this repository, as a pull request CI
+# checks. No cooldown: go-tools is ours, and a release reaches the repository the week it is made.
+# The rest of go.mod - toml, x/image - is moved by a person, past an advisory, and versions.yaml's
+# task with versions bump, at the version every spin-stack repository runs.
+version: 2
+updates:
+  - package-ecosystem: gomod
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: America/Argentina/Buenos_Aires
+    rebase-strategy: disabled
+    allow:
+      # A tool's module is an indirect requirement in go.mod, which Dependabot leaves alone unless
+      # told to look at every type.
+      - dependency-name: github.com/spin-stack/go-tools
+        dependency-type: all
+    commit-message:
+      prefix: go
