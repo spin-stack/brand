@@ -192,13 +192,22 @@ desktop = 1280
 # (2026-11-08). An explorer - logs, traces - takes the viewport. The dashboard's page-width.ts
 # reads this.
 width_page = 1600       # px
-# What a page is made of, inside that column. A section of a page is a heading, a hairline and
-# its rows, on the page's own plane: a border around every section made the console a grid of
-# cards (the October review). A thing with its own identity and its single action - a network
-# policy, a resource preset, a forge's app - is a panel: a hairline edge at the dashboard's one
-# corner (`radius_sm`), its header (name, state, the action and its menu) on `surface`, its body
-# on the page, no shadow, since it does not float. A list of many is a table, never a panel per row. Panels tile across the column, each
-# at least this wide: at 1600 px two rules tables side by side, where one stretched to the
+# What a page is made of, inside that column (the flat pattern, 2026-11-18). An object - a
+# workspace, a team, the installation - has one row of tabs, never a second under it: twelve tabs
+# in five groups were two levels of navigation inside one thing. Its settings are one page that
+# scrolls, not tabs. Each section of that page is split: its title and a line of what it governs
+# in an aside on the left, its rows on the right in a card - a hairline edge at the dashboard's one
+# corner (`radius_sm`), on the page's plane, no shadow. A row is a label, its value and one verb
+# (Rename, Change, Manage); its detail, and its editing with Save and Cancel, open inside the row,
+# never in a dialog or on another tab. A page shows one banner at most, the one that matters most,
+# with its cause and its actions. The October review's grid of cards was a border around every
+# group of facts: a card holds rows a person acts on, and facts read for a diagnosis stay a
+# heading, a hairline and their rows. On a phone the aside goes over its card.
+width_aside = 280       # px: a split section's aside
+# A thing with its own identity and its single action - a network policy, a resource preset, a
+# forge's app - is a panel: a hairline edge, its header (name, state, the action and its menu) on
+# `surface`, its body on the page. A list of many is a table, never a panel per row. Panels tile
+# across the column, each at least this wide: at 1600 px two rules tables side by side, where one stretched to the
 # column's width put a port 1000 px from its destination (2026-11-08). In the column a table has
 # fixed tracks, so a column is at one x in every row and every panel, and a label and its value
 # sit together, never split across the width.
