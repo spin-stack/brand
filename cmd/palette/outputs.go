@@ -132,6 +132,7 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--spin-control-icon: %dpx;\n\t--spin-control-gap: %dpx;\n", p.Controls.Icon, p.Controls.Gap)
 	fmt.Fprintf(&b, "\t--spin-width-page: %dpx;\n", p.Layout.WidthPage)
 	fmt.Fprintf(&b, "\t--spin-width-panel-min: %dpx;\n", p.Layout.WidthPanelMin)
+	fmt.Fprintf(&b, "\t--spin-width-aside: %dpx;\n", p.Layout.WidthAside)
 	fmt.Fprintf(&b, "\t--spin-duration-fast: %dms;\n\t--spin-duration: %dms;\n", p.Motion.Fast, p.Motion.Base)
 	fmt.Fprintf(&b, "\t--spin-duration-slow: %dms;\n\t--spin-duration-draw: %dms;\n", p.Motion.Slow, p.Motion.Draw)
 	fmt.Fprintf(&b, "\t--spin-ease: %s;\n", p.Motion.Ease)
@@ -283,6 +284,8 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--spin-width-page: %dpx;\n", p.Layout.WidthPage)
 	// The least a panel is as panels tile across the column (layout.width_panel_min).
 	fmt.Fprintf(&b, "\t--spin-width-panel-min: %dpx;\n", p.Layout.WidthPanelMin)
+	// A split section's aside, its title and what it governs (layout.width_aside).
+	fmt.Fprintf(&b, "\t--spin-width-aside: %dpx;\n", p.Layout.WidthAside)
 	// The dim behind a dialog: the dark page, in either theme, at the palette's scrim - a neutral
 	// dim, not the mark's navy, which tinted everything behind a dialog blue.
 	dim := dark["page"]

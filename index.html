@@ -206,6 +206,16 @@ th { color: var(--spin-muted); font-weight: 500; }
 .panel .grid td, .panel .grid th { white-space: normal; }
 .panel .grid tr:last-child td { border-bottom: 0; }
 .panel .grid .id { color: var(--spin-text); }
+.split { display: grid; grid-template-columns: var(--spin-width-aside) minmax(0, 1fr); gap: 1rem 2rem; align-items: start; }
+.split h3 { margin: 0 0 .25rem; }
+@media (max-width: 768px) { .split { grid-template-columns: minmax(0, 1fr); } }
+.card { background: var(--spin-page); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-sm); }
+.card .row { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; padding: .75rem 1rem; border-top: 1px solid var(--spin-border); font-size: 14px; }
+.card .row:first-child { border-top: 0; }
+.card .row.editing { background: var(--spin-surface); }
+.card .lbl { flex: 0 0 10rem; font-weight: 500; }
+.card .val { flex: 1 1 14rem; min-width: 0; }
+.card .acts { display: flex; gap: .5rem; }
 .dialog { background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-lg); padding: 1.25rem; max-width: 26rem; box-shadow: var(--spin-shadow-overlay); }
 .toast { display: inline-flex; gap: .6rem; align-items: center; background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius); padding: .6rem .9rem; box-shadow: var(--spin-shadow-overlay); }
 .row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-start; margin-top: 1rem; }
@@ -413,7 +423,7 @@ D  /etc/issue</pre>
 <section class="only-full" id="panels">
 	<span class="label">Panels</span>
 	<div class="rules">
-		<p class="muted">A section of a page is a heading and its rows; a thing with its own identity and its single action is a panel. A hairline edge at the dashboard's one corner, <code>--spin-radius-sm</code>, its header - the name in the mono, its state, the one action and <code>⋯</code> - on <code>surface</code>, its body on the page, no shadow: it does not float. Panels tile across the column, none narrower than <code>--spin-width-panel-min</code>; inside one, a table has fixed tracks, so a column is at one x in every panel. A list of many is a table, never a panel per row.</p>
+		<p class="muted">A section of facts is a heading and its rows, and a section of settings is <a href="#split">split</a>; a thing with its own identity and its single action is a panel. A hairline edge at the dashboard's one corner, <code>--spin-radius-sm</code>, its header - the name in the mono, its state, the one action and <code>⋯</code> - on <code>surface</code>, its body on the page, no shadow: it does not float. Panels tile across the column, none narrower than <code>--spin-width-panel-min</code>; inside one, a table has fixed tracks, so a column is at one x in every panel. A list of many is a table, never a panel per row.</p>
 		<div class="panels">
 			<article class="panel">
 				<header><b>web</b><span class="state warn">pending</span><span class="grow"></span><button class="btn sm secondary">Edit</button><button class="btn sm ghost icon" aria-label="More actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></button></header>
@@ -427,6 +437,21 @@ D  /etc/issue</pre>
 	</div>
 </section>
 
+<section class="only-full" id="split">
+	<span class="label">Split sections</span>
+	<div class="rules">
+		<p class="muted">A page of settings is one page that scrolls, never tabs. Each section is split: its title and what it governs in an aside <code>--spin-width-aside</code> wide, its rows in a card - a hairline edge at <code>--spin-radius-sm</code>, on the page, no shadow. A row is its label, its value and one verb; its editing opens inside the row, with Save disabled until something changes. On a phone the aside goes over the card.</p>
+		<div class="split">
+			<div><h3>Network</h3><p class="muted">What it may reach. Its runner applies a change at once.</p></div>
+			<div class="card">
+				<div class="row"><span class="lbl">Policies</span><span class="val"><span class="id">github</span> <span class="muted">· github.com, ghcr.io</span></span><button class="btn sm ghost">Change</button></div>
+				<div class="row editing"><span class="lbl">Size</span><span class="val">2 CPU · 4 GB</span><span class="acts"><button class="btn sm secondary">Cancel</button><button class="btn sm primary" disabled>Save</button></span></div>
+				<div class="row"><span class="lbl">Log connections</span><span class="val muted">Off</span><button class="btn sm ghost">Turn on</button></div>
+			</div>
+		</div>
+	</div>
+</section>
+
 <section class="only-full" id="compositions">
 	<span class="label">Compositions</span>
 	<div class="rules">
@@ -436,7 +461,7 @@ D  /etc/issue</pre>
 		<h3>Documentation</h3>
 		<p class="muted">A Starlight page: one column at the reading measure, the sidebar at <code>--spin-sidebar</code>, headings in the mono. A claim links to the row of the status page that proves it.</p>
 		<h3>Application</h3>
-		<p class="muted">The dashboard, read for diagnosis. Every page is one centred column <code>--spin-width-page</code> wide, so its edges stay where the page before had them; an explorer takes the viewport. A page is a header - the title, its state, its context and its one primary action on one row - and sections of rows between hairlines; a thing with its own identity and its single action is a <a href="#panels">panel</a>, and panels tile across the column; the name beside the mark is <code>--spin-wordmark</code>, which the catalog audit holds the sidebar to.</p>
+		<p class="muted">The dashboard, read for diagnosis. Every page is one centred column <code>--spin-width-page</code> wide, so its edges stay where the page before had them; an explorer takes the viewport. A page is a header - the title, its state, its context and its one primary action on one row - one row of tabs, at most one banner, and sections: facts as rows between hairlines, settings <a href="#split">split</a>, each row a label, a value and one verb; a thing with its own identity and its single action is a <a href="#panels">panel</a>, and panels tile across the column; the name beside the mark is <code>--spin-wordmark</code>, which the catalog audit holds the sidebar to.</p>
 		<h3>Actions</h3>
 		<p class="muted">One primary action per view, solid in the accent and in words alone: <em>New workspace</em> on a list, <em>Open terminal</em> on a workspace. A row's actions are quiet: its most likely one as a secondary button (the raised fill, a hairline edge, no icon) and the rest behind <code>⋯</code>. An icon goes alone, with a tooltip, only where the toolbar has no room for words; never an icon and a word on every row. What destroys is in the destructive fill, in a confirmation, after Cancel.</p>
 		<h3>Elevation</h3>
