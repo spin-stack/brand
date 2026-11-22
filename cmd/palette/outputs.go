@@ -178,6 +178,9 @@ func starlightCSS(p palette, dark, light map[string]rgb) string {
 			// Light's header is gray-7, and its sidebar and its hairlines gray-6: the sidebar a
 			// step under the header, and a hairline that shows on white.
 			vars = append(vars, [2]string{"gray-7", c["surface"].hex()})
+			// Starlight draws light's links in the accent, which here is the text's own navy: a
+			// link takes accent_text, as it does everywhere else.
+			vars = append(vars, [2]string{"text-accent", c["accent_text"].hex()})
 		}
 		fmt.Fprintf(&b, "%s {\n", sel)
 		for _, v := range vars {
@@ -239,11 +242,11 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 			// A panel's header: the surface, a step off the page in either theme, so a thing's name
 			// and its action read as one band without a second border saying so.
 			{"surface", hsl(c["surface"])},
-			{"border", hsl(c["border"])}, {"input", hsl(c["border_strong"])}, {"ring", hsl(c["accent"])},
+			{"border", hsl(c["border"])}, {"input", hsl(c["border_strong"])}, {"ring", hsl(c["accent_text"])},
 			{"primary", hsl(c["accent"])}, {"primary-foreground", hsl(c["on_accent"])},
-			// The accent as text - a link, an action written as words: accent_text, held at 4.5:1 on
-			// every surface. The accent itself is a fill under a white label; as text on the dark
-			// navy it was 4.1:1, and the dashboard drew its links in it (text-primary).
+			// The accent as a line - a link, an action written as words, the focus ring above:
+			// accent_text, held at 4.5:1 on every surface. The accent itself is a fill: light's is
+			// the text's own navy, and a link in it (text-primary) is body text.
 			{"link", hsl(c["accent_text"])},
 			{"primary-hover", hsl(st.accentHover)}, {"primary-active", hsl(st.accentActive)},
 			{"destructive-hover", hsl(st.destructiveHover)}, {"destructive-active", hsl(st.destructiveActive)},

@@ -126,7 +126,9 @@ func holds(p palette) ([]result, error) {
 		hold("text", "text on a secondary button under the pointer", c["text"], st.controlHover, bodyText)
 		for _, s := range []string{"page", "raised"} {
 			hold("non-text", "border_strong on "+s, c["border_strong"], c[s], nonText)
-			hold("non-text", "accent (the focus ring) on "+s, c["accent"], c[s], nonText)
+			// The ring is accent_text, not the accent: light's accent is the text's own navy, and a
+			// ring in it around a field of navy text says nothing.
+			hold("non-text", "accent_text (the focus ring) on "+s, c["accent_text"], c[s], nonText)
 		}
 
 		apart("edge", "page | surface", c["page"], c["surface"], 0)

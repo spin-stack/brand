@@ -27,7 +27,7 @@ section { margin-top: 3rem; }
 section > .label { display: block; border-top: 1px solid var(--spin-border); padding-top: 1.5rem; margin-bottom: 1rem; }
 .muted { color: var(--spin-muted); }
 a { color: var(--spin-accent-text); text-underline-offset: .2em; }
-:focus-visible { outline: 2px solid var(--spin-accent); outline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--spin-accent-text); outline-offset: 2px; }
 
 /* The masthead: what this page is, and the view's controls. */
 .masthead { background: var(--spin-surface); border-bottom: 1px solid var(--spin-border); }
@@ -85,14 +85,14 @@ figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); padding
 .specimen { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; margin-top: 1rem; }
 .specimen > figure { margin: 0; border: 1px solid var(--spin-border); border-radius: var(--spin-radius); padding: 1rem; background: var(--spin-surface); }
 .badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
-/* Fields: the input's edge at 3:1 (border-strong), the focus ring in the accent, an error in its
+/* Fields: the input's edge at 3:1 (border-strong), the focus ring in accent-text, an error in its
    colour with its message under it, a hint in muted. 16 px on a touch screen (iOS zooms below). */
 .field { display: grid; gap: 6px; margin-top: .75rem; }
 .field label { font: 500 13px var(--spin-font-sans); color: var(--spin-text); }
 .field input { font: 13px var(--spin-font-sans); color: var(--spin-text); background: var(--spin-page); border: 1px solid var(--spin-border-strong); border-radius: var(--spin-radius-sm); height: var(--spin-control-md); padding: 0 10px; width: 100%; }
 .field input.mono { font-family: var(--spin-font-mono); }
 .field input:hover, .field input.is-hover { border-color: var(--spin-muted); }
-.field input:focus-visible, .field input.is-focus { outline: 2px solid var(--spin-accent); outline-offset: 0; border-color: var(--spin-accent); }
+.field input:focus-visible, .field input.is-focus { outline: 2px solid var(--spin-accent-text); outline-offset: 0; border-color: var(--spin-accent-text); }
 .field input[aria-invalid="true"] { border-color: var(--spin-error); }
 .field input:disabled { opacity: .5; }
 .field small { font: 12px var(--spin-font-sans); color: var(--spin-muted); } .field small.err { color: var(--spin-error); }
@@ -156,7 +156,7 @@ figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); padding
 .btn.danger:hover, .btn.danger.is-hover { background: var(--spin-destructive-hover); }
 .btn.danger:active, .btn.danger.is-active { background: var(--spin-destructive-active); }
 .btn.icon { width: var(--spin-control-md); padding: 0; } .btn.icon.sm { width: var(--spin-control-sm); }
-.btn.is-focus { outline: 2px solid var(--spin-accent); outline-offset: 2px; }
+.btn.is-focus { outline: 2px solid var(--spin-accent-text); outline-offset: 2px; }
 .btn:disabled { opacity: .45; cursor: not-allowed; }
 .tip { position: relative; display: inline-flex; }
 .tip > span { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); white-space: nowrap; font: 12px var(--spin-font-sans); color: var(--spin-text); background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-sm); padding: 3px 8px; box-shadow: var(--spin-shadow-overlay); }
@@ -358,7 +358,7 @@ D  /etc/issue</pre>
 			<div class="donts">
 				<figure><img src="logos/mark-clear-256.png" width="56" alt="" style="transform:scaleX(1.5)"><figcaption>stretched</figcaption></figure>
 				<figure><img src="logos/mark-clear-256.png" width="56" alt="" style="filter:hue-rotate(140deg)"><figcaption>recolored</figcaption></figure>
-				<figure><div style="background:var(--spin-accent);padding:6px;border-radius:8px"><img src="logos/mark-clear-256.png" width="44" alt=""></div><figcaption>on the accent</figcaption></figure>
+				<figure><div style="background:var(--spin-brand-cyan);padding:6px;border-radius:8px"><img src="logos/mark-clear-256.png" width="44" alt=""></div><figcaption>on its own cyan</figcaption></figure>
 				<figure><div style="background:#fff;padding:6px;border-radius:8px"><img src="logos/mark-256.png" width="44" alt="" style="border-radius:22%"></div><figcaption>the tile on white</figcaption></figure>
 			</div>
 		</div>
@@ -369,7 +369,7 @@ D  /etc/issue</pre>
 <section class="only-full" id="buttons">
 	<span class="label">Buttons</span>
 	<div class="rules">
-		<p class="muted">One primary action per view, in the accent and in words alone. A row's actions are quiet: its likely one as a secondary button and the rest behind <code>⋯</code>. An icon goes alone, with a tooltip, where a toolbar has no room for words - never an icon and a word on every row. What destroys is in the destructive fill, in a confirmation, after Cancel. Every state here is a token (<code>--spin-accent-fill-hover</code>, <code>--spin-control</code>, …) that <code>task palette</code> derives and holds: a white label at 4.5:1 on a fill under the pointer and pressed, a hover told from rest.</p>
+		<p class="muted">One primary action per view, in the accent and in words alone: the mark's cyan under a navy label in dark, the mark's navy under a white one in light. The cyan fill is the loudest thing on a dark page, so a second one on a view takes the first one's meaning. A row's actions are quiet: its likely one as a secondary button and the rest behind <code>⋯</code>. An icon goes alone, with a tooltip, where a toolbar has no room for words - never an icon and a word on every row. What destroys is in the destructive fill, in a confirmation, after Cancel. Every state here is a token (<code>--spin-accent-fill-hover</code>, <code>--spin-control</code>, …) that <code>task palette</code> derives and holds: the label at 4.5:1 on its fill under the pointer and pressed (<code>on-accent</code> on the accent, white on the destructive), a hover told from rest. A fill that is already ink, light's navy, lightens under the pointer; the others darken. The focus ring is <code>accent-text</code>, the cyan's hue in either theme.</p>
 		<div class="matrix">
 			<span></span><span>rest</span><span>hover</span><span>pressed</span><span>focus</span><span>disabled</span>
 			<b>primary</b><span><button class="btn primary ">Open terminal</button></span><span><button class="btn primary is-hover">Open terminal</button></span><span><button class="btn primary is-active">Open terminal</button></span><span><button class="btn primary is-focus">Open terminal</button></span><span><button class="btn primary" disabled>Open terminal</button></span>
@@ -401,7 +401,7 @@ D  /etc/issue</pre>
 	<span class="label">Fields</span>
 	<div class="specimen">
 		<figure><div class="field"><label for="f1">Name</label><input id="f1" placeholder="my-workspace"><small>Lowercase, digits and dashes.</small></div><div class="field"><label for="f2">Image</label><input id="f2" class="mono is-hover" value="ghcr.io/spin-stack/spinbox/sandbox:v20261014.01"></div></figure>
-		<figure><div class="field"><label for="f3">Description</label><input id="f3" class="is-focus" value="clean"><small>Focused: the accent's ring, the edge in the accent.</small></div><div class="field"><label for="f4">Type agent-1 to confirm</label><input id="f4" class="mono" aria-invalid="true" value="agent"><small class="err">The name does not match agent-1.</small></div></figure>
+		<figure><div class="field"><label for="f3">Description</label><input id="f3" class="is-focus" value="clean"><small>Focused: the ring and the edge in accent-text.</small></div><div class="field"><label for="f4">Type agent-1 to confirm</label><input id="f4" class="mono" aria-invalid="true" value="agent"><small class="err">The name does not match agent-1.</small></div></figure>
 		<figure><div class="field"><label for="f5">Region</label><input id="f5" value="us-east-1" disabled><small>Disabled: set by the installation.</small></div><p class="muted" style="font-size:13px;margin:.75rem 0 0">An input's edge is <code>border-strong</code>, 3:1 on the page (WCAG 1.4.11); 16 px on a touch screen, since iOS zooms into anything smaller.</p></figure>
 	</div>
 </section>
@@ -463,7 +463,7 @@ D  /etc/issue</pre>
 		<h3>Application</h3>
 		<p class="muted">The dashboard, read for diagnosis. Every page is one centred column <code>--spin-width-page</code> wide, so its edges stay where the page before had them; an explorer takes the viewport. A page is a header - the title, its state, its context and its one primary action on one row - one row of tabs, at most one banner, and sections: facts as rows between hairlines, settings <a href="#split">split</a>, each row a label, a value and one verb; a thing with its own identity and its single action is a <a href="#panels">panel</a>, and panels tile across the column; the name beside the mark is <code>--spin-wordmark</code>, which the catalog audit holds the sidebar to.</p>
 		<h3>Actions</h3>
-		<p class="muted">One primary action per view, solid in the accent and in words alone: <em>New workspace</em> on a list, <em>Open terminal</em> on a workspace. A row's actions are quiet: its most likely one as a secondary button (the raised fill, a hairline edge, no icon) and the rest behind <code>⋯</code>. An icon goes alone, with a tooltip, only where the toolbar has no room for words; never an icon and a word on every row. What destroys is in the destructive fill, in a confirmation, after Cancel.</p>
+		<p class="muted">One primary action per view, solid in the accent and in words alone: <em>New workspace</em> on a list, <em>Open terminal</em> on a workspace. The accent is the mark's own colour - its cyan in dark, its navy in light - and a link, the focus ring and a cursor are <code>accent-text</code>, the cyan's hue. A row's actions are quiet: its most likely one as a secondary button (the raised fill, a hairline edge, no icon) and the rest behind <code>⋯</code>. An icon goes alone, with a tooltip, only where the toolbar has no room for words; never an icon and a word on every row. What destroys is in the destructive fill, in a confirmation, after Cancel.</p>
 		<h3>Elevation</h3>
 		<p class="muted">A menu, a dialog or a toast is on <code>overlay</code> with a hairline edge and <code>--spin-shadow-overlay</code>: a soft shadow in light; in dark only a crisp edge, since a black shadow on a near-black scrim drew a second rectangle around the dialog. The scrim covers the whole viewport.</p>
 	</div>
@@ -513,7 +513,7 @@ const groups = [
 		'<span class="sw-inline" style="background:var(--spin-surface)">surface</span><span class="sw-inline" style="background:var(--spin-raised)">raised</span><span class="sw-inline" style="background:var(--spin-overlay)">overlay</span>'],
 	['Content', 'Text, secondary text, and a label that names a section or a command.', ['text', 'muted', 'label'],
 		'<span>Text</span> <span class="muted">secondary</span> <span class="label">a label</span>'],
-	['Actions', 'The one primary action per view, a link, and what destroys.', ['accent', 'accent-text', 'on-accent', 'destructive'],
+	['Actions', 'The one primary action per view, its label, a link and the focus ring, and what destroys.', ['accent', 'accent-text', 'on-accent', 'destructive'],
 		'<a class="btn primary" href="#">Primary</a> <a href="#">a link</a> <a class="btn danger" href="#">Delete</a>'],
 	['States', 'Ran or succeeded, waits, failed: each with a shape too, never by hue alone.', ['success', 'warning', 'error'],
 		'<span class="state ok">running</span> <span class="state warn">waiting</span> <span class="state err">failed</span>'],

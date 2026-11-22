@@ -5,13 +5,18 @@
 # terminal page, and anything else that reads dist/tokens.json. THEMING.md says where each goes.
 #
 # The colors come from the spin-stack mark: a stack of disks - the layers a workspace's disk is
-# made of - in cyan and blue on navy, with a mint ring. The interface is navy ink with the cyan,
-# deepened, as its one accent, used sparingly. A royal blue in its place read as any SaaS; navy and
-# cyan are what read as Spinbox. Dark is the default.
+# made of - in cyan and blue on navy, with a mint ring. The interface is the mark's two colours,
+# undiluted: in dark a navy ground with the cyan as the one filled action, its label navy; in light
+# a white page whose action is the navy itself, with the cyan's hue kept for links, the focus ring
+# and the cursor. A royal blue in the accent's place read as any SaaS, and a neutral graphite base
+# was picked and dropped the same day; navy and cyan are what read as Spinbox (decided 2026-11-22,
+# spin-stack/brand#46). Dark is the default.
 
 [brand]
-navy = "#111827"   # the mark's ground, as the avatar and the favicon's tile have it; not a surface
-cyan = "#27BFE8"   # the mark's middle disk; the accent is this cyan, deepened until white reads on it
+navy = "#111827"   # the mark's ground, as the avatar and the favicon's tile have it; light's ink -
+                   # its text and its primary action - and never a surface
+cyan = "#27BFE8"   # the mark's middle disk; dark's accent is this cyan, two units of blue off it
+                   # (dark.accent says which pair asks for them)
 blue = "#2F6BE3"   # the mark's lower disk; drawings only
 deep = "#0C3C84"   # the mark's base; drawings only
 mint = "#5FE3D6"   # the ring; drawings only (an eyebrow in mint competed with every state
@@ -20,39 +25,69 @@ frost = "#EAF0F6"  # the mark's top disk; text on navy
 
 # Surfaces, darkest to lightest in dark mode and lightest to darkest in light: page (behind
 # everything), surface (navigation and sidebars, a step off the page), raised (cards, code,
-# inputs), overlay (menus, dialogs). Dark is the mark's navy at its own chroma, a step under the
-# avatar's (#0E1421, L 9%), each step a clear lightness apart (the edge floor). A darker ink
-# (#0A0E16) read as near-black on the website: the navy was gone with the glare. The navy the dark page was before (#111827 to #273552 in steps of 4%) blended its planes,
-# and its blue-grey borders were louder than they were; the hue was never the problem.
+# inputs), overlay (menus, dialogs). Dark's page is the direction's deeper navy: under the mark's
+# ground (L* 5 to the mark's 8) and more saturated as it deepens (S 55% to the mark's 39%), so
+# that it still reads as navy. An ink this dark at the mark's own saturation (#0A0E16) read as
+# near-black on the website, the navy gone with the glare. Each step up is a clear lightness apart
+# (the edge floor) and gives back saturation, to the mark's by raised; planes 4% apart blended,
+# and a blue-grey border reads louder than it measures.
+#
+# The action is the mark's colour at full strength, and that is a decision, not a measurement
+# (spin-stack/brand#46). The finding it sets aside stands: a bright cyan fill is the loudest thing
+# on a dark page and can out-rank the page's title, which is why the accent was once a deeper blue
+# under a white label. What holds the cyan in its place now is use, not value: one filled action
+# per view, and the rest quiet (a secondary button, a link, a menu). The laboratory's five-second
+# test (spin-stack/brand#45) is the check that a page's title is still read first. On the website
+# the hero draws a disk in brand.cyan: a cyan call to action beside it competes with the drawing,
+# and that page is looked at when it takes this palette.
 [dark]
-page = "#0E1421"
-surface = "#161E2F"
-raised = "#1F2940"
-overlay = "#2A3550"
-border = "#34405A"      # a line between two surfaces, and an input's edge: 3:1 is held on page
-border_strong = "#6B7894" # an input's edge where it must read as a control (WCAG 1.4.11)
-text = "#E6EBF2"
-muted = "#9AA5B8"       # secondary text: held to 4.5:1 on every surface up to overlay
-accent = "#1B7DB4"      # the one primary action per view, solid; indicators; the focus ring
-accent_text = "#6CC6EE" # links and labels in the accent
-on_accent = "#FFFFFF"   # text on the solid accent
+page = "#09101F"
+surface = "#121A2E"
+raised = "#1B263E"
+overlay = "#26334F"
+border = "#313E5A"      # a line between two surfaces: told from the page and from raised (the line
+                        # floor), and not what makes an input read as a control
+border_strong = "#697997" # an input's edge where it must read as a control: 3:1 (WCAG 1.4.11)
+text = "#EAF0F6"        # the mark's frost
+muted = "#9AA7BB"       # secondary text: held to 4.5:1 on every surface up to overlay
+# The one primary action per view, solid, and indicators. brand.cyan as drawn, but for two units of
+# blue: #27BFE8 itself holds every contrast pair, and through tritanopia is ΔE00 5.8 from success,
+# under the floor of 6 that keeps a running state and the action apart; at #26BDED it is 6.2. That
+# is ΔE00 2.1 from the mark's cyan, under the 3 this palette asks of two things told apart.
+accent = "#26BDED"
+# The accent as a line: links, an action written as words, the focus ring. The accent's hue, lighter
+# (L* 78 to its 72), because a glyph's stroke or a 2 px ring carries less of its colour than a fill
+# does: the accent itself as text is 4.59:1 on the selected tint over surface, at its floor, and
+# this is 5.56:1 there and 6.96:1 on overlay.
+accent_text = "#54CFF5"
+on_accent = "#0B1220"   # the label on the solid accent: navy, at the page's depth; 5.06:1 on the
+                        # fill pressed. A white label on the mark's cyan is 2.2:1
 label = "#8FB3C6"       # a slate: a small label that names a section, quieter than a state
 success = "#4CC38A"
 warning = "#E3B04B"
 error = "#EE7BB0"       # leans pink to magenta: a deutan tells it from success by its blue
 destructive = "#C4384F" # the fill of a destructive action, its label white
 
+# In light the accent is the mark's navy, so the light theme carries the brand: a white page has
+# no navy ground to carry it. The navy is also the text's ink, so the accent says "the action" by
+# being a fill - a solid button, a selected row's bar - and never by being coloured words: a link
+# in it would be body text. What is drawn as a line or as words in the accent - a link, the focus
+# ring, a text cursor - is accent_text, which keeps the cyan's hue. The tints (tint.hover,
+# tint.selected) are this navy over the surface, a neutral grey step, with accent_text as the label
+# on them.
 [light]
 page = "#FFFFFF"
 surface = "#F1F4F9"
-raised = "#E1E7F0"
+raised = "#E0E6F1"
 overlay = "#FFFFFF"
-border = "#C4CCD8"
-border_strong = "#77829A"
-text = "#111827"
-muted = "#525D72"
-accent = "#0A6FA3"      # the cyan darkened until white text on it, and it on white, read
-accent_text = "#075A86"
+border = "#C4CCD9"
+border_strong = "#748099"
+text = "#111827"        # the mark's navy
+muted = "#515C72"
+accent = "#111827"      # brand.navy: the one primary action per view, solid; indicators. Under the
+                        # pointer it lightens (tint.fill), since black over it is a step nobody sees
+accent_text = "#024F6A" # the cyan's hue (196 degrees to the mark's 193), darkened until it reads on
+                        # every surface: 9.0:1 on white, 4.56:1 on the selected tint over surface
 on_accent = "#FFFFFF"
 label = "#33586E"       # the slate, darkened to read on white
 success = "#0F6844"
@@ -112,12 +147,13 @@ critical = "#D04A9E" # magenta-leaning, as error is: a deutan tells it from good
 
 # The accent over a surface, for what is selected or hovered on the site (the current page in the
 # sidebar, a hovered link): an alpha, so one value serves every surface. The label on a tint is
-# accent_text. The dashboard keeps the accent for its one primary action and the focus ring: its
-# hover and its navigation's selection are neutral, the surface a step off the page. The scrim is
-# the dark page behind a dialog, the only dim there is.
+# accent_text. In dark the tint is cyan over navy; in light it is the navy over white, a grey, and
+# the label's hue is what says it is selected. The dashboard keeps the accent for its one primary
+# action and its indicators: its hover and its navigation's selection are neutral, the surface a
+# step off the page. The scrim is the dark page behind a dialog, the only dim there is.
 [tint]
 hover = 0.10
-selected = 0.27      # cyan over navy is close in hue: a stronger tint keeps a selection told apart
+selected = 0.27      # dark's cyan over navy is close in hue: a stronger tint keeps a selection told apart
 scrim = 0.64
 # A solid fill under the pointer: black over it at this alpha, and twice it when pressed - or white
 # over a fill that is already ink, which black would not move. The fill decides, not the theme.
