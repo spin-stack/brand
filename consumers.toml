@@ -1,7 +1,14 @@
 # Every place that draws Spinbox, and what it takes from this repository. A place not here is not a
-# consumer: a new one is added here first, and `go tool task consumers` (cmd/consumers) says which
-# brand each is on. cmd/consumers' tests hold this file: every path on the right of `copies` is one
-# this repository has, and every output in dist/ is one somebody here copies.
+# consumer: a new one is added here first, and `go tool task consumers` (go-tools' consumers) says
+# which brand each is on. cmd/palette's tests hold this file: every path on the right of `copies`
+# is one this repository has, and every output in dist/ is one somebody here copies.
+#
+# Of the table:
+#
+#   name      what a consumer's versions.yaml calls this repository
+#   scope     the npm scope whose packages are this repository's to pin: the faces
+#
+# Of each consumer:
 #
 #   name      what the report calls it
 #   repo      owner/name on GitHub, read at its default branch
@@ -10,6 +17,9 @@
 #             npm and do not copy fonts/, so a new stylesheet beside the old packages draws in the
 #             system's fallback. Absent for a consumer that sets no text of its own.
 #   copies    the consumer's file = the file of this repository it is a copy of
+
+name = "brand"
+scope = "@fontsource"
 
 [[consumer]]
 name = "dashboard"

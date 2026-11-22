@@ -12,6 +12,13 @@
     The Task `go tool task` runs (go-tools' cmd/task), for every platform a person or a runner
     works on: no repository compiles it.
 
+- name: actionlint
+  kind: module
+  source: github.com/rhysd/actionlint/cmd/actionlint
+  version: v1.7.12
+  track: github-release https://github.com/rhysd/actionlint
+  note: task lint:workflows, which check runs. The version spin pins.
+
 - name: inter
   kind: download
   source: https://registry.npmjs.org/@fontsource/inter/-/inter-{version}.tgz

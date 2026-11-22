@@ -34,16 +34,26 @@ go tool task            # palette and mark: check, and write dist/ and logos/
 go tool task report     # every pair, its contrast or its distance in each view
 go tool task preview    # http://127.0.0.1:4330/
 go tool task check      # what CI runs: fails on a pair below its floor, or a stale dist/ or logos/
-go tool task consumers  # which brand each consumer is on: its pin, its copies, its faces
 go tool task agent-client T3CODE=<checkout>  # the fork's variable names, which t3code.css is held to
-go tool task release    # a person's: name main's head v<YYYYMMDD>.<NN>, once Gate has passed on it
+```
+
+And the tasks every spin-stack repository has, which are
+[go-tools' own](https://spin-stack.github.io/go-tools/tasks/) and `Taskfile.yml` includes:
+
+```
+go tool task versions        # which pins of versions.yaml are behind their upstream
+go tool task bump NAME=task  # pin one entry at its newest version, or at TO=
+go tool task lint:workflows  # actionlint, and every action pinned by its commit; part of check
+go tool task consumers       # which brand each consumer is on: its pin, its copies, its packages
+go tool task release         # a person's: name main's head v<YYYYMMDD>.<NN>, once Gate has passed on it
 ```
 
 `go tool task` is [go-tools](https://github.com/spin-stack/go-tools)' task command, the one tool
 `go.mod` takes: it runs the Task `versions.yaml` pins, the version CI runs, with go-tools' commands
 on its PATH. `task check` also fails on a workflow step that is not one task (`taskgate`), on a
-package install that skips Socket Firewall (`sfw check`), and on a face an output or a page names
-that `fonts/` does not ship (`cmd/palette`'s tests).
+workflow `actionlint` refuses or an action used by a tag (`lint:workflows`), on a package install
+that skips Socket Firewall (`sfw check`), and on a face an output or a page names that `fonts/`
+does not ship (`cmd/palette`'s tests).
 
 ## What holds the palette
 
@@ -120,8 +130,9 @@ go tool task release
 ```
 
 It refuses a commit `Gate` has not passed on (go-tools' `proven release`) and one already
-released, and the GitHub release makes the tag. A consumer that tracks releases pins one in its
-`versions.yaml`, and `versions check` and `versions bump brand` move it to the next:
+released (go-tools' `release`, where the name's rule is), and the GitHub release makes the tag. A
+consumer that tracks releases pins one in its `versions.yaml`, and `versions check` and
+`versions bump brand` move it to the next:
 
 ```yaml
 - name: brand

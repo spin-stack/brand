@@ -19,8 +19,8 @@ updates:
       timezone: America/Argentina/Buenos_Aires
     rebase-strategy: disabled
     allow:
-      # A tool's module is an indirect requirement in go.mod, which Dependabot leaves alone unless
-      # told to look at every type.
+      # Every type: a tool's module is an indirect requirement in go.mod, which Dependabot leaves
+      # alone unless told to, and go-tools is a direct one only while a test imports its consumers.
       - dependency-name: github.com/spin-stack/go-tools
         dependency-type: all
     commit-message:

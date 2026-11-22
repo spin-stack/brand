@@ -4,6 +4,15 @@ version: '3'
 # dist/ and logos/ are what they make, committed, for the website, the dashboard and anything else
 # that draws Spinbox to copy. `task check` holds them to the sources.
 
+# versions, bump, release, lint:workflows and consumers are go-tools' (its cmd/task/tasks.yml), as
+# in every spin-stack repository; `go tool task` names the file. Gate is pages.yml's job, the
+# pass a release asks for.
+includes:
+  common:
+    taskfile: '{{.GO_TOOLS_TASKS}}'
+    flatten: true
+    vars: {GATE_WORKFLOW: pages.yml, GATE_JOBS: Gate}
+
 tasks:
   default:
     cmds:
@@ -37,13 +46,6 @@ tasks:
     cmds:
       - python3 -m http.server 4330 --bind 127.0.0.1
 
-  consumers:
-    desc: Say which brand each consumer in consumers.toml is on - its pin, the release that names it, how far behind main, whether its copies are this repository's at that commit and its faces the ones versions.yaml pinned - read through gh, or `-- -checkout owner/name=dir[@ref]`. A report, exit 0 whatever it finds, and no part of check.
-    cmds:
-      # A consumer is behind origin/main as it is now, and on the releases there are now.
-      - git fetch --quiet --tags origin main
-      - go run ./cmd/consumers {{.CLI_ARGS}}
-
   agent-client:
     desc: Read the names of the variables the agent client declares - apps/web/src/index.css of spin-stack/t3code, in the checkout T3CODE= at REF= (by default fork/spin) - into cmd/palette/testdata/t3code.vars, the names dist/t3code.css is held to. Run when the fork moves - a name it dropped then fails `task check`.
     requires:
@@ -62,25 +64,13 @@ tasks:
           echo "$names"
         } > cmd/palette/testdata/t3code.vars
 
-  release:
-    desc: Release main's head as the next v<YYYYMMDD>.<NN> of today, in UTC, the name a consumer's versions.yaml pins. A person runs it, with gh logged in; it refuses a commit Gate has not passed on and one released already.
-    vars:
-      REPO: spin-stack/brand
-    cmds:
-      - git fetch --quiet --tags origin main
-      # go-tools' proven, as every spin-stack release asks it: Gate (pages.yml) passed on this
-      # commit or on a pull request's with the same tree, which a rebase merge leaves main with.
-      - GH_TOKEN="${GH_TOKEN:-$(gh auth token)}" proven release -repo {{.REPO}} -sha "$(git rev-parse origin/main)" -workflow pages.yml -events push,pull_request -ran Gate -also ''
-      # The release makes the tag, last. --latest: the screens' archives are releases too, made
-      # with --latest=false, and `track: github-release` reads the one GitHub calls latest.
-      - gh release create "$(go run ./cmd/release origin/main)" --repo {{.REPO}} --target "$(git rev-parse origin/main)" --latest --generate-notes
-
   check:
-    desc: What CI runs - fail if a pair is below its floor, dist/ or logos/ is not what the sources make, a workflow step is not one task, or an install skips Socket Firewall.
+    desc: What CI runs - fail if a pair is below its floor, dist/ or logos/ is not what the sources make, a workflow step is not one task, a workflow does not lint or uses an action by a tag, or an install skips Socket Firewall.
     cmds:
       # The Task running this one, which taskgate asks for the task names. go-tools' commands are on
       # its PATH: `go tool task` (go-tools' cmd/task) runs the Task versions.yaml pins with them.
       - taskgate -task {{.TASK_EXE}}
+      - task: lint:workflows
       - sfw check
       - go vet ./...
       - go test ./...
