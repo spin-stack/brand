@@ -1,0 +1,66 @@
+# Every place that draws Spinbox, and what it takes from this repository. A place not here is not a
+# consumer: a new one is added here first, and `go tool task consumers` (cmd/consumers) says which
+# brand each is on. cmd/consumers' tests hold this file: every path on the right of `copies` is one
+# this repository has, and every output in dist/ is one somebody here copies.
+#
+#   name      what the report calls it
+#   repo      owner/name on GitHub, read at its default branch
+#   pin       the versions.yaml, in that repository, whose `brand` entry names the commit it is on
+#   packages  the package.json its faces are installed from: consumers install @fontsource/* from
+#             npm and do not copy fonts/, so a new stylesheet beside the old packages draws in the
+#             system's fallback. Absent for a consumer that sets no text of its own.
+#   copies    the consumer's file = the file of this repository it is a copy of
+
+[[consumer]]
+name = "dashboard"
+repo = "spin-stack/spin"
+pin = "versions.yaml"
+packages = "dashboard/package.json"
+[consumer.copies]
+"dashboard/src/styles/brand.css" = "dist/dashboard.css"
+"dashboard/public/brand/mark-256.png" = "logos/mark-256.png"
+"dashboard/public/brand/mark-clear-256.png" = "logos/mark-clear-256.png"
+"dashboard/public/brand/mark-dark-256.png" = "logos/mark-dark-256.png"
+"dashboard/public/brand/mark-512.png" = "logos/mark-512.png"
+"dashboard/public/brand/apple-touch-icon.png" = "logos/apple-touch-icon.png"
+"dashboard/public/brand/favicon-32.png" = "logos/favicon-32.png"
+"dashboard/public/brand/favicon-64.png" = "logos/favicon-64.png"
+
+# Grafana's dashboards draw their series and thresholds in tokens.json's chart colours, through the
+# copy spin's control plane embeds. Grafana sets the text.
+[[consumer]]
+name = "grafana"
+repo = "spin-stack/spin"
+pin = "versions.yaml"
+[consumer.copies]
+"internal/controlplane/grafana/brand-tokens.json" = "dist/tokens.json"
+
+[[consumer]]
+name = "website"
+repo = "spin-stack/website"
+pin = "versions.yaml"
+packages = "package.json"
+[consumer.copies]
+"src/styles/brand-tokens.css" = "dist/tokens.css"
+"src/styles/brand-starlight.css" = "dist/starlight.css"
+"src/assets/logo.png" = "logos/mark-dark-256.png"
+"src/assets/logo-light.png" = "logos/mark-clear-256.png"
+"public/mark.png" = "logos/mark-512.png"
+"public/favicon.png" = "logos/favicon-64.png"
+"public/apple-touch-icon.png" = "logos/apple-touch-icon.png"
+
+[[consumer]]
+name = "blog"
+repo = "spin-stack/blog"
+pin = "versions.yaml"
+packages = "package.json"
+[consumer.copies]
+"src/styles/brand-tokens.css" = "dist/tokens.css"
+
+# The agent client, the T3 Code fork the dashboard frames. It copies nothing until this repository
+# makes its stylesheet (#44), which adds the copy here.
+[[consumer]]
+name = "agent client"
+repo = "spin-stack/t3code"
+pin = "versions.yaml"
+packages = "apps/web/package.json"

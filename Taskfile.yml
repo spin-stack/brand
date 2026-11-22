@@ -37,6 +37,26 @@ tasks:
     cmds:
       - python3 -m http.server 4330 --bind 127.0.0.1
 
+  consumers:
+    desc: Say which brand each consumer in consumers.toml is on - its pin, the release that names it, how far behind main, whether its copies are this repository's at that commit and its faces the ones versions.yaml pinned - read through gh, or `-- -checkout owner/name=dir[@ref]`. A report, exit 0 whatever it finds, and no part of check.
+    cmds:
+      # A consumer is behind origin/main as it is now, and on the releases there are now.
+      - git fetch --quiet --tags origin main
+      - go run ./cmd/consumers {{.CLI_ARGS}}
+
+  release:
+    desc: Release main's head as the next v<YYYYMMDD>.<NN> of today, in UTC, the name a consumer's versions.yaml pins. A person runs it, with gh logged in; it refuses a commit Gate has not passed on and one released already.
+    vars:
+      REPO: spin-stack/brand
+    cmds:
+      - git fetch --quiet --tags origin main
+      # go-tools' proven, as every spin-stack release asks it: Gate (pages.yml) passed on this
+      # commit or on a pull request's with the same tree, which a rebase merge leaves main with.
+      - GH_TOKEN="${GH_TOKEN:-$(gh auth token)}" proven release -repo {{.REPO}} -sha "$(git rev-parse origin/main)" -workflow pages.yml -events push,pull_request -ran Gate -also ''
+      # The release makes the tag, last. --latest: the screens' archives are releases too, made
+      # with --latest=false, and `track: github-release` reads the one GitHub calls latest.
+      - gh release create "$(go run ./cmd/release origin/main)" --repo {{.REPO}} --target "$(git rev-parse origin/main)" --latest --generate-notes
+
   check:
     desc: What CI runs - fail if a pair is below its floor, dist/ or logos/ is not what the sources make, a workflow step is not one task, or an install skips Socket Firewall.
     cmds:
