@@ -11,3 +11,27 @@
   note: >-
     The Task `go tool task` runs (go-tools' cmd/task), for every platform a person or a runner
     works on: no repository compiles it.
+
+- name: inter
+  kind: download
+  source: https://registry.npmjs.org/@fontsource/inter/-/inter-{version}.tgz
+  version: 5.3.0
+  pin: 02034af8d41dcc67ac8eab88f642e129bb8a2e8922abf30229c32725f54d8fd6
+  track: page https://registry.npmjs.org/@fontsource/inter/latest
+  note: >-
+    fonts/inter-latin-{400,500,600}-normal.woff2 and fonts/LICENSE-Inter.txt (OFL 1.1) are this
+    package's files/ and LICENSE, unchanged: the sans (palette.toml's type.sans), at the weights
+    type.weight_* rank. Installed with `sfw pnpm add` outside the checkout and copied; a bump
+    replaces all four files.
+
+- name: jetbrains-mono
+  kind: download
+  source: https://registry.npmjs.org/@fontsource/jetbrains-mono/-/jetbrains-mono-{version}.tgz
+  version: 5.3.0
+  pin: 1bbea47d1387406da5b6ccc4184cc61eae6851cc0db5c1d9bbd088ea9daa0b4a
+  track: page https://registry.npmjs.org/@fontsource/jetbrains-mono/latest
+  note: >-
+    fonts/jetbrains-mono-latin-{400,500,600}-normal.woff2 and fonts/LICENSE-JetBrains-Mono.txt
+    (OFL 1.1) are this package's files/ and LICENSE, unchanged: the mono (type.mono), which is also
+    the site's display face and the lockup's wordmark, both at 600. Installed with `sfw pnpm add`
+    outside the checkout and copied.

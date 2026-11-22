@@ -170,14 +170,16 @@ badge = 0.12
 light = "0 12px 32px rgb(16 19 24 / 0.14), 0 2px 6px rgb(16 19 24 / 0.08)"
 dark = "0 0 0 1px rgb(0 0 0 / 0.4)"
 
-# Type. IBM Plex, served by the site that uses it: a sans for reading and the app's headings, and a
-# mono for what a machine says - commands, output, ids, an image, a state, a time - and for the
-# site's headings (type.display), which set Spinbox in its console's face. A title that names a thing (a workspace, a runner) is its
+# Type. Inter and JetBrains Mono, the faces of the direction the team picked on prototypes of real
+# dashboard screens (2026-11-22, spin-stack/brand#46), served by the site that uses them from
+# fonts/: a sans for reading and the app's headings, and a mono for what a machine says - commands,
+# output, ids, an image, a state, a time - and for the site's headings (type.display), which set
+# Spinbox in its console's face. A title that names a thing (a workspace, a runner) is its
 # identifier, in mono. Mono beside sans is set at the sans' size, never smaller: an id or a state
 # at 11 px beside a 13 px name was the least legible thing on every screen.
 [type]
-sans = "IBM Plex Sans"
-mono = "IBM Plex Mono"
+sans = "Inter"
+mono = "JetBrains Mono"
 fallback_sans = "system-ui, -apple-system, 'Segoe UI', sans-serif"
 fallback_mono = "ui-monospace, 'SF Mono', Menlo, monospace"
 reading_size = 16       # px: the docs' body. Below 16 iOS zooms into a focused input
@@ -187,6 +189,14 @@ dense_size = 13         # px: the dashboard's body, where a table of runners is 
 # Each step is [size, line height] in px.
 dense_scale = { xs = [12, 16], sm = [13, 20], base = [14, 22], lg = [16, 24], xl = [18, 26], "2xl" = [20, 28], "3xl" = [24, 32] }
 line_height = 1.6       # reading; dense text takes 1.45
+# Weight is rank, in three steps, and fonts/ ships each face at exactly these: strong for what a
+# person came to the page for - its title, a row's name; medium for what is pressed or heads a
+# column - a button, a table's header; regular for the rest. A weight between two of them is a
+# rank nobody tells from its neighbour, and one fonts/ does not ship is drawn by the browser
+# smearing the nearest.
+weight_strong = 600
+weight_medium = 500
+weight_regular = 400
 heading_weight = 600
 heading_tracking = -0.02 # em: a large sans set tight reads as one word
 heading = "sans"        # the face of the app's headings, and the laboratory's

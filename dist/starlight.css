@@ -32,8 +32,8 @@
 	--sl-color-text-accent: #024F6A;
 }
 :root {
-	--sl-font: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-	--sl-font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+	--sl-font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--sl-font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 }
 :root {
 	--sl-text-h1: clamp(1.75rem, 1.421rem + 1.348vw, 2.5rem);

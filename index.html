@@ -7,11 +7,12 @@
 <link rel="icon" href="logos/favicon-64.png">
 <link rel="stylesheet" href="dist/tokens.css">
 <style>
-@font-face { font-family: 'IBM Plex Sans'; src: url(fonts/ibm-plex-sans-latin-400-normal.woff2) format('woff2'); font-weight: 400; }
-@font-face { font-family: 'IBM Plex Sans'; src: url(fonts/ibm-plex-sans-latin-500-normal.woff2) format('woff2'); font-weight: 500; }
-@font-face { font-family: 'IBM Plex Sans'; src: url(fonts/ibm-plex-sans-latin-600-normal.woff2) format('woff2'); font-weight: 600; }
-@font-face { font-family: 'IBM Plex Mono'; src: url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2'); font-weight: 400; }
-@font-face { font-family: 'IBM Plex Mono'; src: url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2'); font-weight: 600; }
+@font-face { font-family: 'Inter'; src: url(fonts/inter-latin-400-normal.woff2) format('woff2'); font-weight: 400; }
+@font-face { font-family: 'Inter'; src: url(fonts/inter-latin-500-normal.woff2) format('woff2'); font-weight: 500; }
+@font-face { font-family: 'Inter'; src: url(fonts/inter-latin-600-normal.woff2) format('woff2'); font-weight: 600; }
+@font-face { font-family: 'JetBrains Mono'; src: url(fonts/jetbrains-mono-latin-400-normal.woff2) format('woff2'); font-weight: 400; }
+@font-face { font-family: 'JetBrains Mono'; src: url(fonts/jetbrains-mono-latin-500-normal.woff2) format('woff2'); font-weight: 500; }
+@font-face { font-family: 'JetBrains Mono'; src: url(fonts/jetbrains-mono-latin-600-normal.woff2) format('woff2'); font-weight: 600; }
 
 /* Everything below is drawn from dist/tokens.css: a color here that is not a token is a bug. */
 * { box-sizing: border-box; }
@@ -84,6 +85,14 @@ figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); padding
 .badge.idle { color: var(--spin-muted); box-shadow: inset 0 0 0 1px var(--spin-border); } .badge.idle::before { background: none; box-shadow: inset 0 0 0 1.5px currentColor; }
 .specimen { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; margin-top: 1rem; }
 .specimen > figure { margin: 0; border: 1px solid var(--spin-border); border-radius: var(--spin-radius); padding: 1rem; background: var(--spin-surface); }
+/* Type: each step of the scale in the face that sets it, and the three weights by their rank. */
+.scale { display: grid; grid-template-columns: 9rem 1fr; gap: .5rem 1rem; align-items: baseline; margin: 1rem 0; }
+.scale > span { font: 12px var(--spin-font-mono); color: var(--spin-muted); }
+.scale > div { color: var(--spin-text); line-height: 1.15; overflow-wrap: anywhere; }
+.scale .h { font-family: var(--spin-font-heading); font-weight: var(--spin-heading-weight); letter-spacing: var(--spin-heading-tracking); }
+.scale .d { font-family: var(--spin-font-display); font-weight: var(--spin-heading-weight); letter-spacing: var(--spin-display-tracking); word-spacing: -0.12em; }
+.scale .m { font-family: var(--spin-font-mono); }
+@media (max-width: 640px) { .scale { grid-template-columns: 1fr; gap: 0 0; } .scale > div { margin-bottom: .6rem; } }
 .badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
 /* Fields: the input's edge at 3:1 (border-strong), the focus ring in accent-text, an error in its
    colour with its message under it, a hint in muted. 16 px on a touch screen (iOS zooms below). */
@@ -268,7 +277,7 @@ body.embed .wrap { padding-top: 0; }
 <nav class="index only-full" aria-label="On this page">
 	<div class="wrap">
 		<a href="#in-use">1 · In use</a><a href="#site">Site</a><a href="#dashboard">Dashboard</a><a href="#app">App</a>
-		<a href="#decisions">2 · Decisions</a><a href="#mark">Mark</a><a href="#buttons">Buttons</a><a href="#states">States</a><a href="#fields">Fields</a><a href="#tables">Tables</a><a href="#panels">Panels</a><a href="#palette-section">Palette</a>
+		<a href="#decisions">2 · Decisions</a><a href="#mark">Mark</a><a href="#type">Type</a><a href="#buttons">Buttons</a><a href="#states">States</a><a href="#fields">Fields</a><a href="#tables">Tables</a><a href="#panels">Panels</a><a href="#palette-section">Palette</a>
 		<a href="#checks">3 · Checks</a><a href="#widths">Widths</a><a href="#perception">Perception</a><a href="screens.html">Every screen →</a>
 	</div>
 </nav>
@@ -353,7 +362,7 @@ D  /etc/issue</pre>
 			<p class="muted">A quarter of the mark's height on every side, dashed above: no text or edge inside it.</p>
 			<h3>Lockup</h3>
 			<div class="lockup big"><img class="on-dark" src="logos/mark-dark-256.png" alt=""><img class="on-light" src="logos/mark-clear-256.png" alt=""><span>Spinbox</span></div>
-			<p class="muted">The mark, then <code>Spinbox</code> in IBM Plex Mono 600 - the word the prose uses, capitalised, its cap height the mark's middle disk.</p>
+			<p class="muted">The mark, then <code>Spinbox</code> in JetBrains Mono 600 - the word the prose uses, capitalised, its cap height the mark's middle disk.</p>
 			<h3>Not</h3>
 			<div class="donts">
 				<figure><img src="logos/mark-clear-256.png" width="56" alt="" style="transform:scaleX(1.5)"><figcaption>stretched</figcaption></figure>
@@ -365,6 +374,26 @@ D  /etc/issue</pre>
 	</div>
 </section>
 
+
+<section class="only-full" id="type">
+	<span class="label">Type</span>
+	<p class="muted">Inter for what a person reads and JetBrains Mono for what a machine says, the mono at the sans' size beside it. The site's headings are the mono at the display tracking with its word gaps closed; the app's are the sans.</p>
+	<div class="scale">
+		<span>display · mono</span><div class="d" style="font-size:var(--spin-text-display)">A virtual machine per workspace</div>
+		<span>h1 · sans</span><div class="h" style="font-size:var(--spin-text-h1)">Snapshots and rollback</div>
+		<span>h2</span><div class="h" style="font-size:var(--spin-text-h2)">Taking one</div>
+		<span>h3</span><div class="h" style="font-size:var(--spin-text-h3)">Seeing what changed</div>
+		<span>h4</span><div class="h" style="font-size:var(--spin-text-h4)">With memory</div>
+		<span>reading · 16 px</span><div style="font-size:var(--spin-text-reading);line-height:var(--spin-line-height)">A snapshot is a point in a workspace's life that you can come back to: <span class="m">spin snapshot create demo</span></div>
+		<span>dense · 13 px</span><div style="font-size:var(--spin-text-dense);line-height:1.45">agent-1 on <span class="m">runner-a1</span>, <span class="m">running</span> since <span class="m">14:02:11</span>, 4 CPU and 8.0 GB</div>
+	</div>
+	<p class="muted">Weight is rank, and each face ships at these three and no other.</p>
+	<div class="scale">
+		<span>strong · 600</span><div style="font-weight:var(--spin-weight-strong)">A page's title, a row's name <span class="m">agent-1</span></div>
+		<span>medium · 500</span><div style="font-weight:var(--spin-weight-medium)">A button, a table's header <span class="m">New workspace</span></div>
+		<span>regular · 400</span><div style="font-weight:var(--spin-weight-regular)">Everything else <span class="m">ghcr.io/spin-stack/spinbox/sandbox:v20261014.01</span></div>
+	</div>
+</section>
 
 <section class="only-full" id="buttons">
 	<span class="label">Buttons</span>
