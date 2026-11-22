@@ -22,11 +22,16 @@ func outputs(p palette, results []result) (map[string][]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+	darkServices, lightServices, err := p.Trace.colors()
+	if err != nil {
+		return nil, err
+	}
 	files := map[string][]byte{}
 
 	j, err := json.MarshalIndent(map[string]any{
 		"brand": p.Brand, "dark": hexes(dark), "light": hexes(light), "terminal": hexes(term), "chart": chartJSON(p.Chart),
-		"tint": p.Tint, "type": p.Type, "layout": p.Layout, "controls": p.Controls, "elevation": p.Elevation, "motion": p.Motion,
+		"trace": map[string][]string{"dark": hexList(darkServices), "light": hexList(lightServices)},
+		"tint":  p.Tint, "type": p.Type, "layout": p.Layout, "controls": p.Controls, "elevation": p.Elevation, "motion": p.Motion,
 	}, "", "  ")
 	if err != nil {
 		return nil, err
@@ -53,6 +58,43 @@ func chartJSON(c chart) map[string]any {
 		"series": series, "good": strings.ToUpper(c.Good),
 		"warning": strings.ToUpper(c.Warning), "critical": strings.ToUpper(c.Critical),
 	}
+}
+
+func hexList(c []rgb) []string {
+	out := make([]string, 0, len(c))
+	for _, v := range c {
+		out = append(out, v.hex())
+	}
+	return out
+}
+
+// serviceVars is a theme's trace services as --<prefix>-1 and on, in hex: the dashboard sets
+// them as a background, a border and a colour as they are.
+func serviceVars(p palette, prefix string, isDark bool) string {
+	dark, light, err := p.Trace.colors()
+	if err != nil {
+		panic("palette.toml's trace: " + err.Error())
+	}
+	services := light
+	if isDark {
+		services = dark
+	}
+	var b strings.Builder
+	for i, s := range services {
+		fmt.Fprintf(&b, "\t--%s-%d: %s;\n", prefix, i+1, s.hex())
+	}
+	return b.String()
+}
+
+// chartVars is the chart's series and statuses as --spin-chart-*, the same in either theme.
+func chartVars(c chart) string {
+	var b strings.Builder
+	for i, s := range c.Series {
+		fmt.Fprintf(&b, "\t--spin-chart-series-%d: %s;\n", i+1, strings.ToUpper(s))
+	}
+	fmt.Fprintf(&b, "\t--spin-chart-good: %s;\n\t--spin-chart-warning: %s;\n\t--spin-chart-critical: %s;\n",
+		strings.ToUpper(c.Good), strings.ToUpper(c.Warning), strings.ToUpper(c.Critical))
+	return b.String()
 }
 
 func hexes(c map[string]rgb) map[string]string {
@@ -99,6 +141,7 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 		}
 		fmt.Fprintf(&b, "\t--spin-accent-hover: %s;\n", c["accent"].over(c["page"], p.Tint.Hover).hex())
 		fmt.Fprintf(&b, "\t--spin-accent-selected: %s;\n", c["accent"].over(c["page"], p.Tint.Selected).hex())
+		b.WriteString(serviceVars(p, "spin-trace-service", isDark))
 		b.WriteString("}\n")
 	}
 	// .spin-dark is a part that is dark in either theme - a terminal, a drawing on the navy - and
@@ -115,6 +158,7 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 		fmt.Fprintf(&b, "\t--spin-brand-%s: %s;\n", k, strings.ToUpper(p.Brand[k]))
 	}
 	b.WriteString(terminalVars(p, "spin-terminal"))
+	b.WriteString(chartVars(p.Chart))
 	fmt.Fprintf(&b, "\t--spin-wordmark: %q;\n", p.Type.Wordmark)
 	fmt.Fprintf(&b, "\t--spin-font-sans: '%s', %s;\n", p.Type.Sans, p.Type.FallbackSans)
 	fmt.Fprintf(&b, "\t--spin-font-mono: '%s', %s;\n", p.Type.Mono, p.Type.FallbackMono)
@@ -286,6 +330,8 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 			shadow = p.Elevation.Dark
 		}
 		fmt.Fprintf(&b, "\t--shadow-overlay: %s;\n", shadow)
+		// A trace's services, by the names the dashboard's trace-model.ts picks them by.
+		b.WriteString(serviceVars(p, "trace-service", isDark))
 		b.WriteString("}\n")
 	}
 	block(":root", light, false)

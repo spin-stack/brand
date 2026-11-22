@@ -51,6 +51,11 @@ var tiers = map[string][2]float64{
 	"hover":   {3, 2},   // a step under the pointer
 	"meaning": {20, 10}, // hue that carries meaning: status against status and against the accent,
 	// a chart's series against the one drawn next to it, and a chart's statuses against each other
+	"service": {10, 6}, // two services of a trace, any two: marks a few pixels high, each with its
+	// service's name printed beside it, so the hue is a second cue and not the only one
+	"red": {20, 6}, // a service against the red of a destructive action: as drawn it is not taken
+	// for red (meaning's floor); through protanopia and deuteranopia a green and a red of one
+	// lightness are one whoever picks them, so there it is told apart as two services are
 }
 
 // meaningTritan is the floor for meaning through tritanopia, where blue and green are one: a
@@ -170,6 +175,11 @@ func holds(p palette) ([]result, error) {
 		return nil, err
 	}
 	out = append(out, ch...)
+	tr, err := traceHolds(p)
+	if err != nil {
+		return nil, err
+	}
+	out = append(out, tr...)
 	for _, r := range out {
 		if math.IsNaN(r.contrast) {
 			return nil, fmt.Errorf("%s %s: not a number", r.mode, r.what)
@@ -267,6 +277,61 @@ func chartHolds(p palette) ([]result, error) {
 	for i, a := range chartStatuses {
 		for _, b := range chartStatuses[i+1:] {
 			apart("meaning", a+" | "+b, statuses[a], statuses[b])
+		}
+	}
+	return out, nil
+}
+
+// traceHolds is a trace's services, in each theme: each read on the page, where the count of a
+// span's children is written in it and, in the page's colour, on it; each a bar that shows on a
+// selected row; each apart from error, which a failed span takes in a service's place, and from
+// red; and every one apart from every other, since a name's hash picks them and any two can share
+// a trace.
+func traceHolds(p palette) ([]result, error) {
+	darkSet, lightSet, err := p.Trace.colors()
+	if err != nil {
+		return nil, fmt.Errorf("trace: %w", err)
+	}
+	var out []result
+	for _, m := range []struct {
+		name     string
+		m        mode
+		services []rgb
+	}{{"dark", p.Dark, darkSet}, {"light", p.Light, lightSet}} {
+		c, err := colors(m.m)
+		if err != nil {
+			return nil, fmt.Errorf("%s: %w", m.name, err)
+		}
+		hold := func(kind, what string, fg, bg rgb, floor float64) {
+			r := result{mode: m.name, kind: kind, what: what, contrast: contrast(fg, bg), floor: floor}
+			r.ok = r.contrast >= floor
+			out = append(out, r)
+		}
+		apart := func(tier, what string, a, b rgb) {
+			f := tiers[tier]
+			r := result{mode: m.name, kind: tier, what: what, distance: map[string]float64{}, floor: f[0], worst: f[1], ok: true}
+			for _, v := range views {
+				d := deltaE00(v.fn(a.linear()).lab(), v.fn(b.linear()).lab())
+				r.distance[v.name] = d
+				floor := f[1]
+				if v.name == "drawn" {
+					floor = f[0]
+				}
+				if d < floor {
+					r.ok = false
+				}
+			}
+			out = append(out, r)
+		}
+		for i, s := range m.services {
+			name := fmt.Sprintf("service %d", i+1)
+			hold("text", name+" on page", s, c["page"], text)
+			hold("non-text", name+" on raised", s, c["raised"], nonText)
+			apart("meaning", name+" | error", s, c["error"])
+			apart("red", name+" | destructive", s, c["destructive"])
+			for j, o := range m.services[i+1:] {
+				apart("service", fmt.Sprintf("%s | service %d", name, i+j+2), s, o)
+			}
 		}
 	}
 	return out, nil

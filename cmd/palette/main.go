@@ -96,11 +96,36 @@ func (c chart) colors() ([]rgb, map[string]rgb, error) {
 	return series, statuses, nil
 }
 
+// trace is the colours that tell a trace's services apart, a set for each theme (palette.toml
+// says why they are not the chart's series).
+type trace struct{ Dark, Light []string }
+
+// colors is each theme's services in their order. The two sets are one list of slots - the
+// dashboard picks a slot by a name's hash, whatever the theme - so they are as long as each other.
+func (t trace) colors() (dark, light []rgb, err error) {
+	if len(t.Dark) < 2 || len(t.Dark) != len(t.Light) {
+		return nil, nil, fmt.Errorf("%d services in dark and %d in light, want the same and at least two", len(t.Dark), len(t.Light))
+	}
+	for i := range t.Dark {
+		d, err := parseHex(t.Dark[i])
+		if err != nil {
+			return nil, nil, fmt.Errorf("dark service %d: %w", i+1, err)
+		}
+		l, err := parseHex(t.Light[i])
+		if err != nil {
+			return nil, nil, fmt.Errorf("light service %d: %w", i+1, err)
+		}
+		dark, light = append(dark, d), append(light, l)
+	}
+	return dark, light, nil
+}
+
 type palette struct {
 	Brand map[string]string
 	Dark  mode
 	Light mode
 	Chart chart
+	Trace trace
 	// A terminal's roles and its sixteen ANSI colours, the same in either theme.
 	Terminal terminal
 	Tint     struct{ Hover, Selected, Scrim, Fill, Badge float64 }

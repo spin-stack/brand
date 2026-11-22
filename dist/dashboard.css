@@ -40,6 +40,14 @@
 	--warning: 36.4 100.0% 25.9%;
 	--warning-foreground: 0.0 0.0% 100.0%;
 	--shadow-overlay: 0 12px 32px rgb(16 19 24 / 0.14), 0 2px 6px rgb(16 19 24 / 0.08);
+	--trace-service-1: #535FFE;
+	--trace-service-2: #5839A6;
+	--trace-service-3: #116C98;
+	--trace-service-4: #106F39;
+	--trace-service-5: #565B00;
+	--trace-service-6: #573900;
+	--trace-service-7: #4B1803;
+	--trace-service-8: #03857E;
 }
 .dark {
 	--background: 220.9 55.0% 7.8%;
@@ -82,6 +90,14 @@
 	--warning: 39.9 73.1% 59.2%;
 	--warning-foreground: 220.9 55.0% 7.8%;
 	--shadow-overlay: 0 0 0 1px rgb(0 0 0 / 0.4);
+	--trace-service-1: #4085F9;
+	--trace-service-2: #8E72AE;
+	--trace-service-3: #27BFE8;
+	--trace-service-4: #5CEFC0;
+	--trace-service-5: #93A96D;
+	--trace-service-6: #FFD353;
+	--trace-service-7: #B66F03;
+	--trace-service-8: #0A8B7D;
 }
 :root {
 	--radius: 6px;
