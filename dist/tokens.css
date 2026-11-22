@@ -6,6 +6,7 @@
 	--spin-border-strong: #697997;
 	--spin-destructive: #C4384F;
 	--spin-error: #EE7BB0;
+	--spin-hairline: #192237;
 	--spin-label: #8FB3C6;
 	--spin-muted: #9AA7BB;
 	--spin-on-accent: #0B1220;
@@ -22,6 +23,9 @@
 	--spin-destructive-active: #952B3C;
 	--spin-control: #1B263E;
 	--spin-control-hover: #26334F;
+	--spin-control-border: #313E5A;
+	--spin-row-hover: #121A2E;
+	--spin-row-action-hover: #1B263E;
 	--spin-shadow-overlay: 0 0 0 1px rgb(0 0 0 / 0.4);
 	--spin-success-badge: color-mix(in srgb, var(--spin-success) 12%, transparent);
 	--spin-warning-badge: color-mix(in srgb, var(--spin-warning) 12%, transparent);
@@ -37,6 +41,7 @@
 	--spin-border-strong: #748099;
 	--spin-destructive: #C0303F;
 	--spin-error: #9A1F60;
+	--spin-hairline: #E3E6ED;
 	--spin-label: #33586E;
 	--spin-muted: #515C72;
 	--spin-on-accent: #FFFFFF;
@@ -53,6 +58,9 @@
 	--spin-destructive-active: #922430;
 	--spin-control: #F1F4F9;
 	--spin-control-hover: #E0E6F1;
+	--spin-control-border: #C4CCD9;
+	--spin-row-hover: #F1F4F9;
+	--spin-row-action-hover: #E0E6F1;
 	--spin-shadow-overlay: 0 12px 32px rgb(16 19 24 / 0.14), 0 2px 6px rgb(16 19 24 / 0.08);
 	--spin-success-badge: color-mix(in srgb, var(--spin-success) 12%, transparent);
 	--spin-warning-badge: color-mix(in srgb, var(--spin-warning) 12%, transparent);
@@ -110,6 +118,8 @@
 	--spin-text-h4: clamp(1rem, 0.9452rem + 0.2247vw, 1.125rem);
 	--spin-measure: 72ch;
 	--spin-sidebar: 17rem;
+	--spin-row: 36px;
+	--spin-sidebar-app: 240px;
 	--spin-radius-sm: 6px;
 	--spin-radius: 8px;
 	--spin-radius-lg: 12px;

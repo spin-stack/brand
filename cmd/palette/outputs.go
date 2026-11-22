@@ -87,6 +87,8 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 			{"accent-fill-hover", st.accentHover.hex()}, {"accent-fill-active", st.accentActive.hex()},
 			{"destructive-hover", st.destructiveHover.hex()}, {"destructive-active", st.destructiveActive.hex()},
 			{"control", st.control.hex()}, {"control-hover", st.controlHover.hex()},
+			{"control-border", st.outline.hex()},
+			{"row-hover", st.row.hex()}, {"row-action-hover", st.rowAction.hex()},
 		} {
 			fmt.Fprintf(&b, "\t--spin-%s: %s;\n", v[0], v[1])
 		}
@@ -127,6 +129,7 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 		fmt.Fprintf(&b, "\t--spin-text-%s: %s;\n", k, fluid(p, k))
 	}
 	fmt.Fprintf(&b, "\t--spin-measure: %dch;\n\t--spin-sidebar: %drem;\n", p.Layout.Measure, p.Layout.Sidebar)
+	b.WriteString(appSizeVars(p))
 	fmt.Fprintf(&b, "\t--spin-radius-sm: %dpx;\n\t--spin-radius: %dpx;\n\t--spin-radius-lg: %dpx;\n", p.Layout.RadiusSm, p.Layout.Radius, p.Layout.RadiusLg)
 	fmt.Fprintf(&b, "\t--spin-target: %dpx;\n\t--spin-target-touch: %dpx;\n", p.Layout.Target, p.Layout.TargetTouch)
 	fmt.Fprintf(&b, "\t--spin-control-sm: %dpx;\n\t--spin-control-md: %dpx;\n\t--spin-control-lg: %dpx;\n", p.Controls.Sm, p.Controls.Md, p.Controls.Lg)
@@ -171,6 +174,10 @@ func starlightCSS(p palette, dark, light map[string]rgb) string {
 			{"gray-4", c["border_strong"].hex()},
 			{"gray-5", c["border"].hex()},
 			{"gray-6", sidebar.hex()},
+			// What Starlight rules a page's content with - a table's rows, a section's top, a
+			// rule: lines on the page, which is the hairline's one ground. Its own choice is
+			// gray-5 in dark, the border, and gray-6 in light, a surface nothing holds as a line.
+			{"hairline-light", c["hairline"].hex()},
 			{"black", c["page"].hex()},
 			{"banner-bg", c["accent"].over(c["surface"], 0.22).hex()},
 			{"banner-text", c["text"].hex()},
@@ -199,6 +206,8 @@ func starlightCSS(p palette, dark, light map[string]rgb) string {
 	for _, h := range [][2]string{{"h1", "h1"}, {"h2", "h2"}, {"h3", "h3"}, {"h4", "h4"}} {
 		fmt.Fprintf(&b, "\t--sl-text-%s: %s;\n", h[0], fluid(p, h[1]))
 	}
+	// The docs' sidebar, in Starlight's own variable: its default is a width nobody here chose.
+	fmt.Fprintf(&b, "\t--sl-sidebar-width: %drem;\n", p.Layout.Sidebar)
 	b.WriteString("}\n")
 	return b.String()
 }
@@ -244,6 +253,11 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 			// and its action read as one band without a second border saying so.
 			{"surface", hsl(c["surface"])},
 			{"border", hsl(c["border"])}, {"input", hsl(c["border_strong"])}, {"ring", hsl(c["accent_text"])},
+			// shadcn has one variable for an input's edge and an outline button's, --input. Here
+			// they are two: --input is the 3:1 edge, and a button's outline is this.
+			{"control-border", hsl(st.outline)},
+			{"hairline", hsl(c["hairline"])},
+			{"row-hover", hsl(st.row)}, {"row-action-hover", hsl(st.rowAction)},
 			{"primary", hsl(c["accent"])}, {"primary-foreground", hsl(c["on_accent"])},
 			// The accent as a line - a link, an action written as words, the focus ring above:
 			// accent_text, held at 4.5:1 on every surface. The accent itself is a fill: light's is
@@ -284,6 +298,7 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--radius: %gpx;\n", float64(p.Layout.RadiusSm))
 	fmt.Fprintf(&b, "\t--spin-control-sm: %dpx;\n\t--spin-control-md: %dpx;\n\t--spin-control-lg: %dpx;\n", p.Controls.Sm, p.Controls.Md, p.Controls.Lg)
 	fmt.Fprintf(&b, "\t--spin-control-icon: %dpx;\n\t--spin-control-gap: %dpx;\n", p.Controls.Icon, p.Controls.Gap)
+	b.WriteString(appSizeVars(p))
 	// How wide a page may grow (the dashboard's page-width.ts reads it).
 	fmt.Fprintf(&b, "\t--spin-width-page: %dpx;\n", p.Layout.WidthPage)
 	// The least a panel is as panels tile across the column (layout.width_panel_min).
@@ -314,6 +329,12 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--spin-duration-slow: %dms;\n\t--spin-ease: %s;\n", p.Motion.Slow, p.Motion.Ease)
 	b.WriteString("}\n")
 	return b.String()
+}
+
+// appSizeVars is the app's sizes that are not a control's: a list's row and the navigation's
+// width. A size a consumer has no variable for is one it writes itself, and then it drifts.
+func appSizeVars(p palette) string {
+	return fmt.Sprintf("\t--spin-row: %dpx;\n\t--spin-sidebar-app: %dpx;\n", p.Layout.Row, p.Layout.SidebarApp)
 }
 
 // weightVars is the three ranks a weight says (type.weight_*), which are also the weights fonts/

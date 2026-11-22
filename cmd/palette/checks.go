@@ -136,6 +136,9 @@ func holds(p palette) ([]result, error) {
 		apart("edge", "page | raised", c["page"], c["raised"], 0)
 		apart("line", "border on page", c["border"], c["page"], 0)
 		apart("line", "border on raised", c["border"], c["raised"], 0)
+		// The page alone: a hairline is quieter than border because nothing asks it to show on a
+		// surface, and nothing here says it does.
+		apart("line", "hairline on page", c["hairline"], c["page"], 0)
 		for _, s := range []string{"page", "surface"} {
 			apart("state", "selected tint over "+s+" | "+s, c["accent"].over(c[s], p.Tint.Selected), c[s], 0)
 			apart("hover", "hover tint over "+s+" | "+s, c["accent"].over(c[s], p.Tint.Hover), c[s], 0)
@@ -144,6 +147,12 @@ func holds(p palette) ([]result, error) {
 		apart("hover", "destructive under the pointer | destructive", st.destructiveHover, c["destructive"], 0)
 		apart("hover", "secondary under the pointer | secondary", st.controlHover, st.control, 0)
 		apart("edge", "secondary button | page", st.control, c["page"], 0)
+		// Where a secondary button is drawn: on the page, and on the surface of a panel's header.
+		for _, s := range []string{"page", "surface"} {
+			apart("line", "a secondary button's outline on "+s, st.outline, c[s], 0)
+		}
+		apart("hover", "a row under the pointer | page", st.row, c["page"], 0)
+		apart("hover", "a row's action under the pointer | its row", st.rowAction, st.row, 0)
 		for _, pair := range [][2]string{
 			{"success", "error"}, {"success", "warning"}, {"warning", "error"},
 			{"accent", "success"}, {"accent", "error"},
@@ -267,7 +276,7 @@ func chartHolds(p palette) ([]result, error) {
 func colors(m mode) (map[string]rgb, error) {
 	named := map[string]string{
 		"page": m.Page, "surface": m.Surface, "raised": m.Raised, "overlay": m.Overlay,
-		"border": m.Border, "border_strong": m.BorderStrong, "text": m.Text, "muted": m.Muted,
+		"border": m.Border, "hairline": m.Hairline, "border_strong": m.BorderStrong, "text": m.Text, "muted": m.Muted,
 		"accent": m.Accent, "accent_text": m.AccentText, "on_accent": m.OnAccent, "label": m.Label,
 		"success": m.Success, "warning": m.Warning, "error": m.Error, "destructive": m.Destructive,
 	}

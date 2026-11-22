@@ -55,6 +55,15 @@ say rank (600 a page's title and a row's name, 500 a button and a table's header
 `--spin-weight-*`), a 16 px reading size (below it iOS zooms into a focused input) and 13 px for
 the dashboard's tables, a 72ch measure, 24 px for any pointer target and 44 px on a coarse pointer
 (WCAG 2.2, 2.5.8 and 2.5.5).
+Sizes are variables in every output, so that a consumer has no number of its own to drift from:
+a control's three heights (28, 32 and 36 px, `--spin-control-*`), a list's row (36 px,
+`--spin-row`), the radius, and the two sidebars, the docs' in rem (`--spin-sidebar`, and
+Starlight's `--sl-sidebar-width`) and the app's in px (`--spin-sidebar-app`). Three lines, by what
+each must be seen against: `hairline` separates on the page and is held against the page alone,
+`border` is a line between two surfaces and a secondary button's outline (`--spin-control-border`,
+`--control-border`), and `border_strong` is an input's edge at 3:1. `palette.toml` says the rules
+that are behaviour: one filled action per view, a list's row as a plane under the pointer with
+its actions drawn only then, an icon alone only with its caption.
 Motion is four durations and one easing (`--spin-duration-*`, `--spin-ease`): a movement says
 what something does or that it answered a hand, runs once, and is its end state under reduced
 motion.

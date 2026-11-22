@@ -19,14 +19,16 @@ import (
 type mode struct {
 	Page, Surface, Raised, Overlay string
 	Border                         string
-	BorderStrong                   string `toml:"border_strong"`
-	Text, Muted                    string
-	Accent                         string
-	AccentText                     string `toml:"accent_text"`
-	OnAccent                       string `toml:"on_accent"`
-	Label                          string
-	Success, Warning, Error        string
-	Destructive                    string
+	// A separator on the page, held against the page alone.
+	Hairline                string
+	BorderStrong            string `toml:"border_strong"`
+	Text, Muted             string
+	Accent                  string
+	AccentText              string `toml:"accent_text"`
+	OnAccent                string `toml:"on_accent"`
+	Label                   string
+	Success, Warning, Error string
+	Destructive             string
 }
 
 type terminal struct {
@@ -126,6 +128,7 @@ type palette struct {
 	}
 	Layout struct {
 		Measure, Sidebar       int
+		SidebarApp             int `toml:"sidebar_app"`
 		RadiusSm               int `toml:"radius_sm"`
 		Radius                 int
 		RadiusLg               int `toml:"radius_lg"`
@@ -135,6 +138,7 @@ type palette struct {
 		WidthPage              int `toml:"width_page"`
 		WidthAside             int `toml:"width_aside"`
 		WidthPanelMin          int `toml:"width_panel_min"`
+		Row                    int
 	}
 	// A control's geometry: the heights of a button or an input, the icon in it, and the gap
 	// between an icon and its word.
