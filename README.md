@@ -23,6 +23,8 @@ go tool task            # palette and mark: check, and write dist/ and logos/
 go tool task report     # every pair, its contrast or its distance in each view
 go tool task preview    # http://127.0.0.1:4330/
 go tool task check      # what CI runs: fails on a pair below its floor, or a stale dist/ or logos/
+go tool task consumers  # which brand each consumer is on: its pin, its copies, its faces
+go tool task release    # a person's: name main's head v<YYYYMMDD>.<NN>, once Gate has passed on it
 ```
 
 `go tool task` is [go-tools](https://github.com/spin-stack/go-tools)' task command, the one tool
@@ -70,9 +72,53 @@ motion.
 
 ## Where it goes
 
-Each consumer copies the file made for it and holds the copy to this repository's, as the
-website's refgen holds its reference to spin: a stale copy fails that consumer's check, not this
-one's. The mapping from roles to each consumer's variables is `cmd/palette/outputs.go`.
+[`consumers.toml`](consumers.toml) is every place that draws Spinbox: its repository, the files
+it copies and where it keeps them, where its pin is, and the `package.json` its faces are
+installed from. A place not in it is not a consumer, and `go test` fails on an output in `dist/`
+that no row copies. The mapping from roles to each consumer's variables is
+`cmd/palette/outputs.go`.
+
+Each consumer pins a commit of this repository in its `versions.yaml` and holds its copies to
+that commit in its own check: a stale copy fails there, not here. What this repository can say is
+who is on what:
+
+```
+go tool task consumers                                    # each consumer, read through gh
+go tool task consumers -- -checkout spin-stack/spin=../spin   # one of them from a checkout
+```
+
+It prints, for each, the commit and the release it is on, how far behind main that is, whether
+each copy is what this repository made at that commit, and whether the `@fontsource` packages it
+installs are the ones `versions.yaml` pinned there. It is a report, and exits 0 whatever it
+finds: `task check` does not run it, because a consumer that is behind is no fault of a change
+here, and a pull request to this repository cannot fix it.
+
+## Releases
+
+A release is a name for a commit of main that consumers pin, `v<YYYYMMDD>.<NN>` as every
+spin-stack repository names its own: the day in UTC and which release of that day. A person cuts
+one, after a change consumers should take:
+
+```
+go tool task release
+```
+
+It refuses a commit `Gate` has not passed on (go-tools' `proven release`) and one already
+released, and the GitHub release makes the tag. A consumer that tracks releases pins one in its
+`versions.yaml`, and `versions check` and `versions bump brand` move it to the next:
+
+```yaml
+- name: brand
+  kind: git
+  source: https://github.com/spin-stack/brand
+  version: v20261122.01
+  pin: <the commit that release names>
+  track: github-release
+```
+
+The `screens-v...` releases are the screens' images and no release of the palette: they are made
+with `--latest=false`, so the one GitHub calls latest, which `track: github-release` reads, is
+always a `v<YYYYMMDD>.<NN>`.
 
 ## License
 
