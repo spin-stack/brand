@@ -25,7 +25,7 @@ body { margin: 0; background: var(--spin-page); color: var(--spin-text); font: v
 h1, h2, h3 { font-family: var(--spin-font-heading); font-weight: var(--spin-heading-weight); letter-spacing: var(--spin-heading-tracking); color: var(--spin-text); }
 .label { font: 600 13px/1.4 var(--spin-font-sans); color: var(--spin-label); }
 section { margin-top: 3rem; }
-section > .label { display: block; border-top: 1px solid var(--spin-border); padding-top: 1.5rem; margin-bottom: 1rem; }
+section > .label { display: block; border-top: 1px solid var(--spin-hairline); padding-top: 1.5rem; margin-bottom: 1rem; }
 .muted { color: var(--spin-muted); }
 a { color: var(--spin-accent-text); text-underline-offset: .2em; }
 :focus-visible { outline: 2px solid var(--spin-accent-text); outline-offset: 2px; }
@@ -106,19 +106,41 @@ figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); padding
 .field input:disabled { opacity: .5; }
 .field small { font: 12px var(--spin-font-sans); color: var(--spin-muted); } .field small.err { color: var(--spin-error); }
 @media (pointer: coarse) { .field input { font-size: 16px; height: var(--spin-target-touch); } }
-/* A table of many: headers in the muted sans, rows in the dense size, ids in mono, figures right
-   and tabular, a row under the pointer on the control fill, a selected one on the accent's tint. */
+/* A list of many is a table on the page: rows --spin-row high with no rule between them, and one
+   line, a hairline under the column heads. Headers in the muted sans, ids in mono, figures right
+   and tabular. The row under the pointer or holding the focus is a plane (--spin-row-hover), never
+   an outline; a selected one is the accent's tint. */
 .grid { width: 100%; border-collapse: collapse; font: 13px/1.45 var(--spin-font-sans); font-variant-numeric: var(--spin-numeric); }
-.grid th { font-weight: 500; font-size: 12px; color: var(--spin-muted); text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--spin-border); white-space: nowrap; }
-.grid td { padding: 8px 10px; border-bottom: 1px solid var(--spin-border); white-space: nowrap; }
+.grid th { font-weight: 500; font-size: 12px; color: var(--spin-muted); text-align: left; height: var(--spin-control-md); padding: 0 10px; border-bottom: 1px solid var(--spin-hairline); white-space: nowrap; }
+.grid td { height: var(--spin-row); padding: 0 10px; border-bottom: 0; white-space: nowrap; }
 .grid .n { text-align: right; } .grid .id { font-family: var(--spin-font-mono); color: var(--spin-muted); }
-.grid tr.is-hover td { background: var(--spin-control); } .grid tbody tr:hover td { background: var(--spin-control); }
+.grid tr { position: relative; }
+.grid tr.is-hover td, .grid tbody tr:hover td, .grid tbody tr:focus-within td { background: var(--spin-row-hover); }
 .grid tr.is-selected td { background: var(--spin-accent-hover); } .grid tr.is-selected td:first-child { box-shadow: inset 2px 0 0 var(--spin-accent); }
-.grid-wrap { overflow-x: auto; border: 1px solid var(--spin-border); border-radius: var(--spin-radius); margin-top: 1rem; }
-.grid-wrap .grid tr:last-child td { border-bottom: 0; }
+.grid-wrap { overflow-x: auto; margin-top: 1rem; }
+/* The whole row opens the thing: its name is the link, stretched over the row, and the focus ring
+   is the row's. */
+.grid .name a { font: var(--spin-weight-strong) 13px var(--spin-font-mono); color: var(--spin-text); text-decoration: none; outline: 0; }
+.grid .name a::after { content: ''; position: absolute; inset: 0; }
+.grid .name a:focus-visible::after, .grid tr.is-focus .name a::after { outline: 2px solid var(--spin-accent-text); outline-offset: -2px; border-radius: var(--spin-radius-sm); }
+/* A row's actions: absent at rest, drawn where its age was when the row is under the pointer or
+   holds the focus. Icons alone, each with its caption - its name and its key - the moment the
+   pointer or the focus is on it: no delay, so no transition here. Under the pointer an action
+   steps one surface up from its row. */
+.grid .end { position: relative; text-align: right; min-width: 9rem; color: var(--spin-muted); }
+.acts { position: absolute; z-index: 1; right: 6px; top: 50%; transform: translateY(-50%); display: flex; gap: 2px; opacity: 0; }
+.grid tr:hover .acts, .grid tr:focus-within .acts, .grid tr.is-hover .acts, .grid tr.is-focus .acts { opacity: 1; }
+.grid tr:hover .age, .grid tr:focus-within .age, .grid tr.is-hover .age, .grid tr.is-focus .age { visibility: hidden; }
+.act { position: relative; display: inline-flex; }
+.act .btn.ghost:hover, .act.is-hover .btn.ghost { background: var(--spin-row-action-hover); color: var(--spin-text); }
+.cap { display: none; position: absolute; z-index: 2; bottom: calc(100% + 6px); right: 0; align-items: center; gap: 8px; white-space: nowrap; font: 12px var(--spin-font-sans); color: var(--spin-text); background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-sm); padding: 3px 6px 3px 8px; box-shadow: var(--spin-shadow-overlay); }
+.act:hover .cap, .act:focus-within .cap, .act.is-hover .cap { display: inline-flex; }
+kbd { font: 11px var(--spin-font-mono); color: var(--spin-muted); border: 1px solid var(--spin-border); border-radius: 4px; padding: 0 4px; }
+/* Nothing hovers on a touch screen: the actions are drawn, and the row is a finger's height. */
+@media (hover: none) { .grid td { height: var(--spin-target-touch); } .acts { opacity: 1; } .grid .age { visibility: hidden; } }
 
 /* The palette, by what each color is for */
-.group { display: grid; grid-template-columns: minmax(10rem, 14rem) 1fr; gap: 1rem 1.5rem; padding: 1rem 0; border-top: 1px solid var(--spin-border); }
+.group { display: grid; grid-template-columns: minmax(10rem, 14rem) 1fr; gap: 1rem 1.5rem; padding: 1rem 0; border-top: 1px solid var(--spin-hairline); }
 .group h3 { font-size: 14px; margin: 0 0 .25rem; } .group p { margin: 0; font-size: 13px; }
 .group .example { margin-top: .75rem; display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; font-size: 14px; }
 
@@ -148,7 +170,9 @@ figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); padding
 .hero h1 { font-size: var(--spin-text-display); line-height: 1.08; margin: .5rem 0 1rem; text-wrap: balance; }
 .hero img { width: 100%; max-width: 20rem; justify-self: center; border-radius: 22%; }
 /* Buttons: one geometry from the site to the dashboard - the control heights, the small radius,
-   a fill and a hairline - and the states palette.toml derives and checks (dist/tokens.css). */
+   a fill and an outline - and the states palette.toml derives and checks (dist/tokens.css). A
+   secondary button's outline is --spin-control-border, the border: the input's 3:1 edge
+   (--spin-border-strong) around every secondary button was the heaviest line on a screen. */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--spin-control-gap); height: var(--spin-control-md); padding: 0 12px; border-radius: var(--spin-radius-sm); font: 500 13px/1 var(--spin-font-sans); border: 1px solid transparent; cursor: pointer; text-decoration: none; white-space: nowrap; transition: background-color var(--spin-duration-fast) var(--spin-ease); }
 .btn.sm { height: var(--spin-control-sm); padding: 0 10px; font-size: 12px; }
 .btn.lg { height: var(--spin-control-lg); padding: 0 16px; font-size: 14px; }
@@ -157,7 +181,7 @@ figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); padding
 .btn.primary:hover, .btn.primary.is-hover { background: var(--spin-accent-fill-hover); }
 .btn.primary:active, .btn.primary.is-active { background: var(--spin-accent-fill-active); }
 .btn.secondary, .btn.ghost { color: var(--spin-text); }
-.btn.secondary { background: var(--spin-control); border-color: var(--spin-border); }
+.btn.secondary { background: var(--spin-control); border-color: var(--spin-control-border); }
 .btn.secondary:hover, .btn.secondary.is-hover, .btn.secondary:active, .btn.secondary.is-active { background: var(--spin-control-hover); }
 .btn.ghost { background: transparent; color: var(--spin-muted); }
 .btn.ghost:hover, .btn.ghost.is-hover, .btn.ghost:active, .btn.ghost.is-active { background: var(--spin-control); color: var(--spin-text); }
@@ -168,7 +192,7 @@ figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); padding
 .btn.is-focus { outline: 2px solid var(--spin-accent-text); outline-offset: 2px; }
 .btn:disabled { opacity: .45; cursor: not-allowed; }
 .tip { position: relative; display: inline-flex; }
-.tip > span { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); white-space: nowrap; font: 12px var(--spin-font-sans); color: var(--spin-text); background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-sm); padding: 3px 8px; box-shadow: var(--spin-shadow-overlay); }
+.tip > span { position: absolute; bottom: calc(100% + 6px); left: 0; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; font: 12px var(--spin-font-sans); color: var(--spin-text); background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-sm); padding: 3px 8px; box-shadow: var(--spin-shadow-overlay); }
 .matrix { display: grid; grid-template-columns: 7rem repeat(5, auto); gap: .75rem 1rem; padding: 4px; align-items: center; justify-content: start; font: 12px var(--spin-font-mono); color: var(--spin-muted); overflow-x: auto; }
 .matrix > b { font-weight: 500; }
 .uses { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; margin-top: 1.25rem; }
@@ -192,7 +216,7 @@ th, td { text-align: left; padding: .55rem .6rem; border-bottom: 1px solid var(-
 th { color: var(--spin-muted); font-weight: 500; }
 
 /* The dashboard */
-.dash { display: grid; grid-template-columns: 14rem 1fr; border: 1px solid var(--spin-border); border-radius: var(--spin-radius-lg); overflow: hidden; font-size: var(--spin-text-dense); line-height: 1.45; }
+.dash { display: grid; grid-template-columns: var(--spin-sidebar-app) 1fr; border: 1px solid var(--spin-border); border-radius: var(--spin-radius-lg); overflow: hidden; font-size: var(--spin-text-dense); line-height: 1.45; }
 .dash nav { background: var(--spin-surface); padding: 1rem .75rem; border-right: 1px solid var(--spin-border); }
 .dash nav .cap { font: 500 12px var(--spin-font-sans); color: var(--spin-muted); margin: 1rem .5rem .4rem; }
 .dash nav a { display: block; padding: .35rem .5rem; border-radius: var(--spin-radius-sm); color: var(--spin-text); text-decoration: none; }
@@ -200,7 +224,7 @@ th { color: var(--spin-muted); font-weight: 500; }
 .dash h3 { font-family: var(--spin-font-sans); letter-spacing: 0; }
 .dash main { padding: 1.25rem 1.5rem; }
 .dash .tools { display: flex; gap: .5rem; align-items: center; margin: .75rem 0 1rem; flex-wrap: wrap; }
-.dash input { font: inherit; color: var(--spin-text); background: var(--spin-raised); border: 1px solid var(--spin-border-strong); border-radius: var(--spin-radius-sm); min-height: 34px; padding: 0 .6rem; min-width: 14rem; }
+.dash input { font: inherit; color: var(--spin-text); background: var(--spin-raised); border: 1px solid var(--spin-border-strong); border-radius: var(--spin-radius-sm); height: var(--spin-control-md); padding: 0 .6rem; min-width: 14rem; }
 .dash input::placeholder { color: var(--spin-muted); }
 .state { display: inline-flex; align-items: center; gap: .4rem; font: 400 1em var(--spin-font-mono); }
 .state::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
@@ -218,8 +242,8 @@ th { color: var(--spin-muted); font-weight: 500; }
 .split { display: grid; grid-template-columns: var(--spin-width-aside) minmax(0, 1fr); gap: 1rem 2rem; align-items: start; }
 .split h3 { margin: 0 0 .25rem; }
 @media (max-width: 768px) { .split { grid-template-columns: minmax(0, 1fr); } }
-.card { background: var(--spin-page); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-sm); }
-.card .row { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; padding: .75rem 1rem; border-top: 1px solid var(--spin-border); font-size: 14px; }
+.card { background: var(--spin-page); border: 1px solid var(--spin-hairline); border-radius: var(--spin-radius-sm); }
+.card .row { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; padding: .75rem 1rem; border-top: 1px solid var(--spin-hairline); font-size: 14px; }
 .card .row:first-child { border-top: 0; }
 .card .row.editing { background: var(--spin-surface); }
 .card .lbl { flex: 0 0 10rem; font-weight: 500; }
@@ -277,7 +301,7 @@ body.embed .wrap { padding-top: 0; }
 <nav class="index only-full" aria-label="On this page">
 	<div class="wrap">
 		<a href="#in-use">1 · In use</a><a href="#site">Site</a><a href="#dashboard">Dashboard</a><a href="#app">App</a>
-		<a href="#decisions">2 · Decisions</a><a href="#mark">Mark</a><a href="#type">Type</a><a href="#buttons">Buttons</a><a href="#states">States</a><a href="#fields">Fields</a><a href="#tables">Tables</a><a href="#panels">Panels</a><a href="#palette-section">Palette</a>
+		<a href="#decisions">2 · Decisions</a><a href="#mark">Mark</a><a href="#type">Type</a><a href="#buttons">Buttons</a><a href="#states">States</a><a href="#fields">Fields</a><a href="#tables">Lists</a><a href="#panels">Panels</a><a href="#palette-section">Palette</a>
 		<a href="#checks">3 · Checks</a><a href="#widths">Widths</a><a href="#perception">Perception</a><a href="screens.html">Every screen →</a>
 	</div>
 </nav>
@@ -324,19 +348,14 @@ D  /etc/issue</pre>
 		<nav><div class="cap">Work</div><a class="current" href="#">Workspaces</a><a href="#">Snapshots</a><a href="#">Teams</a><div class="cap">Administer</div><a href="#">Hosts</a><a href="#">Settings</a></nav>
 		<main>
 			<h3 style="margin:0">Workspaces</h3>
-			<div class="tools"><input placeholder="Search workspaces"><button class="btn primary">New workspace</button><button class="btn ghost">Refresh</button></div>
-			<table>
-				<tr><th>Name</th><th>State</th><th>Host</th><th>Last snapshot</th></tr>
-				<tr><td><a href="#">api</a></td><td><span class="state ok">running</span></td><td><code>runner-a1</code></td><td>2 min ago</td></tr>
-				<tr><td><a href="#">agent-1</a></td><td><span class="state warn">waiting for a host</span></td><td>—</td><td>—</td></tr>
-				<tr><td><a href="#">ci-job</a></td><td><span class="state err">failed</span></td><td><code>runner-b2</code></td><td>1 h ago</td></tr>
-				<tr><td><a href="#">notes</a></td><td><span class="state idle">stopped</span></td><td>—</td><td>yesterday</td></tr>
-			</table>
-			<div class="row">
-				<div class="dialog"><h3 style="margin-top:0">Delete agent-1?</h3><p class="muted">It goes to the trash with its disk; you can undelete it until its days are up.</p><div style="display:flex;gap:.5rem;justify-content:flex-end"><button class="btn secondary">Cancel</button><button class="btn danger">Delete</button></div></div>
-				<div class="toast"><span class="state ok">done</span> Snapshot <code>clean</code> published</div>
-			</div>
+			<div class="tools"><input placeholder="Search workspaces" aria-label="Search workspaces"><button class="btn secondary">Refresh</button><span style="flex:1"></span><button class="btn primary">New workspace</button></div>
+			<div class="grid-wrap" data-list></div>
 		</main>
+	</div>
+	<p class="muted" style="font-size:13px">A dialog is a view of its own, over the page behind its scrim, and its fill is its own one:</p>
+	<div class="row">
+		<div class="dialog"><h3 style="margin-top:0">Delete agent-1?</h3><p class="muted">It goes to the trash with its disk; you can undelete it until its days are up.</p><div style="display:flex;gap:.5rem;justify-content:flex-end"><button class="btn secondary">Cancel</button><button class="btn danger">Delete</button></div></div>
+		<div class="toast"><span class="state ok">done</span> Snapshot <code>clean</code> published</div>
 	</div>
 </section>
 
@@ -398,7 +417,7 @@ D  /etc/issue</pre>
 <section class="only-full" id="buttons">
 	<span class="label">Buttons</span>
 	<div class="rules">
-		<p class="muted">One primary action per view, in the accent and in words alone: the mark's cyan under a navy label in dark, the mark's navy under a white one in light. The cyan fill is the loudest thing on a dark page, so a second one on a view takes the first one's meaning. A row's actions are quiet: its likely one as a secondary button and the rest behind <code>⋯</code>. An icon goes alone, with a tooltip, where a toolbar has no room for words - never an icon and a word on every row. What destroys is in the destructive fill, in a confirmation, after Cancel. Every state here is a token (<code>--spin-accent-fill-hover</code>, <code>--spin-control</code>, …) that <code>task palette</code> derives and holds: the label at 4.5:1 on its fill under the pointer and pressed (<code>on-accent</code> on the accent, white on the destructive), a hover told from rest. A fill that is already ink, light's navy, lightens under the pointer; the others darken. The focus ring is <code>accent-text</code>, the cyan's hue in either theme.</p>
+		<p class="muted">One filled action per view, in the accent and in words alone: the mark's cyan under a navy label in dark, the mark's navy under a white one in light. The cyan fill is the loudest thing on a dark page, so a second one on a view takes the first one's meaning: a second action is a secondary button, a third a ghost or an entry in a menu. A secondary button is outlined with the border (<code>--spin-control-border</code>), not with an input's 3:1 edge: its word says it is a button. An icon goes alone where there is no room for words - a toolbar, <a href="#tables">a row's actions</a> - and only with a caption that shows at once with its name and its key; never an icon and a word on every row. A third party's logo as an icon is drawn as its owner's brand terms say, so this page draws none: its editor is a generic glyph. What destroys is in the destructive fill, in a confirmation, after Cancel. The table under this is one button in each of its states, the one place on this page a fill repeats. Every state here is a token (<code>--spin-accent-fill-hover</code>, <code>--spin-control</code>, …) that <code>task palette</code> derives and holds: the label at 4.5:1 on its fill under the pointer and pressed (<code>on-accent</code> on the accent, white on the destructive), a hover told from rest. A fill that is already ink, light's navy, lightens under the pointer; the others darken. The focus ring is <code>accent-text</code>, the cyan's hue in either theme.</p>
 		<div class="matrix">
 			<span></span><span>rest</span><span>hover</span><span>pressed</span><span>focus</span><span>disabled</span>
 			<b>primary</b><span><button class="btn primary ">Open terminal</button></span><span><button class="btn primary is-hover">Open terminal</button></span><span><button class="btn primary is-active">Open terminal</button></span><span><button class="btn primary is-focus">Open terminal</button></span><span><button class="btn primary" disabled>Open terminal</button></span>
@@ -410,8 +429,8 @@ D  /etc/issue</pre>
 		<div class="row" style="align-items:center;gap:.5rem"><button class="btn sm secondary">Small · 28</button><button class="btn secondary">Medium · 32</button><button class="btn lg secondary">Large · 36</button><span class="muted" style="font-size:13px">A row and a toolbar take small; a page's header medium; a dialog's footer and the site large. 44 on a touch screen.</span></div>
 		<div class="uses">
 			<figure class="use"><figcaption>A page's header</figcaption><div class="row"><button class="btn secondary">Stop</button><button class="btn primary">Open terminal</button><button class="btn ghost icon" aria-label="More actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></button></div></figure>
-			<figure class="use"><figcaption>A row</figcaption><div class="row"><code style="font-size:13px">api</code><span class="state ok">running</span><span style="flex:1"></span><button class="btn sm secondary">Open terminal</button><button class="btn sm ghost icon" aria-label="More actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></button></div></figure>
-			<figure class="use"><figcaption>A toolbar, icons alone</figcaption><div class="row" style="padding-top:2rem"><span class="tip"><button class="btn ghost icon" aria-label="Refresh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></button><span>Refresh</span></span><button class="btn ghost icon" aria-label="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><button class="btn primary">New workspace</button></div></figure>
+			<figure class="use"><figcaption>Beside an input: the outline and the 3:1 edge</figcaption><div class="row field" style="display:flex;flex-wrap:nowrap"><input class="mono" value="ssh api@spinbox" aria-label="SSH command" style="flex:1;min-width:0"><button class="btn secondary">Copy</button></div></figure>
+			<figure class="use"><figcaption>A toolbar, icons alone, the caption of the one under the pointer</figcaption><div class="row" style="padding-top:2rem"><span class="tip"><button class="btn ghost icon" aria-label="Refresh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></button><span>Refresh <kbd>R</kbd></span></span><button class="btn ghost icon" aria-label="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div></figure>
 			<figure class="use"><figcaption>A dialog's footer</figcaption><div class="row" style="justify-content:flex-end"><button class="btn lg secondary">Cancel</button><button class="btn lg danger">Delete</button></div></figure>
 		</div>
 	</div>
@@ -436,23 +455,15 @@ D  /etc/issue</pre>
 </section>
 
 <section class="only-full" id="tables">
-	<span class="label">Tables</span>
-	<div class="grid-wrap"><table class="grid">
-		<thead><tr><th>Name</th><th>State</th><th>Image</th><th class="n">CPU</th><th class="n">Memory</th><th class="n">Disk</th><th>Updated</th></tr></thead>
-		<tbody>
-			<tr><td>api</td><td><span class="badge ok">running</span></td><td class="id">sandbox:v20261014.01</td><td class="n">4</td><td class="n">8.0 GB</td><td class="n">50 GB</td><td>2 min ago</td></tr>
-			<tr class="is-hover"><td>agent-1</td><td><span class="badge warn">waiting</span></td><td class="id">sandbox:v20261014.01</td><td class="n">2</td><td class="n">4.0 GB</td><td class="n">20 GB</td><td>9 min ago</td></tr>
-			<tr class="is-selected"><td>ci-job</td><td><span class="badge err">failed</span></td><td class="id">acme/builder:2026.10</td><td class="n">16</td><td class="n">32.0 GB</td><td class="n">100 GB</td><td>1 h ago</td></tr>
-			<tr><td>notes</td><td><span class="badge idle">stopped</span></td><td class="id">sandbox:v20261014.01</td><td class="n">1</td><td class="n">0.5 GB</td><td class="n">10 GB</td><td>yesterday</td></tr>
-		</tbody>
-	</table></div>
-	<p class="muted" style="font-size:13px">Headers in the muted sans, never uppercase; ids in the mono; figures right-aligned in tabular digits (<code>--spin-numeric</code>); agent-1 under the pointer, ci-job selected. On a phone a table scrolls inside its frame, the page does not.</p>
+	<span class="label">Lists</span>
+	<div class="grid-wrap" data-list data-hover="1" data-caption="Terminal" data-selected="2" data-focus="4"></div>
+	<p class="muted" style="font-size:13px">A list of many is a table on the page, its rows <code>--spin-row</code> high (36 px) with no rule between them: the one line is a hairline under the column heads. Headers in the muted sans, never uppercase; a row's name in the mono at the strong weight; figures right-aligned in tabular digits (<code>--spin-numeric</code>). The row under the pointer or holding the focus is a plane, <code>--spin-row-hover</code>, and its actions are drawn only then, where its age was: icons alone, each with a caption that shows at once with its name and its key. Here agent-1 is under the pointer with the pointer on Terminal, ci-job is selected and docs holds the keyboard's focus; the same list <a href="#dashboard">in the dashboard above</a> answers a real pointer. The whole row opens the workspace. On a touch screen, where nothing hovers, the actions are drawn and a row is 44 px; on a phone a table scrolls inside its frame, the page does not.</p>
 </section>
 
 <section class="only-full" id="panels">
 	<span class="label">Panels</span>
 	<div class="rules">
-		<p class="muted">A section of facts is a heading and its rows, and a section of settings is <a href="#split">split</a>; a thing with its own identity and its single action is a panel. A hairline edge at the dashboard's one corner, <code>--spin-radius-sm</code>, its header - the name in the mono, its state, the one action and <code>⋯</code> - on <code>surface</code>, its body on the page, no shadow: it does not float. Panels tile across the column, none narrower than <code>--spin-width-panel-min</code>; inside one, a table has fixed tracks, so a column is at one x in every panel. A list of many is a table, never a panel per row.</p>
+		<p class="muted">A section of facts is a heading and its rows, and a section of settings is <a href="#split">split</a>; a thing with its own identity and its single action is a panel. An edge in the border at the dashboard's one corner, <code>--spin-radius-sm</code>, its header - the name in the mono, its state, the one action and <code>⋯</code> - on <code>surface</code>, its body on the page, no shadow: it does not float. Panels tile across the column, none narrower than <code>--spin-width-panel-min</code>; inside one, a table has fixed tracks, so a column is at one x in every panel. A list of many is a table, never a panel per row.</p>
 		<div class="panels">
 			<article class="panel">
 				<header><b>web</b><span class="state warn">pending</span><span class="grow"></span><button class="btn sm secondary">Edit</button><button class="btn sm ghost icon" aria-label="More actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></button></header>
@@ -469,7 +480,7 @@ D  /etc/issue</pre>
 <section class="only-full" id="split">
 	<span class="label">Split sections</span>
 	<div class="rules">
-		<p class="muted">A page of settings is one page that scrolls, never tabs. Each section is split: its title and what it governs in an aside <code>--spin-width-aside</code> wide, its rows in a card - a hairline edge at <code>--spin-radius-sm</code>, on the page, no shadow. A row is its label, its value and one verb; its editing opens inside the row, with Save disabled until something changes. On a phone the aside goes over the card.</p>
+		<p class="muted">A page of settings is one page that scrolls, never tabs. Each section is split: its title and what it governs in an aside <code>--spin-width-aside</code> wide, its rows in a card - an edge in <code>--spin-hairline</code> at <code>--spin-radius-sm</code>, on the page, no shadow. A row is its label, its value and one verb; its editing opens inside the row, with Save disabled until something changes. On a phone the aside goes over the card.</p>
 		<div class="split">
 			<div><h3>Network</h3><p class="muted">What it may reach. Its runner applies a change at once.</p></div>
 			<div class="card">
@@ -492,9 +503,9 @@ D  /etc/issue</pre>
 		<h3>Application</h3>
 		<p class="muted">The dashboard, read for diagnosis. Every page is one centred column <code>--spin-width-page</code> wide, so its edges stay where the page before had them; an explorer takes the viewport. A page is a header - the title, its state, its context and its one primary action on one row - one row of tabs, at most one banner, and sections: facts as rows between hairlines, settings <a href="#split">split</a>, each row a label, a value and one verb; a thing with its own identity and its single action is a <a href="#panels">panel</a>, and panels tile across the column; the name beside the mark is <code>--spin-wordmark</code>, which the catalog audit holds the sidebar to.</p>
 		<h3>Actions</h3>
-		<p class="muted">One primary action per view, solid in the accent and in words alone: <em>New workspace</em> on a list, <em>Open terminal</em> on a workspace. The accent is the mark's own colour - its cyan in dark, its navy in light - and a link, the focus ring and a cursor are <code>accent-text</code>, the cyan's hue. A row's actions are quiet: its most likely one as a secondary button (the raised fill, a hairline edge, no icon) and the rest behind <code>⋯</code>. An icon goes alone, with a tooltip, only where the toolbar has no room for words; never an icon and a word on every row. What destroys is in the destructive fill, in a confirmation, after Cancel.</p>
+		<p class="muted">One filled action per view, solid in the accent and in words alone: <em>New workspace</em> on a list, <em>Open terminal</em> on a workspace. The accent is the mark's own colour - its cyan in dark, its navy in light - and a link, the focus ring and a cursor are <code>accent-text</code>, the cyan's hue. A second action is a secondary button, outlined in the border. A list's row shows no action at rest: under the pointer or the focus its actions are icons alone, each with its caption; a panel's header and a settings row keep one verb in words. Never an icon and a word on every row. What destroys is in the destructive fill, in a confirmation, after Cancel.</p>
 		<h3>Elevation</h3>
-		<p class="muted">A menu, a dialog or a toast is on <code>overlay</code> with a hairline edge and <code>--spin-shadow-overlay</code>: a soft shadow in light; in dark only a crisp edge, since a black shadow on a near-black scrim drew a second rectangle around the dialog. The scrim covers the whole viewport.</p>
+		<p class="muted">A menu, a dialog or a toast is on <code>overlay</code> with an edge in the border and <code>--spin-shadow-overlay</code>: a soft shadow in light; in dark only a crisp edge, since a black shadow on a near-black scrim drew a second rectangle around the dialog. The scrim covers the whole viewport.</p>
 	</div>
 </section>
 
@@ -538,7 +549,7 @@ mode.value = q.get('mode') || 'dark'; see.value = q.get('see') || '';
 mode.onchange = see.onchange = apply;
 fetch('dist/simulate.svg').then((r) => r.text()).then((t) => (document.getElementById('filters').innerHTML = t));
 const groups = [
-	['Surfaces', 'Behind everything, a step off it, cards and code, menus and dialogs, and the lines between.', ['page', 'surface', 'raised', 'overlay', 'border', 'border-strong'],
+	['Surfaces', 'Behind everything, a step off it, cards and code, menus and dialogs; then the lines: a separator on the page, a line between two surfaces and a button\'s outline, an input\'s edge.', ['page', 'surface', 'raised', 'overlay', 'hairline', 'border', 'border-strong'],
 		'<span class="sw-inline" style="background:var(--spin-surface)">surface</span><span class="sw-inline" style="background:var(--spin-raised)">raised</span><span class="sw-inline" style="background:var(--spin-overlay)">overlay</span>'],
 	['Content', 'Text, secondary text, and a label that names a section or a command.', ['text', 'muted', 'label'],
 		'<span>Text</span> <span class="muted">secondary</span> <span class="label">a label</span>'],
@@ -546,7 +557,7 @@ const groups = [
 		'<a class="btn primary" href="#">Primary</a> <a href="#">a link</a> <a class="btn danger" href="#">Delete</a>'],
 	['States', 'Ran or succeeded, waits, failed: each with a shape too, never by hue alone.', ['success', 'warning', 'error'],
 		'<span class="state ok">running</span> <span class="state warn">waiting</span> <span class="state err">failed</span>'],
-	['Interaction', 'The accent over a surface: a row under the pointer, and a selected one.', ['accent-hover', 'accent-selected'],
+	['Interaction', 'A list\'s row under the pointer, a plane; and the accent over a surface: a hovered link on the site, a selected row.', ['row-hover', 'accent-hover', 'accent-selected'],
 		'<span class="sw-inline" style="background:var(--spin-accent-hover)">hovered</span><span class="sw-inline" style="background:var(--spin-accent-selected);color:var(--spin-accent-text)">selected</span>'],
 ];
 function swatches() {
@@ -555,6 +566,34 @@ function swatches() {
 		`<div class="group"><div><h3>${name}</h3><p class="muted">${what}</p><div class="example">${example}</div></div><div class="swatches">` +
 		roles.map((r) => { const v = cs.getPropertyValue('--spin-' + r).trim(); return `<div class="sw"><i style="background:${v}"></i><b>${r}</b><code>${v}</code></div>`; }).join('') +
 		'</div></div>').join('');
+}
+// The workspaces, drawn twice from one fixture: live in the dashboard's sample, and in Lists with
+// a row in each state. A third party's logo would follow its owner's brand terms: the editor here
+// is a generic glyph.
+const glyph = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const acts = {
+	Agent: ['A', '<rect x="4" y="9" width="16" height="11" rx="2"/><path d="M12 9V5"/><circle cx="12" cy="4" r="1"/><path d="M9 14v1M15 14v1"/>'],
+	Terminal: ['T', '<path d="m5 8 5 4-5 4"/><path d="M13 17h6"/>'],
+	'Open in editor': ['E', '<path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/>'],
+	Stop: ['S', '<rect x="6" y="6" width="12" height="12" rx="1"/>'],
+	Start: ['S', '<path d="M7 4v16l13-8z"/>'],
+};
+const workspaces = [
+	['api', 'ok', 'running', 'spinbox/api', 'Fixing the flaky login test · working', '8.0 GB', '2 min ago'],
+	['agent-1', 'warn', 'waiting', 'spinbox/api', 'Waiting for a host', '4.0 GB', '9 min ago'],
+	['ci-job', 'err', 'failed', 'acme/builder', 'Build stopped at step 4 · needs you', '32.0 GB', '1 h ago'],
+	['web', 'ok', 'running', 'spinbox/website', 'Idle', '4.0 GB', '3 h ago'],
+	['docs', 'busy', 'starting', 'spinbox/website', '—', '2.0 GB', '5 h ago'],
+	['notes', 'idle', 'stopped', '—', '—', '0.5 GB', 'yesterday'],
+];
+for (const el of document.querySelectorAll('[data-list]')) {
+	const d = el.dataset, state = (i) => [i == d.hover && 'is-hover', i == d.selected && 'is-selected', i == d.focus && 'is-focus'].filter(Boolean).join(' ');
+	el.innerHTML = '<table class="grid"><thead><tr><th>State</th><th>Name</th><th>Project</th><th>Agent</th><th class="n">Memory</th><th class="n">Updated</th></tr></thead><tbody>' +
+		workspaces.map(([name, kind, word, project, agent, memory, age], i) =>
+			`<tr class="${state(i)}"><td><span class="badge ${kind}">${word}</span></td><td class="name"><a href="#${name}">${name}</a></td><td class="id">${project}</td><td class="muted">${agent}</td><td class="n">${memory}</td><td class="end"><span class="age">${age}</span><span class="acts">` +
+			['Agent', 'Terminal', 'Open in editor', kind === 'idle' || kind === 'err' ? 'Start' : 'Stop'].map((a) =>
+				`<span class="act${i == d.hover && a === d.caption ? ' is-hover' : ''}"><button class="btn sm ghost icon" aria-label="${a}" aria-keyshortcuts="${acts[a][0]}">${glyph(acts[a][1])}</button><span class="cap" aria-hidden="true">${a} <kbd>${acts[a][0]}</kbd></span></span>`).join('') +
+			'</span></td></tr>').join('') + '</tbody></table>';
 }
 const views = ['drawn','ips','dim','protan','deutan','tritan','protan+ips','deutan+ips'];
 document.getElementById('perc').innerHTML = '<tr><th>mode</th><th>kind</th><th>pair</th><th>floor</th>' + views.map((v) => `<th>${v}</th>`).join('') + '</tr>' +

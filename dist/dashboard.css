@@ -12,6 +12,10 @@
 	--border: 217.1 21.6% 81.0%;
 	--input: 220.5 15.4% 52.7%;
 	--ring: 195.6 96.3% 21.2%;
+	--control-border: 217.1 21.6% 81.0%;
+	--hairline: 222.0 21.7% 91.0%;
+	--row-hover: 217.5 40.0% 96.1%;
+	--row-action-hover: 218.8 37.8% 91.2%;
 	--primary: 220.9 39.3% 11.0%;
 	--primary-foreground: 0.0 0.0% 100.0%;
 	--link: 195.6 96.3% 21.2%;
@@ -50,6 +54,10 @@
 	--border: 221.0 29.5% 27.3%;
 	--input: 219.1 18.1% 50.2%;
 	--ring: 194.2 89.0% 64.5%;
+	--control-border: 221.0 29.5% 27.3%;
+	--hairline: 222.0 37.5% 15.7%;
+	--row-hover: 222.9 43.8% 12.5%;
+	--row-action-hover: 221.1 39.3% 17.5%;
 	--primary: 194.5 84.7% 53.9%;
 	--primary-foreground: 220.0 48.8% 8.4%;
 	--link: 194.2 89.0% 64.5%;
@@ -82,6 +90,8 @@
 	--spin-control-lg: 36px;
 	--spin-control-icon: 16px;
 	--spin-control-gap: 6px;
+	--spin-row: 36px;
+	--spin-sidebar-app: 240px;
 	--spin-width-page: 1600px;
 	--spin-width-panel-min: 560px;
 	--spin-width-aside: 280px;

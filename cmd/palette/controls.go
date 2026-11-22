@@ -9,10 +9,15 @@ package main
 // ink. The fill decides and not the theme: a theme's action can be the mark's navy, where black
 // over it is a step nobody sees, and the same theme's destructive a mid red, where white over it
 // takes its white label under 4.5:1. A quiet fill - a secondary button's - steps one surface up.
+//
+// A list's row under the pointer or the keyboard is a plane, and an action in it under the
+// pointer the next one, so that neither is drawn with a line.
 type states struct {
 	accentHover, accentActive           rgb
 	destructiveHover, destructiveActive rgb
 	control, controlHover               rgb
+	outline                             rgb
+	row, rowAction                      rgb
 }
 
 // inkFill is the CIELAB lightness under which a solid fill lightens. Measured at tint.fill 0.12, in
@@ -36,6 +41,11 @@ func controlStates(p palette, c map[string]rgb, isDark bool) states {
 		// A secondary button is a step off the page: raised in dark, the surface in light, where
 		// raised read as a disabled grey. Under the pointer, the next step.
 		control: c["surface"], controlHover: c["raised"],
+		// A secondary button's outline is the border, never the input's edge: a button has its
+		// word to say what it is, and an empty input only its edge (palette.toml's [controls]).
+		outline: c["border"],
+		// The first step off the page in either theme, the quietest plane the hover tier holds.
+		row: c["surface"], rowAction: c["raised"],
 	}
 	if isDark {
 		s.control, s.controlHover = c["raised"], c["overlay"]

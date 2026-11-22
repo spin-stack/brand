@@ -45,9 +45,18 @@ page = "#09101F"
 surface = "#121A2E"
 raised = "#1B263E"
 overlay = "#26334F"
-border = "#313E5A"      # a line between two surfaces: told from the page and from raised (the line
-                        # floor), and not what makes an input read as a control
-border_strong = "#697997" # an input's edge where it must read as a control: 3:1 (WCAG 1.4.11)
+border = "#313E5A"      # a line between two surfaces, and a button's outline: told from the page
+                        # and from raised (the line floor), and not what makes an input read as a
+                        # control
+# A separator on the page - between two sections, under a list's column heads, a card's edge where
+# the page is on both sides of it: border over the page at the least share that holds the line
+# floor there (ΔE00 6.1), and held against the page alone. border must also show on raised, which
+# makes it more than twice as far from the page (ΔE00 15) as a line on the page needs to be, and a
+# screen ruled in it reads as a form. Never on surface or raised: nothing holds it there.
+hairline = "#192237"
+border_strong = "#697997" # an input's edge, where it must read as a control: 3:1 (WCAG 1.4.11). An
+                        # empty input has nothing but its edge to say it is one; a button has its
+                        # word, so its outline is border ([controls])
 text = "#EAF0F6"        # the mark's frost
 muted = "#9AA7BB"       # secondary text: held to 4.5:1 on every surface up to overlay
 # The one primary action per view, solid, and indicators. brand.cyan as drawn, but for two units of
@@ -81,6 +90,8 @@ surface = "#F1F4F9"
 raised = "#E0E6F1"
 overlay = "#FFFFFF"
 border = "#C4CCD9"
+hairline = "#E3E6ED"    # as dark's: border over the page at the least share that holds the line
+                        # floor on white (ΔE00 6.3 to border's 13)
 border_strong = "#748099"
 text = "#111827"        # the mark's navy
 muted = "#515C72"
@@ -223,7 +234,12 @@ wordmark = "Spinbox"
 # one product from the site to the dashboard.
 [layout]
 measure = 72            # ch: a line of reading text; 45-75 is the range people read without losing it
-sidebar = 17            # rem
+sidebar = 17            # rem: the docs' sidebar (Starlight's --sl-sidebar-width), in rem because a
+                        # page read at a larger text size needs its navigation wider too
+# The app's navigation is a different thing from the docs': a dozen one- or two-word destinations
+# at the dense size, each with its icon and its key, which fit in 240 px. In px, as everything the
+# app sets is: the dashboard's text does not grow with the reader's, and a column that did would.
+sidebar_app = 240       # px
 radius_sm = 6           # px: inputs, chips, code; every corner of the dashboard, dialogs included
 radius = 8              # px: the site's cards, buttons, panels
 radius_lg = 12          # px: the site's dialogs and hero figures
@@ -251,18 +267,53 @@ width_page = 1600       # px
 # heading, a hairline and their rows. On a phone the aside goes over its card.
 width_aside = 280       # px: a split section's aside
 # A thing with its own identity and its single action - a network policy, a resource preset, a
-# forge's app - is a panel: a hairline edge, its header (name, state, the action and its menu) on
+# forge's app - is a panel: an edge in `border`, its header (name, state, the action and its menu) on
 # `surface`, its body on the page. A list of many is a table, never a panel per row. Panels tile
 # across the column, each at least this wide: at 1600 px two rules tables side by side, where one stretched to the
 # column's width put a port 1000 px from its destination (2026-11-08). In the column a table has
 # fixed tracks, so a column is at one x in every row and every panel, and a label and its value
 # sit together, never split across the width.
 width_panel_min = 560   # px
+# A list of many - workspaces, runners, snapshots - is rows of this height on the page: a list is
+# read by scanning down it, and a row that is one line of text needs a control's height and no
+# more. No rule between rows: at this height the rows' own text is the ruling, and a line under
+# each is more ink than the names. The one line a list has is under its column heads, a hairline.
+# The row under the pointer, or holding the keyboard's focus, is a plane - the first step off the
+# page, `surface` in either theme (the checker holds it from the page at the hover tier) - and
+# never an outline. A selected row is the selected tint. A list is on the page: on a card the
+# plane would be the card's own.
+#
+# A row's actions appear when the row is under the pointer or holds the focus, and are absent
+# otherwise: two or three bordered buttons on every row were what a person saw before any name. At
+# rest a row is its state, its name and its facts on one line, and the whole row opens the thing.
+# The actions are reachable by keyboard in the row's order, each `controls.sm` high. An action
+# under the pointer steps one more surface up (`raised`), so it is told from its row. Where nothing
+# hovers - a touch screen - the actions are drawn, and the row grows to `target_touch`.
+row = 36                # px
 
 # Controls: a button's or an input's height, small (a row's action, a toolbar), medium (a form, a
 # page's header) and large (a dialog's footer, the site); the icon in it and the gap to its word.
-# 44 px on a coarse pointer is layout.target_touch. One rule for words and icons: a primary action
-# is words alone; an icon goes alone, with a tooltip, where a toolbar has no room for words.
+# 44 px on a coarse pointer is layout.target_touch. These are the heights every consumer draws:
+# each output carries them as variables, and a consumer that writes its own number has drifted.
+#
+# One filled action per view: the accent's fill, or the destructive's in a confirmation. A second
+# action on the same view is a secondary button, a third a ghost or an entry in a menu. Dark's
+# accent is the mark's cyan, the brightest thing on a navy page: two of them and neither is the
+# action, and either can be read before the page's title (spin-stack/brand#46). A dialog is a view
+# of its own, since the scrim takes the page behind it away. A row being edited is not: its Save
+# is filled only where the page has no other fill.
+#
+# A secondary button is outlined with `border`, not `border_strong`: its word says it is a button,
+# at 7:1, and WCAG 1.4.11 asks 3:1 only of what is needed to find a control. Drawn with the input's
+# edge, the outlines of the least important buttons were the heaviest lines on every screen. The
+# checker holds the outline from the page and from `surface` at the line floor.
+#
+# One rule for words and icons: the primary action is words alone. An icon goes alone where there
+# is no room for words - a toolbar, a row's actions - and only with a caption: its name and its
+# key, shown at once when the pointer or the focus reaches it, never after a delay. An icon whose
+# caption waits is a guess. Never an icon and a word on every row. A third party's logo as an
+# icon - an editor's, a forge's - is drawn as that party's brand terms say (its colours, its clear
+# space, unaltered), or a generic glyph is used in its place.
 [controls]
 sm = 28
 md = 32

@@ -10,6 +10,7 @@
 	--sl-color-gray-4: #697997;
 	--sl-color-gray-5: #313E5A;
 	--sl-color-gray-6: #121A2E;
+	--sl-color-hairline-light: #192237;
 	--sl-color-black: #09101F;
 	--sl-color-banner-bg: #163E58;
 	--sl-color-banner-text: #EAF0F6;
@@ -25,6 +26,7 @@
 	--sl-color-gray-4: #748099;
 	--sl-color-gray-5: #C4CCD9;
 	--sl-color-gray-6: #E0E6F1;
+	--sl-color-hairline-light: #E3E6ED;
 	--sl-color-black: #FFFFFF;
 	--sl-color-banner-bg: #C0C4CB;
 	--sl-color-banner-text: #111827;
@@ -40,4 +42,5 @@
 	--sl-text-h2: clamp(1.375rem, 1.156rem + 0.8989vw, 1.875rem);
 	--sl-text-h3: clamp(1.125rem, 1.015rem + 0.4494vw, 1.375rem);
 	--sl-text-h4: clamp(1rem, 0.9452rem + 0.2247vw, 1.125rem);
+	--sl-sidebar-width: 17rem;
 }
