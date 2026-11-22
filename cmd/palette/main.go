@@ -112,6 +112,9 @@ type palette struct {
 		DenseSize       int               `toml:"dense_size"`
 		DenseScale      map[string][2]int `toml:"dense_scale"`
 		LineHeight      float64           `toml:"line_height"`
+		WeightStrong    int               `toml:"weight_strong"`
+		WeightMedium    int               `toml:"weight_medium"`
+		WeightRegular   int               `toml:"weight_regular"`
 		HeadingWeight   int               `toml:"heading_weight"`
 		HeadingTracking float64           `toml:"heading_tracking"`
 		Heading         string

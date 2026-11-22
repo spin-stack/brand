@@ -7,9 +7,10 @@ variables) and anything else (`dist/tokens.json`).
 **[See it](https://spin-stack.github.io/brand/)**: `index.html` is the laboratory.
 It draws the site's landing and a docs page, the dashboard's workspaces with their states, a
 dialog and a toast; where the app as it is is shown; the mark's guide -
-sizes, clear space, the lockup, the grounds it goes on and what it is not; the palette by what
-each color is for; and the same page at a phone's and a tablet's width - in dark or light and
-through protanopia, deuteranopia or tritanopia, with every pair the palette is held to.
+sizes, clear space, the lockup, the grounds it goes on and what it is not; the type scale in both
+faces and the three weights; the palette by what each color is for; and the same page at a
+phone's and a tablet's width - in dark or light and through protanopia, deuteranopia or
+tritanopia, with every pair the palette is held to.
 
 | Source | What it makes |
 |---|---|
@@ -26,8 +27,9 @@ go tool task check      # what CI runs: fails on a pair below its floor, or a st
 
 `go tool task` is [go-tools](https://github.com/spin-stack/go-tools)' task command, the one tool
 `go.mod` takes: it runs the Task `versions.yaml` pins, the version CI runs, with go-tools' commands
-on its PATH. `task check` also fails on a workflow step that is not one task (`taskgate`) and on a
-package install that skips Socket Firewall (`sfw check`).
+on its PATH. `task check` also fails on a workflow step that is not one task (`taskgate`), on a
+package install that skips Socket Firewall (`sfw check`), and on a face an output or a page names
+that `fonts/` does not ship (`cmd/palette`'s tests).
 
 ## What holds the palette
 
@@ -48,9 +50,11 @@ package install that skips Socket Firewall (`sfw check`).
 - **No meaning by hue alone**: a status carries a shape too (the preview's states: a dot, a
   diamond, a square), since a floor for colour-vision deficiencies is a floor, not comfort.
 
-Type and layout are tokens too: IBM Plex Sans and Mono (`fonts/`, OFL), a 16 px reading size
-(below it iOS zooms into a focused input) and 14 px for the dashboard's tables, a 72ch measure,
-24 px for any pointer target and 44 px on a coarse pointer (WCAG 2.2, 2.5.8 and 2.5.5).
+Type and layout are tokens too: Inter and JetBrains Mono (`fonts/`, OFL) at three weights that
+say rank (600 a page's title and a row's name, 500 a button and a table's header, 400 the rest;
+`--spin-weight-*`), a 16 px reading size (below it iOS zooms into a focused input) and 13 px for
+the dashboard's tables, a 72ch measure, 24 px for any pointer target and 44 px on a coarse pointer
+(WCAG 2.2, 2.5.8 and 2.5.5).
 Motion is four durations and one easing (`--spin-duration-*`, `--spin-ease`): a movement says
 what something does or that it answered a hand, runs once, and is its end state under reduced
 motion.
@@ -63,5 +67,6 @@ one's. The mapping from roles to each consumer's variables is `cmd/palette/outpu
 
 ## License
 
-Apache License 2.0, as spin. The fonts are IBM Plex under the SIL Open Font License
-(`fonts/LICENSE-IBM-Plex.txt`).
+Apache License 2.0, as spin. The fonts are Inter and JetBrains Mono, each under the SIL Open Font
+License (`fonts/LICENSE-Inter.txt`, `fonts/LICENSE-JetBrains-Mono.txt`); `versions.yaml` says
+which release of each the files are.

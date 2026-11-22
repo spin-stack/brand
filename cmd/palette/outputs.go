@@ -118,6 +118,7 @@ func tokensCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--spin-font-mono: '%s', %s;\n", p.Type.Mono, p.Type.FallbackMono)
 	fmt.Fprintf(&b, "\t--spin-text-reading: %dpx;\n\t--spin-text-dense: %dpx;\n", p.Type.ReadingSize, p.Type.DenseSize)
 	fmt.Fprintf(&b, "\t--spin-line-height: %g;\n", p.Type.LineHeight)
+	b.WriteString(weightVars(p))
 	fmt.Fprintf(&b, "\t--spin-heading-weight: %d;\n\t--spin-heading-tracking: %gem;\n", p.Type.HeadingWeight, p.Type.HeadingTracking)
 	fmt.Fprintf(&b, "\t--spin-font-heading: var(--spin-font-%s);\n", p.Type.Heading)
 	fmt.Fprintf(&b, "\t--spin-font-display: var(--spin-font-%s);\n\t--spin-display-tracking: %gem;\n", p.Type.Display, p.Type.DisplayTracking)
@@ -306,12 +307,20 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 		}
 		fmt.Fprintf(&b, "\t--spin-text-%s: %dpx;\n\t--spin-text-%s-lh: %dpx;\n", k, step[0], k, step[1])
 	}
+	b.WriteString(weightVars(p))
 	fmt.Fprintf(&b, "\t--spin-heading-tracking: %gem;\n", p.Type.HeadingTracking)
 	fmt.Fprintf(&b, "\t--spin-numeric: %s;\n", p.Type.Numeric)
 	fmt.Fprintf(&b, "\t--spin-duration-fast: %dms;\n\t--spin-duration: %dms;\n", p.Motion.Fast, p.Motion.Base)
 	fmt.Fprintf(&b, "\t--spin-duration-slow: %dms;\n\t--spin-ease: %s;\n", p.Motion.Slow, p.Motion.Ease)
 	b.WriteString("}\n")
 	return b.String()
+}
+
+// weightVars is the three ranks a weight says (type.weight_*), which are also the weights fonts/
+// ships each face at.
+func weightVars(p palette) string {
+	return fmt.Sprintf("\t--spin-weight-strong: %d;\n\t--spin-weight-medium: %d;\n\t--spin-weight-regular: %d;\n",
+		p.Type.WeightStrong, p.Type.WeightMedium, p.Type.WeightRegular)
 }
 
 // terminalVars is the terminal's roles, then its sixteen colours in a program's order, as
