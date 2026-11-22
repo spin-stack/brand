@@ -6,12 +6,14 @@ version: '3'
 
 # versions, bump, release, lint:workflows and consumers are go-tools' (its
 # internal/tasks/tasks.yml), as in every spin-stack repository; `go tool task` names the file.
-# Gate is pages.yml's job, the pass a release asks for.
+# This task cuts brand's releases: pages.yml's pass is the proof, and Gate the job it must have run.
 includes:
   common:
     taskfile: '{{.GO_TOOLS_TASKS}}'
     flatten: true
-    vars: {GATE_WORKFLOW: pages.yml, GATE_JOBS: Gate}
+    vars:
+      RELEASE:
+        map: {proof: pages.yml, jobs: Gate}
 
 tasks:
   default:
