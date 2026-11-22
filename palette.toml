@@ -119,8 +119,8 @@ critical = "#D04A9E" # magenta-leaning, as error is: a deutan tells it from good
 hover = 0.10
 selected = 0.27      # cyan over navy is close in hue: a stronger tint keeps a selection told apart
 scrim = 0.64
-# A solid fill under the pointer: black over it at this alpha, and twice it when pressed. Darker in
-# both themes, since the label on the accent and on the destructive is white.
+# A solid fill under the pointer: black over it at this alpha, and twice it when pressed - or white
+# over a fill that is already ink, which black would not move. The fill decides, not the theme.
 fill = 0.12
 # A state's badge (running, waiting, failed): the state's colour as a tint under its own text, so a
 # state reads as a thing and not as coloured words. Its text holds 4.5:1 on it over every surface.
