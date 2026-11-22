@@ -57,10 +57,22 @@ packages = "package.json"
 [consumer.copies]
 "src/styles/brand-tokens.css" = "dist/tokens.css"
 
-# The agent client, the T3 Code fork the dashboard frames. It copies nothing until this repository
-# makes its stylesheet (#44), which adds the copy here.
+# The agent client, the T3 Code fork the dashboard frames: it draws the conversation and the
+# composer, in its own variables, and its copy sets them (cmd/palette's t3codeCSS says which, and
+# what it leaves). The copy sits beside the fork's theme, apps/web/src/index.css, and the fork's
+# entry imports it.
+#
+# Its faces are the packages versions.yaml pins, as every consumer's are: the static
+# @fontsource/inter and @fontsource/jetbrains-mono, in place of the @fontsource-variable/inter the
+# fork comes with. The variable package's family is "Inter Variable", a name no output writes, so
+# the copy beside it draws in the system's fallback; and the dashboard around the frame draws the
+# static files, so the two would be one face from two files. What the variable face gives up is
+# small: the conversation asks for 400, 500 and 600, which fonts/ ships, and for 700 in a
+# message's bold, which the browser then draws at 600.
 [[consumer]]
 name = "agent client"
 repo = "spin-stack/t3code"
 pin = "versions.yaml"
 packages = "apps/web/package.json"
+[consumer.copies]
+"apps/web/src/brand.css" = "dist/t3code.css"

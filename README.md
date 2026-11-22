@@ -2,7 +2,8 @@
 
 The colors, type, layout and mark of Spinbox, written once, checked, and made into the files each
 place that draws Spinbox reads: the website (Starlight), the dashboard (Tailwind, shadcn's
-variables) and anything else (`dist/tokens.json`).
+variables), the agent client the dashboard frames (the T3 Code fork's variables) and anything
+else (`dist/tokens.json`).
 
 **[See it](https://spin-stack.github.io/brand/)**: `index.html` is the laboratory.
 It draws the site's landing and a docs page, the dashboard's workspaces with their states, a
@@ -14,7 +15,7 @@ tritanopia, with every pair the palette is held to.
 
 | Source | What it makes |
 |---|---|
-| `palette.toml` | `dist/`: `tokens.css` (every role as `--spin-*`), `starlight.css` (the website's `--sl-color-*`), `dashboard.css` (shadcn's HSL variables, light on `:root`, dark on `.dark`, and the dashboard's radius, scrim, dense type scale, heading tracking, motion and a terminal's black surface and sixteen ANSI colours as `--terminal-*`), `tokens.json`, and `perception.js` and `simulate.svg` for the preview |
+| `palette.toml` | `dist/`: `tokens.css` (every role as `--spin-*`), `starlight.css` (the website's `--sl-color-*`), `dashboard.css` (shadcn's HSL variables, light on `:root`, dark on `.dark`, and the dashboard's radius, scrim, dense type scale, heading tracking, motion and a terminal's black surface and sixteen ANSI colours as `--terminal-*`), `t3code.css` (the agent client's own variables, the roots its theme derives the rest from, on `html:root` and `html.dark:root`, with the dashboard's corner and the faces), `tokens.json`, and `perception.js` and `simulate.svg` for the preview |
 | spin's `dashboard/e2e/catalog.spec.ts` | `screens/`: every route, tab, dialog and menu of the app in both themes at 1440 and 390 px, and what each draws that this palette does not have - a colour, a face, a size, a radius, contrast, overflow, a target too small (`task screens SCREENS=<dir>`). The catalog and the audit are committed; the images, hundreds a release, are an archive on a release of this repository that `screens.json` names and Pages unpacks. [See them](https://spin-stack.github.io/brand/screens.html) |
 | `assets/mark.png` | `logos/`: the stack of disks, cut from the mark as it was drawn (1024 px on a clear ground): the tile on the brand's navy (512, 256; the touch icon at 180, the favicon at 64 and 32) for a dark ground, and clear (512, 256) for any ground: the drawing has nothing under the stack, so `mark-dark-*` (512, 256), the name the dark page asks for, is the clear mark. Each is the drawing reduced; a size it would have to enlarge fails |
 
@@ -24,6 +25,7 @@ go tool task report     # every pair, its contrast or its distance in each view
 go tool task preview    # http://127.0.0.1:4330/
 go tool task check      # what CI runs: fails on a pair below its floor, or a stale dist/ or logos/
 go tool task consumers  # which brand each consumer is on: its pin, its copies, its faces
+go tool task agent-client T3CODE=<checkout>  # the fork's variable names, which t3code.css is held to
 go tool task release    # a person's: name main's head v<YYYYMMDD>.<NN>, once Gate has passed on it
 ```
 

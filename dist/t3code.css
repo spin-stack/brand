@@ -1,0 +1,86 @@
+/* Written by `task palette` from palette.toml (spin-stack/brand). Edit palette.toml, not this file. */
+html:root {
+	--background: #FFFFFF;
+	--foreground: #111827;
+	--card: #FFFFFF;
+	--card-foreground: #111827;
+	--surface-raised: #FFFFFF;
+	--popover: #FFFFFF;
+	--popover-foreground: #111827;
+	--primary: #111827;
+	--primary-foreground: #FFFFFF;
+	--secondary: #F1F4F9;
+	--secondary-foreground: #111827;
+	--muted: #E0E6F1;
+	--muted-foreground: #515C72;
+	--accent: #E0E6F1;
+	--accent-foreground: #111827;
+	--message-surface: #E0E6F1;
+	--message-action-hover: #2E3441;
+	--border: #C4CCD9;
+	--input: #C4CCD9;
+	--ring: #024F6A;
+	--error: #9A1F60;
+	--error-foreground: #9A1F60;
+	--tool-error-icon: #9A1F60;
+	--error-surface: color-mix(in srgb, var(--error) 12%, transparent);
+	--warning: #845000;
+	--warning-foreground: #845000;
+	--warning-surface: color-mix(in srgb, var(--warning) 12%, transparent);
+	--success: #0F6844;
+	--success-foreground: #0F6844;
+	--info: #024F6A;
+	--info-foreground: #024F6A;
+	--update-foreground: #024F6A;
+	--app-scrollbar-thumb: #C4CCD9;
+	--app-scrollbar-thumb-hover: #748099;
+}
+html.dark:root {
+	--background: #09101F;
+	--foreground: #EAF0F6;
+	--card: #121A2E;
+	--card-foreground: #EAF0F6;
+	--surface-raised: #121A2E;
+	--popover: #26334F;
+	--popover-foreground: #EAF0F6;
+	--primary: #26BDED;
+	--primary-foreground: #0B1220;
+	--secondary: #1B263E;
+	--secondary-foreground: #EAF0F6;
+	--muted: #1B263E;
+	--muted-foreground: #9AA7BB;
+	--accent: #1B263E;
+	--accent-foreground: #EAF0F6;
+	--message-surface: #1B263E;
+	--message-action-hover: #21A6D1;
+	--border: #313E5A;
+	--input: #313E5A;
+	--ring: #54CFF5;
+	--error: #EE7BB0;
+	--error-foreground: #EE7BB0;
+	--tool-error-icon: #EE7BB0;
+	--error-surface: color-mix(in srgb, var(--error) 12%, transparent);
+	--warning: #E3B04B;
+	--warning-foreground: #E3B04B;
+	--warning-surface: color-mix(in srgb, var(--warning) 12%, transparent);
+	--success: #4CC38A;
+	--success-foreground: #4CC38A;
+	--info: #54CFF5;
+	--info-foreground: #54CFF5;
+	--update-foreground: #54CFF5;
+	--app-scrollbar-thumb: #313E5A;
+	--app-scrollbar-thumb-hover: #697997;
+	--terminal-background: #0A0C10;
+	--terminal-foreground: #E6EBF2;
+	--terminal-cursor: #27BFE8;
+	--terminal-selection-background: #2C3A55;
+}
+html:root {
+	--radius: 6px;
+	--control-radius: 6px;
+	--font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+	--diff-addition-foreground: var(--success-foreground);
+	--diff-deletion-foreground: var(--error-foreground);
+	--surface-grain: none;
+}
