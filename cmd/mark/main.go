@@ -1,10 +1,8 @@
-// Command mark cuts the spin-stack mark - the stack of disks - out of assets/mark.png, the mark as
-// it was drawn: 1024 px on a clear ground, the stack some 450 of them. (The organization's avatar
-// is the same mark shrunk to 460 px on the navy with the wordmark under it, the stack 240 px: cut
-// from it, every logo larger than that, or on a 2x screen, was an enlargement.)
-// It writes the mark at the sizes the places that show it use, into logos/: on the brand's navy,
-// square, for each to round as it rounds a tile, and clear, for a light ground. Every size is the
-// drawing reduced, never enlarged: a size the drawing is too small for fails.
+// Command mark writes logos/ from assets/mark.svg, the mark as it is drawn: a stack of disks in
+// the brand's solid colours. Every file is that one drawing: in its colours on nothing (clear), in
+// one colour on nothing (ink for a light ground, frost for a dark one), and in its colours on the
+// brand's navy, square, for a platform that asks for a tile and rounds it itself (a favicon, a
+// touch icon, a link preview). Each form is written as SVG, and as PNG at the sizes that need one.
 //
 // With -check it writes nothing and fails when logos/ is not what the drawing makes.
 package main
@@ -13,40 +11,53 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
-	"image"
-	"image/color"
 	"image/png"
 	"os"
 	"path/filepath"
-	"strconv"
+	"slices"
 
 	"github.com/BurntSushi/toml"
-	"golang.org/x/image/draw"
 )
 
-// logo is one file logos/ holds: the mark at a size something shows it at, on the navy (a tile)
-// or on nothing (clear); clear and dark is on nothing too, its shadow drawn for the dark page.
+// brand is the palette's [brand]: the colours the mark may be drawn in, its tile and its one-colour
+// forms.
+type brand struct{ Navy, Deep, Blue, Cyan, Frost string }
+
+// logo is one file logos/ holds: a form of the mark, as SVG (size 0) or as PNG at a size
+// something shows it at.
 type logo struct {
-	size  int
-	clear bool
-	dark  bool
+	name string
+	form form
+	size int
 }
 
-var sizes = map[string]logo{
-	"mark-512.png":       {size: 512, clear: false}, // the link preview, a dark hero
-	"mark-256.png":       {size: 256, clear: false}, // a dark header
-	"mark-clear-512.png": {size: 512, clear: true},  // on any ground: a light page, a light hero
-	"mark-clear-256.png": {size: 256, clear: true},  // a light header
-	// On a dark page with no tile: the clear mark's light grey shadow read there as a pale ring.
-	"mark-dark-512.png":    {size: 512, clear: true, dark: true}, // a dark hero
-	"mark-dark-256.png":    {size: 256, clear: true, dark: true}, // a dark header
-	"apple-touch-icon.png": {size: 180, clear: false},            // a phone's home screen
-	"favicon-64.png":       {size: 64, clear: false},             // a browser's tab, whose ground is the browser's
-	"favicon-32.png":       {size: 32, clear: false},
-}
+func logos(b brand) []logo {
+	tile, clear := form{tile: b.Navy}, form{}
+	ink, frost := form{one: b.Navy}, form{one: b.Frost}
+	return []logo{
+		{"mark.svg", tile, 0},
+		{"mark-512.png", tile, 512}, // the link preview
+		{"mark-256.png", tile, 256},
+		{"apple-touch-icon.png", tile, 180}, // a phone's home screen
+		{"favicon-64.png", tile, 64},        // a browser's tab, whose ground is the browser's
+		{"favicon-32.png", tile, 32},
 
-// margin is the square's side over the stack's longer one: a fifth of it around the stack.
-const margin = 1.22
+		{"mark-clear.svg", clear, 0}, // the mark in the product, on either theme
+		{"mark-clear-512.png", clear, 512},
+		{"mark-clear-256.png", clear, 256},
+		// The same drawing as mark-clear-*: the illustration needed its shadow redrawn for a dark
+		// page, and the places that show the mark there read these names.
+		{"mark-dark-512.png", clear, 512},
+		{"mark-dark-256.png", clear, 256},
+
+		{"mark-ink.svg", ink, 0}, // where colour cannot go, on a light ground
+		{"mark-ink-512.png", ink, 512},
+		{"mark-ink-256.png", ink, 256},
+		{"mark-frost.svg", frost, 0}, // and on a dark one
+		{"mark-frost-512.png", frost, 512},
+		{"mark-frost-256.png", frost, 256},
+	}
+}
 
 func main() {
 	if err := run(); err != nil {
@@ -56,14 +67,14 @@ func main() {
 }
 
 func run() error {
-	src := flag.String("mark", "assets/mark.png", "the mark as drawn, on a clear ground")
-	palette := flag.String("palette", "palette.toml", "the palette, whose brand navy is the tile's ground")
+	src := flag.String("mark", "assets/mark.svg", "the mark as drawn")
+	palette := flag.String("palette", "palette.toml", "the palette, whose [brand] is the mark's colours")
 	out := flag.String("out", "logos", "where the mark is written")
 	check := flag.Bool("check", false, "write nothing; fail if logos/ is not what the drawing makes")
 	flag.Parse()
 
-	navy, page, err := ground(*palette)
-	if err != nil {
+	var p struct{ Brand brand }
+	if _, err := toml.DecodeFile(*palette, &p); err != nil {
 		return err
 	}
 	f, err := os.Open(*src)
@@ -71,47 +82,32 @@ func run() error {
 		return err
 	}
 	defer f.Close()
-	drawing, err := png.Decode(f)
-	if err != nil {
-		return err
-	}
-	stack, err := stackOf(drawing)
+	d, err := readDrawing(f)
 	if err != nil {
 		return fmt.Errorf("%s: %w", *src, err)
 	}
-
-	onNavy := shadowOn(drawing, stack, navy)
-	onDark := shadowOn(drawing, stack, page)
+	if err := inBrand(d, p.Brand); err != nil {
+		return fmt.Errorf("%s: %w", *src, err)
+	}
 
 	var stale []string
-	for name, l := range sizes {
-		src := onNavy
-		switch {
-		case l.dark:
-			src = onDark
-		case l.clear:
-			src = drawing
-		}
-		img, err := cut(src, stack, l.size, l.clear, navy)
+	for _, l := range logos(p.Brand) {
+		want, err := encode(d, l)
 		if err != nil {
-			return fmt.Errorf("%s: %w", name, err)
+			return fmt.Errorf("%s: %w", l.name, err)
 		}
-		var b bytes.Buffer
-		if err := (&png.Encoder{CompressionLevel: png.BestCompression}).Encode(&b, img); err != nil {
-			return err
-		}
-		path := filepath.Join(*out, name)
-		if have, err := os.ReadFile(path); err == nil && bytes.Equal(have, b.Bytes()) {
+		path := filepath.Join(*out, l.name)
+		if have, err := os.ReadFile(path); err == nil && bytes.Equal(have, want) {
 			continue
 		}
-		stale = append(stale, name)
+		stale = append(stale, l.name)
 		if *check {
 			continue
 		}
 		if err := os.MkdirAll(*out, 0o755); err != nil {
 			return err
 		}
-		if err := os.WriteFile(path, b.Bytes(), 0o644); err != nil {
+		if err := os.WriteFile(path, want, 0o644); err != nil {
 			return err
 		}
 	}
@@ -121,89 +117,27 @@ func run() error {
 	return nil
 }
 
-// ground is the palette's brand navy, the tile's ground, and its dark page, the ground of the
-// clear mark drawn for a dark page.
-func ground(palette string) (navy, page color.RGBA, err error) {
-	var p struct {
-		Brand map[string]string
-		Dark  struct{ Page string }
+// inBrand fails on a shape filled with anything but the four colours the mark is drawn in. Navy is
+// its ground, never a shape; mint is for drawings, and the mark has no ring.
+func inBrand(d drawing, b brand) error {
+	own := []string{b.Deep, b.Blue, b.Cyan, b.Frost}
+	for _, s := range d.shapes {
+		if !slices.Contains(own, s.fill) {
+			return fmt.Errorf("fill %q is not [brand]'s deep, blue, cyan or frost %v", s.fill, own)
+		}
 	}
-	if _, err := toml.DecodeFile(palette, &p); err != nil {
-		return navy, page, err
-	}
-	if navy, err = rgbOf(palette, "brand.navy", p.Brand["navy"]); err != nil {
-		return navy, page, err
-	}
-	page, err = rgbOf(palette, "dark.page", p.Dark.Page)
-	return navy, page, err
+	return nil
 }
 
-func rgbOf(palette, key, hex string) (color.RGBA, error) {
-	if len(hex) != 7 || hex[0] != '#' {
-		return color.RGBA{}, fmt.Errorf("%s: %s %q is no #rrggbb", palette, key, hex)
+func encode(d drawing, l logo) ([]byte, error) {
+	if l.size == 0 {
+		return d.svg(l.form), nil
 	}
-	v, err := strconv.ParseUint(hex[1:], 16, 32)
+	img, err := d.raster(l.form, l.size)
 	if err != nil {
-		return color.RGBA{}, fmt.Errorf("%s: %s %q is no #rrggbb", palette, key, hex)
+		return nil, err
 	}
-	return color.RGBA{uint8(v >> 16), uint8(v >> 8), uint8(v), 255}, nil
-}
-
-// stackOf is the box of what the drawing draws: every pixel past a faint alpha, which leaves out
-// the drawing's near-invisible haze.
-func stackOf(drawing image.Image) (image.Rectangle, error) {
-	b := drawing.Bounds()
-	box := image.Rectangle{}
-	for y := b.Min.Y; y < b.Max.Y; y++ {
-		for x := b.Min.X; x < b.Max.X; x++ {
-			if _, _, _, a := drawing.At(x, y).RGBA(); a>>8 > 16 {
-				box = box.Union(image.Rect(x, y, x+1, y+1))
-			}
-		}
-	}
-	if box.Empty() {
-		return box, fmt.Errorf("it draws nothing: no pixel is more than faintly opaque")
-	}
-	return box, nil
-}
-
-// shadowOn is the drawing for the tile: its shadow is a light grey ring, drawn for a light ground,
-// which on the navy reads as a halo; a shadow is never lighter than what it falls on. The ring is
-// the grey in the stack's bottom quarter - the white top disk is grey too, but at the top - and
-// becomes the navy with a sixteenth of the ring's light in it, a rim as the avatar's was.
-func shadowOn(drawing image.Image, stack image.Rectangle, navy color.RGBA) image.Image {
-	const light = 0.06
-	out := image.NewNRGBA(drawing.Bounds())
-	draw.Draw(out, out.Bounds(), drawing, drawing.Bounds().Min, draw.Src)
-	band := stack.Min.Y + stack.Dy()*3/4
-	for y := band; y < stack.Max.Y; y++ {
-		for x := stack.Min.X; x < stack.Max.X; x++ {
-			c := out.NRGBAAt(x, y)
-			hi, lo := max(c.R, c.G, c.B), min(c.R, c.G, c.B)
-			if c.A == 0 || hi-lo > 24 || hi < 96 {
-				continue
-			}
-			mix := func(n, g uint8) uint8 { return uint8(float64(n) + light*(float64(g)-float64(n)) + 0.5) }
-			out.SetNRGBA(x, y, color.NRGBA{mix(navy.R, c.R), mix(navy.G, c.G), mix(navy.B, c.B), c.A})
-		}
-	}
-	return out
-}
-
-// cut is the stack centered on a square of size pixels, a fifth of its size around it, on the
-// navy or on nothing.
-func cut(drawing image.Image, stack image.Rectangle, size int, clear bool, navy color.RGBA) (*image.RGBA, error) {
-	side := float64(max(stack.Dx(), stack.Dy())) * margin
-	scale := float64(size) / side
-	if scale > 1 {
-		return nil, fmt.Errorf("%d px would enlarge the drawing %.2f times: its stack is %d px", size, scale, max(stack.Dx(), stack.Dy()))
-	}
-	w, h := int(float64(stack.Dx())*scale+0.5), int(float64(stack.Dy())*scale+0.5)
-	at := image.Pt((size-w)/2, (size-h)/2)
-	img := image.NewRGBA(image.Rect(0, 0, size, size))
-	if !clear {
-		draw.Draw(img, img.Bounds(), &image.Uniform{navy}, image.Point{}, draw.Src)
-	}
-	draw.CatmullRom.Scale(img, image.Rectangle{at, at.Add(image.Pt(w, h))}, drawing, stack, draw.Over, nil)
-	return img, nil
+	var b bytes.Buffer
+	err = (&png.Encoder{CompressionLevel: png.BestCompression}).Encode(&b, img)
+	return b.Bytes(), err
 }

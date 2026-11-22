@@ -59,7 +59,7 @@ section, .part { scroll-margin-top: 3rem; }
 
 /* The mark's guide */
 .guide { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2rem; align-items: start; }
-.tiles { display: grid; gap: 1rem; }
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .tiles figure, .donts figure { margin: 0; }
 .ground { display: grid; place-items: center; height: 200px; border-radius: var(--spin-radius-lg); border: 1px solid var(--spin-border); }
 .ground.dark { background: var(--spin-brand-navy); } .ground.light { background: #fff; }
@@ -342,12 +342,14 @@ D  /etc/issue</pre>
 	<span class="label">The mark</span>
 	<div class="guide">
 		<div class="tiles">
-			<figure><div class="ground dark"><img src="logos/mark-512.png" alt="The mark on its own ground" width="128"></div><figcaption>The tile, on its own ground: a dark page, the favicon, a link preview.</figcaption></figure>
-			<figure><div class="ground light"><img src="logos/mark-clear-512.png" alt="The mark without its ground" width="128"></div><figcaption>Clear: on a light page, a light header.</figcaption></figure>
+			<figure><div class="ground dark"><img src="logos/mark.svg" alt="The mark on its own ground" width="128"></div><figcaption>The tile, only where a platform asks for a square: the favicon, a touch icon, a link preview.</figcaption></figure>
+			<figure><div class="ground light"><img src="logos/mark-clear.svg" alt="The mark without its ground" width="128"></div><figcaption>Clear: the mark in the product, on either theme.</figcaption></figure>
+			<figure><div class="ground light"><img src="logos/mark-ink.svg" alt="The mark in one colour, ink" width="128"></div><figcaption>One colour, where colour cannot go: ink on a light ground.</figcaption></figure>
+			<figure><div class="ground dark"><img src="logos/mark-frost.svg" alt="The mark in one colour, frost" width="128"></div><figcaption>And frost on a dark one.</figcaption></figure>
 		</div>
 		<div class="rules">
 			<h3>Sizes</h3>
-			<div class="sizes"><img src="logos/mark-clear-256.png" width="64" alt=""><img src="logos/mark-clear-256.png" width="32" alt=""><img src="logos/favicon-32.png" width="16" alt=""><span class="muted">64 · 32 · 16 px. Below 24 px the favicon's tile, never the clear mark: its seams close up.</span></div>
+			<div class="sizes"><img src="logos/mark-clear.svg" width="64" alt=""><img src="logos/mark-clear.svg" width="32" alt=""><img src="logos/mark-clear.svg" width="20" alt=""><img src="logos/mark-clear.svg" width="16" alt=""><span class="muted">64 · 32 · 20 · 16 px, the clear mark at each: a seam between two disks is one pixel at 16 px.</span></div>
 			<h3>Clear space</h3>
 			<div class="space"><img src="logos/mark-clear-256.png" width="72" alt=""></div>
 			<p class="muted">A quarter of the mark's height on every side, dashed above: no text or edge inside it.</p>

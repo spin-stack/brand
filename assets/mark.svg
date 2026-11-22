@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+	<!--
+	The mark: a stack of three disks, the layers a workspace's disk is made of, seen from above.
+	Drawn on 64 units so that 4 of them are one pixel at 16 px; at the middle of the mark every
+	edge but the rim's top falls on a pixel there.
+
+	Top: frost, cx 32 cy 12 rx 21 ry 8, in a deep rim (cy 13 rx 23.5 ry 11) that is its edge on a
+	light ground and its side below. Middle: cyan, cy 30 rx 32 ry 14. Bottom: blue, cy 49 rx 26
+	ry 11. The middle and the bottom are each their ellipse less the one above grown by 4: the seam
+	between two disks is the ground showing through, one pixel at 16 px, so the mark in one colour
+	is this same drawing.
+
+	cmd/mark reads <ellipse> and <path> with absolute M, L, C and Z, filled with a [brand] colour
+	of palette.toml, and nothing else.
+	-->
+	<ellipse cx="32" cy="13" rx="23.5" ry="11" fill="#0C3C84"/>
+	<ellipse cx="32" cy="12" rx="21" ry="8" fill="#EAF0F6"/>
+	<path fill="#27BFE8" d="M55.711 20.598 C67.305 26.195 66.661 34.807 54.254 40.06 C41.847 45.313 22.153 45.313 9.746 40.06 C-2.661 34.807 -3.305 26.195 8.289 20.598 C13.228 25.184 22.25 28 32 28 C41.75 28 50.772 25.184 55.711 20.598 Z"/>
+	<path fill="#2F6BE3" d="M54.981 43.855 C60.77 48.484 58.044 54.197 48.466 57.513 C38.888 60.829 25.112 60.829 15.534 57.513 C5.956 54.197 3.23 48.484 9.019 43.855 C22.346 49.382 41.654 49.382 54.981 43.855 Z"/>
+</svg>
