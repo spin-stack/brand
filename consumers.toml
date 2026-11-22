@@ -56,6 +56,12 @@ pin = "versions.yaml"
 packages = "package.json"
 [consumer.copies]
 "src/styles/brand-tokens.css" = "dist/tokens.css"
+# The scripts that draw its diagrams, cards and social images read the roles from the JSON.
+"src/data/brand-tokens.json" = "dist/tokens.json"
+"public/mark-dark.png" = "logos/mark-dark-256.png"
+"public/mark-light.png" = "logos/mark-clear-256.png"
+"public/favicon.png" = "logos/favicon-64.png"
+"public/apple-touch-icon.png" = "logos/apple-touch-icon.png"
 
 # The agent client, the T3 Code fork the dashboard frames: it draws the conversation and the
 # composer, in its own variables, and its copy sets them (cmd/palette's t3codeCSS says which, and
