@@ -22,7 +22,9 @@
     fonts/inter-latin-{400,500,600}-normal.woff2 and fonts/LICENSE-Inter.txt (OFL 1.1) are this
     package's files/ and LICENSE, unchanged: the sans (palette.toml's type.sans), at the weights
     type.weight_* rank. Installed with `sfw pnpm add` outside the checkout and copied; a bump
-    replaces all four files.
+    replaces all four files. Every consumer installs this package at this version, the agent
+    client too: @fontsource-variable/inter is another family's name and another file
+    (consumers.toml says why not).
 
 - name: jetbrains-mono
   kind: download

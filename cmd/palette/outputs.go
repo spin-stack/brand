@@ -40,6 +40,7 @@ func outputs(p palette, results []result) (map[string][]byte, error) {
 	files["tokens.css"] = []byte(tokensCSS(p, dark, light))
 	files["starlight.css"] = []byte(starlightCSS(p, dark, light))
 	files["dashboard.css"] = []byte(dashboardCSS(p, dark, light))
+	files["t3code.css"] = []byte(t3codeCSS(p, dark, light, term))
 	files["perception.js"] = []byte(perceptionJS(results))
 	files["simulate.svg"] = []byte(simulateSVG())
 	return files, nil
@@ -373,6 +374,112 @@ func dashboardCSS(p palette, dark, light map[string]rgb) string {
 	fmt.Fprintf(&b, "\t--spin-numeric: %s;\n", p.Type.Numeric)
 	fmt.Fprintf(&b, "\t--spin-duration-fast: %dms;\n\t--spin-duration: %dms;\n", p.Motion.Fast, p.Motion.Base)
 	fmt.Fprintf(&b, "\t--spin-duration-slow: %dms;\n\t--spin-ease: %s;\n", p.Motion.Slow, p.Motion.Ease)
+	b.WriteString("}\n")
+	return b.String()
+}
+
+// t3codeCSS is the palette in the agent client's variables: the T3 Code fork the dashboard frames
+// (spin-stack/t3code, apps/web/src/index.css), which draws the conversation and the composer. The
+// fork derives most of what it draws from a few dozen roots - a contrast-adjusted copy of every
+// text colour and line, its toolbar, its dark sidebar, each Tailwind colour utility - so these are
+// the roots, and its own derivations follow them. testdata/t3code.vars is the fork's names at the
+// commit this was written against, and the tests hold every name here to it.
+//
+// Each selector outranks the fork's by one element, so the file rules wherever the fork's build
+// puts it: html:root over the fork's :root, and html.dark:root over its :root:is(.dark, .dark *),
+// which is how the fork says dark (a class on the root element). A theme picked in the client's
+// own settings (html[data-theme-id]) is not outranked: it replaces these roots with a palette of
+// its own, and the fork keeps the client on light and dark.
+func t3codeCSS(p palette, dark, light, term map[string]rgb) string {
+	var b strings.Builder
+	b.WriteString(header)
+	block := func(sel string, c map[string]rgb, isDark bool) {
+		// The dashboard's card: the page in light, the surface in dark. It is the composer's
+		// ground, which the fork takes from --card in light and --surface-raised in dark.
+		card := c["page"]
+		if isDark {
+			card = c["surface"]
+		}
+		st := controlStates(p, c, isDark)
+		// A state's tint under its own text, as tokens.css writes a badge. The fork's are 8% in
+		// light and 16% in dark, and the state's text is held on tint.badge alone.
+		tint := func(state string) string {
+			return fmt.Sprintf("color-mix(in srgb, var(--%s) %g%%, transparent)", state, p.Tint.Badge*100)
+		}
+		vars := [][2]string{
+			{"background", c["page"].hex()}, {"foreground", c["text"].hex()},
+			{"card", card.hex()}, {"card-foreground", c["text"].hex()},
+			{"surface-raised", card.hex()},
+			{"popover", c["overlay"].hex()}, {"popover-foreground", c["text"].hex()},
+			{"primary", c["accent"].hex()}, {"primary-foreground", c["on_accent"].hex()},
+			// As the dashboard has them: a secondary button's fill is controlStates', and what is
+			// hovered or quiet is raised, neutral, in both themes.
+			{"secondary", st.control.hex()}, {"secondary-foreground", c["text"].hex()},
+			{"muted", c["raised"].hex()}, {"muted-foreground", c["muted"].hex()},
+			{"accent", c["raised"].hex()}, {"accent-foreground", c["text"].hex()},
+			// A person's turn in the conversation: a plane two steps off the page, so that it
+			// stands off the page and off the composer.
+			{"message-surface", c["raised"].hex()},
+			// The send button under the pointer. The fork's is the action at 90% over the page,
+			// lighter in dark and darker in light, which is what controls.go replaced.
+			{"message-action-hover", st.accentHover.hex()},
+			// The fork has one variable for a line, --border, and no second for a separator on the
+			// page, so the hairline has no place here. And one for an input's edge and a button's
+			// outline, --input, which in dark it also lays over a surface at 32% as a button's and a
+			// code block's fill. It is the border: the conversation's controls are buttons, whose
+			// outline [controls] gives the border, and the composer draws its own edge. At
+			// border_strong every outline was the heaviest line of the conversation and every fill
+			// a step above overlay.
+			{"border", c["border"].hex()}, {"input", c["border"].hex()},
+			{"ring", c["accent_text"].hex()},
+			// A failed step and a destructive action are one colour in the fork: --destructive is
+			// --error, and nearly all of its uses are words. So it is error, the state, which is
+			// held as text; the palette's destructive, a fill under a white label, has no place.
+			{"error", c["error"].hex()}, {"error-foreground", c["error"].hex()},
+			{"tool-error-icon", c["error"].hex()}, {"error-surface", tint("error")},
+			{"warning", c["warning"].hex()}, {"warning-foreground", c["warning"].hex()},
+			{"warning-surface", tint("warning")},
+			{"success", c["success"].hex()}, {"success-foreground", c["success"].hex()},
+			// The fork's blue: a link in a message (--info-foreground), a notice, an update. The
+			// accent as a line, accent_text; light's accent is the text's own navy.
+			{"info", c["accent_text"].hex()}, {"info-foreground", c["accent_text"].hex()},
+			{"update-foreground", c["accent_text"].hex()},
+			{"app-scrollbar-thumb", c["border"].hex()}, {"app-scrollbar-thumb-hover", c["border_strong"].hex()},
+		}
+		if isDark {
+			// A terminal is black in either theme, and here only in dark: the fork picks the
+			// sixteen colours a program asks for by the theme, in its own code, and light's are
+			// drawn for a white ground.
+			for _, k := range terminalRoles {
+				name := "terminal-" + k
+				if k == "selection" {
+					name += "-background"
+				}
+				vars = append(vars, [2]string{name, term[k].hex()})
+			}
+		}
+		fmt.Fprintf(&b, "%s {\n", sel)
+		for _, v := range vars {
+			fmt.Fprintf(&b, "\t--%s: %s;\n", v[0], v[1])
+		}
+		b.WriteString("}\n")
+	}
+	block("html:root", light, false)
+	block("html.dark:root", dark, true)
+
+	// What does not change with the theme. The client is a part of the dashboard, so its corner is
+	// the dashboard's: the fork adds 4, 8 and 12 px to --radius for its larger corners, in its
+	// own theme, and those stay that much rounder.
+	b.WriteString("html:root {\n")
+	fmt.Fprintf(&b, "\t--radius: %dpx;\n\t--control-radius: %dpx;\n", p.Layout.RadiusSm, p.Layout.RadiusSm)
+	fmt.Fprintf(&b, "\t--font-sans: '%s', %s;\n\t--font-mono: '%s', %s;\n", p.Type.Sans, p.Type.FallbackSans, p.Type.Mono, p.Type.FallbackMono)
+	// A diff's counts, which the fork writes in Tailwind's green and red. By name and under the
+	// themes' rank, so that the fork's blue and orange scheme (:root[data-diff-color-scheme])
+	// still replaces them.
+	b.WriteString("\t--diff-addition-foreground: var(--success-foreground);\n\t--diff-deletion-foreground: var(--error-foreground);\n")
+	// The fork lays a noise over its page. The dashboard's page is the colour alone, and the
+	// frame's ground has to be the page around it.
+	b.WriteString("\t--surface-grain: none;\n")
 	b.WriteString("}\n")
 	return b.String()
 }

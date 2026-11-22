@@ -44,6 +44,24 @@ tasks:
       - git fetch --quiet --tags origin main
       - go run ./cmd/consumers {{.CLI_ARGS}}
 
+  agent-client:
+    desc: Read the names of the variables the agent client declares - apps/web/src/index.css of spin-stack/t3code, in the checkout T3CODE= at REF= (by default fork/spin) - into cmd/palette/testdata/t3code.vars, the names dist/t3code.css is held to. Run when the fork moves - a name it dropped then fails `task check`.
+    requires:
+      vars: [T3CODE]
+    vars:
+      REF: '{{.REF | default "fork/spin"}}'
+    cmds:
+      - |
+        set -eu -o pipefail
+        commit="$(git -C {{.T3CODE}} rev-parse --verify '{{.REF}}^{commit}')"
+        names="$(git -C {{.T3CODE}} show "$commit:apps/web/src/index.css" | grep -oE '^\s*--[a-zA-Z0-9-]+:' | tr -d ' \t:' | LC_ALL=C sort -u)"
+        {
+          echo '# Every custom property spin-stack/t3code declares in apps/web/src/index.css, the agent'
+          echo "# client's theme, at the commit below. Written by \`go tool task agent-client\`: edit nothing."
+          echo "# commit $commit"
+          echo "$names"
+        } > cmd/palette/testdata/t3code.vars
+
   release:
     desc: Release main's head as the next v<YYYYMMDD>.<NN> of today, in UTC, the name a consumer's versions.yaml pins. A person runs it, with gh logged in; it refuses a commit Gate has not passed on and one released already.
     vars:

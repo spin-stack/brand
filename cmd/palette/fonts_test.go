@@ -48,7 +48,7 @@ func TestEveryFaceAnOutputNamesIsShipped(t *testing.T) {
 
 	named := map[string][]string{}
 	stack := regexp.MustCompile(`--[a-z-]*font[a-z-]*:\s*([^;]+);`)
-	for _, name := range []string{"tokens.css", "starlight.css", "dashboard.css"} {
+	for _, name := range []string{"tokens.css", "starlight.css", "dashboard.css", "t3code.css"} {
 		faces := 0
 		for _, m := range stack.FindAllStringSubmatch(string(files[name]), -1) {
 			if strings.HasPrefix(m[1], "var(") {
