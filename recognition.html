@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- No name and no mark on this page, its title and its icon included: it asks whose product it is. -->
+<title>Whose product is this?</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="dist/tokens.css">
+<link rel="stylesheet" href="lab.css">
+<style>
+@font-face { font-family: 'Inter'; src: url(fonts/inter-latin-400-normal.woff2) format('woff2'); font-weight: 400; }
+@font-face { font-family: 'Inter'; src: url(fonts/inter-latin-500-normal.woff2) format('woff2'); font-weight: 500; }
+@font-face { font-family: 'Inter'; src: url(fonts/inter-latin-600-normal.woff2) format('woff2'); font-weight: 600; }
+@font-face { font-family: 'JetBrains Mono'; src: url(fonts/jetbrains-mono-latin-400-normal.woff2) format('woff2'); font-weight: 400; }
+@font-face { font-family: 'JetBrains Mono'; src: url(fonts/jetbrains-mono-latin-500-normal.woff2) format('woff2'); font-weight: 500; }
+@font-face { font-family: 'JetBrains Mono'; src: url(fonts/jetbrains-mono-latin-600-normal.woff2) format('woff2'); font-weight: 600; }
+
+/* The recognition test (spin-stack/brand#45): three screens with the mark and the wordmark taken
+   out, in the brand and in grey. The screens and every control are lab.css's, and the grey is
+   made from the tokens by the script below; a color here that is not a token is a bug. */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--spin-page); color: var(--spin-text); font: var(--spin-text-reading)/var(--spin-line-height) var(--spin-font-sans); }
+a { color: var(--spin-accent-text); text-underline-offset: .2em; }
+:focus-visible { outline: 2px solid var(--spin-accent-text); outline-offset: 2px; }
+[hidden] { display: none !important; }
+.sheet label { display: inline-flex; gap: .5rem; align-items: center; font: 500 13px var(--spin-font-mono); color: var(--spin-muted); }
+.sheet select { font: 500 13px var(--spin-font-mono); color: var(--spin-text); background: var(--spin-raised); border: 1px solid var(--spin-border-strong); border-radius: var(--spin-radius-sm); min-height: var(--spin-control-md); padding: 0 .5rem; }
+.sheet .typed { font: 13px/1.6 var(--spin-font-mono); color: var(--spin-muted); overflow-wrap: anywhere; }
+@media (pointer: coarse) { .sheet select { min-height: var(--spin-target-touch); } }
+</style>
+</head>
+<body>
+<main class="sheet" id="sheet" aria-live="polite"></main>
+<div class="stage" id="stage" hidden><div class="view" id="view"></div><div class="hud" id="hud"></div></div>
+
+<script type="module">
+import { app, esc, screens, store } from './lab.js';
+
+const pages = { list: 'The workspace list', workspace: "A workspace's page", settings: 'The settings page' };
+const order = Object.keys(pages);
+const drawings = { brand: "The brand's palette and faces", neutral: 'Grey, in a system font' };
+
+// The grey drawing: every colour the tokens give, replaced by the grey of the same luminance, and
+// each face by the fallback its own stack names. Contrast is luminance's, so every pair the
+// palette holds is held in grey to the same figure: what differs between the two drawings is hue
+// and typeface and nothing else. A state keeps its colour, since a product in any palette has a
+// green and a red, and the terminal is black in both; its cursor, the mark's cyan, goes grey.
+function greys() {
+	const grey = (hex) => {
+		const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+		const y = 0.2126 * r + 0.7152 * g + 0.0722 * b, v = Math.round(255 * (y <= 0.0031308 ? y * 12.92 : 1.055 * y ** (1 / 2.4) - 0.055));
+		return '#' + v.toString(16).padStart(2, '0').repeat(3);
+	};
+	const kept = /^--spin-(success|warning|error|destructive|terminal|chart|trace|brand)/;
+	let css = '', themes = 0;
+	for (const sheet of document.styleSheets) {
+		if (!sheet.href?.endsWith('tokens.css')) continue;
+		for (const rule of sheet.cssRules) {
+			if (!rule.selectorText?.startsWith(':root')) continue;
+			const out = [];
+			for (const name of rule.style) {
+				const value = rule.style.getPropertyValue(name).trim();
+				if (/^#[0-9a-f]{6}$/i.test(value) && !kept.test(name)) out.push(`${name}: ${grey(value)}`);
+				// What is made of another token is made again here, of the grey one.
+				else if (value.includes('var(--spin-')) out.push(`${name}: ${value}`);
+				else if (/^--spin-font-(sans|mono)$/.test(name)) out.push(`${name}: ${value.slice(value.indexOf(',') + 1)}`);
+			}
+			if (out.some((d) => d.startsWith('--spin-page'))) themes++;
+			css += `${rule.selectorText.split(',')[0]} .neutral { ${out.join('; ')} }\n`;
+		}
+	}
+	if (themes !== 2) throw new Error(`dist/tokens.css gave ${themes} themes, not dark and light: greys no longer reads how it is written`);
+	const style = document.createElement('style');
+	style.textContent = css + '.neutral { --spin-terminal-cursor: var(--spin-terminal-foreground); }';
+	document.head.append(style);
+}
+greys();
+
+// first is which drawing the first person here was asked the blind question on, by chance, and
+// each person after them gets the other: the two halves of a team answer it on different drawings,
+// so the answers can be compared. results is one record a person; person is who is taking it now.
+const saved = store('spinbox-lab-recognition', null);
+const q = new URLSearchParams(location.search);
+const state = saved.value ?? { first: Math.random() < 0.5 ? 'brand' : 'neutral', theme: 'dark', results: [], person: null };
+const other = (d) => (d === 'brand' ? 'neutral' : 'brand');
+function begin() {
+	const drawing = state.results.length % 2 ? other(state.first) : state.first;
+	// a is the drawing shown as A for each page, by chance, so that A is not always the brand.
+	state.person = { drawing, a: Object.fromEntries(order.map((p) => [p, Math.random() < 0.5 ? 'brand' : 'neutral'])), step: 0, whose: undefined, picks: {} };
+}
+if (!state.person) begin();
+const save = () => saved.save(state);
+
+const sheet = document.getElementById('sheet'), stage = document.getElementById('stage'), view = document.getElementById('view'), hud = document.getElementById('hud');
+function draw(page, drawing) {
+	view.className = 'view' + (drawing === 'neutral' ? ' neutral' : '');
+	view.innerHTML = app(screens[page](), { brand: false });
+}
+const show = (staged) => { stage.hidden = !staged; sheet.hidden = staged; };
+
+// What a person goes through, in order: a sheet, the three screens in one drawing, the blind
+// question, then each page in both drawings and the second question.
+const steps = ['intro', ...order.map((p) => ['blind', p]), 'whose', 'pairs', ...order.map((p) => ['pair', p])];
+
+const head = '<a class="back" href="./">← The laboratory</a>';
+const how = `<details open><summary>How this works</summary>
+	<p>Three screens of the product, the workspace list, a workspace's page and a settings page, with a block where the mark was and another where the name was. Each is drawn twice: in the brand's palette and faces, and in grey, every colour replaced by the grey of the same lightness and each face by the system's. Nothing else differs, so the question is whether the palette and the faces are what make it ours.</p>
+	<p>The first question is asked on one drawing only: this browser gives the first person the brand or the grey by chance and each person after them the other. A team's answers split in two, and the count of who named the product on each half is the comparison. It means most from someone who has not seen the product; from the team it is a rehearsal.</p>
+	<p>The second question shows both drawings of each page, as A and B, which is which by chance. Answers are counted in this browser's storage and nowhere else: nothing is sent.</p>
+	<p>Other products are not drawn here for comparison: that would be imitating them.</p>
+</details>`;
+
+function render() {
+	document.documentElement.dataset.theme = state.theme;
+	const p = state.person, step = steps[p.step];
+	if (!step) return done();
+	if (step === 'intro') {
+		show(false);
+		sheet.innerHTML = `${head}<h1>Whose product is this?</h1><p>You will see three screens of a product, one at a time, with its name and its logo taken out. Look at each for as long as you like. Then there are two questions.</p>
+			<p class="muted">How it works is told at the end: told now, it would give the first answer away.</p>
+			<div class="go"><button class="btn lg secondary" data-step>Show me the first screen</button></div>
+			<p><label>Shown in <select id="theme"><option>dark</option><option>light</option></select></label></p>` +
+			(saved.persists ? '' : '<p class="note">This browser refuses to store anything, so the tally lasts until this tab is closed.</p>');
+		const theme = document.getElementById('theme');
+		theme.value = state.theme;
+		theme.onchange = () => { state.theme = theme.value; save(); document.documentElement.dataset.theme = state.theme; };
+		return;
+	}
+	if (step === 'whose') {
+		show(false);
+		sheet.innerHTML = `<h1>Whose product is this?</h1><p class="muted">A company, a product, or what it reminds you of. A guess is an answer.</p>
+			<form id="whose"><input type="text" name="whose" aria-label="Whose product is this?" autocomplete="off" maxlength="80">
+			<div class="go"><button class="btn lg secondary" type="submit">That is my answer</button><button class="btn lg ghost" type="button" data-whose="">I can't tell</button></div></form>`;
+		sheet.querySelector('input').focus();
+		return;
+	}
+	if (step === 'pairs') {
+		show(false);
+		sheet.innerHTML = `<h1>Now each screen, drawn two ways</h1><p>The same three screens, each as A and as B. Switch between the two as often as you like, then say which you would work in all day.</p>
+			<div class="go"><button class="btn lg secondary" data-step>Show me</button></div>`;
+		return;
+	}
+	const [kind, page] = step, nth = order.indexOf(page) + 1;
+	show(true);
+	if (kind === 'blind') {
+		draw(page, p.drawing);
+		hud.innerHTML = `<span>Screen ${nth} of ${order.length}</span><span class="grow"></span><button data-step>${nth < order.length ? 'Next screen' : 'I have seen them'}</button>`;
+		return;
+	}
+	pair(page, 'a', new Set(['a']));
+}
+
+// One page as A and as B. The choices open once both have been looked at.
+function pair(page, side, seen) {
+	const p = state.person, drawing = (s) => (s === 'a' ? p.a[page] : other(p.a[page]));
+	draw(page, drawing(side));
+	const both = seen.size === 2, toggle = (s) => `<button data-side="${s}" aria-pressed="${s === side}">${s.toUpperCase()}</button>`;
+	const pick = (s, word) => `<button data-pick="${s}"${both ? '' : ' disabled'}>${word}</button>`;
+	hud.innerHTML = `<span>${pages[page]} ${order.indexOf(page) + 1} of ${order.length}</span>${toggle('a')}${toggle('b')}<span class="grow"></span>` +
+		`<span>${both ? 'Which would you work in all day?' : 'Look at both, then choose.'}</span>${pick('a', 'A')}${pick('b', 'B')}${pick('same', 'No difference')}`;
+	hud.onclick = (e) => {
+		const b = e.target.closest('button');
+		if (!b || b.disabled) return;
+		if (b.dataset.side) return pair(page, b.dataset.side, seen.add(b.dataset.side));
+		p.picks[page] = b.dataset.pick === 'same' ? 'same' : drawing(b.dataset.pick);
+		hud.onclick = null;
+		advance();
+	};
+}
+
+function advance() {
+	const p = state.person;
+	p.step++;
+	if (p.step === steps.length) state.results.push({ theme: state.theme, drawing: p.drawing, whose: p.whose, picks: p.picks });
+	save();
+	render();
+}
+
+const named = (r) => (r.whose === '' ? 'none' : /spin/i.test(r.whose) ? 'ours' : 'another');
+function tables() {
+	const n = (rows) => `<td${rows.length ? '' : ' class="zero"'}>${rows.length}</td>`, R = state.results;
+	const typed = R.filter((r) => r.whose).map((r) => `${esc(r.whose)} <span class="muted">(${r.drawing === 'brand' ? 'brand' : 'grey'}, ${r.theme})</span>`);
+	return `<h2>Whose product is this?</h2><div class="tally-wrap"><table class="tally"><thead><tr><th>Asked on</th><th>Named it</th><th>Named another</th><th>Could not tell</th></tr></thead><tbody>` +
+		Object.keys(drawings).map((d) => `<tr><td>${drawings[d]}</td>${['ours', 'another', 'none'].map((k) => n(R.filter((r) => r.drawing === d && named(r) === k))).join('')}</tr>`).join('') + '</tbody></table></div>' +
+		(typed.length ? `<p class="typed">As typed: ${typed.join(' · ')}</p>` : '') +
+		`<h2>Which would you work in all day?</h2><div class="tally-wrap"><table class="tally"><thead><tr><th>Page</th><th>The brand</th><th>Grey</th><th>No difference</th></tr></thead><tbody>` +
+		order.map((p) => `<tr><td>${pages[p]}</td>${['brand', 'neutral', 'same'].map((k) => n(R.filter((r) => r.picks[p] === k))).join('')}</tr>`).join('') + '</tbody></table></div>';
+}
+const text = () => `Recognition test, ${state.results.length} in this browser\n` + state.results.map((r, i) =>
+	`${i + 1}. ${r.theme}, asked on ${r.drawing === 'brand' ? 'the brand' : 'grey'}: ${r.whose ? JSON.stringify(r.whose) : "couldn't tell"}; would work in ` + order.map((p) => `${p} ${r.picks[p] === 'neutral' ? 'grey' : r.picks[p]}`).join(', ')).join('\n');
+
+function done() {
+	show(false);
+	const last = state.results.at(-1), count = state.results.length;
+	sheet.innerHTML = `${head}<h1>That is all of it</h1><p>Thank you. You were asked the first question on <strong>${drawings[last.drawing].toLowerCase()}</strong>. This is what has been answered <strong>in this browser only</strong>: nothing left this page, so nobody else's answers are here.</p>
+		${tables()}
+		<p class="note">${count} ${count === 1 ? 'person has' : 'people have'} taken it here. An answer counts as naming it when it has "spin" in it. This sheet gives the first answer away: press Next person before the next one sits down.</p>
+		<div class="go"><button class="btn secondary" data-next>Next person on this browser</button><button class="btn secondary" data-copy>Copy the tally</button><button class="btn ghost" data-clear>Clear this browser's tally</button></div>
+		<h2>The screens</h2><p class="note">A look at any of them, not counted. The theme is the one chosen at the start.</p>
+		<div class="go">${order.flatMap((p) => Object.keys(drawings).map((d) => `<a class="btn sm secondary" href="?show=${p}&drawing=${d}&mode=${state.theme}">${pages[p]}, ${d === 'brand' ? 'brand' : 'grey'}</a>`)).join('')}</div>${how}`;
+}
+
+document.addEventListener('click', async (e) => {
+	const b = e.target.closest('button');
+	if (!b || b.closest('#hud')?.onclick) return;
+	if ('step' in b.dataset) return advance();
+	if ('whose' in b.dataset) { state.person.whose = ''; return advance(); }
+	if ('next' in b.dataset) { begin(); save(); return render(); }
+	if ('copy' in b.dataset) {
+		try { await navigator.clipboard.writeText(text()); b.textContent = 'Copied'; } catch { b.textContent = 'This browser refused the copy'; }
+		return;
+	}
+	if ('clear' in b.dataset && confirm("Clear every answer counted in this browser?")) { saved.clear(); location.href = 'recognition.html'; }
+});
+document.addEventListener('submit', (e) => {
+	e.preventDefault();
+	const whose = new FormData(e.target).get('whose').trim();
+	if (!whose) return e.target.querySelector('input').focus();
+	state.person.whose = whose;
+	advance();
+});
+
+if (screens[q.get('show')]) {
+	document.documentElement.dataset.theme = q.get('mode') === 'light' ? 'light' : 'dark';
+	show(true);
+	draw(q.get('show'), q.get('drawing') === 'neutral' ? 'neutral' : 'brand');
+	hud.innerHTML = '<span>Not counted: a look at one screen.</span><span class="grow"></span><a href="recognition.html">Back to the test</a>';
+} else render();
+</script>
+</body>
+</html>

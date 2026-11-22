@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Five seconds</title>
+<link rel="icon" href="logos/favicon-64.png">
+<link rel="stylesheet" href="dist/tokens.css">
+<link rel="stylesheet" href="lab.css">
+<style>
+@font-face { font-family: 'Inter'; src: url(fonts/inter-latin-400-normal.woff2) format('woff2'); font-weight: 400; }
+@font-face { font-family: 'Inter'; src: url(fonts/inter-latin-500-normal.woff2) format('woff2'); font-weight: 500; }
+@font-face { font-family: 'Inter'; src: url(fonts/inter-latin-600-normal.woff2) format('woff2'); font-weight: 600; }
+@font-face { font-family: 'JetBrains Mono'; src: url(fonts/jetbrains-mono-latin-400-normal.woff2) format('woff2'); font-weight: 400; }
+@font-face { font-family: 'JetBrains Mono'; src: url(fonts/jetbrains-mono-latin-500-normal.woff2) format('woff2'); font-weight: 500; }
+@font-face { font-family: 'JetBrains Mono'; src: url(fonts/jetbrains-mono-latin-600-normal.woff2) format('woff2'); font-weight: 600; }
+
+/* The five-second test (spin-stack/brand#45): the check palette.toml names for dark's cyan fill.
+   Dark only: it is dark's accent that can out-rank a page's title. The screens and every control
+   are lab.css's; a color here that is not a token is a bug. */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--spin-page); color: var(--spin-text); font: var(--spin-text-reading)/var(--spin-line-height) var(--spin-font-sans); }
+a { color: var(--spin-accent-text); text-underline-offset: .2em; }
+:focus-visible { outline: 2px solid var(--spin-accent-text); outline-offset: 2px; }
+code { font-family: var(--spin-font-mono); font-size: .9em; }
+[hidden] { display: none !important; }
+/* A screen being looked at does not answer the pointer, which is still where the button that
+   showed it was: a row under it would be drawn hovered, with its actions, and be the first thing
+   seen. */
+.stage.timed { cursor: none; }
+.stage.timed .view { pointer-events: none; }
+</style>
+</head>
+<body>
+<main class="sheet" id="sheet" aria-live="polite"></main>
+<div class="stage" id="stage" hidden><div class="view" id="view"></div><div class="hud" id="hud" hidden><span>Not counted: a look at one of the four screens.</span><span class="grow"></span><a href="five-seconds.html">Back to the test</a></div></div>
+
+<script type="module">
+import { app, screens, store } from './lab.js';
+
+// The four screens: two pages, each with the one filled action the palette allows and with three.
+const variants = {
+	'list-one': { screen: 'list', fills: 1, name: 'The list, one filled' },
+	'list-three': { screen: 'list', fills: 3, name: 'The list, three filled' },
+	'settings-one': { screen: 'settings', fills: 1, name: 'Settings, one filled' },
+	'settings-three': { screen: 'settings', fills: 3, name: 'Settings, three filled' },
+};
+// What a person sees, in order: each page once, in one version of each, so nobody's first look at
+// a page is spent twice and nobody answers for both versions of one page. Over four people every
+// screen is seen first once and second once.
+const plans = [
+	['list-one', 'settings-three'],
+	['settings-one', 'list-three'],
+	['list-three', 'settings-one'],
+	['settings-three', 'list-one'],
+];
+const answers = {
+	title: () => "The page's title",
+	button: () => 'A button',
+	row: (v) => (v.screen === 'list' ? 'A row of the list' : 'A row of settings'),
+	sidebar: () => 'The sidebar',
+	other: () => 'Something else',
+};
+const shown = 5000, blank = 600; // ms: the look, and an empty page before it so the eye leaves the button it pressed
+
+// people counts who has finished the test in this browser, and person is the one taking it now:
+// their plan, what they saw and what they answered. The first person's plan is drawn by chance and
+// each person after them gets the next one: on a shared laptop the plans go round in order, and
+// across browsers chance spreads them.
+const saved = store('spinbox-lab-five-seconds', null);
+const q = new URLSearchParams(location.search);
+const state = saved.value ?? { people: 0, tally: {}, person: null };
+const save = () => saved.save(state);
+function begin() {
+	// ?plan=1 to 4 is for whoever runs the test and hands out links in turn.
+	const asked = Number(q.get('plan'));
+	const plan = asked >= 1 && asked <= plans.length ? asked - 1 : state.person ? (state.person.plan + 1) % plans.length : Math.floor(Math.random() * plans.length);
+	state.person = { plan, seen: [], answered: {} };
+	save();
+}
+if (!state.person) begin();
+const plan = () => plans[state.person.plan];
+const pending = () => plan().find((id) => !(id in state.person.answered));
+
+const sheet = document.getElementById('sheet'), stage = document.getElementById('stage'), view = document.getElementById('view');
+const draw = (id) => { view.innerHTML = app(screens[variants[id].screen]({ fills: variants[id].fills })); };
+
+function look(id) {
+	// Seen from the moment it is asked for: a reload in the middle goes to the question, not to a
+	// second look.
+	state.person.seen.push(id);
+	save();
+	sheet.hidden = true;
+	view.innerHTML = '';
+	stage.classList.add('timed');
+	stage.hidden = false;
+	setTimeout(() => draw(id), blank);
+	setTimeout(() => { stage.hidden = true; stage.classList.remove('timed'); view.innerHTML = ''; sheet.hidden = false; render(); }, blank + shown);
+}
+
+function tallyTable() {
+	const ids = Object.keys(variants), count = (id, a) => state.tally[id]?.[a] ?? 0;
+	const total = (id) => Object.keys(answers).reduce((n, a) => n + count(id, a), 0);
+	const cell = (n) => `<td${n ? '' : ' class="zero"'}>${n}</td>`;
+	return '<div class="tally-wrap"><table class="tally"><thead><tr><th>Seen first</th>' + ids.map((id) => `<th>${variants[id].name.replace('The list', 'List').replace(', ', '<br>')}</th>`).join('') + '</tr></thead><tbody>' +
+		Object.keys(answers).map((a) => `<tr><td>${answers[a]({ screen: 'list' }).replace(' of the list', '')}</td>${ids.map((id) => cell(count(id, a))).join('')}</tr>`).join('') +
+		`<tr><td class="muted">Answers</td>${ids.map((id) => cell(total(id))).join('')}</tr></tbody></table></div>`;
+}
+function tallyText() {
+	const lines = Object.keys(variants).map((id) => `${variants[id].name}: ` + Object.keys(answers).map((a) => `${a} ${state.tally[id]?.[a] ?? 0}`).join(', '));
+	return `Five-second test, ${state.people} ${state.people === 1 ? 'person' : 'people'} in this browser\n` + lines.join('\n');
+}
+
+const head = '<a class="back" href="./">← The laboratory</a>';
+const how = `<details><summary>How this works</summary>
+	<p>Two pages of the product in dark, the workspace list and a settings page, each drawn twice: with one filled button, as the palette allows, and with three. The filled button is the mark's cyan, the brightest thing on a navy page; the test asks whether a page's title is still what a person reads first.</p>
+	<p>Each person sees each page once, in one version of each: the list with one and settings with three, or the other way round, in either order. That makes four plans. This browser draws the first person's by chance and gives each person after them the next one, so four people on one laptop cover all four, and the answers are offered in a new order each time; someone running the test can hand out <code>?plan=1</code> to <code>?plan=4</code> in turn. Nobody answers for both versions of a page, because the second look at a page is not a first look.</p>
+	<p>The screen is drawn for five seconds after a short empty page. Answers are counted in this browser's storage and nowhere else: nothing is sent, so a team adds its tallies up by hand, or pastes them into the issue with the copy button.</p>
+</details>`;
+
+function render() {
+	const next = pending();
+	if (!next) return done();
+	const v = variants[next], nth = plan().indexOf(next);
+	if (state.person.seen.includes(next)) {
+		// In a new order each time, the last one apart: the pointer is still where the button that
+		// showed the screen was, and an answer that was always under it would be the easy one.
+		const [last, ...rest] = Object.keys(answers).reverse(), order = rest.map((a) => [Math.random(), a]).sort().map(([, a]) => a).concat(last);
+		sheet.innerHTML = `${head}<h1>What did you see first?</h1><p class="muted">The first thing your eye went to, not the most important thing.</p><div class="answers">` +
+			order.map((a) => `<button class="btn secondary" data-answer="${a}">${answers[a](v)}</button>`).join('') + '</div>';
+		return;
+	}
+	sheet.innerHTML = head + (nth === 0
+		? `<h1>What do you see first?</h1><p>You will be shown a screen for five seconds. Then it goes away and you are asked one question about it.</p><p class="muted">Don't study it. Look at it the way you would on any morning.</p>`
+		: `<h1>One more screen</h1><p>Another page, five seconds again, and the same question.</p>`) +
+		`<div class="go"><button class="btn lg secondary" data-look="${next}">Show me the screen</button></div>` +
+		(saved.persists ? '' : '<p class="note">This browser refuses to store anything, so the tally lasts until this tab is closed.</p>') + (nth === 0 ? how : '');
+}
+
+function done() {
+	sheet.innerHTML = `${head}<h1>That is both screens</h1><p>Thank you. This is what has been answered <strong>in this browser only</strong>: nothing left this page, so nobody else's answers are here.</p>
+		${tallyTable()}
+		<p class="note">${state.people} ${state.people === 1 ? 'person has' : 'people have'} taken it here. The comparison is between the two versions of one page: how often the title is seen first with one filled button, and with three.</p>
+		<div class="go"><button class="btn secondary" data-next>Next person on this browser</button><button class="btn secondary" data-copy>Copy the tally</button><button class="btn ghost" data-clear>Clear this browser's tally</button></div>
+		<h2>The four screens</h2><p class="note">A look at any of them, not counted and not timed.</p>
+		<div class="go">${Object.keys(variants).map((id) => `<a class="btn sm secondary" href="?show=${id}">${variants[id].name}</a>`).join('')}</div>${how}`;
+}
+
+sheet.addEventListener('click', async (e) => {
+	const b = e.target.closest('button');
+	if (!b) return;
+	if (b.dataset.look) return look(b.dataset.look);
+	if (b.dataset.answer) {
+		const id = pending();
+		state.person.answered[id] = b.dataset.answer;
+		(state.tally[id] ??= {})[b.dataset.answer] = (state.tally[id][b.dataset.answer] ?? 0) + 1;
+		if (!pending()) state.people++;
+		save();
+		return render();
+	}
+	if ('next' in b.dataset) { begin(); return render(); }
+	if ('copy' in b.dataset) {
+		try { await navigator.clipboard.writeText(tallyText()); b.textContent = 'Copied'; } catch { b.textContent = 'This browser refused the copy'; }
+		return;
+	}
+	if ('clear' in b.dataset && confirm("Clear every answer counted in this browser?")) { saved.clear(); location.href = 'five-seconds.html'; }
+});
+
+if (variants[q.get('show')]) {
+	sheet.hidden = true; stage.hidden = false; document.getElementById('hud').hidden = false;
+	draw(q.get('show'));
+} else render();
+</script>
+</body>
+</html>

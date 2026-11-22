@@ -350,7 +350,10 @@ row = 36                # px
 # One rule for words and icons: the primary action is words alone. An icon goes alone where there
 # is no room for words - a toolbar, a row's actions - and only with a caption: its name and its
 # key, shown at once when the pointer or the focus reaches it, never after a delay. An icon whose
-# caption waits is a guess. Never an icon and a word on every row. A third party's logo as an
+# caption waits is a guess. A caption covers nothing a person reads: a row's is in the row itself,
+# to the left of its actions, in room the row's last column keeps for it - above its action it
+# covered the age of the row above - and a toolbar's is over the margin above the toolbar. Never an
+# icon and a word on every row. A third party's logo as an
 # icon - an editor's, a forge's - is drawn as that party's brand terms say (its colours, its clear
 # space, unaltered), or a generic glyph is used in its place.
 [controls]

@@ -6,6 +6,7 @@
 <title>Spinbox brand</title>
 <link rel="icon" href="logos/favicon-64.png">
 <link rel="stylesheet" href="dist/tokens.css">
+<link rel="stylesheet" href="lab.css">
 <style>
 @font-face { font-family: 'Inter'; src: url(fonts/inter-latin-400-normal.woff2) format('woff2'); font-weight: 400; }
 @font-face { font-family: 'Inter'; src: url(fonts/inter-latin-500-normal.woff2) format('woff2'); font-weight: 500; }
@@ -14,7 +15,9 @@
 @font-face { font-family: 'JetBrains Mono'; src: url(fonts/jetbrains-mono-latin-500-normal.woff2) format('woff2'); font-weight: 500; }
 @font-face { font-family: 'JetBrains Mono'; src: url(fonts/jetbrains-mono-latin-600-normal.woff2) format('woff2'); font-weight: 600; }
 
-/* Everything below is drawn from dist/tokens.css: a color here that is not a token is a bug. */
+/* Everything below is drawn from dist/tokens.css: a color here that is not a token is a bug. The
+   components the test pages draw too - a button, a badge, a list, a card, the app's frame - are in
+   lab.css. */
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--spin-page); color: var(--spin-text); font: var(--spin-text-reading)/var(--spin-line-height) var(--spin-font-sans); }
 .see-protan { filter: url(#protan); } .see-deutan { filter: url(#deutan); } .see-tritan { filter: url(#tritan); }
@@ -26,7 +29,6 @@ h1, h2, h3 { font-family: var(--spin-font-heading); font-weight: var(--spin-head
 .label { font: 600 13px/1.4 var(--spin-font-sans); color: var(--spin-label); }
 section { margin-top: 3rem; }
 section > .label { display: block; border-top: 1px solid var(--spin-hairline); padding-top: 1.5rem; margin-bottom: 1rem; }
-.muted { color: var(--spin-muted); }
 a { color: var(--spin-accent-text); text-underline-offset: .2em; }
 :focus-visible { outline: 2px solid var(--spin-accent-text); outline-offset: 2px; }
 
@@ -41,7 +43,6 @@ a { color: var(--spin-accent-text); text-underline-offset: .2em; }
 .lockup { display: inline-flex; align-items: center; gap: .5rem; font: 600 20px var(--spin-font-mono); color: var(--spin-text); }
 .lockup img { width: 32px; height: 32px; border-radius: 22%; }
 .lockup.big { font-size: 40px; gap: 1rem; } .lockup.big img { width: 64px; height: 64px; }
-:root[data-theme='light'] .on-dark, :root:not([data-theme='light']) .on-light { display: none !important; }
 
 /* The index: every section a click away, while the page scrolls. */
 .index { position: sticky; top: 0; z-index: 4; background: color-mix(in srgb, var(--spin-page) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--spin-border); }
@@ -49,6 +50,7 @@ a { color: var(--spin-accent-text); text-underline-offset: .2em; }
 .index a { font: 500 12px var(--spin-font-mono); color: var(--spin-muted); text-decoration: none; padding: .35rem .15rem; }
 .index a:hover { color: var(--spin-accent-text); }
 .index a[href="#in-use"], .index a[href="#decisions"], .index a[href="#checks"] { color: var(--spin-label); margin-left: .5rem; }
+.index a[href$=".html"] { color: var(--spin-accent-text); }
 section, .part { scroll-margin-top: 3rem; }
 
 /* A part: what follows is sample content, a decision, or a check. */
@@ -72,17 +74,35 @@ figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); padding
 .space img { display: block; }
 .donts { display: flex; gap: 1.25rem; flex-wrap: wrap; }
 .donts figure { text-align: center; } .donts figcaption::before { content: '✕ '; color: var(--spin-error); }
+/* A ground a figure is drawn on has an edge: white on light's page is otherwise no ground at all. */
+.donts .on { display: inline-block; padding: 10px; border-radius: var(--spin-radius); border: 1px solid var(--spin-border); line-height: 0; }
+/* The mark at the sizes an interface draws it, on each ground of each theme, in both cuts. */
+.marks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: .75rem; }
+.marks figure { margin: 0; }
+.marks .on { display: grid; grid-template-columns: 3rem repeat(3, 1fr); gap: 14px 8px; align-items: center; justify-items: center; padding: 14px 12px; border: 1px solid var(--spin-border); border-radius: var(--spin-radius); font: 11px var(--spin-font-mono); color: var(--spin-muted); }
+.marks .on > span:nth-child(4n+1) { justify-self: start; }
+.marks .tile { border-radius: 22%; }
+/* A terminal on each theme's page, whatever theme this page is in. */
+.screens-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: 1rem; }
+.screens-pair figure { margin: 0; min-width: 0; }
+.screens-pair .on { background: var(--spin-page); border: 1px solid var(--spin-border); border-radius: var(--spin-radius); padding: 1rem 1.25rem 1.25rem; font: var(--spin-text-dense)/1.45 var(--spin-font-sans); }
+.screens-pair .on .head { display: flex; align-items: center; gap: 10px; margin-bottom: .75rem; }
+.screens-pair .on b { font: var(--spin-weight-strong) 16px var(--spin-font-mono); }
+/* Light's tints three ways, each a piece of the site in light: its banner, and its sidebar with
+   the current page and a link under the pointer. --from is the colour the tint is made of, over
+   the surface at [tint]'s shares - color-mix in srgb is the checker's own arithmetic. */
+.tints { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: 1rem; }
+.tints figure { margin: 0; min-width: 0; }
+.tints .on { background: var(--spin-page); border: 1px solid var(--spin-border); border-radius: var(--spin-radius); overflow: hidden; font-size: 14px; }
+.tints .ban { padding: .5rem .75rem; text-align: center; font-size: 13px; background: color-mix(in srgb, var(--from) 22%, var(--spin-surface)); border-bottom: 1px solid var(--spin-border); }
+.tints nav { background: var(--spin-surface); padding: .75rem; }
+.tints nav a { display: block; color: var(--spin-text); text-decoration: none; padding: .3rem .6rem; border-radius: var(--spin-radius-sm); }
+.tints nav a.hovered { background: color-mix(in srgb, var(--from) 10%, var(--spin-surface)); }
+.tints nav a.current { background: color-mix(in srgb, var(--from) 27%, var(--spin-surface)); color: var(--spin-accent-text); font-weight: 600; }
+.tints dl { margin: .5rem 0 0; font: 12px/1.5 var(--spin-font-mono); color: var(--spin-muted); display: grid; grid-template-columns: auto 1fr; gap: 0 .75rem; }
+.tints dd { margin: 0; color: var(--spin-text); }
 
 
-/* A state as a badge: its shape and word on its tint (--spin-*-badge), the same in a table, a
-   header and a toast. Stopped has no colour of its own: a hollow ring, the muted ink. */
-.badge { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 8px 0 7px; border-radius: 999px; font: 400 12px/1 var(--spin-font-mono); white-space: nowrap; }
-.badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex: none; }
-.badge.ok { color: var(--spin-success); background: var(--spin-success-badge); }
-.badge.warn { color: var(--spin-warning); background: var(--spin-warning-badge); } .badge.warn::before { border-radius: 1px; transform: rotate(45deg); width: 6px; height: 6px; }
-.badge.err { color: var(--spin-error); background: var(--spin-error-badge); } .badge.err::before { border-radius: 1px; }
-.badge.busy { color: var(--spin-accent-text); background: var(--spin-accent-text-badge); } .badge.busy::before { background: none; border: 2px solid currentColor; border-right-color: transparent; width: 6px; height: 6px; }
-.badge.idle { color: var(--spin-muted); box-shadow: inset 0 0 0 1px var(--spin-border); } .badge.idle::before { background: none; box-shadow: inset 0 0 0 1.5px currentColor; }
 .specimen { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; margin-top: 1rem; }
 .specimen > figure { margin: 0; border: 1px solid var(--spin-border); border-radius: var(--spin-radius); padding: 1rem; background: var(--spin-surface); }
 /* Type: each step of the scale in the face that sets it, and the three weights by their rank. */
@@ -128,38 +148,6 @@ figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); padding
 .field input:disabled { opacity: .5; }
 .field small { font: 12px var(--spin-font-sans); color: var(--spin-muted); } .field small.err { color: var(--spin-error); }
 @media (pointer: coarse) { .field input { font-size: 16px; height: var(--spin-target-touch); } }
-/* A list of many is a table on the page: rows --spin-row high with no rule between them, and one
-   line, a hairline under the column heads. Headers in the muted sans, ids in mono, figures right
-   and tabular. The row under the pointer or holding the focus is a plane (--spin-row-hover), never
-   an outline; a selected one is the accent's tint. */
-.grid { width: 100%; border-collapse: collapse; font: 13px/1.45 var(--spin-font-sans); font-variant-numeric: var(--spin-numeric); }
-.grid th { font-weight: 500; font-size: 12px; color: var(--spin-muted); text-align: left; height: var(--spin-control-md); padding: 0 10px; border-bottom: 1px solid var(--spin-hairline); white-space: nowrap; }
-.grid td { height: var(--spin-row); padding: 0 10px; border-bottom: 0; white-space: nowrap; }
-.grid .n { text-align: right; } .grid .id { font-family: var(--spin-font-mono); color: var(--spin-muted); }
-.grid tr { position: relative; }
-.grid tr.is-hover td, .grid tbody tr:hover td, .grid tbody tr:focus-within td { background: var(--spin-row-hover); }
-.grid tr.is-selected td { background: var(--spin-accent-hover); } .grid tr.is-selected td:first-child { box-shadow: inset 2px 0 0 var(--spin-accent); }
-.grid-wrap { overflow-x: auto; margin-top: 1rem; }
-/* The whole row opens the thing: its name is the link, stretched over the row, and the focus ring
-   is the row's. */
-.grid .name a { font: var(--spin-weight-strong) 13px var(--spin-font-mono); color: var(--spin-text); text-decoration: none; outline: 0; }
-.grid .name a::after { content: ''; position: absolute; inset: 0; }
-.grid .name a:focus-visible::after, .grid tr.is-focus .name a::after { outline: 2px solid var(--spin-accent-text); outline-offset: -2px; border-radius: var(--spin-radius-sm); }
-/* A row's actions: absent at rest, drawn where its age was when the row is under the pointer or
-   holds the focus. Icons alone, each with its caption - its name and its key - the moment the
-   pointer or the focus is on it: no delay, so no transition here. Under the pointer an action
-   steps one surface up from its row. */
-.grid .end { position: relative; text-align: right; min-width: 9rem; color: var(--spin-muted); }
-.acts { position: absolute; z-index: 1; right: 6px; top: 50%; transform: translateY(-50%); display: flex; gap: 2px; opacity: 0; }
-.grid tr:hover .acts, .grid tr:focus-within .acts, .grid tr.is-hover .acts, .grid tr.is-focus .acts { opacity: 1; }
-.grid tr:hover .age, .grid tr:focus-within .age, .grid tr.is-hover .age, .grid tr.is-focus .age { visibility: hidden; }
-.act { position: relative; display: inline-flex; }
-.act .btn.ghost:hover, .act.is-hover .btn.ghost { background: var(--spin-row-action-hover); color: var(--spin-text); }
-.cap { display: none; position: absolute; z-index: 2; bottom: calc(100% + 6px); right: 0; align-items: center; gap: 8px; white-space: nowrap; font: 12px var(--spin-font-sans); color: var(--spin-text); background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-sm); padding: 3px 6px 3px 8px; box-shadow: var(--spin-shadow-overlay); }
-.act:hover .cap, .act:focus-within .cap, .act.is-hover .cap { display: inline-flex; }
-kbd { font: 11px var(--spin-font-mono); color: var(--spin-muted); border: 1px solid var(--spin-border); border-radius: 4px; padding: 0 4px; }
-/* Nothing hovers on a touch screen: the actions are drawn, and the row is a finger's height. */
-@media (hover: none) { .grid td { height: var(--spin-target-touch); } .acts { opacity: 1; } .grid .age { visibility: hidden; } }
 
 /* The palette, by what each color is for */
 .group { display: grid; grid-template-columns: minmax(10rem, 14rem) 1fr; gap: 1rem 1.5rem; padding: 1rem 0; border-top: 1px solid var(--spin-hairline); }
@@ -191,28 +179,6 @@ kbd { font: 11px var(--spin-font-mono); color: var(--spin-muted); border: 1px so
 .hero { display: grid; gap: 2rem; padding: 3rem 2rem; grid-template-columns: 7fr 5fr; align-items: center; }
 .hero h1 { font-size: var(--spin-text-display); line-height: 1.08; margin: .5rem 0 1rem; text-wrap: balance; }
 .hero img { width: 100%; max-width: 20rem; justify-self: center; border-radius: 22%; }
-/* Buttons: one geometry from the site to the dashboard - the control heights, the small radius,
-   a fill and an outline - and the states palette.toml derives and checks (dist/tokens.css). A
-   secondary button's outline is --spin-control-border, the border: the input's 3:1 edge
-   (--spin-border-strong) around every secondary button was the heaviest line on a screen. */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--spin-control-gap); height: var(--spin-control-md); padding: 0 12px; border-radius: var(--spin-radius-sm); font: 500 13px/1 var(--spin-font-sans); border: 1px solid transparent; cursor: pointer; text-decoration: none; white-space: nowrap; transition: background-color var(--spin-duration-fast) var(--spin-ease); }
-.btn.sm { height: var(--spin-control-sm); padding: 0 10px; font-size: 12px; }
-.btn.lg { height: var(--spin-control-lg); padding: 0 16px; font-size: 14px; }
-.btn svg { width: var(--spin-control-icon); height: var(--spin-control-icon); flex: none; }
-.btn.primary { background: var(--spin-accent); color: var(--spin-on-accent); }
-.btn.primary:hover, .btn.primary.is-hover { background: var(--spin-accent-fill-hover); }
-.btn.primary:active, .btn.primary.is-active { background: var(--spin-accent-fill-active); }
-.btn.secondary, .btn.ghost { color: var(--spin-text); }
-.btn.secondary { background: var(--spin-control); border-color: var(--spin-control-border); }
-.btn.secondary:hover, .btn.secondary.is-hover, .btn.secondary:active, .btn.secondary.is-active { background: var(--spin-control-hover); }
-.btn.ghost { background: transparent; color: var(--spin-muted); }
-.btn.ghost:hover, .btn.ghost.is-hover, .btn.ghost:active, .btn.ghost.is-active { background: var(--spin-control); color: var(--spin-text); }
-.btn.danger { background: var(--spin-destructive); color: #fff; }
-.btn.danger:hover, .btn.danger.is-hover { background: var(--spin-destructive-hover); }
-.btn.danger:active, .btn.danger.is-active { background: var(--spin-destructive-active); }
-.btn.icon { width: var(--spin-control-md); padding: 0; } .btn.icon.sm { width: var(--spin-control-sm); }
-.btn.is-focus { outline: 2px solid var(--spin-accent-text); outline-offset: 2px; }
-.btn:disabled { opacity: .45; cursor: not-allowed; }
 .tip { position: relative; display: inline-flex; }
 .tip > span { position: absolute; bottom: calc(100% + 6px); left: 0; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; font: 12px var(--spin-font-sans); color: var(--spin-text); background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-sm); padding: 3px 8px; box-shadow: var(--spin-shadow-overlay); }
 .matrix { display: grid; grid-template-columns: 7rem repeat(5, auto); gap: .75rem 1rem; padding: 4px; align-items: center; justify-content: start; font: 12px var(--spin-font-mono); color: var(--spin-muted); overflow-x: auto; }
@@ -237,17 +203,8 @@ table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-nu
 th, td { text-align: left; padding: .55rem .6rem; border-bottom: 1px solid var(--spin-border); }
 th { color: var(--spin-muted); font-weight: 500; }
 
-/* The dashboard */
-.dash { display: grid; grid-template-columns: var(--spin-sidebar-app) 1fr; border: 1px solid var(--spin-border); border-radius: var(--spin-radius-lg); overflow: hidden; font-size: var(--spin-text-dense); line-height: 1.45; }
-.dash nav { background: var(--spin-surface); padding: 1rem .75rem; border-right: 1px solid var(--spin-border); }
-.dash nav .cap { font: 500 12px var(--spin-font-sans); color: var(--spin-muted); margin: 1rem .5rem .4rem; }
-.dash nav a { display: block; padding: .35rem .5rem; border-radius: var(--spin-radius-sm); color: var(--spin-text); text-decoration: none; }
-.dash nav a.current { background: var(--spin-raised); color: var(--spin-text); }
-.dash h3 { font-family: var(--spin-font-sans); letter-spacing: 0; }
-.dash main { padding: 1.25rem 1.5rem; }
-.dash .tools { display: flex; gap: .5rem; align-items: center; margin: .75rem 0 1rem; flex-wrap: wrap; }
-.dash input { font: inherit; color: var(--spin-text); background: var(--spin-raised); border: 1px solid var(--spin-border-strong); border-radius: var(--spin-radius-sm); height: var(--spin-control-md); padding: 0 .6rem; min-width: 14rem; }
-.dash input::placeholder { color: var(--spin-muted); }
+/* The dashboard: the app's frame (lab.css) in a window on this page. */
+.window { border: 1px solid var(--spin-border); border-radius: var(--spin-radius-lg); overflow: hidden; }
 .state { display: inline-flex; align-items: center; gap: .4rem; font: 400 1em var(--spin-font-mono); }
 .state::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
 .state.ok { color: var(--spin-success); } .state.warn { color: var(--spin-warning); } .state.err { color: var(--spin-error); } .state.idle { color: var(--spin-muted); }
@@ -261,24 +218,17 @@ th { color: var(--spin-muted); font-weight: 500; }
 .panel .grid td, .panel .grid th { white-space: normal; }
 .panel .grid tr:last-child td { border-bottom: 0; }
 .panel .grid .id { color: var(--spin-text); }
-.split { display: grid; grid-template-columns: var(--spin-width-aside) minmax(0, 1fr); gap: 1rem 2rem; align-items: start; }
-.split h3 { margin: 0 0 .25rem; }
-@media (max-width: 768px) { .split { grid-template-columns: minmax(0, 1fr); } }
-.card { background: var(--spin-page); border: 1px solid var(--spin-hairline); border-radius: var(--spin-radius-sm); }
-.card .row { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; padding: .75rem 1rem; border-top: 1px solid var(--spin-hairline); font-size: 14px; }
-.card .row:first-child { border-top: 0; }
-.card .row.editing { background: var(--spin-surface); }
-.card .lbl { flex: 0 0 10rem; font-weight: 500; }
-.card .val { flex: 1 1 14rem; min-width: 0; }
-.card .acts { display: flex; gap: .5rem; }
 .dialog { background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-lg); padding: 1.25rem; max-width: 26rem; box-shadow: var(--spin-shadow-overlay); }
 .toast { display: inline-flex; gap: .6rem; align-items: center; background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius); padding: .6rem .9rem; box-shadow: var(--spin-shadow-overlay); }
 .row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-start; margin-top: 1rem; }
 
 /* Widths */
 .frames { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: flex-start; }
-.frame { border: 1px solid var(--spin-border-strong); border-radius: 28px; padding: 10px; background: var(--spin-surface); }
-.frame iframe { display: block; border: 0; border-radius: 18px; background: var(--spin-page); }
+/* A frame wider than the screen it is looked at on scrolls inside itself: the tablet's, on a phone,
+   made the whole page 846 px wide. */
+.frame { margin: 0; max-width: 100%; border: 1px solid var(--spin-border-strong); border-radius: 28px; padding: 10px; background: var(--spin-surface); }
+.frame .port { overflow-x: auto; border-radius: 18px; }
+.frame iframe { display: block; border: 0; background: var(--spin-page); }
 .frame figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); text-align: center; padding-top: .4rem; }
 
 /* Perception */
@@ -287,18 +237,18 @@ th { color: var(--spin-muted); font-weight: 500; }
 
 /* A grid's column shrinks below what is in it, so a long command scrolls in its block rather
    than pushing the page wider than the phone. */
-.hero > *, .doc > *, .dash > *, .doc article, .dash main { min-width: 0; }
+.hero > *, .doc > *, .doc article { min-width: 0; }
 
 /* Narrow: the same pieces, stacked, as a phone shows them. */
 @media (max-width: 760px) {
-	.hero, .doc, .dash { grid-template-columns: 1fr; }
-	.doc nav, .doc aside, .dash nav { display: none; }
+	.hero, .doc { grid-template-columns: 1fr; }
+	.doc nav, .doc aside { display: none; }
 	.hero { padding: 2rem 1rem; } .doc article { padding: 1.25rem 1rem; }
 	.hero { gap: 1rem; padding: 1.5rem 1rem; } .hero h1 { font-size: 1.6rem; margin-top: .25rem; } .hero img { max-width: 6.5rem; }
 	.part { margin-top: 2.5rem; } .part .num { font-size: 1.5rem; }
 	.wrap { padding-inline: 1rem; } table { font-size: 13px; }
 	.site header .search { display: none; }
-	.btn, .dash input, .dash .btn { min-height: var(--spin-target-touch); }
+	.btn { min-height: var(--spin-target-touch); }
 	.otp { display: block; }
 	.guide, .group { grid-template-columns: 1fr; }
 	.controls select { min-height: var(--spin-target-touch); }
@@ -323,8 +273,8 @@ body.embed .wrap { padding-top: 0; }
 <nav class="index only-full" aria-label="On this page">
 	<div class="wrap">
 		<a href="#in-use">1 · In use</a><a href="#site">Site</a><a href="#dashboard">Dashboard</a><a href="#app">App</a>
-		<a href="#decisions">2 · Decisions</a><a href="#mark">Mark</a><a href="#type">Type</a><a href="#buttons">Buttons</a><a href="#states">States</a><a href="#fields">Fields</a><a href="#tables">Lists</a><a href="#panels">Panels</a><a href="#plots">Charts and traces</a><a href="#palette-section">Palette</a>
-		<a href="#checks">3 · Checks</a><a href="#widths">Widths</a><a href="#perception">Perception</a><a href="screens.html">Every screen →</a>
+		<a href="#decisions">2 · Decisions</a><a href="#mark">Mark</a><a href="#type">Type</a><a href="#buttons">Buttons</a><a href="#states">States</a><a href="#fields">Fields</a><a href="#tables">Lists</a><a href="#panels">Panels</a><a href="#split">Settings</a><a href="#terminal">Terminal</a><a href="#plots">Charts and traces</a><a href="#palette-section">Palette</a>
+		<a href="#checks">3 · Checks</a><a href="#widths">Widths</a><a href="#perception">Perception</a><a href="#open-tints">Open: light's tints</a><a href="five-seconds.html">Five seconds →</a><a href="recognition.html">Recognition →</a><a href="screens.html">Every screen →</a>
 	</div>
 </nav>
 <div class="wrap" id="page">
@@ -366,14 +316,9 @@ D  /etc/issue</pre>
 
 <section id="dashboard">
 	<span class="label">The dashboard</span>
-	<div class="dash">
-		<nav><div class="cap">Work</div><a class="current" href="#">Workspaces</a><a href="#">Snapshots</a><a href="#">Teams</a><div class="cap">Administer</div><a href="#">Hosts</a><a href="#">Settings</a></nav>
-		<main>
-			<h3 style="margin:0">Workspaces</h3>
-			<div class="tools"><input placeholder="Search workspaces" aria-label="Search workspaces"><button class="btn secondary">Refresh</button><span style="flex:1"></span><button class="btn primary">New workspace</button></div>
-			<div class="grid-wrap" data-list></div>
-		</main>
-	</div>
+	<div class="window" data-screen="list"></div>
+	<p class="muted" style="font-size:13px">A page of settings is one page that scrolls, each section <a href="#split">split</a>. The one fill on it is the Save of the row being edited, since the page has no other:</p>
+	<div class="window" data-screen="settings"></div>
 	<p class="muted" style="font-size:13px">A dialog is a view of its own, over the page behind its scrim, and its fill is its own one:</p>
 	<div class="row">
 		<div class="dialog"><h3 style="margin-top:0">Delete agent-1?</h3><p class="muted">It goes to the trash with its disk; you can undelete it until its days are up.</p><div style="display:flex;gap:.5rem;justify-content:flex-end"><button class="btn secondary">Cancel</button><button class="btn danger">Delete</button></div></div>
@@ -398,6 +343,9 @@ D  /etc/issue</pre>
 		<div class="rules">
 			<h3>Sizes</h3>
 			<div class="sizes"><img src="logos/mark-clear-256.png" width="64" alt=""><img src="logos/mark-clear-256.png" width="32" alt=""><img src="logos/favicon-32.png" width="16" alt=""><span class="muted">64 · 32 · 16 px. Below 24 px the favicon's tile, never the clear mark: its seams close up.</span></div>
+			<h3>At 16, 20 and 32 px, on each ground</h3>
+			<div class="marks" id="marks"></div>
+			<p class="muted">Both cuts at the sizes an interface draws the mark - a tab, a sidebar, a header - on the page and the surface of each theme, whichever theme this page is in. The clear cut is the one a page draws; the tile is the favicon's, for a ground the page does not choose.</p>
 			<h3>Clear space</h3>
 			<div class="space"><img src="logos/mark-clear-256.png" width="72" alt=""></div>
 			<p class="muted">A quarter of the mark's height on every side, dashed above: no text or edge inside it.</p>
@@ -408,8 +356,8 @@ D  /etc/issue</pre>
 			<div class="donts">
 				<figure><img src="logos/mark-clear-256.png" width="56" alt="" style="transform:scaleX(1.5)"><figcaption>stretched</figcaption></figure>
 				<figure><img src="logos/mark-clear-256.png" width="56" alt="" style="filter:hue-rotate(140deg)"><figcaption>recolored</figcaption></figure>
-				<figure><div style="background:var(--spin-brand-cyan);padding:6px;border-radius:8px"><img src="logos/mark-clear-256.png" width="44" alt=""></div><figcaption>on its own cyan</figcaption></figure>
-				<figure><div style="background:#fff;padding:6px;border-radius:8px"><img src="logos/mark-256.png" width="44" alt="" style="border-radius:22%"></div><figcaption>the tile on white</figcaption></figure>
+				<figure><div class="on" style="background:var(--spin-brand-cyan)"><img src="logos/mark-clear-256.png" width="44" alt=""></div><figcaption>on its own cyan</figcaption></figure>
+				<figure><div class="on spin-light" style="background:var(--spin-page)"><img src="logos/mark-256.png" width="44" alt="" style="border-radius:22%"></div><figcaption>the tile on a light page</figcaption></figure>
 			</div>
 		</div>
 	</div>
@@ -439,7 +387,7 @@ D  /etc/issue</pre>
 <section class="only-full" id="buttons">
 	<span class="label">Buttons</span>
 	<div class="rules">
-		<p class="muted">One filled action per view, in the accent and in words alone: the mark's cyan under a navy label in dark, the mark's navy under a white one in light. The cyan fill is the loudest thing on a dark page, so a second one on a view takes the first one's meaning: a second action is a secondary button, a third a ghost or an entry in a menu. A secondary button is outlined with the border (<code>--spin-control-border</code>), not with an input's 3:1 edge: its word says it is a button. An icon goes alone where there is no room for words - a toolbar, <a href="#tables">a row's actions</a> - and only with a caption that shows at once with its name and its key; never an icon and a word on every row. A third party's logo as an icon is drawn as its owner's brand terms say, so this page draws none: its editor is a generic glyph. What destroys is in the destructive fill, in a confirmation, after Cancel. The table under this is one button in each of its states, the one place on this page a fill repeats. Every state here is a token (<code>--spin-accent-fill-hover</code>, <code>--spin-control</code>, …) that <code>task palette</code> derives and holds: the label at 4.5:1 on its fill under the pointer and pressed (<code>on-accent</code> on the accent, white on the destructive), a hover told from rest. A fill that is already ink, light's navy, lightens under the pointer; the others darken. The focus ring is <code>accent-text</code>, the cyan's hue in either theme.</p>
+		<p class="muted">One filled action per view, in the accent and in words alone: the mark's cyan under a navy label in dark, the mark's navy under a white one in light. The cyan fill is the loudest thing on a dark page, so a second one on a view takes the first one's meaning: a second action is a secondary button, a third a ghost or an entry in a menu. A secondary button is outlined with the border (<code>--spin-control-border</code>), not with an input's 3:1 edge: its word says it is a button. An icon goes alone where there is no room for words - a toolbar, <a href="#tables">a row's actions</a> - and only with a caption that shows at once with its name and its key, drawn where it covers nothing a person reads: a row's in the row itself, beside its actions, and a toolbar's over the margin above it; never an icon and a word on every row. A third party's logo as an icon is drawn as its owner's brand terms say, so this page draws none: its editor is a generic glyph. What destroys is in the destructive fill, in a confirmation, after Cancel. The table under this is one button in each of its states, the one place on this page a fill repeats. Every state here is a token (<code>--spin-accent-fill-hover</code>, <code>--spin-control</code>, …) that <code>task palette</code> derives and holds: the label at 4.5:1 on its fill under the pointer and pressed (<code>on-accent</code> on the accent, white on the destructive), a hover told from rest. A fill that is already ink, light's navy, lightens under the pointer; the others darken. The focus ring is <code>accent-text</code>, the cyan's hue in either theme.</p>
 		<div class="matrix">
 			<span></span><span>rest</span><span>hover</span><span>pressed</span><span>focus</span><span>disabled</span>
 			<b>primary</b><span><button class="btn primary ">Open terminal</button></span><span><button class="btn primary is-hover">Open terminal</button></span><span><button class="btn primary is-active">Open terminal</button></span><span><button class="btn primary is-focus">Open terminal</button></span><span><button class="btn primary" disabled>Open terminal</button></span>
@@ -479,7 +427,7 @@ D  /etc/issue</pre>
 <section class="only-full" id="tables">
 	<span class="label">Lists</span>
 	<div class="grid-wrap" data-list data-hover="1" data-caption="Terminal" data-selected="2" data-focus="4"></div>
-	<p class="muted" style="font-size:13px">A list of many is a table on the page, its rows <code>--spin-row</code> high (36 px) with no rule between them: the one line is a hairline under the column heads. Headers in the muted sans, never uppercase; a row's name in the mono at the strong weight; figures right-aligned in tabular digits (<code>--spin-numeric</code>). The row under the pointer or holding the focus is a plane, <code>--spin-row-hover</code>, and its actions are drawn only then, where its age was: icons alone, each with a caption that shows at once with its name and its key. Here agent-1 is under the pointer with the pointer on Terminal, ci-job is selected and docs holds the keyboard's focus; the same list <a href="#dashboard">in the dashboard above</a> answers a real pointer. The whole row opens the workspace. On a touch screen, where nothing hovers, the actions are drawn and a row is 44 px; on a phone a table scrolls inside its frame, the page does not.</p>
+	<p class="muted" style="font-size:13px">A list of many is a table on the page, its rows <code>--spin-row</code> high (36 px) with no rule between them: the one line is a hairline under the column heads. Headers in the muted sans, never uppercase; a row's name in the mono at the strong weight; figures right-aligned in tabular digits (<code>--spin-numeric</code>). The row under the pointer or holding the focus is a plane, <code>--spin-row-hover</code>, and its actions are drawn only then, where its age was: icons alone, each with a caption that shows at once with its name and its key. The caption is in the row, to the left of the actions, in room the last column keeps for it: above its action it covered the age of the row above. Here agent-1 is under the pointer with the pointer on Terminal, ci-job is selected and docs holds the keyboard's focus; the same list <a href="#dashboard">in the dashboard above</a> answers a real pointer. The whole row opens the workspace. On a touch screen, where nothing hovers, the actions are drawn and a row is 44 px; on a phone a table scrolls inside its frame, the page does not.</p>
 </section>
 
 <section class="only-full" id="panels">
@@ -502,7 +450,7 @@ D  /etc/issue</pre>
 <section class="only-full" id="split">
 	<span class="label">Split sections</span>
 	<div class="rules">
-		<p class="muted">A page of settings is one page that scrolls, never tabs. Each section is split: its title and what it governs in an aside <code>--spin-width-aside</code> wide, its rows in a card - an edge in <code>--spin-hairline</code> at <code>--spin-radius-sm</code>, on the page, no shadow. A row is its label, its value and one verb; its editing opens inside the row, with Save disabled until something changes. On a phone the aside goes over the card.</p>
+		<p class="muted">A page of settings is one page that scrolls, never tabs. Each section is split: its title and what it governs in an aside <code>--spin-width-aside</code> wide, its rows in a card - an edge in <code>--spin-hairline</code> at <code>--spin-radius-sm</code>, on the page, no shadow. A row is its label, its value and one verb; its editing opens inside the row, with Save disabled until something changes. On a phone the aside goes over the card. The whole page is <a href="#dashboard">in the dashboard above</a>.</p>
 		<div class="split">
 			<div><h3>Network</h3><p class="muted">What it may reach. Its runner applies a change at once.</p></div>
 			<div class="card">
@@ -531,6 +479,14 @@ D  /etc/issue</pre>
 	</div>
 </section>
 
+<section class="only-full" id="terminal">
+	<span class="label">Terminal</span>
+	<div class="rules">
+		<p class="muted">A terminal is black in either theme (<code>[terminal]</code>), framed with the theme's border, its cursor the mark's cyan. Here on each theme's page, whichever theme this page is in: on white it is the one dark plane, and on the navy page it is a step darker and without the blue: ΔE00 7.0 from the page by the checker's arithmetic, where two surfaces that meet are asked for 3, and 1.03:1, so it is its frame and its lost blue that tell it, not its lightness. What to judge is whether it still reads as a screen beside the navy.</p>
+		<div class="screens-pair" id="terminals"></div>
+	</div>
+</section>
+
 <section class="only-full" id="plots">
 	<span class="label">Charts and traces</span>
 	<div class="rules">
@@ -553,9 +509,15 @@ D  /etc/issue</pre>
 	<span class="label">Widths</span>
 	<p class="muted">This page at a phone's and a tablet's width (<code>layout.phone</code>, <code>layout.tablet</code>), in the mode and the view chosen above.</p>
 	<div class="frames">
-		<figure class="frame"><iframe id="phone" width="390" height="760" title="Phone"></iframe><figcaption>390 px</figcaption></figure>
-		<figure class="frame"><iframe id="tablet" width="768" height="760" title="Tablet"></iframe><figcaption>768 px</figcaption></figure>
+		<figure class="frame"><div class="port"><iframe id="phone" width="390" height="760" title="Phone"></iframe></div><figcaption>390 px</figcaption></figure>
+		<figure class="frame"><div class="port"><iframe id="tablet" width="768" height="760" title="Tablet"></iframe></div><figcaption>768 px</figcaption></figure>
 	</div>
+</section>
+
+<section class="only-full" id="open-tints">
+	<span class="label">Open question: light's tints</span>
+	<p class="muted">Not decided. In dark a tint is the cyan over navy and reads as the brand. In light the accent is the navy, so the site's banner and its sidebar's current page are the navy over the surface: a neutral grey, every pair held, and heavier and less the brand's than dark's. Beside it are two tints that hold every pair too and would each change the palette's rule for where light's tint comes from, at <code>[tint]</code>'s shares as they are. Each was run through <code>task palette</code> on a copy; the figures are its own, on the surface, where the sidebar is. The banner's pairs are not ones the palette holds today.</p>
+	<div class="tints" id="tints"></div>
 </section>
 
 <section class="only-full" id="perception">
@@ -567,6 +529,8 @@ D  /etc/issue</pre>
 
 <script type="module">
 import { perception } from './dist/perception.js';
+import { app, list, screens, scopeLight, terminal } from './lab.js';
+scopeLight();
 const q = new URLSearchParams(location.search);
 const mode = document.getElementById('mode'), see = document.getElementById('see');
 if (q.has('embed')) document.body.classList.add('embed');
@@ -586,8 +550,8 @@ const groups = [
 		'<span class="sw-inline" style="background:var(--spin-surface)">surface</span><span class="sw-inline" style="background:var(--spin-raised)">raised</span><span class="sw-inline" style="background:var(--spin-overlay)">overlay</span>'],
 	['Content', 'Text, secondary text, and a label that names a section or a command.', ['text', 'muted', 'label'],
 		'<span>Text</span> <span class="muted">secondary</span> <span class="label">a label</span>'],
-	['Actions', 'The one primary action per view, its label, a link and the focus ring, and what destroys.', ['accent', 'accent-text', 'on-accent', 'destructive'],
-		'<a class="btn primary" href="#">Primary</a> <a href="#">a link</a> <a class="btn danger" href="#">Delete</a>'],
+	['Actions', 'The one primary action per view, its label, a link and the focus ring, and what destroys: a fill of its own view, a confirmation, so it is not drawn beside this one.', ['accent', 'accent-text', 'on-accent', 'destructive'],
+		'<a class="btn primary" href="#">Primary</a> <a href="#">a link</a>'],
 	['States', 'Ran or succeeded, waits, failed: each with a shape too, never by hue alone.', ['success', 'warning', 'error'],
 		'<span class="state ok">running</span> <span class="state warn">waiting</span> <span class="state err">failed</span>'],
 	['Chart', 'Grafana\'s series, in the order they are given, and a threshold\'s statuses: the same in either theme.', [1, 2, 3, 4, 5, 6, 7, 8].map((n) => 'chart-series-' + n).concat(['chart-good', 'chart-warning', 'chart-critical']), ''],
@@ -622,34 +586,32 @@ document.getElementById('trace').innerHTML = '<div class="legend">' + services.m
 			(kids ? `<span class="count${kids < 0 ? ' closed' : ''}" style="${c}">${Math.abs(kids)}</span>` : `<i class="leaf" style="${failed ? '--c:var(--spin-error)' : c}"></i>`) +
 			`<b>${services[svc - 1]}</b><span class="op">${op}</span></span><span class="lane"><i class="dur${failed ? ' failed' : ''}" style="${c};left:${from}%;width:${width}%"></i></span></div>`;
 	}).join('');
-// The workspaces, drawn twice from one fixture: live in the dashboard's sample, and in Lists with
-// a row in each state. A third party's logo would follow its owner's brand terms: the editor here
-// is a generic glyph.
-const glyph = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
-const acts = {
-	Agent: ['A', '<rect x="4" y="9" width="16" height="11" rx="2"/><path d="M12 9V5"/><circle cx="12" cy="4" r="1"/><path d="M9 14v1M15 14v1"/>'],
-	Terminal: ['T', '<path d="m5 8 5 4-5 4"/><path d="M13 17h6"/>'],
-	'Open in editor': ['E', '<path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/>'],
-	Stop: ['S', '<rect x="6" y="6" width="12" height="12" rx="1"/>'],
-	Start: ['S', '<path d="M7 4v16l13-8z"/>'],
-};
-const workspaces = [
-	['api', 'ok', 'running', 'spinbox/api', 'Fixing the flaky login test · working', '8.0 GB', '2 min ago'],
-	['agent-1', 'warn', 'waiting', 'spinbox/api', 'Waiting for a host', '4.0 GB', '9 min ago'],
-	['ci-job', 'err', 'failed', 'acme/builder', 'Build stopped at step 4 · needs you', '32.0 GB', '1 h ago'],
-	['web', 'ok', 'running', 'spinbox/website', 'Idle', '4.0 GB', '3 h ago'],
-	['docs', 'busy', 'starting', 'spinbox/website', '—', '2.0 GB', '5 h ago'],
-	['notes', 'idle', 'stopped', '—', '—', '0.5 GB', 'yesterday'],
+// The workspaces, drawn twice from one fixture (lab.js): live in the dashboard's sample, and in
+// Lists with a row in each state.
+for (const el of document.querySelectorAll('[data-list]')) el.innerHTML = list(el.dataset);
+for (const el of document.querySelectorAll('[data-screen]')) el.innerHTML = app(screens[el.dataset.screen]());
+// The mark's two cuts at each size, from the smallest file that is not enlarged to draw it.
+const grounds = [['spin-dark', 'page', 'dark · page'], ['spin-dark', 'surface', 'dark · surface'], ['spin-light', 'page', 'light · page'], ['spin-light', 'surface', 'light · surface']];
+const sizes = [16, 20, 32];
+document.getElementById('marks').innerHTML = grounds.map(([theme, role, name]) =>
+	`<figure><div class="on ${theme}" style="background:var(--spin-${role})"><span></span>${sizes.map((n) => `<span>${n}</span>`).join('')}` +
+	[['tile', (n) => (n <= 16 ? 'favicon-32' : 'favicon-64'), 'tile'], ['clear', () => 'mark-clear-256', '']].map(([cut, file, cls]) =>
+		`<span>${cut}</span>` + sizes.map((n) => `<img class="${cls}" src="logos/${file(n)}.png" width="${n}" height="${n}" alt="The ${cut} cut at ${n} px on ${name}">`).join('')).join('') +
+	`</div><figcaption>${name}</figcaption></figure>`).join('');
+document.getElementById('terminals').innerHTML = [['spin-dark', 'On dark\'s page'], ['spin-light', 'On light\'s page']].map(([theme, name]) =>
+	`<figure><div class="on ${theme}"><div class="head"><b>api</b><span class="badge ok">running</span><span class="muted">acme/api · 4 CPU · 8.0 GB</span></div>${terminal()}</div><figcaption>${name}</figcaption></figure>`).join('');
+// Light's tints: what each is made of, and what task palette measured for it on a copy of the
+// palette whose light tint was that colour. Floors: 4.5:1; apart 10 as drawn and 6 in the worst
+// view for a selection, 3 and 2 for a hover.
+const tints = [
+	['As it is: the navy', 'accent', 'var(--spin-accent)', ['4.56:1', '13.9 · 13.7', '4.8 · 4.7', '10.10:1 · 5.13:1']],
+	['The cyan\'s ink', 'accent_text', 'var(--spin-accent-text)', ['5.15:1', '13.3 · 10.9', '4.9 · 3.9', '11.11:1 · 5.65:1']],
+	['The mark\'s cyan', 'brand.cyan', 'var(--spin-brand-cyan)', ['6.74:1', '13.2 · 6.7', '6.0 · 2.7', '13.74:1 · 6.98:1']],
 ];
-for (const el of document.querySelectorAll('[data-list]')) {
-	const d = el.dataset, state = (i) => [i == d.hover && 'is-hover', i == d.selected && 'is-selected', i == d.focus && 'is-focus'].filter(Boolean).join(' ');
-	el.innerHTML = '<table class="grid"><thead><tr><th>State</th><th>Name</th><th>Project</th><th>Agent</th><th class="n">Memory</th><th class="n">Updated</th></tr></thead><tbody>' +
-		workspaces.map(([name, kind, word, project, agent, memory, age], i) =>
-			`<tr class="${state(i)}"><td><span class="badge ${kind}">${word}</span></td><td class="name"><a href="#${name}">${name}</a></td><td class="id">${project}</td><td class="muted">${agent}</td><td class="n">${memory}</td><td class="end"><span class="age">${age}</span><span class="acts">` +
-			['Agent', 'Terminal', 'Open in editor', kind === 'idle' || kind === 'err' ? 'Start' : 'Stop'].map((a) =>
-				`<span class="act${i == d.hover && a === d.caption ? ' is-hover' : ''}"><button class="btn sm ghost icon" aria-label="${a}" aria-keyshortcuts="${acts[a][0]}">${glyph(acts[a][1])}</button><span class="cap" aria-hidden="true">${a} <kbd>${acts[a][0]}</kbd></span></span>`).join('') +
-			'</span></td></tr>').join('') + '</tbody></table>';
-}
+document.getElementById('tints').innerHTML = tints.map(([name, from, color, [label, selected, hover, banner]]) =>
+	`<figure><div class="on spin-light" style="--from:${color}"><div class="ban"><strong>Experimental.</strong> <a href="#open-tints">Status</a> lists what is built.</div>` +
+	'<nav><a href="#open-tints">What it is</a><a class="hovered" href="#open-tints">Status</a><a class="current" href="#open-tints">Snapshots and rollback</a><a href="#open-tints">Network and egress</a></nav></div>' +
+	`<figcaption>${name} (<code>${from}</code>)</figcaption><dl><dt>the current page's label</dt><dd>${label}</dd><dt>selected, apart</dt><dd>ΔE00 ${selected}</dd><dt>hovered, apart</dt><dd>ΔE00 ${hover}</dd><dt>banner: text · link</dt><dd>${banner}</dd></dl></figure>`).join('');
 const views = ['drawn','ips','dim','protan','deutan','tritan','protan+ips','deutan+ips'];
 document.getElementById('perc').innerHTML = '<tr><th>mode</th><th>kind</th><th>pair</th><th>floor</th>' + views.map((v) => `<th>${v}</th>`).join('') + '</tr>' +
 	perception.map((r) => `<tr><td>${r.Mode}</td><td>${r.Kind}</td><td>${r.What}</td><td>${r.Distance ? r.Floor + '/' + r.Worst : r.Floor + ':1'}</td>` +

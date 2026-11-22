@@ -103,7 +103,7 @@ func TestThePagesLoadThePalettesFaces(t *testing.T) {
 		t.Fatal(err)
 	}
 	rule := regexp.MustCompile(`@font-face \{ font-family: '([^']+)'; src: url\(([^)]+)\)[^}]*font-weight: (\d+); \}`)
-	for _, page := range []string{"index.html", "screens.html", "ui-hill-climb/app.html"} {
+	for _, page := range []string{"index.html", "screens.html", "five-seconds.html", "recognition.html", "ui-hill-climb/app.html"} {
 		raw, err := os.ReadFile(filepath.Join(root, page))
 		if err != nil {
 			t.Fatal(err)
