@@ -4,9 +4,9 @@ version: '3'
 # dist/ and logos/ are what they make, committed, for the website, the dashboard and anything else
 # that draws Spinbox to copy. `task check` holds them to the sources.
 
-# versions, bump, release, lint:workflows and consumers are go-tools' (its cmd/task/tasks.yml), as
-# in every spin-stack repository; `go tool task` names the file. Gate is pages.yml's job, the
-# pass a release asks for.
+# versions, bump, release, lint:workflows and consumers are go-tools' (its
+# internal/tasks/tasks.yml), as in every spin-stack repository; `go tool task` names the file.
+# Gate is pages.yml's job, the pass a release asks for.
 includes:
   common:
     taskfile: '{{.GO_TOOLS_TASKS}}'
