@@ -13,6 +13,16 @@ faces and the three weights; the palette by what each color is for; and the same
 phone's and a tablet's width - in dark or light and through protanopia, deuteranopia or
 tritanopia, with every pair the palette is held to.
 
+Two pages beside it are tests a team runs by opening them, with nothing to install and nothing
+sent anywhere: each counts its answers in the browser it is opened in.
+[`five-seconds.html`](https://spin-stack.github.io/brand/five-seconds.html) is the check
+`palette.toml` names for dark's cyan fill: the workspace list or a settings page for five
+seconds, with one filled button or with three, then "what did you see first?".
+[`recognition.html`](https://spin-stack.github.io/brand/recognition.html) shows three screens
+with the mark and the name taken out, in the brand and in the grey of the same lightness with a
+system font, and asks whose product it is and which you would work in all day. `lab.css` and
+`lab.js` are the components and the screens the three pages share.
+
 | Source | What it makes |
 |---|---|
 | `palette.toml` | `dist/`: `tokens.css` (every role as `--spin-*`), `starlight.css` (the website's `--sl-color-*`), `dashboard.css` (shadcn's HSL variables, light on `:root`, dark on `.dark`, and the dashboard's radius, scrim, dense type scale, heading tracking, motion and a terminal's black surface and sixteen ANSI colours as `--terminal-*`), `t3code.css` (the agent client's own variables, the roots its theme derives the rest from, on `html:root` and `html.dark:root`, with the dashboard's corner and the faces), `tokens.json`, and `perception.js` and `simulate.svg` for the preview |

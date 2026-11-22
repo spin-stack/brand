@@ -1,0 +1,183 @@
+/* The laboratory's components, one definition for every page that draws them: index.html, the
+   five-second test and the recognition test. A test page that drew its own button would measure
+   its own button. Everything here is drawn from dist/tokens.css: a color that is not a token is a
+   bug. Each page declares its own @font-face, which cmd/palette's tests read. */
+
+/* A state as a badge: its shape and word on its tint (--spin-*-badge), the same in a table, a
+   header and a toast. Stopped has no colour of its own: a hollow ring, the muted ink. */
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 8px 0 7px; border-radius: 999px; font: 400 12px/1 var(--spin-font-mono); white-space: nowrap; }
+.badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex: none; }
+.badge.ok { color: var(--spin-success); background: var(--spin-success-badge); }
+.badge.warn { color: var(--spin-warning); background: var(--spin-warning-badge); } .badge.warn::before { border-radius: 1px; transform: rotate(45deg); width: 6px; height: 6px; }
+.badge.err { color: var(--spin-error); background: var(--spin-error-badge); } .badge.err::before { border-radius: 1px; }
+.badge.busy { color: var(--spin-accent-text); background: var(--spin-accent-text-badge); } .badge.busy::before { background: none; border: 2px solid currentColor; border-right-color: transparent; width: 6px; height: 6px; }
+.badge.idle { color: var(--spin-muted); box-shadow: inset 0 0 0 1px var(--spin-border); } .badge.idle::before { background: none; box-shadow: inset 0 0 0 1.5px currentColor; }
+
+/* Buttons: one geometry from the site to the dashboard - the control heights, the small radius,
+   a fill and an outline - and the states palette.toml derives and checks (dist/tokens.css). A
+   secondary button's outline is --spin-control-border, the border: the input's 3:1 edge
+   (--spin-border-strong) around every secondary button was the heaviest line on a screen. */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--spin-control-gap); height: var(--spin-control-md); padding: 0 12px; border-radius: var(--spin-radius-sm); font: 500 13px/1 var(--spin-font-sans); border: 1px solid transparent; cursor: pointer; text-decoration: none; white-space: nowrap; transition: background-color var(--spin-duration-fast) var(--spin-ease); }
+.btn.sm { height: var(--spin-control-sm); padding: 0 10px; font-size: 12px; }
+.btn.lg { height: var(--spin-control-lg); padding: 0 16px; font-size: 14px; }
+.btn svg { width: var(--spin-control-icon); height: var(--spin-control-icon); flex: none; }
+.btn.primary { background: var(--spin-accent); color: var(--spin-on-accent); }
+.btn.primary:hover, .btn.primary.is-hover { background: var(--spin-accent-fill-hover); }
+.btn.primary:active, .btn.primary.is-active { background: var(--spin-accent-fill-active); }
+.btn.secondary, .btn.ghost { color: var(--spin-text); }
+.btn.secondary { background: var(--spin-control); border-color: var(--spin-control-border); }
+.btn.secondary:hover, .btn.secondary.is-hover, .btn.secondary:active, .btn.secondary.is-active { background: var(--spin-control-hover); }
+.btn.ghost { background: transparent; color: var(--spin-muted); }
+.btn.ghost:hover, .btn.ghost.is-hover, .btn.ghost:active, .btn.ghost.is-active { background: var(--spin-control); color: var(--spin-text); }
+.btn.danger { background: var(--spin-destructive); color: #fff; }
+.btn.danger:hover, .btn.danger.is-hover { background: var(--spin-destructive-hover); }
+.btn.danger:active, .btn.danger.is-active { background: var(--spin-destructive-active); }
+.btn.icon { width: var(--spin-control-md); padding: 0; } .btn.icon.sm { width: var(--spin-control-sm); }
+.btn.is-focus { outline: 2px solid var(--spin-accent-text); outline-offset: 2px; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+kbd { font: 11px var(--spin-font-mono); color: var(--spin-muted); border: 1px solid var(--spin-border); border-radius: 4px; padding: 0 4px; }
+
+/* A list of many is a table on the page: rows --spin-row high with no rule between them, and one
+   line, a hairline under the column heads. Headers in the muted sans, ids in mono, figures right
+   and tabular. The row under the pointer or holding the focus is a plane (--spin-row-hover), never
+   an outline; a selected one is the accent's tint. */
+.grid { width: 100%; border-collapse: collapse; font: 13px/1.45 var(--spin-font-sans); font-variant-numeric: var(--spin-numeric); }
+.grid th { font-weight: 500; font-size: 12px; color: var(--spin-muted); text-align: left; height: var(--spin-control-md); padding: 0 10px; border-bottom: 1px solid var(--spin-hairline); white-space: nowrap; }
+.grid td { height: var(--spin-row); padding: 0 10px; border-bottom: 0; white-space: nowrap; }
+.grid .n { text-align: right; } .grid .id { font-family: var(--spin-font-mono); color: var(--spin-muted); }
+.grid tr { position: relative; }
+.grid tr.is-hover td, .grid tbody tr:hover td, .grid tbody tr:focus-within td { background: var(--spin-row-hover); }
+.grid tr.is-selected td { background: var(--spin-accent-hover); } .grid tr.is-selected td:first-child { box-shadow: inset 2px 0 0 var(--spin-accent); }
+.grid-wrap { overflow-x: auto; margin-top: 1rem; }
+/* The whole row opens the thing: its name is the link, stretched over the row, and the focus ring
+   is the row's. */
+.grid .name a { font: var(--spin-weight-strong) 13px var(--spin-font-mono); color: var(--spin-text); text-decoration: none; outline: 0; }
+.grid .name a::after { content: ''; position: absolute; inset: 0; }
+.grid .name a:focus-visible::after, .grid tr.is-focus .name a::after { outline: 2px solid var(--spin-accent-text); outline-offset: -2px; border-radius: var(--spin-radius-sm); }
+/* A row's actions: absent at rest, drawn where its age was when the row is under the pointer or
+   holds the focus. Icons alone, each with its caption - its name and its key - the moment the
+   pointer or the focus is on it: no delay, so no transition here. Under the pointer an action
+   steps one surface up from its row.
+   The caption is in the row, to the left of the actions, in room the last column keeps for it:
+   17rem is four actions and the longest caption. Drawn above its action it covered the age of the
+   row above, the one thing in that column a person reads. */
+.grid .end { position: relative; text-align: right; min-width: 17rem; color: var(--spin-muted); }
+.acts { position: absolute; z-index: 1; right: 6px; top: 50%; transform: translateY(-50%); display: flex; gap: 2px; opacity: 0; }
+.grid tr:hover .acts, .grid tr:focus-within .acts, .grid tr.is-hover .acts, .grid tr.is-focus .acts { opacity: 1; }
+.grid tr:hover .age, .grid tr:focus-within .age, .grid tr.is-hover .age, .grid tr.is-focus .age { visibility: hidden; }
+.act { display: inline-flex; }
+.act .btn.ghost:hover, .act.is-hover .btn.ghost { background: var(--spin-row-action-hover); color: var(--spin-text); }
+.cap { display: none; position: absolute; z-index: 2; right: calc(100% + 6px); top: 50%; transform: translateY(-50%); align-items: center; gap: 8px; white-space: nowrap; font: 12px var(--spin-font-sans); color: var(--spin-text); background: var(--spin-overlay); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-sm); padding: 3px 6px 3px 8px; box-shadow: var(--spin-shadow-overlay); }
+.act:hover .cap, .act:focus-within .cap, .act.is-hover .cap { display: inline-flex; }
+/* Nothing hovers on a touch screen: the actions are drawn, and the row is a finger's height. */
+@media (hover: none) { .grid td { height: var(--spin-target-touch); } .acts { opacity: 1; } .grid .age { visibility: hidden; } }
+
+/* A page of settings: each section split, its title and what it governs in an aside, its rows in
+   a card on the page. A row is a label, a value and one verb. */
+.split { display: grid; grid-template-columns: var(--spin-width-aside) minmax(0, 1fr); gap: 1rem 2rem; align-items: start; }
+.split h3 { margin: 0 0 .25rem; }
+.split + .split { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--spin-hairline); }
+@media (max-width: 768px) { .split { grid-template-columns: minmax(0, 1fr); } }
+.card { background: var(--spin-page); border: 1px solid var(--spin-hairline); border-radius: var(--spin-radius-sm); }
+.card .row { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; padding: .75rem 1rem; border-top: 1px solid var(--spin-hairline); font-size: 14px; }
+.card .row:first-child { border-top: 0; }
+.card .row.editing { background: var(--spin-surface); }
+.card .lbl { flex: 0 0 10rem; font-weight: 500; }
+.card .val { flex: 1 1 14rem; min-width: 0; }
+.card .val .id { font-family: var(--spin-font-mono); }
+.card .acts { position: static; transform: none; opacity: 1; display: flex; gap: .5rem; }
+
+/* A terminal is black in either theme ([terminal]), framed with the theme's border. */
+.term { margin: 0; background: var(--spin-terminal-background); color: var(--spin-terminal-foreground); border: 1px solid var(--spin-border); border-radius: var(--spin-radius-sm); padding: 12px 14px; font: 13px/1.5 var(--spin-font-mono); overflow-x: auto; white-space: pre; }
+.term .p { color: var(--spin-terminal-bright-black); } .term .g { color: var(--spin-terminal-green); } .term .r { color: var(--spin-terminal-red); }
+.term .y { color: var(--spin-terminal-yellow); } .term .b { color: var(--spin-terminal-blue); } .term .c { color: var(--spin-terminal-cyan); }
+.term .cur { background: var(--spin-terminal-cursor); color: var(--spin-terminal-background); }
+
+/* The app's frame, as the dashboard lays a page out: its navigation --spin-sidebar-app wide on
+   the surface, the current destination a step up and never the accent, and the page one centred
+   column: a header - the title, its state, its context, its actions - then tabs or sections. */
+.app { display: grid; grid-template-columns: var(--spin-sidebar-app) minmax(0, 1fr); min-height: 100%; background: var(--spin-page); color: var(--spin-text); font: var(--spin-text-dense)/1.45 var(--spin-font-sans); font-variant-numeric: var(--spin-numeric); text-align: left; }
+.app > nav { display: flex; flex-direction: column; gap: 2px; padding: 12px 8px; background: var(--spin-surface); border-right: 1px solid var(--spin-border); }
+.app .who { display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 8px; margin-bottom: 8px; font: 600 15px var(--spin-font-mono); }
+.app .who img { width: 20px; height: 20px; }
+/* Where the mark and the wordmark were, for a screen shown without them. */
+.app .who .no-mark { width: 20px; height: 20px; border-radius: 22%; background: var(--spin-border-strong); }
+.app .who .no-word { width: 68px; height: 10px; border-radius: 3px; background: var(--spin-border); }
+.app nav .nav-group { font: 500 12px var(--spin-font-sans); color: var(--spin-muted); margin: 12px 8px 4px; }
+.app nav a { display: flex; align-items: center; gap: 8px; height: var(--spin-control-md); padding: 0 8px; border-radius: var(--spin-radius-sm); color: var(--spin-muted); text-decoration: none; }
+.app nav a svg { width: var(--spin-control-icon); height: var(--spin-control-icon); flex: none; }
+.app nav a.current { background: var(--spin-raised); color: var(--spin-text); font-weight: 500; }
+.app nav .foot { margin-top: auto; display: flex; align-items: center; gap: 8px; padding: 8px; color: var(--spin-muted); font-size: 12px; }
+.app nav .foot i { width: 24px; height: 24px; border-radius: 50%; background: var(--spin-raised); flex: none; }
+.app main { min-width: 0; padding: 24px 32px 48px; }
+.app .column { max-width: var(--spin-width-page); margin: 0 auto; }
+.app .head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; min-height: var(--spin-control-lg); }
+/* [type].dense_scale's 2xl: the size of a page's title in the dashboard. */
+.app h1 { margin: 0; font: var(--spin-heading-weight) 20px/28px var(--spin-font-heading); letter-spacing: var(--spin-heading-tracking); }
+.app h1.id { font-family: var(--spin-font-mono); letter-spacing: 0; }
+.app h3 { margin: 0 0 .25rem; font: var(--spin-heading-weight) 14px/22px var(--spin-font-sans); letter-spacing: 0; }
+.app .head .ctx, .app .sub { color: var(--spin-muted); }
+.app .head .ctx b { font: 400 13px var(--spin-font-mono); }
+.app .head .grow { flex: 1; }
+.app .sub { margin: 2px 0 0; }
+.app .tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 16px 0 4px; }
+.app .tools input { font: inherit; color: var(--spin-text); background: var(--spin-page); border: 1px solid var(--spin-border-strong); border-radius: var(--spin-radius-sm); height: var(--spin-control-md); padding: 0 10px; min-width: 16rem; }
+.app .tools input::placeholder { color: var(--spin-muted); }
+.app .tabs { display: flex; gap: 20px; margin: 16px 0 20px; border-bottom: 1px solid var(--spin-hairline); overflow-x: auto; }
+.app .tabs a { display: inline-flex; align-items: center; height: var(--spin-control-lg); margin-bottom: -1px; border-bottom: 2px solid transparent; color: var(--spin-muted); text-decoration: none; white-space: nowrap; }
+.app .tabs a.current { color: var(--spin-text); font-weight: 500; border-color: var(--spin-accent); }
+.app .sections { margin-top: 24px; }
+.app .two { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 32px; align-items: start; }
+.app .two h3 { display: flex; align-items: center; height: var(--spin-control-md); margin: 0; }
+.app h3.over { margin: 28px 0 0; }
+.app h3.over + .grid-wrap { margin-top: 4px; }
+/* Facts read for a diagnosis: a heading, a hairline and their rows, never a card. */
+.facts { margin: 0; border-top: 1px solid var(--spin-hairline); }
+.facts div { display: grid; grid-template-columns: 8rem minmax(0, 1fr); padding: 8px 0; border-bottom: 1px solid var(--spin-hairline); }
+.facts dt { color: var(--spin-muted); } .facts dd { margin: 0; overflow-wrap: anywhere; } .facts dd.id { font-family: var(--spin-font-mono); }
+@media (max-width: 760px) {
+	.app { grid-template-columns: minmax(0, 1fr); } .app > nav { display: none; }
+	.app main { padding: 16px; } .app .two { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+	.app .tools input { min-width: 0; flex: 1; }
+	.app .btn { min-height: var(--spin-target-touch); }
+}
+
+/* Which cut of the mark a theme shows, and secondary text: what every page here leans on. */
+:root[data-theme='light'] .on-dark, :root:not([data-theme='light']) .on-light { display: none !important; }
+.muted { color: var(--spin-muted); }
+
+/* A test page: a sheet that says what to do or asks its question, and a stage that shows one
+   screen and nothing else. A sheet has no filled button: the first fill a person meets is the one
+   in the screen being tested. */
+.sheet { max-width: 40rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+.sheet h1 { font: var(--spin-heading-weight) var(--spin-text-h2)/1.2 var(--spin-font-heading); letter-spacing: var(--spin-heading-tracking); margin: 1.5rem 0 .75rem; }
+.sheet h2 { font: var(--spin-heading-weight) 16px/1.4 var(--spin-font-heading); margin: 2rem 0 .5rem; }
+.sheet p { margin: 0 0 1rem; }
+.sheet .back { font: 500 13px var(--spin-font-mono); }
+.sheet .go { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0; }
+.sheet .note { font-size: 13px; color: var(--spin-muted); }
+.sheet details { margin-top: 1.5rem; border-top: 1px solid var(--spin-hairline); padding-top: 1rem; }
+.sheet summary { cursor: pointer; font: 500 13px var(--spin-font-mono); }
+.sheet details p, .sheet details li { font-size: 14px; color: var(--spin-muted); }
+.sheet input[type=text] { font: 16px var(--spin-font-sans); color: var(--spin-text); background: var(--spin-page); border: 1px solid var(--spin-border-strong); border-radius: var(--spin-radius-sm); height: var(--spin-target-touch); padding: 0 12px; width: 100%; }
+.answers { display: grid; gap: .5rem; margin: 1.5rem 0; }
+.answers .btn { justify-content: flex-start; height: var(--spin-target-touch); font-size: 15px; }
+.tally { width: 100%; border-collapse: collapse; font: 13px/1.45 var(--spin-font-sans); font-variant-numeric: var(--spin-numeric); }
+.tally th, .tally td { padding: .45rem .4rem; border-bottom: 1px solid var(--spin-hairline); text-align: right; }
+.tally th { font-weight: 500; font-size: 12px; color: var(--spin-muted); vertical-align: bottom; }
+.tally th:first-child, .tally td:first-child { text-align: left; }
+.tally td:first-child { color: var(--spin-text); }
+.tally .zero { color: var(--spin-muted); }
+.tally-wrap { overflow-x: auto; }
+.stage { position: fixed; inset: 0; z-index: 10; display: flex; flex-direction: column; background: var(--spin-page); overflow: hidden; }
+.stage .view { flex: 1; min-height: 0; overflow: hidden; }
+.stage .app { height: 100%; }
+/* What a test draws over or under its screen is the terminal's black in either theme, so that it
+   belongs to neither drawing being compared. */
+.hud { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; padding: .5rem .75rem; background: var(--spin-terminal-background); color: var(--spin-terminal-foreground); border-top: 1px solid var(--spin-terminal-black); font: 13px/1.4 var(--spin-font-sans); }
+.hud .grow { flex: 1; }
+.hud button, .hud a { font: 500 13px var(--spin-font-sans); color: var(--spin-terminal-foreground); background: transparent; border: 1px solid var(--spin-terminal-bright-black); border-radius: var(--spin-radius-sm); min-height: var(--spin-control-md); padding: 0 12px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; }
+.hud button[aria-pressed=true] { background: var(--spin-terminal-foreground); color: var(--spin-terminal-background); }
+.hud button:disabled { opacity: .45; cursor: not-allowed; }
+.hud button:focus-visible, .hud a:focus-visible { outline: 2px solid var(--spin-terminal-foreground); outline-offset: 2px; }
+@media (pointer: coarse) { .hud button, .hud a { min-height: var(--spin-target-touch); } }
