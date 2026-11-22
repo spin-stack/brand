@@ -1,9 +1,10 @@
 // Command mark cuts the spin-stack mark - the stack of disks - out of assets/mark.png, the mark as
-// it was drawn: 1024 px on a clear ground, the stack some 450 of them. (The organization's avatar
-// is the same mark shrunk to 460 px on the navy with the wordmark under it, the stack 240 px: cut
-// from it, every logo larger than that, or on a 2x screen, was an enlargement.)
+// it was drawn: 1024 px on a clear ground, the stack some 420 of them and nothing under it. (The
+// organization's avatar is the same mark shrunk to 460 px on the navy with the wordmark under it,
+// the stack 240 px: cut from it, every logo larger than that, or on a 2x screen, was an
+// enlargement.)
 // It writes the mark at the sizes the places that show it use, into logos/: on the brand's navy,
-// square, for each to round as it rounds a tile, and clear, for a light ground. Every size is the
+// square, for each to round as it rounds a tile, and clear, for any ground. Every size is the
 // drawing reduced, never enlarged: a size the drawing is too small for fails.
 //
 // With -check it writes nothing and fails when logos/ is not what the drawing makes.
@@ -25,11 +26,10 @@ import (
 )
 
 // logo is one file logos/ holds: the mark at a size something shows it at, on the navy (a tile)
-// or on nothing (clear); clear and dark is on nothing too, its shadow drawn for the dark page.
+// or on nothing (clear).
 type logo struct {
 	size  int
 	clear bool
-	dark  bool
 }
 
 var sizes = map[string]logo{
@@ -37,11 +37,11 @@ var sizes = map[string]logo{
 	"mark-256.png":       {size: 256, clear: false}, // a dark header
 	"mark-clear-512.png": {size: 512, clear: true},  // on any ground: a light page, a light hero
 	"mark-clear-256.png": {size: 256, clear: true},  // a light header
-	// On a dark page with no tile: the clear mark's light grey shadow read there as a pale ring.
-	"mark-dark-512.png":    {size: 512, clear: true, dark: true}, // a dark hero
-	"mark-dark-256.png":    {size: 256, clear: true, dark: true}, // a dark header
-	"apple-touch-icon.png": {size: 180, clear: false},            // a phone's home screen
-	"favicon-64.png":       {size: 64, clear: false},             // a browser's tab, whose ground is the browser's
+	// The clear mark under the name the dark page asks for: nothing in it is drawn for a ground.
+	"mark-dark-512.png":    {size: 512, clear: true},  // a dark hero
+	"mark-dark-256.png":    {size: 256, clear: true},  // a dark header
+	"apple-touch-icon.png": {size: 180, clear: false}, // a phone's home screen
+	"favicon-64.png":       {size: 64, clear: false},  // a browser's tab, whose ground is the browser's
 	"favicon-32.png":       {size: 32, clear: false},
 }
 
@@ -62,7 +62,7 @@ func run() error {
 	check := flag.Bool("check", false, "write nothing; fail if logos/ is not what the drawing makes")
 	flag.Parse()
 
-	navy, page, err := ground(*palette)
+	navy, err := ground(*palette)
 	if err != nil {
 		return err
 	}
@@ -80,19 +80,9 @@ func run() error {
 		return fmt.Errorf("%s: %w", *src, err)
 	}
 
-	onNavy := shadowOn(drawing, stack, navy)
-	onDark := shadowOn(drawing, stack, page)
-
 	var stale []string
 	for name, l := range sizes {
-		src := onNavy
-		switch {
-		case l.dark:
-			src = onDark
-		case l.clear:
-			src = drawing
-		}
-		img, err := cut(src, stack, l.size, l.clear, navy)
+		img, err := cut(drawing, stack, l.size, l.clear, navy)
 		if err != nil {
 			return fmt.Errorf("%s: %w", name, err)
 		}
@@ -121,21 +111,13 @@ func run() error {
 	return nil
 }
 
-// ground is the palette's brand navy, the tile's ground, and its dark page, the ground of the
-// clear mark drawn for a dark page.
-func ground(palette string) (navy, page color.RGBA, err error) {
-	var p struct {
-		Brand map[string]string
-		Dark  struct{ Page string }
-	}
+// ground is the palette's brand navy, the tile's ground.
+func ground(palette string) (color.RGBA, error) {
+	var p struct{ Brand map[string]string }
 	if _, err := toml.DecodeFile(palette, &p); err != nil {
-		return navy, page, err
+		return color.RGBA{}, err
 	}
-	if navy, err = rgbOf(palette, "brand.navy", p.Brand["navy"]); err != nil {
-		return navy, page, err
-	}
-	page, err = rgbOf(palette, "dark.page", p.Dark.Page)
-	return navy, page, err
+	return rgbOf(palette, "brand.navy", p.Brand["navy"])
 }
 
 func rgbOf(palette, key, hex string) (color.RGBA, error) {
@@ -165,29 +147,6 @@ func stackOf(drawing image.Image) (image.Rectangle, error) {
 		return box, fmt.Errorf("it draws nothing: no pixel is more than faintly opaque")
 	}
 	return box, nil
-}
-
-// shadowOn is the drawing for the tile: its shadow is a light grey ring, drawn for a light ground,
-// which on the navy reads as a halo; a shadow is never lighter than what it falls on. The ring is
-// the grey in the stack's bottom quarter - the white top disk is grey too, but at the top - and
-// becomes the navy with a sixteenth of the ring's light in it, a rim as the avatar's was.
-func shadowOn(drawing image.Image, stack image.Rectangle, navy color.RGBA) image.Image {
-	const light = 0.06
-	out := image.NewNRGBA(drawing.Bounds())
-	draw.Draw(out, out.Bounds(), drawing, drawing.Bounds().Min, draw.Src)
-	band := stack.Min.Y + stack.Dy()*3/4
-	for y := band; y < stack.Max.Y; y++ {
-		for x := stack.Min.X; x < stack.Max.X; x++ {
-			c := out.NRGBAAt(x, y)
-			hi, lo := max(c.R, c.G, c.B), min(c.R, c.G, c.B)
-			if c.A == 0 || hi-lo > 24 || hi < 96 {
-				continue
-			}
-			mix := func(n, g uint8) uint8 { return uint8(float64(n) + light*(float64(g)-float64(n)) + 0.5) }
-			out.SetNRGBA(x, y, color.NRGBA{mix(navy.R, c.R), mix(navy.G, c.G), mix(navy.B, c.B), c.A})
-		}
-	}
-	return out
 }
 
 // cut is the stack centered on a square of size pixels, a fifth of its size around it, on the
