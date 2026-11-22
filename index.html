@@ -94,6 +94,28 @@ figcaption { font: 12px var(--spin-font-mono); color: var(--spin-muted); padding
 .scale .m { font-family: var(--spin-font-mono); }
 @media (max-width: 640px) { .scale { grid-template-columns: 1fr; gap: 0 0; } .scale > div { margin-bottom: .6rem; } }
 .badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+/* A chart as Grafana draws one, and a trace as the dashboard does: the marks at the sizes the checker holds them for. */
+.plots { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: 1.5rem; margin-top: 1rem; align-items: start; }
+.plots figure { margin: 0; }
+.plot { border: 1px solid var(--spin-hairline); border-radius: var(--spin-radius-sm); font-size: 12px; overflow: hidden; }
+.plot svg { display: block; width: 100%; height: auto; }
+.plot .legend { display: flex; flex-wrap: wrap; gap: .25rem .9rem; padding: .5rem .75rem; border-bottom: 1px solid var(--spin-hairline); font-family: var(--spin-font-mono); }
+.plot .legend.foot { border-bottom: 0; border-top: 1px solid var(--spin-hairline); }
+.plot .key::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; background: var(--c); }
+.plot .key.line::before { width: 12px; height: 2px; border-radius: 0; vertical-align: middle; }
+.span { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); align-items: center; height: 28px; padding: 0 .75rem; }
+.span.is-selected { background: var(--spin-raised); }
+.span .name { display: flex; align-items: center; gap: 6px; align-self: stretch; white-space: nowrap; overflow: hidden; }
+.span .rail { align-self: stretch; width: 1px; margin: 0 7px; background: var(--c); flex: none; }
+.span .count, .span .leaf { flex: none; box-sizing: border-box; }
+.span .count { min-width: 16px; height: 16px; padding: 0 3px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--c); border-radius: 4px; font: 11px/1 var(--spin-font-mono); color: var(--c); background: var(--spin-page); }
+.span .count.closed { background: var(--c); color: var(--spin-page); }
+.span .leaf { width: 8px; height: 8px; margin: 0 4px; border-radius: 50%; background: var(--c); }
+.span b { font-weight: var(--spin-weight-medium); }
+.span .op { color: var(--spin-muted); font-family: var(--spin-font-mono); overflow: hidden; text-overflow: ellipsis; }
+.span .lane { position: relative; height: 16px; }
+.span .dur { position: absolute; top: 5px; height: 6px; min-width: 2px; border-radius: 3px; background: var(--c); }
+.span .dur.failed { outline: 1px solid var(--spin-error); outline-offset: 1px; }
 /* Fields: the input's edge at 3:1 (border-strong), the focus ring in accent-text, an error in its
    colour with its message under it, a hint in muted. 16 px on a touch screen (iOS zooms below). */
 .field { display: grid; gap: 6px; margin-top: .75rem; }
@@ -301,7 +323,7 @@ body.embed .wrap { padding-top: 0; }
 <nav class="index only-full" aria-label="On this page">
 	<div class="wrap">
 		<a href="#in-use">1 · In use</a><a href="#site">Site</a><a href="#dashboard">Dashboard</a><a href="#app">App</a>
-		<a href="#decisions">2 · Decisions</a><a href="#mark">Mark</a><a href="#type">Type</a><a href="#buttons">Buttons</a><a href="#states">States</a><a href="#fields">Fields</a><a href="#tables">Lists</a><a href="#panels">Panels</a><a href="#palette-section">Palette</a>
+		<a href="#decisions">2 · Decisions</a><a href="#mark">Mark</a><a href="#type">Type</a><a href="#buttons">Buttons</a><a href="#states">States</a><a href="#fields">Fields</a><a href="#tables">Lists</a><a href="#panels">Panels</a><a href="#plots">Charts and traces</a><a href="#palette-section">Palette</a>
 		<a href="#checks">3 · Checks</a><a href="#widths">Widths</a><a href="#perception">Perception</a><a href="screens.html">Every screen →</a>
 	</div>
 </nav>
@@ -509,6 +531,17 @@ D  /etc/issue</pre>
 	</div>
 </section>
 
+<section class="only-full" id="plots">
+	<span class="label">Charts and traces</span>
+	<div class="rules">
+		<p class="muted">Two sets, by two rules. A chart is Grafana's: one JSON drawn in either theme, so one hex each, eight series given in this order and never cycled, each held from the next, and three statuses of a threshold with the value printed beside. A trace is the dashboard's: a service takes its colour by its name's hash, the same on every page, so any two of the eight meet and every pair is held apart, and each theme has its own eight. A service's colour is a bar, a dot, a line of the tree and the count of a span's children - in the colour on the page, or in the page's colour on it - and never red or pink: a failed span takes <code>error</code> in its service's place.</p>
+		<div class="plots">
+			<figure><div class="plot" id="chart"></div><figcaption>[chart]: series 1 to 8 as 2 px lines on the page, and the statuses</figcaption></figure>
+			<figure><div class="plot" id="trace"></div><figcaption>[trace]: service 1 to 8, one row selected, one span failed</figcaption></figure>
+		</div>
+	</div>
+</section>
+
 <section class="only-full" id="palette-section">
 	<span class="label">Palette</span>
 	<div id="palette"></div>
@@ -557,6 +590,8 @@ const groups = [
 		'<a class="btn primary" href="#">Primary</a> <a href="#">a link</a> <a class="btn danger" href="#">Delete</a>'],
 	['States', 'Ran or succeeded, waits, failed: each with a shape too, never by hue alone.', ['success', 'warning', 'error'],
 		'<span class="state ok">running</span> <span class="state warn">waiting</span> <span class="state err">failed</span>'],
+	['Chart', 'Grafana\'s series, in the order they are given, and a threshold\'s statuses: the same in either theme.', [1, 2, 3, 4, 5, 6, 7, 8].map((n) => 'chart-series-' + n).concat(['chart-good', 'chart-warning', 'chart-critical']), ''],
+	['Trace', 'A trace\'s services in the dashboard, picked by a name\'s hash: this theme\'s eight.', [1, 2, 3, 4, 5, 6, 7, 8].map((n) => 'trace-service-' + n), ''],
 	['Interaction', 'A list\'s row under the pointer, a plane; and the accent over a surface: a hovered link on the site, a selected row.', ['row-hover', 'accent-hover', 'accent-selected'],
 		'<span class="sw-inline" style="background:var(--spin-accent-hover)">hovered</span><span class="sw-inline" style="background:var(--spin-accent-selected);color:var(--spin-accent-text)">selected</span>'],
 ];
@@ -567,6 +602,26 @@ function swatches() {
 		roles.map((r) => { const v = cs.getPropertyValue('--spin-' + r).trim(); return `<div class="sw"><i style="background:${v}"></i><b>${r}</b><code>${v}</code></div>`; }).join('') +
 		'</div></div>').join('');
 }
+// A chart's eight series, each a line with its own rhythm so that they cross, and a trace of eight
+// services: fixtures, there to put each colour beside every other at the size it is drawn.
+const series = [1, 2, 3, 4, 5, 6, 7, 8];
+document.getElementById('chart').innerHTML = '<div class="legend">' + series.map((n) => `<span class="key line" style="--c:var(--spin-chart-series-${n})">series ${n}</span>`).join('') + '</div>' +
+	'<svg viewBox="0 0 480 180" role="img" aria-label="Eight series as lines">' + series.map((n) =>
+		`<polyline fill="none" stroke="var(--spin-chart-series-${n})" stroke-width="2" stroke-linejoin="round" points="${Array.from({ length: 25 }, (_, x) => `${x * 20},${(22 + (n - 1) * 19 + 13 * Math.sin(x / (1.6 + n * 0.25) + n * 1.7)).toFixed(1)}`).join(' ')}"/>`).join('') + '</svg>' +
+	'<div class="legend foot">' + [['good', '41%'], ['warning', '78%'], ['critical', '96%']].map(([k, v]) => `<span class="key" style="--c:var(--spin-chart-${k})">${k} ${v}</span>`).join('') + '</div>';
+const services = ['controlplane', 'runner', 'proxy', 'egress', 'agent', 'guest', 'relay', 'storage'];
+const spans = [
+	// service, depth, operation, children (0 a leaf, negative closed), from, width in % of the trace
+	[1, 0, 'POST /workspaces', 3, 0, 100], [2, 1, 'runner.Start', 2, 6, 58], [8, 2, 'disk.clone', 0, 8, 22], [6, 2, 'guest.boot', -4, 31, 30],
+	[3, 1, 'proxy.route', 0, 66, 9], [4, 1, 'egress.allow', 0, 70, 4, 'failed'], [5, 1, 'agent.attach', 1, 76, 20], [7, 2, 'relay.dial', 0, 78, 12],
+];
+document.getElementById('trace').innerHTML = '<div class="legend">' + services.map((name, i) => `<span class="key" style="--c:var(--spin-trace-service-${i + 1})">${name}</span>`).join('') + '</div>' +
+	spans.map(([svc, depth, op, kids, from, width, failed], row) => {
+		const c = `--c:var(--spin-trace-service-${svc})`, rails = spans.slice(0, row).filter((s) => s[1] < depth).slice(-depth);
+		return `<div class="span${row === 1 ? ' is-selected' : ''}"><span class="name">` + rails.map((r) => `<i class="rail" style="--c:var(--spin-trace-service-${r[0]})"></i>`).join('') +
+			(kids ? `<span class="count${kids < 0 ? ' closed' : ''}" style="${c}">${Math.abs(kids)}</span>` : `<i class="leaf" style="${failed ? '--c:var(--spin-error)' : c}"></i>`) +
+			`<b>${services[svc - 1]}</b><span class="op">${op}</span></span><span class="lane"><i class="dur${failed ? ' failed' : ''}" style="${c};left:${from}%;width:${width}%"></i></span></div>`;
+	}).join('');
 // The workspaces, drawn twice from one fixture: live in the dashboard's sample, and in Lists with
 // a row in each state. A third party's logo would follow its owner's brand terms: the editor here
 // is a generic glyph.

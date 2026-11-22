@@ -33,6 +33,14 @@
 	--spin-accent-text-badge: color-mix(in srgb, var(--spin-accent-text) 12%, transparent);
 	--spin-accent-hover: #0C2134;
 	--spin-accent-selected: #113F57;
+	--spin-trace-service-1: #4085F9;
+	--spin-trace-service-2: #8E72AE;
+	--spin-trace-service-3: #27BFE8;
+	--spin-trace-service-4: #5CEFC0;
+	--spin-trace-service-5: #93A96D;
+	--spin-trace-service-6: #FFD353;
+	--spin-trace-service-7: #B66F03;
+	--spin-trace-service-8: #0A8B7D;
 }
 :root[data-theme='light'] {
 	--spin-accent: #111827;
@@ -68,6 +76,14 @@
 	--spin-accent-text-badge: color-mix(in srgb, var(--spin-accent-text) 12%, transparent);
 	--spin-accent-hover: #E7E8E9;
 	--spin-accent-selected: #BFC1C5;
+	--spin-trace-service-1: #535FFE;
+	--spin-trace-service-2: #5839A6;
+	--spin-trace-service-3: #116C98;
+	--spin-trace-service-4: #106F39;
+	--spin-trace-service-5: #565B00;
+	--spin-trace-service-6: #573900;
+	--spin-trace-service-7: #4B1803;
+	--spin-trace-service-8: #03857E;
 }
 :root {
 	--spin-brand-blue: #2F6BE3;
@@ -96,6 +112,17 @@
 	--spin-terminal-bright-magenta: #EBB2F7;
 	--spin-terminal-bright-cyan: #5FE3D6;
 	--spin-terminal-bright-white: #FFFFFF;
+	--spin-chart-series-1: #2F6BE3;
+	--spin-chart-series-2: #D9622B;
+	--spin-chart-series-3: #1C9E8C;
+	--spin-chart-series-4: #B58300;
+	--spin-chart-series-5: #C94F9B;
+	--spin-chart-series-6: #4F9A3A;
+	--spin-chart-series-7: #7A5FE0;
+	--spin-chart-series-8: #D24B57;
+	--spin-chart-good: #2F9A5C;
+	--spin-chart-warning: #B07C00;
+	--spin-chart-critical: #D04A9E;
 	--spin-wordmark: "Spinbox";
 	--spin-font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 	--spin-font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;

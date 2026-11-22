@@ -49,6 +49,10 @@ that `fonts/` does not ship (`cmd/palette`'s tests).
   threshold statuses, one set for both modes because Grafana draws one dashboard JSON in either
   theme. Each holds 3:1 on dark's page and on light's, and each series is held apart from the
   next, and each status from the others, at the meaning tier.
+- **A trace's services** (`[trace]`, `tokens.json`'s `trace`, `--trace-service-1` to `-8` in
+  `dashboard.css`): eight for each theme, which the dashboard picks by a service name's hash.
+  Each holds 4.5:1 on the page and 3:1 on a selected row, every pair is held apart, and each is
+  held from `error` and from red, which are a failed span's.
 - **No meaning by hue alone**: a status carries a shape too (the preview's states: a dot, a
   diamond, a square), since a floor for colour-vision deficiencies is a floor, not comfort.
 

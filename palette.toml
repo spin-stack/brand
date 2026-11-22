@@ -156,6 +156,45 @@ good = "#2F9A5C"
 warning = "#B07C00"
 critical = "#D04A9E" # magenta-leaning, as error is: a deutan tells it from good by its blue
 
+# A trace's services, in the dashboard: a span's bar on its row, the dot beside a service's name,
+# the lines of the span tree, and the count of a span's children, written in the colour on the page
+# or in the page's colour on it. Not [chart].series, whose rule is another: a chart gives its series
+# in order and holds each from the next, and a service takes the same colour on every page and in
+# every trace by its name's hash, so any two of these meet and every pair is held. One hex cannot
+# be the count's ink on both pages either (4.5:1 on navy and on white ask for opposite lightness),
+# and the dashboard is CSS, so each theme has its own, slot by slot the same hue.
+#
+# Each holds 4.5:1 on the page, which is also the count's label on it, and 3:1 on raised, a
+# selected row. Every pair is told apart at the service tier, under meaning's: a service's name is
+# printed beside its colour in every row and legend, so the hue is a second cue. Each is held from
+# error at the meaning tier, since a failed span takes error in a service's place, and error leans
+# pink: no pink. And from destructive, since a red bar reads as a failure whoever drew it: no red.
+#
+# Eight: on white a colour dark enough for the count has little room left, and the sets of ten
+# that held the service tier there did it with a near-black and a magenta, the text's colour and
+# error's. Two services whose names hash to one slot share it, and the name tells them apart.
+[trace]
+dark = [
+  "#4085F9", # blue
+  "#8E72AE", # violet
+  "#27BFE8", # the mark's cyan
+  "#5CEFC0", # mint
+  "#93A96D", # sage
+  "#FFD353", # yellow
+  "#B66F03", # ochre
+  "#0A8B7D", # teal
+]
+light = [
+  "#535FFE", # blue
+  "#5839A6", # violet
+  "#116C98", # the cyan, darkened to a steel blue
+  "#106F39", # green
+  "#565B00", # olive
+  "#573900", # the yellow, darkened to a brown
+  "#4B1803", # umber
+  "#03857E", # teal
+]
+
 # The accent over a surface, for what is selected or hovered on the site (the current page in the
 # sidebar, a hovered link): an alpha, so one value serves every surface. The label on a tint is
 # accent_text. In dark the tint is cyan over navy; in light it is the navy over white, a grey, and
