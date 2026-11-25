@@ -71,7 +71,7 @@ tasks:
     cmds:
       # The Task running this one, which taskgate asks for the task names. go-tools' commands are on
       # its PATH: `go tool task` (go-tools' cmd/task) runs the Task versions.yaml pins with them.
-      - taskgate -task {{.TASK_EXE}}
+      - taskgate -common -task {{.TASK_EXE}}
       - task: lint:workflows
       - sfw check
       - go vet ./...
