@@ -49,7 +49,7 @@ go tool task release         # a person's: name main's head v<YYYYMMDD>.<NN>, on
 ```
 
 `go tool task` is [go-tools](https://github.com/spin-stack/go-tools)' task command, the one tool
-`go.mod` takes: it runs the Task `versions.yaml` pins, the version CI runs, with go-tools' commands
+`go.mod` takes: it runs the Task go-tools pins, the version CI runs, with go-tools' commands
 on its PATH. `task check` also fails on a workflow step that is not one task (`taskgate`), on a
 workflow `actionlint` refuses or an action used by a tag (`lint:workflows`), on a package install
 that skips Socket Firewall (`sfw check`), and on a face an output or a page names that `fonts/`
