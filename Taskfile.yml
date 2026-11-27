@@ -70,7 +70,7 @@ tasks:
     desc: What CI runs - fail if a pair is below its floor, dist/ or logos/ is not what the sources make, a workflow step is not one task, a workflow does not lint or uses an action by a tag, or an install skips Socket Firewall.
     cmds:
       # The Task running this one, which taskgate asks for the task names. go-tools' commands are on
-      # its PATH: `go tool task` (go-tools' cmd/task) runs the Task versions.yaml pins with them.
+      # its PATH: `go tool task` (go-tools' cmd/task) runs the Task go-tools pins with them.
       - taskgate -common -task {{.TASK_EXE}}
       - task: lint:workflows
       - sfw check

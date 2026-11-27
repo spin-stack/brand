@@ -4,7 +4,7 @@ go 1.27.3
 
 require (
 	github.com/BurntSushi/toml v1.6.0
-	github.com/spin-stack/go-tools v0.20261125.1
+	github.com/spin-stack/go-tools v0.20261127.3
 	golang.org/x/image v0.48.0
 )
 
